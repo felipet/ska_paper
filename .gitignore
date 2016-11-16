@@ -1,0 +1,8 @@
+paper_src/*.pdf
+paper_src/*.aux
+paper_src/*.bbl
+paper_src/*.blg
+paper_src/*.log
+paper_src/*.out
+paper_src/*.spl
+paper_src/*.synctex.gz
