@@ -15,7 +15,7 @@ IMG_SRC=img
 
 MAIN=$(LATEX_SRC)/ska_paper
 SOURCES=$(MAIN).tex Makefile
-FIGURES := $(shell ls $(IMG_SRC)/*)
+FIGURES := $(shell ls $(IMG_SRC))
 OUT=build
 
 
@@ -31,13 +31,18 @@ force:
 	touch .refresh
 	$(MAKE) $(MAIN).pdf
 
-.PHONY: clean force all
+.PHONY: clean force all spellcheck
 
 clean:
 	$(LATEXMK) -C $(MAIN).tex
 	rm -f $(MAIN).pdfsync
 	rm -rf *~ *.tmp
 	rm -rf $(OUT)
+	
+# Definir la variable LATEX_SRC en el entorno para comprobar sólo un archivo 
+# concreto.
+spellcheck:
+	find $(LATEX_SRC) -name "*.tex" -exec aspell --lang=en --mode=tex check "{}" \;
 
 
 
