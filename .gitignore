@@ -6,3 +6,6 @@ paper_src/*.log
 paper_src/*.out
 paper_src/*.spl
 paper_src/*.synctex.gz
+
+*~
+*.bak
