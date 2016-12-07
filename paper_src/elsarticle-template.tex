@@ -89,7 +89,72 @@
 
 \section{Introduction}
 
+There are many mechanisms to distribute time information and signals. Some of them use GNNS receivers to get timing from the Satellites (GPS, Glonass, Galileo). Other use wired protocols to provide the time reference through the network. In all these cases is important to note that it is not the same to distribute frequency (it is about sending the oscillator signal through a wire or provide a mechanism to regenerate the clock frequency) than distributing phase information (in all the elements of a network the events trigger exactly at the same instance). The first problem is called synthonizaton whilst the second is the synchronization. In the phase distribution scenario we can encode the phase information on a pulse that is transmitted thought the wire periodically each second and use this as reference to know when a new second starts. This is typically called PPS (Pulse Per Second) signal. Finally, the last problem is the provision of the time. This is not only ticking at the same time, having the same reference about when to start the counting but also having the same time in all the devices. This can be distributed by propagation of the time information from a central time server and then, by measuring the propagation time of this message, annotating it in each node. Having these three elements, frequency, phase (PPS) and time we can say that the network is synchronized.
+In this contribution we focus on finding a solution to provide ultra-accurate PPS signal distribution for the Square Kilometre Array (SKA) Telescope [2]. It is an international project to build a radio telescope tens of times more sensitive and hundreds of times faster at mapping the sky than today’s best radio astronomy facilities. It will become the world’s largest radio telescope. But the SKA is not a single telescope, but a collection of various types of antennas to be spread over long distances. Once completed it will generate data at a rate more than 10 times today’s global Internet traffic. The SKA will be used to answer fundamental questions of science and about the laws of nature and imposes a technological challenge never faced before. 
+In this contribution we present a new device based on the technology called White-Rabbit [REFERENCIA] to be used as mechanism for ultra-accurate PPS signal distribution. Section 2 will present the SKA Telescope project, the different network and the timing requirements that explain why an industrial technology solution is not feasible for SKA. In Section 3 we focus on the fundaments of the White-Rabbit technology. Section 4 describes the node we have proposed as end-node for SKA Telescope including the justification the proposed architecture and software support. The synchronization performance under different scenarios, network topologies and environmental conditions are finally presented on section 5 illustrating the goodness of the proposed solution. Final remarks are described on the section 6. 
+
 \section{The SKA project}
+
+The Square Kilometer Array (SKA) [2] will be the largest radio-telescope of the world. Located in two different geographical areas (South-Africa and Australia/New Zeland) it will be one of the great physics machines of 21st Century and, when complete, one of the world’s engineering marvels. It will be constructed on different phases SKA1 (phase 1 2018-2023) and SKA2 (phase 2 2023-2033). The development will be deployed using on two different pathfinders  existing on each place (MeerKAT in South Africa and ASKAP in Australia). 
+
+The key Science goals for this instrument are:
+
+\begin{itemize}
+	\item {Formation of the 1st galaxies in a dark Universe dominated by atomic gas.}
+	\item {Evolution of the atomic gas till the current epoch.}
+	\item {Strong Field Tests of Gravity Using Pulsars and Black Holes.}
+	\item {Acceleration in the expansion of the Universe not understood yet.}
+	\item {Habitable extra-solar planets (proto-planetary disks, biomarkers).}
+\end{itemize}
+
+The SKA facility will use different kind of antennas targeting different geographical locations and time schedule. During SKA1 and according to the SKA1 System Baseline description, for building such facility two different kinds of antennas will be used according to their capabilities to sense. They are: 
+
+\begin{itemize}
+	\item {SKA-LOW, 50 - 350 MHz Australia, 131,000 aperture array dipole 512 stations of 256 antennas.}
+	\item {DISHES, 350 MHz - 14GHz South-Africa SKA1\_Mid 350 MHz – 14 GHz 64 MeerKAT dishes plus additional 133 SKA1 dishes.}
+\end{itemize}
+
+\begin{figure}[h]
+	\includegraphics[scale=0.25]{img/ska_instruments}
+	\caption{The SKA's low frequency (right) and the mid-frequency (left) instruments.  SKA Telescope will be build on two different phases. These images (adapted from \cite{ska_multimedia_fig}) illustrate key numbers corresponding to SKA1 phase (starting 2018). }
+	\label{fig:ska_instruments1}
+\end{figure}
+
+The SKA1 telescope is being designed to optimize the Telescope performance. Some key facts about both types of instruments are shown on Fig. \ref{fig:ska_instruments1}. 
+
+The scale of the SKA Telescope represents a huge leap forward in both engineering and research and development towards building and delivering a unique instrument, with the detailed design and preparation now well under way. The unprecedented high performance specifications requires the utilization of best technologies and design strategies possible and represent an unprecedented challenge for all the elements to be build. 
+
+\subsection{SKA Telescope Network}
+
+The SKA Telescope use different types of networks to guarantee a proper operation of the infrastructure. The design corresponds to the Signal and Data Transport (SaDT) element [3]. It includes all hardware and software necessary for the transmission of data and information between the Elements of the SKA. SADT also includes the provision of timing which is critical for interferometry.
+The network data network includes the Digital Data Backhaul (DDBH) that transports signals from the radio telescopes to the Central Signal Processor (CSP), and data products from the CSP to the Science Data Processor (SDP) and from the SDP to the regional SKA Data Centres. The total data rates are very high, approximately 80 Tb/s for the DDBH links and another 80Tb/s for the CSP links. 
+Also covered by the SaDT is the Monitor and Control (M\&C) that transmits and receives monitoring and control information throughout the system and includes the Telescope Manager, itself comprised of three logical networks:
+
+Production Network, Engineering Network and Safety Network, the Network Manager as well as local monitoring and control.
+The final part of the SaDT is the Synchronisation and Timing (SAT) that provides frequency and clock signals from a central clock ensemble to all elements of the system to maintain phase information to the required accuracy for all receptors, and timing signals for data identification and time critical activities at the receptors, and the CSP and SDP. To maintain phase coherence across the array requires short-term timing precisions of around 1pico-sec, while for the requirements for the long-term timing for pulsar require 10 ns accuracies over 10 year periods. The timing is critical to the functionality of the SKA to work as a unified large telescope using a technique known as interferometry. In this contribution we will focus on the high accuracy synchronization method used for SKA1 responsible to provide a PPS (Pulse Per Second) signal to the critical elements. 
+
+\begin{figure}[h]
+	\includegraphics[scale=0.4]{img/ska_network_arch}
+	\caption{The SKA Telescope network architecture is composed by three networks: the data network (red), the M\&C network (green) and the SAT network (blue). An external clock reference, UTC traceable, is provided to the whole Telescope elements in order of providing an unique time reference.}
+	\label{fig:ska_net_arch1}
+\end{figure}
+
+\subsection{Distribution of high accuracy timing signals for ska1}
+
+As determined by SaDT, SKA telescope should be able to distribute a commune frequency reference to all the telescopes and, in addition, provide a uniform time reference to timetags all the events with ultra-high accuracy. This task is done by the SAT (Synchronization and Timing) element that belongs to SaDT. The SKA timescale is maintained by the central clock ensemble for each telescope and will be steered to within designed limits of UTC (Coordinated Universal Time) and monitored with respect to UTC via GNSS time transfer techniques. These clock ensembles form the fundamental timescale for SKA and will be the basis for precision measurements of pulsars and other time-dependent phenomena. As consequence, during this distribution, UTC refers to UTC (SKA), as realized by the central SKA clock ensemble.
+In this contribution we will focus on the solutions to distribute the UTC time by means of PPS (Pulse-Per-Second signal). This PPS signal guarantees that all the scientific data are time-tag using a commune reference. This time reference has high requirements coming from science that are not mandatory by other elements of the SKA systems as the monitor and control network. For these other elements, standard time transfer protocols as NTP or IEEE-1588 are a feasible solution. For the Telescope core, we illustrate that the high performance requirements imposed by the challenging Scientifics goals force to provide much more sophisticated solutions. 
+The PPS distribution system will be in charge to deliver its output at the following locations:
+
+\begin{itemize}
+	\item {Each of the 133 dishes of SKA1-MID, and once to the Meerkat system. The maximum receptor baseline lengths are between 120-150 Kms.}
+	\item {The core of SKA1-LOW, and the 45 stations in total along the 3 spiral arms. The maximum receptor baseline lengths are between 70-80 Kms. }
+	\item {The encoded absolute time signal will be delivered to each of the three CSPs.}
+\end{itemize}
+ 
+Note that if the offset frequency scheme is to be applied to all SKA1-Mid dishes, an additional 64 STFR endpoints will be needed in SKA1-mid. This provides between 182 and 246 endpoints to synchronize. 
+The general array SAT requirements for the frequency distribution is 1ps while the time synchronization and timestamp requirement is 10ns. SaDT uses different mechanisms for achieving goals, frequency dissemination and PPS distribution. As consequence, because our goal in this contribution is just describing a solution for PPS distribution, we only focus only on the second requirement, the 10 ns synchronization as needed for example for the long-term timing Pulsar studies. Note that a complete description of the SKA network elements and topology is out of the scope of this contribution and we will just present the requirements needed to properly understand the need of the solution here developed. 
+It is important to remark than the 10ns requirement is the time-buget allocated for the whole network. Because elements such as main clock also consume part of this budget, this translates into PPS-distribution time budget of 5ns. The error budget here includes PPS distribution, delay centre precision, Dish timing transport and time-stamping errors. This time-budget should be distributed on the different elements of the system that rely on the network topology that determine the number of hops. Based on current SAT network topology, the target specification for the elements of the PPS distribution system provides them an average time-budget better than 2ns. This is a quite challenging goal not only because impose a high accuracy synchronization goal but especially having into account the installation environmental conditions. The SKA1 use aerial optical fiber networks that are significantly affected by the large temperature excursion during operation, more than 50º due to the installation on desert locations of Sud-Afrika and Australia. Furthermore the outdoor wind velocities during normal operation could achieve up to 40 Km/hr. This make the fibres oscillate, changing their length, which must be compensated on real-time during execution or averaged them out. 
+Next section will provide the description of the solution proposed to be use on SKA1 as mechanism for PPS distribution. 
 
 \section{The White Rabbit synchronization protocol}
 
