@@ -5,12 +5,32 @@
 \usepackage{lineno,hyperref}
 \modulolinenumbers[5]
 
+% Para los colores de las anotaciones, eliminar para vf!!
+\usepackage{color}
+\usepackage{soul} % para tachar palabras
+\setstcolor{teal}
+
 %% Change to final when definitive version of the paper will be generated.
 \usepackage[draft, lang=spanish, mode=multiuser]{fixme}
+\usepackage[spanish, colorinlistoftodos, textsize=tiny]{todonotes}
 
 \FXRegisterAuthor{kcmd}{kenv}{klyone}
 \FXRegisterAuthor{jcmd}{jenv}{jda}
 \FXRegisterAuthor{fcmd}{fenv}{felipetg}
+
+%% Commands for the annotations
+
+%% Standard notes
+\newcommand{\ftglnote}[1]{\todo[bordercolor=violet, backgroundcolor=yellow]{#1}}
+\newcommand{\klyonelnote}[1]{\todo[bordercolor=red, backgroundcolor=yellow]{#1}}
+\newcommand{\ftgnote}[1]{\todo[bordercolor=violet, backgroundcolor=yellow, noline]{#1}}
+\newcommand{\klyonenote}[1]{\todo[bordercolor=red, backgroundcolor=yellow, noline]{#1}}
+
+%% Notes with high level of importance
+\newcommand{\ftglwarning}[1]{\todo[bordercolor=violet, backgroundcolor=orange]{#1}}
+\newcommand{\klyonelwarning}[1]{\todo[bordercolor=red, backgroundcolor=orange]{#1}}
+\newcommand{\ftgwarning}[1]{\todo[bordercolor=violet, backgroundcolor=orange, noline]{#1}}
+\newcommand{\klyonewarning}[1]{\todo[bordercolor=red, backgroundcolor=orange, noline]{#1}}
 
 \journal{Journal of \LaTeX\ Templates}
 
@@ -92,7 +112,9 @@
 
 \jcmdnote{We have to add more information to this introduction...}
 
-There are many mechanisms to distribute time information and signals. Some of them use GNNS receivers to get timing from the Satellites (GPS, Glonass, Galileo) meanwhile others use wired protocols to provide the time reference through the network. In all these cases is important to note that it is not the same to distribute frequency than distributing phase information. The first problem is about sending the oscillator signal through a wire or provide a mechanism to regenerate the clock frequency and usually is called synthonizaton. On the other hand, the latter ensures that in all the elements of a network the events trigger exactly at the same instant and is known as synchronization. In the phase distribution scenario, the phase information is encoded on a pulse that is transmitted thought the wire periodically each second and use this as reference to know when a new second starts. This is typically called PPS (Pulse Per Second) signal. Finally, the last problem is the provision of the time that is not only ticking at the same time, having the same reference about when to start the counting but also having the same time in all the devices. This can be distributed by propagation of the time information from a central time server and then, by measuring the propagation time of this message, annotating it in each node. A network is synchronized when takes into consideration these three elements: frequency, phase (PPS) and time.
+There are many mechanisms to distribute time information and signals. Some of them use GNNS receivers to get timing from the Satellites (GPS, Glonass, Galileo) meanwhile others use wired protocols to provide the time reference through the network. In all these cases is important to note that it is not the same to distribute frequency than distributing phase information. The first problem is about sending the oscillator signal through a wire or provide a mechanism to regenerate the clock frequency and usually is called \textcolor{blue}{syntonization}. On the other hand, the latter ensures that in all the elements of a network the events trigger exactly at the same instant and is known as synchronization. 
+
+In the phase distribution scenario, the phase information is encoded on a pulse that is transmitted thought the wire periodically each second and use this as reference to know when a new second starts. This is typically called PPS (Pulse Per Second) signal. Finally, the last problem is the provision of the time that is not only ticking at the same time, having the same reference about when to start the counting but also having the same time in all the devices. This can be distributed by propagation of the time information from a central time server and then, by measuring the propagation time of this message, annotating it in each node. A network is synchronized when takes into consideration these three elements: frequency, phase (PPS) and time.
 
 This contribution is focused on finding a solution to provide ultra-accurate PPS signal distribution for the Square Kilometer Array (SKA) Telescope \cite{ska:project_website}. It is an international project to build a radio telescope tens of times more sensitive and hundreds of times faster at mapping the sky than today’s best radio astronomy facilities. It will become the world’s largest radio telescope. But the SKA is not a single telescope, but a collection of various types of antennas to be spread over long distances. Once completed, it will generate data at a rate more than 10 times today’s global Internet traffic. The SKA will be used to answer fundamental questions of science and about the laws of nature and imposes a technological challenge never faced before. 
 
@@ -137,7 +159,7 @@ The SKA Telescope use different types of networks to guarantee a proper operatio
 The data network includes the Digital Data Backhaul (DDBH) that transports signals from the radio telescopes to the Central Signal Processor (CSP), and data products from the CSP to the Science Data Processor (SDP) and from the SDP to the regional SKA Data Centers. The total data rates are very high, approximately 80 Tb/s for the DDBH links and another 80Tb/s for the CSP links. 
 Also covered by the SaDT is the Monitor and Control (M\&C) that transmits and receives monitoring and control information throughout the system and includes the Telescope Manager, itself comprised of three logical networks: Production Network, Engineering Network and Safety Network, the Network Manager as well as local monitoring and control.
 
-The final part of the SaDT is the Synchronization and Timing (SAT) that provides frequency and clock signals from a central clock ensemble to all elements of the system to maintain phase information to the required accuracy for all receptors, and timing signals for data identification and time critical activities at the receptors, and the CSP and SDP. To maintain phase coherence across the array requires short-term timing precisions of around 1 ps, while for the requirements for the long-term timing for pulsar require 10 ns accuracies over 10 year periods. The timing is critical to the functionality of the SKA to work as a unified large telescope using a technique known as interferometry. This contribution will focus on the high accuracy synchronization method used for SKA1 responsible to provide a PPS (Pulse Per Second) signal to the critical elements. 
+The final part of the SaDT is the Synchronization and Timing (SAT) that provides frequency and clock signals from a central clock ensemble to all elements of the system to maintain phase information to the required accuracy for all receptors, and timing signals for data identification and time critical activities at the receptors, and the CSP and SDP. To maintain phase coherence across the array requires short-term timing \ftglnote{¿Esto no debe ir en singular?}precisions of around 1 ps, while for the requirements for the long-term timing for pulsar require 10 ns accuracies over 10 year periods. The timing is critical to the functionality of the SKA to work as a unified large telescope using a technique known as interferometry. This contribution will focus on the high accuracy synchronization method used for SKA1 responsible to provide a PPS (Pulse Per Second) signal to the critical elements. 
 
 \begin{figure}[h]
 	\includegraphics[scale=0.4]{img/ska_network_arch}
@@ -161,7 +183,7 @@ The PPS distribution system will be in charge to deliver its output at the follo
  
 Note that if the offset frequency scheme is to be applied to all SKA1-Mid dishes, an additional 64 STFR endpoints will be needed in SKA1-mid. This provides between 182 and 246 endpoints to synchronize. 
 The general array SAT requirements for the frequency distribution is 1 ps while the time synchronization and time-stamp requirement is 10ns. SaDT uses different mechanisms for achieving goals, frequency dissemination and PPS distribution. As consequence, because the goal in this contribution is just describing a solution for PPS distribution, the contribution work only considers the second requirement, the 10 ns synchronization as needed for example for the long-term timing Pulsar studies. Note that a complete description of the SKA network elements and topology is out of the scope of this contribution and only the requirements needed is presented to properly understand the need of the solution here developed. 
-It is important to remark than the 10 ns requirement is the time-budget allocated for the whole network. Because elements such as main clock also consume part of this budget, it translates into PPS-distribution time requirement of 5 ns. The error here includes PPS distribution, delay center precision, Dish timing transport and time-stamping errors. This time-budget should be distributed on the different elements of the system that rely on the network topology that determine the number of hops. Based on current SAT network topology, the target specification for the elements of the PPS distribution system provides them an average time-budget better than 2 ns. This is a quite challenging goal not only because impose a high accuracy synchronization goal but especially having into account the installation environmental conditions. The SKA1 use aerial optical fiber networks that are significantly affected by the large temperature excursion during operation, more than 50º due to the installation on desert locations of Sud-Africa and Australia. Furthermore the outdoor wind velocities during normal operation could achieve up to 40 km/h. it makes the fibers oscillate, changing their length, which must be compensated on real-time during execution or averaged them out. 
+It is important to remark than the 10 ns requirement is the \ftglnote{Quizás sería interesante explicar el término time-budget}time-budget allocated for the whole network. Because elements such as main clock also consume part of this budget, it translates into PPS-distribution time requirement of 5 ns. The error here includes PPS distribution, delay center precision, Dish timing transport and time-stamping errors. This time-budget should be distributed on the different elements of the system that rely on the network topology that determine the number of hops. Based on current SAT network topology, the target specification for the elements of the PPS distribution system provides them an average time-budget better than 2 ns. This is a quite challenging goal not only because impose a high accuracy synchronization goal but especially having into account the installation environmental conditions. The SKA1 use aerial optical fiber networks that are significantly affected by the large temperature excursion during operation, more than 50º due to the installation on desert locations of Sud-Africa and Australia. Furthermore the outdoor wind velocities during normal operation could achieve up to 40 km/h. it makes the fibers oscillate, changing their length, which must be compensated on real-time during execution or averaged them out. 
 Next section will provide the description of the solution proposed to be use on SKA1 as mechanism for PPS distribution. 
 
 \section{The White Rabbit synchronization protocol}
