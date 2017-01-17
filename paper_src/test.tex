@@ -1,10 +1,22 @@
 %% Section that includes the experiments performed.
 
-This section describes the accomplished experiments that prove how the 
-developed system fulfills SKA's requirements for the PPS distribution system. The first experiment 
-is a general characterization of the developed platform. The second one, tests the equipment in a 
-realistic network topology to evaluate the performance in a possible deployment. The last experiments 
-evaluates the influence of some typical events, such as traffic, temperature fluctuation or \textcolor{blue}{something else} in a network deployment using the WR-ZEN.
+This section describes the accomplished experiments that prove how the developed system fulfills SKA's requirements for the PPS distribution system. The first experiment is a general characterization of the developed platform. The second one, tests the equipment in a realistic network topology to evaluate the performance in a possible deployment. The last experiments evaluates the influence of some typical events, such as traffic, temperature fluctuation or \textcolor{blue}{something else} in a network deployment using the WR-ZEN.
+
+Performance of the new WR platform is measured using multiple equipment, and obtained results have been compared to WRS's performance because of it's electronic design is considered as \ftglnote{en serio?}reference for WR technology. The list of the equipment and materials used for the experiments is the following:
+
+\begin{itemize}
+    \item Three White Rabbit Switches to simulate a typical WR network. All of them have hardware version 3.4 and 5.0 of firmware.
+    \item A White Rabbit ZEN Time Provider (WR-ZEN TP) to test the performance of the new developed platform as node of a WR network. The firmware version is 1.2.
+    \item Phase noise plots, ADEV, TDEV and TIE measures have been taken using a Symmetricom 3120A.
+    \item The 3120A needs an external stable clock reference. That reference is also needed as input for the WR equipment when Grand Master mode is set. \ftglnote{Creo que sería necesario comentar aquí que hemos diseñado una placa para poder sacar la referencia de 10Mhz doble y un PPS, pero como lo ha hecho 7s no se como ponerlo...}A Morion MV89 Oven Controlled Crystal Oscillator (OCXO) has been used as clock reference for the experiments.
+    \item Multiple components for the setup of the equipment:
+    \begin{itemize}
+        \item Small form-factor pluggable transceptors (SFPs) to stablish the link between WR devices.  \textcolor{blue}{\textit{TODO:} Completar cuando se hayan usado}
+        \item Optical fiber links. \textcolor{blue}{\textit{TODO:} Completar con las fibras que se hayan usado}
+        \item \textcolor{blue}{\textit{TODO:} Something else?}
+    \end{itemize}
+    \item \textcolor{blue}{\textit{TODO:} Completar conforme se hagan medidas}
+\end{itemize}
 
 \subsection{Characterization of the WR-ZEN platform}
 \label{subsec: charact_zen}
