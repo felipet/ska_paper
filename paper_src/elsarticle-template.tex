@@ -5,12 +5,14 @@
 \usepackage{lineno,hyperref}
 \modulolinenumbers[5]
 
+%% --------------------------- Old revision system -------------------------------
 %% Change to final when definitive version of the paper will be generated.
-\usepackage[draft, lang=spanish, mode=multiuser]{fixme}
+%%\usepackage[draft, lang=spanish, mode=multiuser]{fixme}
 
-\FXRegisterAuthor{kcmd}{kenv}{klyone}
-\FXRegisterAuthor{jcmd}{jenv}{jda}
-\FXRegisterAuthor{fcmd}{fenv}{felipetg}
+%%\FXRegisterAuthor{kcmd}{kenv}{klyone}
+%%\FXRegisterAuthor{jcmd}{jenv}{jda}
+%%\FXRegisterAuthor{fcmd}{fenv}{felipetg}
+%% --------------------------- Old revision system -------------------------------
 
 %% Commands for the annotations
 \usepackage[spanish, colorinlistoftodos, textsize=tiny]{todonotes}
@@ -110,7 +112,7 @@
 
 \section{Introduction}
 
-\jcmdnote{We have to add more information to this introduction...}
+\klyonelnote{We have to add more information to this introduction...}
 
 There are many mechanisms to distribute time information and signals. Some of them use GNNS receivers to get timing from the Satellites (GPS, Glonass, Galileo) meanwhile others use wired protocols to provide the time reference through the network. In all these cases is important to note that it is not the same to distribute frequency than distributing phase information. The first problem is about sending the oscillator signal through a wire or provide a mechanism to regenerate the clock frequency and usually is called \textcolor{blue}{syntonization}. On the other hand, the latter ensures that in all the elements of a network the events trigger exactly at the same instant and is known as synchronization. 
 
@@ -120,7 +122,7 @@ This contribution is focused on finding a solution to provide ultra-accurate PPS
 
 This article presents a new device based on the technology called White-Rabbit \cite{ohwr:wr_wiki} to be used as mechanism for ultra-accurate PPS signal distribution. Section 2 will present the SKA Telescope project, the different network and the timing requirements that explain why an industrial technology solution is not feasible for SKA. Section 3 focuses on the fundamentals of the White-Rabbit technology. Section 4 describes the proposed node as end-node for SKA Telescope including the justification, architecture and software support. The synchronization performance under different scenarios, network topologies and environmental conditions are finally presented on section 5 illustrating the goodness of the exposed solution. Final remarks are described on the section 6. The last sections are dedicated to the conclusion, future work and the acknowledgments.
 
-\jcmdnote{Add some reference about the commercial synchronization solutions.}
+\klyonelnote{Add some reference about the commercial synchronization solutions.}
 
 \section{The SKA telescope}
 
@@ -167,7 +169,7 @@ The final part of the SaDT is the Synchronization and Timing (SAT) that provides
 	\label{fig:ska_net_arch1}
 \end{figure}
 
-\jcmdnote{This figure must be re-made because it is not ours. It would be convenient to use the same terminology than figure's caption...}
+\klyonelnote{This figure must be re-made because it is not ours. It would be convenient to use the same terminology than figure's caption...}
 
 \subsection{Distribution of high accuracy timing signals for ska1}
 
