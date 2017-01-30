@@ -5,6 +5,28 @@
 \usepackage{lineno,hyperref}
 \modulolinenumbers[5]
 
+%% Necessary for multiple images in a row
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs} % for table* env.
+\usepackage{multirow} % for row spanning
+
+%% Para los colores de las anotaciones, eliminar para vf!!
+\usepackage{color}
+\usepackage{soul} % para tachar palabras
+\setstcolor{teal}
+
+%% Commands for table format
+%\newcolumntype{R}[2]{%
+%    >{\adjustbox{angle=#1,lap=\width-(#2)}\bgroup}%
+%    l%
+%    <{\egroup}%
+%}
+\newcommand*\rot{\multicolumn{1}{R{90}{1em}}}%
+\renewcommand{\arraystretch}{1.2} % Aumentar el espacio entre filas de una tabla
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+
 %% --------------------------- Old revision system -------------------------------
 %% Change to final when definitive version of the paper will be generated.
 %%\usepackage[draft, lang=spanish, mode=multiuser]{fixme}
@@ -126,9 +148,9 @@
 
 \input{sec/pps-system-ska.tex}
 
-\section{Test}
+\section{Experiments}
 
-\section{Results}
+\input{sec/experiments}
 
 \section{Conclusion}
 
