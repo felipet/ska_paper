@@ -32,7 +32,9 @@ Para realizar estos experimentos se ha utilizado el siguiente material:
 - *prueba1_a.csv:* Primera medición de la prueba 1. Tomada el 20-02-17.
 - *prueba2_a.csv*: Primera medición de la prueba 2. Tomada el 20-02-17.
 - *prueba2_b.csv*: Segunda medición de la prueba 2. Tomada el 20-02-17.
-- *prueba2_c.csv:* Tercera medición de la prueba2. Tomada el 21-02-17.
+- *prueba2_c.csv:* Tercera medición de la prueba 2. Tomada el 21-02-17.
+- *prueba1_b.csv:* Segunda medición de la prueba 1. Tomada el 21-02-17.
+- *prueba3_a.csv:* Primera medición de la prueba 3. Tomada el 21-02-17.
 
 ## Descripción de las pruebas
 
