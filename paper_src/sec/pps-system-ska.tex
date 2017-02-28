@@ -131,6 +131,57 @@ optical fiber ports can be accessed as conventional Linux network interfaces.
 %%In brief, the ZEN board offers to the final user a node capable to reach sub-nanosecond synchronization, working in daisy chain schemes, and provides the best of the Zynq and its new level of system %%design capabilities.
 %% ------------------------------------------------------------------------
 
+\ftgnote{Perdona que me sienta libre de reescribir esta sección, coge lo que 
+veas conveniente... Deberíamos meter una ref a la web de Seven o es marketing?}
+
+\textcolor{teal}{The WR-ZEN board is a proprietary design of the Seven 
+Solutions company developed in 2015 aiming to improve the current designs of WR 
+nodes.
+The new platform includes a new family of SoC from Xilinx, the Zynq-7000. 
+That family is characterized by joining a hard core microprocessor and a FPGA 
+in the same chip. Hence, WR nodes, can achieve a performance increment while 
+keeping costs low. The other key aspect of the new board design is the 
+incorporation of a better cloking \ftglnote{clocking se puede usar??} resources 
+for the WR-logic and a more flexible clock schema that allows to generate a 
+broad range of output synchronization signals very useful for custom designs 
+which may need frequency sources different of 10 MHz.}
+
+\textcolor{teal}{The Zynq-7000 SoC choosen is the XC7Z015. We will expose the 
+key components under a WR point of view: the dual ARM Cortex-A9 MPCore allows 
+the execution of a Linux based OS. There are enough computation resources to 
+include other synchronization protocols, such as NTP or IRIG-B, full 
+implementations of monitoring software, like SMTP, or to rise the WR PTP Core 
+software logic from the LM32 to the ARM. A Dual-core architecture allows hybrid 
+processing schemas, where a core is used by the Linux OS, and the other is 
+focused on real time (RT) tasks such as the SoftPLL management. This could lead 
+some research to avoid using the embedded LM32 soft-processor an ease the 
+system development with all the code executed by the ARM processor. Xilinx 
+calls that part \textit{Processing System}. 
+
+\textcolor{teal}{The Programmable Logic (PL) includes the FPGA resources needed 
+by the design in Hardware Descripiton Language, HDL, which includes the major 
+part of the WR logic. For the XC7Z015, the PL part is equivalent to an Artix-7 
+FPGA. That concrete model includes 74000 logic cells, 380 KB of embedded memory 
+and 4 Gigabit Transceiver Ports (GTP), more than enough for the WR 
+implementation, allowing the inclusion of custom HDL modules for custom designs 
+based on WR.}
+
+\textcolor{teal}{The board adds two Ethernet ports \ftglnote{como se les llama 
+en fino a las bocas de cobre?}. In the current design, they are used mainly for 
+remote management of the board, but in future developments, those ports would 
+be connected to stantard PTP devices via copper links. The WR-NIC drivers allow 
+the communication and fordwarding of packets between the copper Ethernet 
+interfaces and the fiber ones used by the WR network. Other relevant connection 
+included is the FMC HPC socket. In the current design the FMC Fine Delay board 
+is supported but any of the FMC boards developed by the Open Hardware 
+Repository  (OHWR\ftglnote{mete enlace al OHWR por favor}) community (among any 
+other board using an FMC interface) could by added.}
+
+\textcolor{teal}{The new clock schema...TODO: completar esta parte.}
+
+\missingfigure{Figura del esquema de relojes de la ZEN}
+
+
 The WR-ZEN is a board designed by Seven Solutions company and contains a Xilinx Zynq SoC. This SoC has a ARM dual core microprocessor (Cortex-A9 MPCore with CoreSight) and a FPGA device (Artix with 74K logic cells, 380KB of embedded memory and 160 DSP blocks). This versatile architecture removes the necessity of a conventional PC because all the high-level software components can be implemented in the on-board processor. The WR-ZEN has been conceived with an improved clocking scheme in relation to older WR nodes. \klyonelnote{Felipe, here you can explain in depth the clocking circuitry and show the improvements in relation to older WR nodes such as SPEC.} It takes into advantage of better oscillators and additional PLL to be capable to generate a wide range of frequencies for several kind of different applications. The WR-ZEN is fully connected thanks to its two optical fiber SFP interfaces and two RJ45 sockets and has other standard ports such as FMC, SAMTEC, UART, I2C, SPI, etc. The expansion connectors (FMC and SAMTEC) are though to add other boards that implement specific features or capabilities. Typical applications for the FMC mezzanine board are Analog to Digital Converter (ADC), Digital to Analog Converter (DAC), Time to Digital Converter (TDC), Fine Delay, Digital I/O (DIO), etc. The SAMTEC connector is used to add extra circuitry to provide redundancy (duplicate power supply) and other additional components such as fans, LCD display, power supply control chips, etc.
 
 \missingfigure{Add WR-ZEN photo.} 
