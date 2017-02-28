@@ -18,17 +18,64 @@ The White Rabbit protocol requires a network topology similar to the ITU-T G.827
 	\item{The end-nodes. They consist of a WR-ZEN node \cite{sevensols:wr_zen} powered by a Zynq FPGA-SoC and placed on inside a 1U rack enclosure. They will be located at the cores of SKA1-LOW and SKA1-SURVEY, along their spiral arms, one for each SKA1-MID dish and one for each CSP.}
 \end{itemize}
 
-The WR switches are responsible for generating the WR signal from the SAT clock ensembles. They receive a 10MHz reference and PPS signal, and use NTP or IRIG-B to determine the UTC time of each PPS edge. The output is transmitted via a single fiber up to a maximum distance of 120 km by using commercial SFPs. However, the distances for SKA1-MID are longer and it is necessary to use an intermediate WR switch as repeater that adds a small (20ps) jitter penalty for the few stations that are connected beyond it. This penalty only applies to the internal measurement of the PPS phase, and not to the jitter of the PPS itself which is directly divided down from the distributed reference frequency and therefore it does not reduce system performance. Thanks to network similarities between WR and SKA, both can use the same single fiber strand available for the SAT network. 
+The WR switches are responsible for generating the WR signal from the SAT clock 
+ensembles. They receive a 10MHz reference and PPS signal, and use NTP or IRIG-B 
+to determine the UTC time of each PPS edge. The output is transmitted via a 
+single fiber up to a maximum distance of 120 km by using commercial SFPs. 
+However, the distances for SKA1-MID are longer and it is necessary to use an 
+intermediate WR switch as repeater that adds a small \ftglnote{Esto no es del 
+todo así...} (20ps) jitter penalty for the few stations that are connected 
+beyond it. This penalty only applies \ftglnote{El jitter del PPS si se 
+incrementa por el aumento del ruido provocado por el mayor número de hops en la 
+red. Hay que cambiarlo.} to the internal measurement of the PPS phase, and not 
+to the jitter of the PPS itself which is directly divided down from the 
+distributed reference frequency and therefore it does not reduce system 
+performance. Thanks to network similarities between WR and SKA, both can use 
+the same single fiber strand available for the SAT network. 
 
 \missingfigure{Example of a network topology for PPS signal distribution based on WR switches and nodes}
  
 An important feature of the system to take into account is that the PPS pulse itself at each station is derived from the reference frequency distributed from the SKA clock and not from the WR system. In normal operations, the WR system only monitors the absolute time of each PPS and reports it back activating an alert if the PPS signal does not align with the start of the UTC second. This condition indicates something is wrong in the timing chain and the station must be discard data to ensure not to introduce corrupt one in the system. Other functionality associated with the WR part is to temporarily alter the division ratio to bring the PPS edge back in alignment with UTC time. In this case, fringe finding must then be performed to restore full calibration again.
 
-The centrally located WR switches and the WR end-nodes are connected to by a single strand of single-mode fiber with LC/PC connectors and industry standard bi-directional SFPs that use two wavelengths (downlink and uplink) to generate optical signals to be transmitted. Finally the end nodes make a 1PPS signal available. 
+The centrally located WR switches and the WR end-nodes are connected to by a 
+single strand of single-mode fiber with LC/PC connectors and industry standard 
+bi-directional SFPs that use two wavelengths (downlink and uplink) to generate 
+optical signals to be transmitted. Finally the end nodes make \ftglnote{Make me 
+recuerda a make a cookie, make a cup of tea, pero no a un PPS. Generate mejor 
+que make?} a 1PPS signal available. 
 
-As previously described, this solution requires WR switches and nodes. The former are well-defined equipment with known interfaces and software support. However, there is a problem related to the current WR nodes: they are based on PCIe interface cards to be plugged on standard computers, microTCA or VME-64 crates and therefore, a specific computer is necessary to provide the high level software functionalities. Although most of these cards can be used on stand-alone operation mode, they just use a FPGA device as processing engine and this make very complicated to add new functionalities or standard software tools. The main WR node designs include a soft-microprocessors on the FPGA gateware but it is not enough to fully solve the problem because it requires using complex non-standard firmware programming tools and it normally translates on high time-intensive development effort and makes difficult the upgrade of the system firmware.
+As previously described, this solution requires WR switches and nodes. The 
+former are well-defined equipment with known interfaces and software support. 
+However, there is a problem related to the current WR nodes: they are based on 
+PCIe interface cards to be plugged on standard computers, microTCA or VME-64 
+crates and therefore, a specific computer is necessary to provide the high 
+level software functionalities. Although most of these cards can be used on 
+stand-alone operation mode, they just use a FPGA device as processing engine 
+and this make very complicated to add new functionalities or standard software 
+tools. The main WR node designs include a soft-microprocessors \ftglnote{no 
+debería ir en sigular microprocessor?} on the FPGA gateware but it is not 
+enough to fully solve the problem because it requires using complex 
+non-standard firmware programming tools and it normally translates on high 
+time-intensive development effort and makes difficult the upgrade of the system 
+firmware.
 
-As different solution, we have proposed the utilization of the ZEN board \cite{sevensols:wr_zen}. It is WR-compatible and powered by a Zynq FPGA-SoC device \cite{xilinx:zynq} that allows developing gateware and software on the same chip, tightly integrating performance and flexibility. Its new architecture is suitable to the utilization of software-hardware co-design strategies to take full advantages of the platform. Thus, the utilization of a host computer/crate to host the FPGA card can be avoided which reduces significantly the equipment price. Furthermore, the reduction of elements (CPUs, fan, etc..) is also a remarkable improvement in term of dependability which is a key factor taking into account that SKA Telescope should have an annual availability of about 95\% of the time (although degraded operation modes can be allowed under some circumstances). Finally note that all these features are possible keeping the full flexibility of a complete CPU+FPGA system on a single board. 
+As different solution, we have proposed the utilization of the ZEN board 
+\cite{sevensols:wr_zen}. It is WR-compatible \ftglnote{compliant vs compatible} 
+and powered by a Zynq FPGA-SoC device \cite{xilinx:zynq} that allows developing 
+gateware and software on the same chip, tightly integrating performance and 
+flexibility. Its new architecture is suitable to the utilization of 
+software-hardware co-design strategies to take full advantages of the platform. 
+Thus, the utilization of a host computer/crate to host the FPGA card can be 
+avoided which reduces significantly the equipment price. Furthermore, the 
+reduction of elements (CPUs, fan, etc..) \ftglnote{No me queda claro a que te 
+refieres aquí. Reducir componentes? En la frase anterior dijiste que se 
+prescindia del pc, así que no tiene sentido repetirlo de nuevo.} is also a 
+remarkable improvement in 
+term of dependability which is a key factor taking into account that SKA 
+Telescope should have an annual availability of about 95\% of the time 
+(although degraded operation modes can be allowed under some circumstances). 
+Finally note that all these features are possible keeping the full flexibility 
+of a complete CPU+FPGA system on a single board. 
 
 In the following section we will describe the proposed node hardware, gateware and firmware that have been developed as a candidate solution for the SKA Telescope PPS distribution system. 
 
@@ -40,7 +87,13 @@ In the following section we will describe the proposed node hardware, gateware a
 %% the ZEN resources. The on-board Linux allows the utilization of new and interesting features as webservices for configuration, SNMP support for status monitoring and remote firmware load and update. 
 %% ------------------------------------------------------------------------
 
-The PPS distribution system for SKA is based on the WR-ZEN platform that provides the WR support in order to ensure the synchronization accuracy in the system. The first design of the PPS system includes the Fine Delay FMC card that is used to generate the timing signals to be transmitted over the link. Moreover, Network Interface Card (NIC) capabilities have been added to the design and their two optical fiber ports can be accessed as conventional Linux network interfaces.
+The PPS distribution system for SKA is based on the WR-ZEN platform that 
+provides the WR support in order to ensure the synchronization accuracy in the 
+system. The first design of the PPS system includes the Fine Delay FMC card 
+that is used to generate the timing signals to be transmitted over the link. 
+\ftglnote{Explicame que quieres decir con esa frase} Moreover, Network 
+Interface Card (NIC) capabilities have been added to the design and their two 
+optical fiber ports can be accessed as conventional Linux network interfaces.
 
 \subsubsection{Hardware}
 
@@ -149,11 +202,21 @@ The second level is referred to the specific IP core that takes into considerati
 
 \subsubsection{Firmware}
 
-The LM32 soft-microprocessor is responsible for implementing the WR protocol. The code is written in C language and considers low level hardware drivers for each IP core and the WR-PTO that includes the PTPv2 stack with some add-ons for WR. In addition, a simple Command Language Interface (CLI) is introduced to allow the user interaction (think that some WR nodes can work in standalone mode and does not have an on-board hard microprocessor). The main tasks for the WR firmware is to implement the WR-PTP protocol and the control routines of DAC chips. 
+The LM32 soft-microprocessor is responsible for implementing the WR protocol. 
+The code is written in C language and considers low level hardware drivers for 
+each IP core and the WR-PTO \ftglnote{PTO: Errata o yo no tengo ni idea de que 
+estamos hablando...} that includes the PTPv2 stack with some add-ons for WR. In 
+addition, a simple Command Language Interface (CLI) is introduced to allow the 
+user interaction (think that some WR nodes can work in standalone mode and does 
+not have an on-board hard microprocessor). The main tasks for the WR firmware 
+is to implement the WR-PTP protocol and the control routines of DAC chips. 
 
 \klyonenote{What more information can we add at this point?}
 %% More information about WR-PTP??
-The WR-PTP is implemented in two flavours: PTP-no-POSIX and PTP Port to Silicon (PPSo). The former is a simple version as its name indicates, is not POSIX compliant. This is the old implementation and it has been replace with the PPSi that is POSIX compliant.
+The WR-PTP is implemented in two flavours: PTP-no-POSIX and PTP Port to Silicon 
+(PPSi). The former is a simple version as its name indicates, is not POSIX 
+compliant. This is the old implementation and it has been replace with the PPSi 
+that is POSIX compliant.
 
 The PI loop for DACs is coded using an LM32 IRQ handler for the SoftPLL module. The SoftPLL measures phase differences between clocks as we discussed in the previous section. Taking into account this information, a PI loop algorithm is performed to calculate the value to be applied to each DAC chip in order to change the local oscillator frequency to follow the master one (in a slave mode). One thing to be into consideration is that the process must be determinism and it only can be ensured if there is only an interrupt source and nothing can stop the SoftPLL operation.
 
@@ -228,7 +291,52 @@ The PI loop for DACs is coded using an LM32 IRQ handler for the SoftPLL module. 
 %
 %% ------------------------------------------------------------------------
 
-The WR-ZEN can take advantage of having a hard dual core microprocessor because it allows to deploy a Linux system in the platform or a baremetal application that manages the hardware resources directly. In the SKA system, the WR-ZEN is used with a Linux kernel to implement the specific applications needed by the system. To accomplish this task, a process must be defined to build the kernel and all software components (daemons, applications, drivers, etc) in a simple and automatic way. The manual building of the Linux system is not an acceptable procedure because it requires human-intervention and it is complex, tedious and error prone task. Other solution could be to use an existing software tool (Buildroot or Yocto for example), however, it used to have some customization limitations. On the other hand, a custom and automatic building system could be coded but it often carries creating several scripts and this task is high time consuming. The final solution is a mixed scheme: a software tool known as Buildroot and some scripts to perform additional tasks. Buildroot is responsible for generating a new Operating System based on Linux with multiple applications and the root file system to get a fully operational environment. However, its main disadvantage is the lost of control due the fact all the steps are automatic and it has advanced topics that are difficult for newbies. To solve these inconveniences, some custom scripts (inspired by WR Switch Software project ones from OHWR) are added to allow user intervention and provides standard configuration for Linux kernel, Busybox and root filesystem. The Busybox is a software package that contains most used and important tools in Linux environment. Nevertheless, it is optimized for embedded devices because it only generates a single binary for all tools. The root filesystem is the main file holder for Linux system and it stores many files including tools, drivers, configuration files, initialization scripts, etc. Moreover the basic Linux components, some userspace tools and custom kernel drivers have been developed to manage the main modules in the WR-ZEN reference design. The kernel drivers that have been used, modified or implemented from others are the following:
+\ftgnote{Una propuesta para reescribir la entrada}
+\textcolor{teal}{The WR-ZEN is the first \ftglnote{me suena que si pero dale 
+una vuelta por si acaso...} WR node taking advantage of a Linux 
+based operative system (OS). Due to the inclusion of a dual-core ARM 
+microprocessor in the platform, the system design is not longer tighted to 
+low-level software design. New functionalities, such as communication 
+protocols, management tools and so on, are quickly added because of the 
+facilities of an OS: a hardware abstraction layer, and drivers which abstract 
+the management of the underlaying logic. This middleware adds also more 
+security controlling the access to the hardware.}
+
+\textcolor{teal}{The counterpart is an increasment of the system design... 
+Engancha con lo tuyo}
+
+The WR-ZEN can take advantage of having \ftglnote{esa frase es spanglish total, 
+cambiala porfa} a hard dual core microprocessor because it allows to deploy a 
+Linux system in the platform or a \textst{baremetal} application that manages 
+the 
+hardware resources directly. In the SKA system, the WR-ZEN is used with a Linux 
+kernel to implement the specific applications needed by the system. To 
+accomplish this task, a process must be defined to build the kernel and all 
+software components (daemons, applications, drivers, etc) in a simple and 
+automatic way. The manual building of the Linux system is not an acceptable 
+procedure because it requires human-intervention and it is complex, tedious and 
+error prone task. Other solution could be to use an existing software tool 
+(Buildroot or Yocto for example), however, it used to have some customization 
+limitations. On the other hand, a custom and automatic building system could be 
+coded but it often carries creating several scripts and this task is high time 
+consuming. The final solution is a mixed scheme: a software tool known as 
+Buildroot and some scripts to perform additional tasks. Buildroot is 
+responsible for generating a new Operating System based on Linux with multiple 
+applications and the root file system to get a fully operational environment. 
+However, its main disadvantage is the lost of control due the fact all the 
+steps are automatic and it has advanced topics that are difficult for newbies. 
+To solve these inconveniences, some custom scripts (inspired by WR Switch 
+Software project ones from OHWR) are added to allow user intervention and 
+provides standard configuration for Linux kernel, Busybox and root filesystem. 
+The Busybox is a software package that contains most used and important tools 
+in Linux environment. Nevertheless, it is optimized for embedded devices 
+because it only generates a single binary for all tools. The root filesystem is 
+the main file holder for Linux system and it stores many files including tools, 
+drivers, configuration files, initialization scripts, etc. Moreover the basic 
+Linux components, some userspace tools and custom kernel drivers have been 
+developed to manage the main modules in the WR-ZEN reference design. The kernel 
+drivers that have been used, modified or implemented from others are the 
+following:
 
 \missingfigure{Add figure to show device driver relations.}
 
@@ -245,6 +353,20 @@ As previously seen, there are dependencies between the different kernel drivers 
 
 In addition to device drivers, there are several custom userspace tools related with drivers previous explained. Those that use the \textit{zen} driver API are \textit{zenmem} that is responsible for accessing memory map of the WR-ZEN IP cores, \textit{zen-fwloader} that programs the FPGA with a given bitstream, \textit{zen-vuart} and \textit{zen-cl} that allows talking to the soft-microprocessor (see the gateware section) and loading other firmware respectively. On the other hand, the  \textit{fmc-fine-del} driver has associated tools such as \textit{fmc-fdelay-board-time} that is used to get the current time, \textit{fmc-fdelay-pulse} that generates pulses with certain characteristics (frequency, initial delay, duty cycle, etc), \textit{fmc-fdelay-input} that prints some information when an incoming signal raises the input connector of the mezzanine card, \textit{fmc-fdelay-list} that enumerates the Fine Delay FMC cards plugged in the system (only one for WR-ZEN but however more for conventional PCs), \textit{fmc-fdelay-status} that check the status of Fine Delay FMC core and \textit{fmc-fdelay-term} that configures the termination of each channel among others.
 
-Apart from the Linux or baremetal environment described before, more components are needed  for the WR-ZEN platform. Previously any application or Operating system can run, a specific bootloader must initialize some hardware devices. In the Zynq technology, there is a special bootloader known as First Stage Bootloader (FSBL) that is responsible for early initializations and it is the first step to perform in whatever system based on Zynq. The FSBL sets up different peripherals, configures the FPGA with a bitstream and runs the baremetal application or the Second Stage Bootloader (SSBL). The most common SSBL are U-boot and Barebox. The chosen bootloader is U-boot instead of Barebox because Xilinx company provides custom code for the Zynq devices. Finally, the FSBL, bitstream and SSBL/baremetal application must be packed in a binary file named BOOT.bin using the Xilinx SDK environment or bootgen tool and put it in a FAT-32 (boot and lba flags enabled) partition of a SD card.
+Apart from the Linux or \textst{baremetal}\ftglnote{Esta palabra no existen en 
+el diccionario inglés, no se puede usar} environment described before, more 
+components are needed  for the WR-ZEN platform. Previously any application or 
+Operating system can run, a specific bootloader must initialize some hardware 
+devices. In the Zynq technology, there is a special bootloader known as First 
+Stage Bootloader (FSBL) that is responsible for early initializations and it is 
+the first step to perform in whatever system based on Zynq. The FSBL sets up 
+different peripherals, configures the FPGA with a bitstream and runs the 
+baremetal application or the Second Stage Bootloader (SSBL). The most common 
+SSBL are U-boot and Barebox. The chosen bootloader is U-boot instead of Barebox 
+because Xilinx company provides custom code for the Zynq devices. Finally, the 
+FSBL, bitstream and SSBL/\textst{baremetal} application must be packed in a 
+binary file 
+named BOOT.bin using the Xilinx SDK environment or bootgen tool and put it in a 
+FAT-32 (boot and lba flags enabled) partition of a SD card.
 
 \missingfigure{Add figure to show a software overview.}
