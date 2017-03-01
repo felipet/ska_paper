@@ -146,7 +146,7 @@ for the WR-logic and a more flexible clock schema that allows to generate a
 broad range of output synchronization signals very useful for custom designs 
 which may need frequency sources different of 10 MHz.}
 
-\textcolor{teal}{The Zynq-7000 SoC choosen is the XC7Z015. We will expose the 
+\textcolor{teal}{The Zynq-7000 SoC chosen is the XC7Z015. We will expose the 
 key components under a WR point of view: the dual ARM Cortex-A9 MPCore allows 
 the execution of a Linux based OS. There are enough computation resources to 
 include other synchronization protocols, such as NTP or IRIG-B, full 
@@ -156,10 +156,10 @@ processing schemas, where a core is used by the Linux OS, and the other is
 focused on real time (RT) tasks such as the SoftPLL management. This could lead 
 some research to avoid using the embedded LM32 soft-processor an ease the 
 system development with all the code executed by the ARM processor. Xilinx 
-calls that part \textit{Processing System}. 
+calls that part \textit{Processing System}.}
 
 \textcolor{teal}{The Programmable Logic (PL) includes the FPGA resources needed 
-by the design in Hardware Descripiton Language, HDL, which includes the major 
+by the design in Hardware Description Language, HDL, which includes the major 
 part of the WR logic. For the XC7Z015, the PL part is equivalent to an Artix-7 
 FPGA. That concrete model includes 74000 logic cells, 380 KB of embedded memory 
 and 4 Gigabit Transceiver Ports (GTP), more than enough for the WR 
@@ -169,15 +169,17 @@ based on WR.}
 \textcolor{teal}{The board adds two Ethernet ports \ftglnote{como se les llama 
 en fino a las bocas de cobre?}. In the current design, they are used mainly for 
 remote management of the board, but in future developments, those ports would 
-be connected to stantard PTP devices via copper links. The WR-NIC drivers allow 
-the communication and fordwarding of packets between the copper Ethernet 
-interfaces and the fiber ones used by the WR network. Other relevant connection 
+be connected to standard PTP devices via copper links. The WR-NIC drivers allow 
+the communication and forwarding of packets between the copper Ethernet 
+interfaces and the fibre ones used by the WR network. Other relevant connection 
 included is the FMC HPC socket. In the current design the FMC Fine Delay board 
 is supported but any of the FMC boards developed by the Open Hardware 
 Repository  (OHWR\ftglnote{mete enlace al OHWR por favor}) community (among any 
 other board using an FMC interface) could by added.}
 
-\textcolor{teal}{The new clock schema...TODO: completar esta parte.}
+\textcolor{teal}{Finally, the usual clock schema included in standard WR designs has been modified looking for an improvement of the clock stability and a more flexible schema to synthesize clock signals from the main clock reference used by WR. The new clock circuitry is depicted in diagram ??. The main WR crystal oscillator (XO) is replaced by a Crystek CVHD-950 with a nominal frequency of 50 MHz. This oscillator is better isolated and offers a lower noise profile compared to previous designs with the VM53S3 XO. Some phase noise plots are included in  \textit{ref a ??} showing a comparison between the new clock circuitry and the standard from previous WR designs.}
+
+\textcolor{teal}{The main clock frequency is controlled by a Digital-to-Analog Converter (DAC) that receives the control values from the WR logic and tunes the oscillator's frequency to follow the clock reference from the master device in the network. The WR-ZEN's board adds a new DAC which offers better response time and stability compared to the previously used DACs. The main XO fed a PLL used to synthesize the required clock signals for the WR logic. Traditionally, WR designs used a PLL from Analog Devices, the AD9516-4. In this new design, a second PLL has been introduced between the main XO and the AD9516-4 PLL, the Texas Instrument LMK03806. The main reason is the better noise profile of this PLL that is used to latch the 10 MHz clock signal produced by the WR logic inside the PL. There is a jitter reduction of that signal due to the inclusion of the LMK, a phase noise comparison can be found in ??. The AD9516-4 is maintained and receives the main clock source directly from the LMK thanks to an option of the later which allows to output the input clock signal without adding jitter. Designers can play with the clock schema in order to produce specific clock frequencies and they can choose which PLL is used to drive the GPTs or the WR logic.}
 
 \missingfigure{Figura del esquema de relojes de la ZEN}
 
