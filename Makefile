@@ -13,7 +13,7 @@ LATEXOPT=xelatex
 LATEX_SRC=paper_src
 IMG_SRC=img
 
-MAIN=$(LATEX_SRC)/ska_paper
+MAIN=$(LATEX_SRC)/elsarticle-template
 SOURCES=$(MAIN).tex Makefile
 FIGURES := $(shell ls $(IMG_SRC))
 OUT=build

@@ -5,11 +5,34 @@
 \usepackage{lineno,hyperref}
 \modulolinenumbers[5]
 
+%% --------------------------- Old revision system -------------------------------
 %% Change to final when definitive version of the paper will be generated.
-\usepackage[draft, lang=spanish, mode=multiuser]{fixme}
+%%\usepackage[draft, lang=spanish, mode=multiuser]{fixme}
 
-\FXRegisterAuthor{kcmd}{kenv}{klyone}
-\FXRegisterAuthor{fcmd}{fenv}{felipetg}
+%%\FXRegisterAuthor{kcmd}{kenv}{klyone}
+%%\FXRegisterAuthor{jcmd}{jenv}{jda}
+%%\FXRegisterAuthor{fcmd}{fenv}{felipetg}
+%% --------------------------- Old revision system -------------------------------
+
+%% Commands for the annotations
+\usepackage[spanish, colorinlistoftodos, textsize=tiny]{todonotes}
+
+%% Para los colores de las anotaciones, eliminar para vf!!
+\usepackage{color}
+\usepackage{soul} % para tachar palabras
+\setstcolor{teal}
+
+%% Standard notes
+\newcommand{\ftglnote}[1]{\todo[bordercolor=violet, backgroundcolor=yellow]{#1}}
+\newcommand{\klyonelnote}[1]{\todo[bordercolor=red, backgroundcolor=yellow]{#1}}
+\newcommand{\ftgnote}[1]{\todo[bordercolor=violet, backgroundcolor=yellow, noline]{#1}}
+\newcommand{\klyonenote}[1]{\todo[bordercolor=red, backgroundcolor=yellow, noline]{#1}}
+
+%% Notes with high level of importance
+\newcommand{\ftglwarning}[1]{\todo[bordercolor=violet, backgroundcolor=orange]{#1}}
+\newcommand{\klyonelwarning}[1]{\todo[bordercolor=red, backgroundcolor=orange]{#1}}
+\newcommand{\ftgwarning}[1]{\todo[bordercolor=violet, backgroundcolor=orange, noline]{#1}}
+\newcommand{\klyonewarning}[1]{\todo[bordercolor=red, backgroundcolor=orange, noline]{#1}}
 
 \journal{Journal of \LaTeX\ Templates}
 
@@ -49,7 +72,7 @@
 
 \begin{frontmatter}
 
-\title{A PPS distribution system for SKA}
+\title{A flexible White-Rabbit node for PPS distribution system for the SKA Telescope}
 %\title{Elsevier \LaTeX\ template\tnoteref{mytitlenote}}
 %\tnotetext[mytitlenote]{Fully documented templates are available in the elsarticle package on %\href{http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle}{CTAN}.}
 
@@ -60,7 +83,7 @@
 
 %% Group authors per affiliation:
 \author{Miguel Jiménez-López, Felipe Torres-González, Javier Díaz}
-\address{University of Granada}
+\address{CITIC, ETSIIT, University of Granada}
 
 %% or include affiliations in footnotes:
 %\author[mymainaddress,mysecondaryaddress]{Elsevier Inc}
@@ -75,10 +98,12 @@
 
 %\listoffixmes
 
-\begin{abstract}
+\begin{abstract} 
+	The present paper describes the PPS distribution system for the Square Kilometer Array. The system architecture is described in depth. 
 \end{abstract}
 
 \begin{keyword}
+	Square Kilometer Array, White Rabbit, Synchronization, Network
 \end{keyword}
 
 \end{frontmatter}
@@ -86,17 +111,33 @@
 \linenumbers
 
 \section{Introduction}
-\section{The SKA project}
+
+\input{sec/introduction.tex}
+
+\section{The SKA telescope}
+
+\input{sec/ska-telescope.tex}
+
 \section{The White Rabbit synchronization protocol}
+
+\input{sec/white-rabbit.tex}
+
 \section{The PPS distribution system for SKA}
-\subsection{Hardware}
-\subsection{Gateware}
-\subsection{Firmware}
-\subsection{Software}
+
+\input{sec/pps-system-ska.tex}
+
 \section{Test}
+
 \section{Results}
+
 \section{Conclusion}
+
+\section{Future work}
+
 \section{Acknowledgments}
+
+\input{sec/acknowledgments.tex}
+
 \section*{References}
 
 \bibliography{mybibfile}
