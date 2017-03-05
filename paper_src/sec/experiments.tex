@@ -50,8 +50,6 @@ Picture \ref{fig:zen_vs_wrs} shows an high jitter accumulation in low frequencie
     \label{fig:zen_vs_wrs}
 \end{figure}
 
-
-
 It is also relevant testing the performance of the system when locking to an external reference in Grand master mode because the board is intended to be used as Time Provider. Additive noise of the WR-ZEN will be propagated downstream, decreasing the quality of the Grand master's reference clock. It's very important that the system adds low noise in order to not degrade the quality of the external reference clock.
 
 Results included in table \ref{tab:pn_results} and ploted in figure \ref{fig:zen_vs_wrs} unveil a jitter reduction in the WR-ZEN compared to the WRS of 2.1 ps of RMS jitter integrated from 1Hz to 100kHz. This is a relevant because jitter in the slave nodes will benefit from a noise reduction in the Grand Master node.    
@@ -88,7 +86,17 @@ The slave mode results show that WR-ZEN performs slightly worse than WRS. Noise 
 \subsection{Network experiment} %% Buscar un nombre mejor
 \label{subsec: net_exp}
 
-% Un experimento con una cadena de WRS y al final una ZEN
+The next experiment covers the analysis of timing distribution over a WR network formed by a WRS in the top of the hierarchy locked to an external reference (Grand Master), an intermediate WRS and a final node, the WR-ZEN. We planned to reproduce an example of time distribution for the SKA facilities where it won't be there so many hops between the clock reference and end nodes. \ftglnote{Esto me suena de que era así pero no recuerdo y estoy vago para comprobarlo. Si es mentira eliminarlo!} For the experiment we kept devices under laboratory conditions: temperature and humidity controlled, absence of external noise sources and so on. For a more realistic tests under changing conditions, see results from ?? (\textit{meter ref a paul aquí???}).
+
+\missingfigure{diagrama de la configuración del experimento}
+
+Some time-domain results are presented in table ?? and fig. ?? because of the importance of that kind of measures for time distribution networks. This time, we have take the PPS outputs from WRS and WR-ZEN and we have performed some long time measurements and plotted them with a Time Deviation (TDEV) analysis.
+
+\missingfigure{plot TDEV}
+
+Hablar de los resultados cuando los calcule del todo.
+
+\missingfigure{tabla MTIE}
 
 \subsection{Traffic influence on synchronization accuracy}
 
