@@ -11,7 +11,7 @@ LATEXMK=latexmk
 LATEXOPT=xelatex
 
 LATEX_SRC=paper_src
-IMG_SRC=img
+IMG_SRC=${LATEX_SRC}/img
 
 MAIN=$(LATEX_SRC)/elsarticle-template
 SOURCES=$(MAIN).tex Makefile
@@ -24,7 +24,7 @@ all: $(MAIN).pdf
 .refresh:
 	touch .refresh
 
-$(MAIN).pdf: $(MAIN).tex .refresh $(SOURCES) $(FIGURES)
+$(MAIN).pdf: $(MAIN).tex .refresh $(SOURCES)
 	$(LATEXMK) -pdf $(MAIN).tex -outdir=$(OUT)
 
 force:
