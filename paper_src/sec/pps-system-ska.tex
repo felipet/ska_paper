@@ -61,7 +61,7 @@ As different solution, we have proposed the utilization of the ZEN board
 gateware and software on the same chip, tightly integrating performance and 
 flexibility. Its new architecture is suitable to the utilization of 
 software-hardware co-design strategies to take full advantages of the platform. 
-Thus, the utilization of a host computer/crate to host the FPGA card can be avoided which reduces significantly the equipment price and is also a remarkable improvement in term of dependability which is a key factor taking into account that SKA Telescope should have an annual availability of about 95\% of the time (although degraded operation modes can be allowed under some circumstances). \klyonelnote{Se refiere al hecho de que reduciendo componentes se minimizan las probabilidades de fallo o al menos eso entendí yo de lo que escribió Javi...}
+Thus, the utilization of a host computer/crate to host the FPGA card can be avoided which reduces significantly the equipment price and is also a remarkable improvement in term of dependability which is a key factor taking into account that SKA Telescope should have an annual availability of about 95\% of the time (although degraded operation modes can be allowed under some circumstances).
 Finally note that all these features are possible keeping the full flexibility of a complete CPU+FPGA system on a single board. 
 
 In the following section we will describe the proposed node hardware, gateware and firmware that have been developed as a candidate solution for the SKA Telescope PPS distribution system. 
@@ -74,7 +74,7 @@ In the following section we will describe the proposed node hardware, gateware a
 %% the ZEN resources. The on-board Linux allows the utilization of new and interesting features as webservices for configuration, SNMP support for status monitoring and remote firmware load and update. 
 %% ------------------------------------------------------------------------
 
-The PPS distribution system for SKA is based on the WR-ZEN platform that provides the WR support in order to ensure the synchronization accuracy in the system. The first design of the PPS system includes the Fine Delay FMC card that is used to generate the timing signals through mezzanine channels and has two Network Interface Cores (NIC) that allows accessing optical fiber ports as conventional Linux network interfaces. \klyonelnote{Quizás aquí se podría decir algo más... Aunque tampoco quiero extenderme demasiado en la intro.}
+The PPS distribution system for SKA is based on the WR-ZEN platform that provides the WR support in order to ensure the synchronization accuracy in the system. The first design of the PPS system includes the Fine Delay FMC card that is used to generate the timing signals through mezzanine channels and has two Network Interface Cores (NIC) that allows accessing optical fiber ports as conventional Linux network interfaces.
 
 \subsubsection{Hardware}
 \label{subsec:hardware}
@@ -113,11 +113,6 @@ The PPS distribution system for SKA is based on the WR-ZEN platform that provide
 %%In brief, the ZEN board offers to the final user a node capable to reach sub-nanosecond synchronization, working in daisy chain schemes, and provides the best of the Zynq and its new level of system %%design capabilities.
 %% ------------------------------------------------------------------------
 
-\ftgnote{Perdona que me sienta libre de reescribir esta sección, coge lo que 
-veas conveniente... Deberíamos meter una ref a la web de Seven o es marketing?}
-
-\klyonelnote{Sí, creo de hecho que ya he añadido alguna referencia a Seven anteriormente en el artículo...}
-
 The WR-ZEN board is a proprietary design of the Seven 
 Solutions company developed in 2015 aiming to improve the current designs of WR nodes.
 The new platform includes a new family of SoC from Xilinx, the Zynq-7000. That family is characterized by joining a hard core microprocessor and a FPGA in the same chip. Hence, WR nodes, can achieve a performance increment while keeping costs low. The other key aspect of the new board design is the incorporation of a better cloking resources for the WR-logic and a more flexible clock schema that allows to generate a broad range of output synchronization signals very useful for custom designs which may need frequency sources different of 10 MHz.
@@ -139,8 +134,8 @@ The main clock frequency is controlled by a Digital-to-Analog Converter (DAC) th
 
 \missingfigure{Figura del esquema de relojes de la ZEN}
 
-
-The WR-ZEN is a board designed by Seven Solutions company and contains a Xilinx Zynq SoC. This SoC has a ARM dual core microprocessor (Cortex-A9 MPCore with CoreSight) and a FPGA device (Artix with 74K logic cells, 380KB of embedded memory and 160 DSP blocks). This versatile architecture removes the necessity of a conventional PC because all the high-level software components can be implemented in the on-board processor. The WR-ZEN has been conceived with an improved clocking scheme in relation to older WR nodes. It takes into advantage of better oscillators and additional PLL to be capable to generate a wide range of frequencies for several kind of different applications. The WR-ZEN is fully connected thanks to its two optical fiber SFP interfaces and two RJ45 sockets and has other standard ports such as FMC, SAMTEC, UART, I2C, SPI, etc. The expansion connectors (FMC and SAMTEC) are though to add other boards that implement specific features or capabilities. Typical applications for the FMC mezzanine board are Analog to Digital Converter (ADC), Digital to Analog Converter (DAC), Time to Digital Converter (TDC), Fine Delay, Digital I/O (DIO), etc. The SAMTEC connector is used to add extra circuitry to provide redundancy (duplicate power supply) and other additional components such as fans, LCD display, power supply control chips, etc.
+% FIXME: Mira lo siguiente e integra lo que veas interesante...
+%The WR-ZEN is a board designed by Seven Solutions company and contains a Xilinx Zynq SoC. %This SoC has a ARM dual core microprocessor (Cortex-A9 MPCore with CoreSight) and a FPGA %device (Artix with 74K logic cells, 380KB of embedded memory and 160 DSP blocks). This %versatile architecture removes the necessity of a conventional PC because all the high-level %software components can be implemented in the on-board processor. The WR-ZEN has been %conceived with an improved clocking scheme in relation to older WR nodes. It takes into %advantage of better oscillators and additional PLL to be capable to generate a wide range of %frequencies for several kind of different applications. The WR-ZEN is fully connected thanks %to its two optical fiber SFP interfaces and two RJ45 sockets and has other standard ports %such as FMC, SAMTEC, UART, I2C, SPI, etc. The expansion connectors (FMC and SAMTEC) are %though to add other boards that implement specific features or capabilities. Typical %applications for the FMC mezzanine board are Analog to Digital Converter (ADC), Digital to %Analog Converter (DAC), Time to Digital Converter (TDC), Fine Delay, Digital I/O (DIO), etc. %The SAMTEC connector is used to add extra circuitry to provide redundancy (duplicate power %supply) and other additional components such as fans, LCD display, power supply control %chips, etc.
 
 \missingfigure{Add WR-ZEN photo.} 
 
@@ -195,7 +190,7 @@ The second level is referred to the specific IP core that takes into considerati
 
 \begin{itemize}
 	\item{\textbf{AXI-WB bridge:} It converts transactions between WB and AXI buses. This is important because the Zynq Processing System is thought to use the AXI bus and the original project of WR was developed with the Open Core WB bus. }
-	\item{\textbf{\missingfigure{Add figure to show WRPC-2P architecture}WR Dual Port core:} It is most important module for WR nodes and it is charged to implement WR functionalities. Its internal architecture includes a soft-microprocessor (LM32) that runs a specific bare-metal firmware with WR functions/capabilities stored in the WB RAM core. The WR endpoints include some state machines to manage Ethernet packets of a Gigabit network. The Mini-NIC core receives and sends WR-PTP packets from/to network. The WB Syscon is the general controller of the system that manages communications protocols such as UART, I2C or 1-Wire and contains system control registers too. The WB PPSgen contains the timebase counter for the WR technology and the SoftPLL that is a special component that perform phase measurement between different clocks and has a PI control loop to set up the DAC chip on the board to change the local oscillator frequency. }
+	\item{\textbf{WR Dual Port core:} It is most important module for WR nodes and it is charged to implement WR functionalities. Its internal architecture includes a soft-microprocessor (LM32) that runs a specific bare-metal firmware with WR functions/capabilities stored in the WB RAM core. The WR endpoints include some state machines to manage Ethernet packets of a Gigabit network. The Mini-NIC core receives and sends WR-PTP packets from/to network. The WB Syscon is the general controller of the system that manages communications protocols such as UART, I2C or 1-Wire and contains system control registers too. The WB PPSgen contains the timebase counter for the WR technology and the SoftPLL that is a special component that perform phase measurement between different clocks and has a PI control loop to set up the DAC chip on the board to change the local oscillator frequency. }
 	\item{\textbf{WB Crossbar:} It is responsible to connect all the modules together in order to allow communication between them. However, the real design is more complex because it has several WB crossbar at different hierarchy levels. }
 	\item{\textbf{GT modules:} Gitabit Transceivers are device specific primitives to implement the high speed interfaces. They are used to create two Gigabit Ethernet ports for optical links through SFP modules.}
 	\item{\textbf{NIC components:} They are responsible to receive/transmit Ethernet packets from/to the network. Nevertheless, its initial design is not suitable for high bandwidth interfaces because it does not incorporate a DMA controller. 
@@ -219,7 +214,6 @@ user interaction (think that some WR nodes can work in standalone mode and does
 not have an on-board hard microprocessor). The main tasks for the WR firmware 
 is to implement the WR-PTP protocol and the control routines of DAC chips. 
 
-\klyonenote{What more information can we add at this point?}
 %% More information about WR-PTP??
 The WR-PTP is implemented in two flavours: PTP-no-POSIX and PTP Port to Silicon 
 (PPSi). The former is a simple version as its name indicates, is not POSIX 
