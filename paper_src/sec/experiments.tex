@@ -86,15 +86,37 @@ The slave mode results show that WR-ZEN performs slightly worse than WRS. Noise 
 \subsection{Network experiment} %% Buscar un nombre mejor
 \label{subsec: net_exp}
 
-The next experiment covers the analysis of timing distribution over a WR network formed by a WRS in the top of the hierarchy locked to an external reference (Grand Master), an intermediate WRS and a final node, the WR-ZEN. We planned to reproduce an example of time distribution for the SKA facilities where it won't be there so many hops between the clock reference and end nodes. \ftglnote{Esto me suena de que era así pero no recuerdo y estoy vago para comprobarlo. Si es mentira eliminarlo!} For the experiment we kept devices under laboratory conditions: temperature and humidity controlled, absence of external noise sources and so on. For a more realistic tests under changing conditions, see results from ?? (\textit{meter ref a paul aquí???}).
+The next experiment covers the analysis of timing distribution over a WR network formed by a WRS in the top of the hierarchy locked to an external reference (Grand Master), an intermediate WRS and a final node, the WR-ZEN. We planned to reproduce an example of time distribution for the SKA facilities where it won't be there so many hops between the clock reference and end nodes. For the experiment we kept devices under laboratory conditions: temperature and humidity controlled, absence of external noise sources and so on. For a more realistic tests under changing conditions, see results from ?? (\textit{meter ref a paul aquí???}).
 
 \missingfigure{diagrama de la configuración del experimento}
 
-Some time-domain results are presented in table ?? and fig. ?? because of the importance of that kind of measures for time distribution networks. This time, we have take the PPS outputs from WRS and WR-ZEN and we have performed some long time measurements and plotted them with a Time Deviation (TDEV) analysis.
+Some long-term stability results are presented in table ?? and fig. \ref{fig:tdev_plots} because of the importance of that kind of measures for time distribution networks. This time, we have take the PPS outputs from WRS and WR-ZEN and we have performed some long time measurements and plotted them with a Time Deviation (TDEV) analysis.
 
-\missingfigure{plot TDEV}
-
-Hablar de los resultados cuando los calcule del todo.
+\begin{figure}
+    \begin{subfigure}[t]{.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/pps_p1.png}
+        \caption{TDEV for the first configuration.}
+        \label{fig:pps_p1}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/pps_p2.png}
+        \caption{TDEV for the second configuration.}
+        \label{fig:pps_p2}
+    \end{subfigure}
+    
+    \centering
+    \begin{subfigure}[t]{.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/pps_p3.png}
+        \caption{TDEV for the third configuration.}
+        \label{fig:pps_p3}
+    \end{subfigure}
+    \caption{Time Deviation plots for the PPS distribution system}
+    \label{fig:tdev_plots}
+\end{figure}
 
 \missingfigure{tabla MTIE}
 
