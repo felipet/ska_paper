@@ -24,7 +24,13 @@ WR implements mechanisms to ensure deterministic and reliable data transfer betw
 
 The intermediate levels of the network spread the timing packets to the final nodes and are composed of other devices such as WR Switches, WR-ZEN or WR-LEN that have several ports and can behave as PTPv2 Boundary Clocks (BC). Their different ports are divided on two types: one of them is the slave (uplink) and connects to the upper layer and the other ports are masters (downlinks) and they are charged to propagate the synchronization to the next level of the hierarchy. The nodes of the last level of the network are known as Slave devices that recover the clock signal of the link and synchronizes their local oscillators to provide synchronization for a specific application or facility.
 
-\missingfigure{Añadir figura para mostrar la topología WR}
+\begin{figure}[h]
+	\includegraphics[scale=0.4]{img/wr_hierarchy}
+	\caption{The WR network is a tree hierarchy where the root node is the Grand Master that is responsible for distributing the reference time signals. The intermediate elements are WR Switches that acts as Gigabit Ethernet switchers and as Boundary clocks propagating the time signals from the upper layers of the network. Finally, the leaf nodes are known as nodes and its main purpose is to provide timing to another specific application.}
+	\label{fig:wr_hierarchy}
+\end{figure}
+
+%\missingfigure{Añadir figura para mostrar la topología WR}
 
 WR is designed to be fitted in a Field Programmable Gate Array (FPGA) device due to its flexibility to use in designs in a continuous development state. The source code is mainly written in Hardware Description Languages (HDLs) such as VHDL or Verilog. Moreover, there are several platforms that can implement WR that ensures the vendor-independent feature of WR. The most extended vendor in WR world is Xilinx, some examples of devices using Xilinx's FPGAs are the SPEC board \cite{ohwr:spec} and the WRS \cite{ohwr:wrs}. The other vendor used in WR is Altera. Some examples of boards could be found in \cite{cesar-altera-wr}. The main Intellectual Property (IP) block is the WR PTP core (WRPC) for WR nodes and the Real Time Subsystem (RTS) for WR switches. The most common WR nodes are based on carrier boards such as SPEC or SVEC and can be plugged in a PCIe/VME socket of a conventional PC. Some WR nodes have a standalone mode but in this case they can not benefit of high level features usually provided by a PC CPU				.
 

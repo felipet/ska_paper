@@ -33,7 +33,13 @@ distributed reference frequency and therefore it does not reduce system
 performance. Thanks to network similarities between WR and SKA, both can use 
 the same single fiber strand available for the SAT network. 
 
-\missingfigure{Example of a network topology for PPS signal distribution based on WR switches and nodes}
+\begin{figure}[h]
+	\includegraphics[scale=0.4]{img/ska_pps_network}
+	\caption{Network topology for PPS signal distribution based on WR switches and nodes. The figure shows the different elements and the network topology. }
+	\label{fig:ska_pps_dist_network}
+\end{figure}
+
+%\missingfigure{Example of a network topology for PPS signal distribution based on WR switches % and nodes}
  
 An important feature of the system to take into account is that the PPS pulse itself at each station is derived from the reference frequency distributed from the SKA clock and not from the WR system. In normal operations, the WR system only monitors the absolute time of each PPS and reports it back activating an alert if the PPS signal does not align with the start of the UTC second. This condition indicates something is wrong in the timing chain and the station must be discard data to ensure not to introduce corrupt one in the system. Other functionality associated with the WR part is to temporarily alter the division ratio to bring the PPS edge back in alignment with UTC time. In this case, fringe finding must then be performed to restore full calibration again.
 
@@ -184,9 +190,17 @@ The main clock frequency is controlled by a Digital-to-Analog Converter (DAC) th
 
 The term gateware is referred to the reference architecture with all the components that will be synthesized in the FPGA device. It is built on two different levels. The former uses the AMBA bus specification and considers the main elements for the Zynq ecosystem with several components such as Zynq Processing subsystem that takes care of configuring the ARM microprocessor and controlling the bus interconnections with it, a reset and clocking module that manages the clock and reset signals, an AXI QSPI core to program the hardware PLL chip, an AXI crossbar to glue everything together and a specific IP core that represents the next level of the design that is explained in following lines.
 
-\missingfigure{Add figure to show first level architecture.}
+%\missingfigure{Add figure to show first level architecture.}
+
+\begin{figure}[h]
+	\includegraphics[scale=0.4]{img/gateware_first_level}
+	\caption{Gateware project design. The figure shows the main components of the design. The most important one is the WRPC dual port that is responsible for implementing the WR protocol. The Gigabit Transceiver ports allows to transmit/receive packets to/from the network through the optical SFP modules. The NIC cores manage Ethernet packets and behave as standard network interface cards for the ARM microprocessor. The AXI-WB Bridge translates AXI transactions into WB ones. It is important because the ARM is connected using AMBA specification meanwhile the WR FPGA cores use Wishbone bus standard. Finally, the Fine Delay core contains the resources needed to control the Fine Delay FMC card.}
+	\label{fig:gateware_first_level}
+\end{figure}
 
 The second level is referred to the specific IP core that takes into consideration the WR protocol and other basic features such as Gigabit networking, serial debug communication, Timestamp mechanism, etc. This module uses the Wishbone Open Cores bus specification and is mainly vendor-independent. It is composed of many IP cores that are interconnected through a WB crossbar that allows bidirectional communication between any two IP cores. Moreover, the crossbar can store Self Descriptor Bus (SDB) information about the different components attached to it in order to discover them with a scan operation. Thanks to it, the WB peripherals can be discovered automatically by software tools and this allows not to hard-code the different addresses inside the source code improving the maintainability of the system. The main modules at this level are the following:
+
+\klyonelnote{Revisar la siguiente descripción para reducirla y no repetir mucha información entre los distintos puntos y el pie de la figura anterior.}
 
 \missingfigure{Add figure to show second level architecture.}
 
@@ -335,7 +349,7 @@ developed to manage the main modules in the WR-ZEN reference design. The kernel
 drivers that have been used, modified or implemented from others are the 
 following:
 
-\missingfigure{Add figure to show device driver relations.}
+%\missingfigure{Add figure to show device driver relations.}
 
 \begin{itemize}
 	\item {\textbf{fmc:} It is retrieved from OHWR repository and it has not been modified. Its main purpose is implementing a generic support for FMC bus in the Linux kernel. It is necessary because many other drivers such as Fine Delay FMC one use its generic functions.}
@@ -365,4 +379,15 @@ binary file
 named BOOT.bin using the Xilinx SDK environment or bootgen tool and put it in a 
 FAT-32 (boot and lba flags enabled) partition of a SD card.
 
-\missingfigure{Add figure to show a software overview.}
+\begin{figure}[h]
+	\includegraphics[scale=0.4]{img/software_architecture}
+	\caption{Software architecture. The picture shows the software architecture
+		used by the design. It is based on Linux kernel and several tools and drivers
+		have been developed for the WR-ZEN board. The tools can be used to program 
+		the FPGA, update the soft-microprocessor code or connect to the virtual UART
+		interface of the WRPC-2p. They call the Zen Library procedures that finally
+		use C Library functions and switch to kernel mode through system calls. In the
+		kernel space, the drivers are responsible for implementing all the requested 
+		functionalities. }
+	\label{fig:software_architecture}
+\end{figure}
