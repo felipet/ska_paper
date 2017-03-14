@@ -88,7 +88,21 @@ The slave mode results show that WR-ZEN performs slightly worse than WRS. Noise 
 
 The next experiment covers the analysis of timing distribution over a WR network formed by a WRS in the top of the hierarchy locked to an external reference (Grand Master), an intermediate WRS and a final node, the WR-ZEN. We planned to reproduce an example of time distribution for the SKA facilities where it won't be there so many hops between the clock reference and end nodes. For the experiment we kept devices under laboratory conditions: temperature and humidity controlled, absence of external noise sources and so on. For a more realistic tests under changing conditions, see results from ?? (\textit{meter ref a paul aquí???}).
 
-\missingfigure{diagrama de la configuración del experimento}
+\begin{figure}
+    \begin{subfigure}[t]{.35\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/prueba1_pps.png}
+        \caption{Setup for the PPS results of the WR-ZEN directly connected to the Grand Master WRS.}
+        \label{fig:prueba1_sch}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{.60\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/prueba2-3_pps.png}
+        \caption{Setup for the network experiment taking measures from WRS L2 and the end node WR-ZEN.}
+        \label{fig:prueba2_sch}
+    \end{subfigure}
+\end{figure}
 
 Some long-term stability results are presented in table ?? and fig. \ref{fig:tdev_plots} because of the importance of that kind of measures for time distribution networks. This time, we have take the PPS outputs from WRS and WR-ZEN and we have performed some long time measurements and plotted them with a Time Deviation (TDEV) analysis.
 
