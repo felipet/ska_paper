@@ -145,7 +145,13 @@ The main clock frequency is controlled by a Digital-to-Analog Converter (DAC) th
 % FIXME: Mira lo siguiente e integra lo que veas interesante...
 %The WR-ZEN is a board designed by Seven Solutions company and contains a Xilinx Zynq SoC. %This SoC has a ARM dual core microprocessor (Cortex-A9 MPCore with CoreSight) and a FPGA %device (Artix with 74K logic cells, 380KB of embedded memory and 160 DSP blocks). This %versatile architecture removes the necessity of a conventional PC because all the high-level %software components can be implemented in the on-board processor. The WR-ZEN has been %conceived with an improved clocking scheme in relation to older WR nodes. It takes into %advantage of better oscillators and additional PLL to be capable to generate a wide range of %frequencies for several kind of different applications. The WR-ZEN is fully connected thanks %to its two optical fiber SFP interfaces and two RJ45 sockets and has other standard ports %such as FMC, SAMTEC, UART, I2C, SPI, etc. The expansion connectors (FMC and SAMTEC) are %though to add other boards that implement specific features or capabilities. Typical %applications for the FMC mezzanine board are Analog to Digital Converter (ADC), Digital to %Analog Converter (DAC), Time to Digital Converter (TDC), Fine Delay, Digital I/O (DIO), etc. %The SAMTEC connector is used to add extra circuitry to provide redundancy (duplicate power %supply) and other additional components such as fans, LCD display, power supply control %chips, etc.
 
-\missingfigure{Add WR-ZEN photo.} 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{img/wrzen}
+    \caption[WR-ZEN board picture]{The picture shows the WR-ZEN board with the FMC Fine Delay connected. Main connectors are shown: Ethernet ports, SFP ports and the SMA connectors for the RF input/output signals.}
+    \label{fig:wrzen}
+\end{figure}
+
 
 \subsubsection{Gateware}
 
