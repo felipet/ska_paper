@@ -18,20 +18,9 @@ The White Rabbit protocol requires a network topology similar to the ITU-T G.827
 	\item{The end-nodes. They consist of a WR-ZEN node \cite{sevensols:wr_zen} powered by a Zynq FPGA-SoC and placed on inside a 1U rack enclosure. They will be located at the cores of SKA1-LOW and SKA1-SURVEY, along their spiral arms, one for each SKA1-MID dish and one for each CSP.}
 \end{itemize}
 
-The WR switches are responsible for generating the WR signal from the SAT clock 
-ensembles. They receive a 10MHz reference and PPS signal, and use NTP or IRIG-B 
-to determine the UTC time of each PPS edge. The output is transmitted via a 
-single fiber up to a maximum distance of 120 km by using commercial SFPs. 
-However, the distances for SKA1-MID are longer and it is necessary to use an 
-intermediate WR switch as repeater that adds a small \ftglnote{Esto no es del 
-todo así...} \klyonelnote{En este punto creo que necesitaré que me expliques mejor lo que quieres decir...} (20ps) jitter penalty for the few stations that are connected 
-beyond it. This penalty only applies \ftglnote{El jitter del PPS si se 
-incrementa por el aumento del ruido provocado por el mayor número de hops en la 
-red. Hay que cambiarlo.} \klyonelnote{¿Cómo lo pondrías tú?} to the internal measurement of the PPS phase, and not 
-to the jitter of the PPS itself which is directly divided down from the 
-distributed reference frequency and therefore it does not reduce system 
-performance. Thanks to network similarities between WR and SKA, both can use 
-the same single fiber strand available for the SAT network. 
+The WR switches are responsible for generating the WR timing signal from the SAT clock ensembles. They lock to an external 10MHz reference and to a PPS signal, and use NTP or IRIG-B to determine the UTC time of each PPS edge. Synchronization between WR devices is performed over a a single fiber link up to 120 km using commercial SFPs.
+However, the distances for SKA1-MID are longer and it is necessary to use 
+intermediate WR switches as repeaters with a penalty over the system performance due to increment of the inherent noise of each WR device that it is propagated to the downlink nodes. An analysis of the jitter evolution for network with many hops could be read in \cite{torres2016scalability}. Thanks to network similarities between WR and SKA, both can use the same single fiber strand available for the SAT network. 
 
 \begin{figure}[h]
 	\includegraphics[scale=0.4]{img/ska_pps_network}
