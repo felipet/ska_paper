@@ -26,11 +26,14 @@ Performance of the new WR platform is measured using multiple equipment, and obt
 
 The new components included in the clocking's scheme of the WR-ZEN (fig. ?), described in subsection \ref{subsec:hardware}, offer a performance improvement respect to previous WR designs, such as the WRS. 
 
-\missingfigure{Esquema de las medidas realizadas}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{img/pn_setup.png}
+    \caption{The figure shows the Phase noise plot for the WR-ZEN in the Grand Master, Free Running and Slave modes. Sine wave output is compared to CMOS output.}
+    \label{fig:pn_setup}
+\end{figure}
 
 The following experiments evaluate phase noise performance of the frequency transfer in WR at different scenarios: a) Grand Master mode, to evaluate how the WR-ZEN syntonizes to an external reference clock. b) Master mode, that reflects the characteristics of the new internal XO of the WR-ZEN. c) Slave mode, to see the behavior of the new design as slave node of the network. Different configurations are depicted in fig. ?? to allow the reproduction of the different experiments of this paper.
-
-\missingfigure{testing schemas}
 
 The Free running mode (FR) is not affected by the WR's logic, it is mostly influenced by noise of the crystal oscillator (XO). A master node is placed at top of a timing network hierarchy, and unlike a Grand Master node, it is not locked to any external reference. So that, a master node with an improved stability will benefit the performance of all the downlink devices connected to it.
 
