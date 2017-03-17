@@ -26,7 +26,7 @@ Performance of the new WR platform is measured using multiple equipment, and obt
 
 The new components included in the clocking's scheme of the WR-ZEN (fig. ?), described in subsection \ref{subsec:hardware}, offer a performance improvement respect to previous WR designs, such as the WRS. 
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{img/pn_setup.png}
     \caption{The figure shows the Phase noise plot for the WR-ZEN in the Grand Master, Free Running and Slave modes. Sine wave output is compared to CMOS output.}
@@ -39,14 +39,14 @@ The Free running mode (FR) is not affected by the WR's logic, it is mostly influ
 
 Picture \ref{fig:zen_vs_wrs} shows an high jitter accumulation in low frequencies for the WRS (orange curve). Integrating noise from 1Hz to 10 Hz, we see a difference of 60.1 ps of RMS jitter between WRS and WR-ZEN. Other results can be checked in table \ref{tab:pn_results}. It is worthy to remark difference between sine wave output and TTL output in the WR-ZEN board. As detailed in fig. ?? \textit{(clock schema)} there are two 10 Mhz clock outputs in the WR-ZEN. One comes directly from the AD9516-4 PLL, the sine wave output. The other, comes from FPGA logic but it is latched using a clock signal from the LMK03806 PLL. It would be foreseeable to expect an higher jitter in the signal from the FPGA, but thanks to the low noise profile of the LMK PLL we can remove much of the jitter of that signal and decrease the floor noise of it.
 
-\begin{figure}[t]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../measures/img/zen_all}
 	\caption[Phase noise plot of the WR-ZEN]{The figure shows the Phase noise plot for the WR-ZEN in the Grand Master, Free Running and Slave modes. Sine wave output is compared to CMOS output.}
 	\label{fig:zen_pn_all}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../measures/img/zen_vs_wrs}
     \caption[Phase noise plot of the WR-ZEN vs WRS]{The figure includes the same phase noise measures for the WRS. In this plot, only the CMOS outputs appear because the WRS doesn't have sine wave output signals.}
@@ -91,7 +91,7 @@ The slave mode results show that WR-ZEN performs slightly worse than WRS. Noise 
 
 The next experiment covers the analysis of timing distribution over a WR network formed by a WRS in the top of the hierarchy locked to an external reference (Grand Master), an intermediate WRS and a final node, the WR-ZEN. We planned to reproduce an example of time distribution for the SKA facilities where it won't be there so many hops between the clock reference and end nodes. For the experiment we kept devices under laboratory conditions: temperature and humidity controlled, absence of external noise sources and so on. For a more realistic tests under changing conditions, see Paul Boven's results in \cite{paultests}. He performed some measures using two WR-ZEN connected by tens of kilometers fiber links in controlled conditions (climate chamber) and with a real fiber deploy in South Africa.\ftglnote{Completar}
 
-\begin{figure}
+\begin{figure}[H]
     \begin{subfigure}[t]{.35\textwidth}
         \centering
         \includegraphics[width=\textwidth]{img/prueba1_pps.png}
@@ -111,7 +111,7 @@ Some long-term stability results are presented in table \ref{tab:netres} and fig
 
 Phase difference on each hop can be checked on figure ??.
 
-\begin{figure}
+\begin{figure}[H]
     \begin{subfigure}[t]{.45\textwidth}
         \centering
         \includegraphics[width=\textwidth]{img/pps_p1.png}
@@ -152,7 +152,7 @@ Phase difference on each hop can be checked on figure ??.
 
 \ftgnote{TODO: format this table}
 
-\begin{figure}
+\begin{figure}[H]
     \begin{subfigure}[t]{.3\textwidth}
         \centering
         \includegraphics[width=\textwidth]{img/prueba1_pd.png}

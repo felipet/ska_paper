@@ -24,7 +24,8 @@ WR implements mechanisms to ensure deterministic and reliable data transfer betw
 
 The intermediate levels of the network spread the timing packets to the final nodes and are composed of other devices such as WR Switches, WR-ZEN or WR-LEN that have several ports and can behave as PTPv2 Boundary Clocks (BC). Their different ports are divided on two types: one of them is the slave (uplink) and connects to the upper layer and the other ports are masters (downlinks) and they are charged to propagate the synchronization to the next level of the hierarchy. The nodes of the last level of the network are known as Slave devices that recover the clock signal of the link and synchronizes their local oscillators to provide synchronization for a specific application or facility.
 
-\begin{figure}[h]
+\begin{figure}[H]
+	\centering
 	\includegraphics[scale=0.4]{img/wr_hierarchy}
 	\caption{The WR network is a tree hierarchy where the root node is the Grand Master that is responsible for distributing the reference time signals. The intermediate elements are WR Switches that acts as Gigabit Ethernet switchers and as Boundary clocks propagating the time signals from the upper layers of the network. Finally, the leaf nodes are known as nodes and its main purpose is to provide timing to another specific application.}
 	\label{fig:wr_hierarchy}
