@@ -89,7 +89,7 @@ The slave mode results show that WR-ZEN performs slightly worse than WRS. Noise 
 \subsection{Network experiment} %% Buscar un nombre mejor
 \label{subsec: net_exp}
 
-The next experiment covers the analysis of timing distribution over a WR network formed by a WRS in the top of the hierarchy locked to an external reference (Grand Master), an intermediate WRS and a final node, the WR-ZEN. We planned to reproduce an example of time distribution for the SKA facilities where it won't be there so many hops between the clock reference and end nodes. For the experiment we kept devices under laboratory conditions: temperature and humidity controlled, absence of external noise sources and so on. For a more realistic tests under changing conditions, see results from ?? (\textit{meter ref a paul aquí???}).
+The next experiment covers the analysis of timing distribution over a WR network formed by a WRS in the top of the hierarchy locked to an external reference (Grand Master), an intermediate WRS and a final node, the WR-ZEN. We planned to reproduce an example of time distribution for the SKA facilities where it won't be there so many hops between the clock reference and end nodes. For the experiment we kept devices under laboratory conditions: temperature and humidity controlled, absence of external noise sources and so on. For a more realistic tests under changing conditions, see Paul Boven's results in \cite{paultests}. He performed some measures using two WR-ZEN connected by tens of kilometers fiber links in controlled conditions (climate chamber) and with a real fiber deploy in South Africa.\ftglnote{Completar}
 
 \begin{figure}
     \begin{subfigure}[t]{.35\textwidth}
@@ -107,7 +107,9 @@ The next experiment covers the analysis of timing distribution over a WR network
     \end{subfigure}
 \end{figure}
 
-Some long-term stability results are presented in table ?? and fig. \ref{fig:tdev_plots} because of the importance of that kind of measures for time distribution networks. This time, we have take the PPS outputs from WRS and WR-ZEN and we have performed some long time measurements and plotted them with a Time Deviation (TDEV) analysis.
+Some long-term stability results are presented in table \ref{tab:netres} and fig. \ref{fig:tdev_plots} because of the importance of that kind of measures for time distribution networks. This time, we have take the PPS outputs from WRS and WR-ZEN and we have performed some long time measurements and plotted them with a Time Deviation (TDEV) analysis. \ftglnote{Meter la fórmula del TDEV($\tau$) concreto y sacar un par de valores}
+
+Phase difference on each hop can be checked on figure ??.
 
 \begin{figure}
     \begin{subfigure}[t]{.45\textwidth}
@@ -135,7 +137,44 @@ Some long-term stability results are presented in table ?? and fig. \ref{fig:tde
     \label{fig:tdev_plots}
 \end{figure}
 
-\missingfigure{tabla MTIE}
+\begin{table*}\centering
+    \begin{tabular}{cccc}
+        & 1st config. & 2nd config. & 3rd config \\ 
+        Max & 118 ps & 353 ps & 646 ps \\ 
+        Min & -27 ps & 196 ps & 524 ps \\ 
+        Pk-to-Pk & 146 ps & 156 ps & 122 ps \\ 
+        Mean & 50 ps & 273 ps & 15 ps \\ 
+        $\sigma$ & 19 ps & 23 ps & 15 ps \\ 
+    \end{tabular}
+    \caption{Time results from network experiment.}
+    \label{tab:netres}
+\end{table*}
+
+\ftgnote{TODO: format this table}
+
+\begin{figure}
+    \begin{subfigure}[t]{.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/prueba1_pd.png}
+        \caption{Phase difference for experiment 1}
+        \label{fig:prueba1_pd}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{.30\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/prueba2_pd.png}
+        \caption{Phase Difference for experiment 2}
+        \label{fig:prueba2_pd}
+    \end{subfigure}
+    ~
+    \begin{subfigure}[t]{.3\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{img/prueba3_pd.png}
+        \caption{Phase difference for experiment 3}
+        \label{fig:prueba3_pd}
+    \end{subfigure}
+    \caption{Phase difference plots for the different configurations of the network PPS stability analysis.}
+\end{figure}
 
 \subsection{Traffic influence on synchronization accuracy}
 
