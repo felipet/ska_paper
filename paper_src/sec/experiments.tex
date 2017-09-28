@@ -54,39 +54,8 @@ The Free running mode (FR) is not affected by the WR's logic, it is mostly influ
 It is also relevant to test the performance of the system when locking to an external reference in Grand master mode. Additive noise of the WR-ZEN will be propagated downstream, decreasing the quality of the Grand master's reference clock. It's very important that the system adds low noise in order to not degrade the quality of the external reference clock.
 
 Results included in table \ref{tab:pn_results} ... \textcolor{blue}{TODO: hablar de la frecuencia de corte del softpll y del ddmtd.}
-
-% \begin{table*}\centering
-%     \ra{0.8}
-%     \begin{tabular}{@{} rcccccc@{}}\toprule
-%         & \multicolumn{4}{c}{Phase Noise (dBC/Hz)} & \phantom{} & \multirow{2}{*}{RMS Jitter}\\
-%         \cmidrule(lr){2-5}
-%         & @ 1 Hz & @ 20 Hz & @ 1 kHz  & @ 10 kHz && (ps)\\ \midrule
-%         \textbf{Free running}\\
-%         \small{WRS (CMOS)}             & -27.6 & -99.3  & -127.5 & -132.6 &&  620\\
-%         \small{WR-ZEN (\textit{sine})} & -74.7 & -117.1 & -136.7 & -134.4 &&
-%         2.5\\
-%         \small{WR-ZEN (\textit{CMOS})} & -78.8 & -117.6 & -144.2 & -147.4 &&
-%         1.9\\
-%         
-%         \textbf{Grand Master}\\
-%         \small{WRS (CMOS)}             & -71.4 & -84.8  & -123.2 & -130.8 && 9.9\\
-%         %\small{WR-ZEN (\textit{sine})} &  &  &  &  &&& \\
-%         \small{WR-ZEN (\textit{CMOS})} & -88.1 & -86.3  & -141.9 & -144.1 && 6.8\\
-%         
-%         \textbf{Slave node}\\
-%         \small{WRS (CMOS)}             & -80.7 & -81.9 & -126.2 & -133.8 &&  9.7\\
-%         %\small{WR-ZEN (\textit{sine})} & -74.7 & -117.1 & -136.7 & -134.4 &&& 2.5 ps\\
-%         \small{WR-ZEN (\textit{CMOS})} & -68.6 & -81.4 & -144.6 & -145.1 &&
-%         13\\
-%         
-%         \bottomrule
-%        \end{tabular}
-%        \caption{Phase Noise results extracted from plots in figure \ref{fig:zen_pn_all} and \ref{fig:zen_vs_wrs}.}
-%        \label{tab:pn_results}
-%    \end{table*}
     
-    
- \begin{table*}\centering
+\begin{table*}\centering
      \ra{0.8}
      \begin{tabular}{@{} rcccc@{}}%\toprule
          & \multicolumn{4}{c}{\bfseries{RMS jitter (ps)}} \\
@@ -207,15 +176,9 @@ Phase difference on each hop can be checked on figure ??.
     \caption{Phase difference plots for the different configurations of the network PPS stability analysis.}
 \end{figure}
 
-\textit{TODO:} Hablar del tipo de ruido predominante en las gráficas de TDEV cuando las repita y se verifiquen. Reemplazar Pk-to-Pk por MTIE.
+\textit{TODO:} Hablar del tipo de ruido predominante en las gráficas de TDEV 
+cuando las repita y se verifiquen. Reemplazar Pk-to-Pk por MTIE.
 
-\subsection{Traffic influence on synchronization accuracy}
-
-% Posible experimento metiendo tráfico a la cadena anterior
-
-\subsection{Redundancy}
-
-% Este no me queda muy claro, cuando toque se verá
 
 \subsection{Fiber operational temperature influence on time accuracy}
 
