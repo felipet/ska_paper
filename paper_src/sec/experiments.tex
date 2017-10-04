@@ -1,6 +1,9 @@
 %% Section that includes the experiments performed.
 
-This section describes the accomplished experiments that prove how the developed system fulfills SKA's requirements for the PPS distribution system. The first experiment is a general characterization of the developed platform. The second one, tests the equipment in a realistic network topology to evaluate the performance in a possible deployment. The last experiments evaluates the influence of some typical events, such as traffic, temperature fluctuation or \textcolor{blue}{something else} in a network deployment using the WR-ZEN.
+This section describes the accomplished experiments that prove how the 
+developed system fulfills SKA's requirements for the PPS distribution system. 
+\ftglnote{demasiado pretencioso?} The first experiment is a general 
+characterization of the developed platform. The second one, 
 
 Performance of the new WR platform is measured using multiple equipment, and obtained results have been compared to WRS's performance because of it's electronic design is considered as \ftglnote{en serio?}reference for WR technology. The list of the equipment and materials used for the experiments is the following:
 
@@ -82,103 +85,101 @@ Results included in table \ref{tab:pn_results} ... \textcolor{blue}{TODO: hablar
         \label{tab:pn_results}
 \end{table*}
 
-The slave mode results show that WR-ZEN performs slightly worse than WRS. Noise between 1 Hz and 20 Hz increases the RMS Jitter of the WR-ZEN. \textcolor{blue}{This may be caused by a poor adjustment of the PI control.}
+The slave mode results show that WR-ZEN performs slightly worse than WRS. Noise 
+between 1 Hz and 20 Hz increases the RMS Jitter of the WR-ZEN. 
+\textcolor{blue}{This may be caused by a poor adjustment of the PI control.}
 
-\missingfigure{Allan deviation plot}
-
-\subsection{Network experiment} %% Buscar un nombre mejor
+\subsection{WR scalability for SKA} %% Buscar un nombre mejor
 \label{subsec: net_exp}
 
-The next experiment covers the analysis of timing distribution over a WR network formed by a WRS in the top of the hierarchy locked to an external reference (Grand Master), an intermediate WRS and a final node, the WR-ZEN. We planned to reproduce an example of time distribution for the SKA facilities where it won't be there so many hops between the clock reference and end nodes. For the experiment we kept devices under laboratory conditions: temperature and humidity controlled, absence of external noise sources and so on. For a more realistic tests under changing conditions, see Paul Boven's results in \cite{paultests}. He performed some measures using two WR-ZEN connected by tens of kilometers fiber links in controlled conditions (climate chamber) and with a real fiber deploy in South Africa.\ftglnote{Completar}
+The next experiment covers a scalability analysis of the WR solution for the 
+SKA timing system. In section \ref{sec:ska} there is a estimation of the final 
+nodes that need to be synchronized for the SKA1-mid: around 250 endpoints that 
+must be synchronized with an accuracy below 5ns. A WR network with only two 
+hops is suitable to synchronize up to 306 endnodes by the use of WR Switches as 
+Boundary Clocks.
 
-\begin{figure}[H]
-    \begin{subfigure}[t]{.35\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{img/prueba1_pps.png}
-        \caption{Setup for the PPS results of the WR-ZEN directly connected to the Grand Master WRS.}
-        \label{fig:prueba1_sch}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[t]{.60\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{img/prueba2-3_pps.png}
-        \caption{Setup for the network experiment taking measures from WRS L2 and the end node WR-ZEN.}
-        \label{fig:prueba2_sch}
-    \end{subfigure}
+We set up a test network composed by a WRS at the top, which is locked to an 
+external time reference, another WRS as intermediate BC and a WR-ZEN as 
+endpoint. This configuration allows synchronizing up to 306 WR nodes with an 
+expected performance similar to the results obtained in our test for the WR-ZEN.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{img/prueba_red}
+	\caption[WR Scalability test's setup for SKA]{To evaluate the scalability 
+	of the WR solution for the expected SKA1-mid timing network, a sample WR 
+	network has been evaluated. At the top there's a WRS as GM, a second layer 
+	of WRS to finally provide synchronization to the end-nodes (WR-ZEN).}
+	\label{fig:pruebared}
 \end{figure}
 
-Some long-term stability results are presented in table \ref{tab:netres} and fig. \ref{fig:tdev_plots} because of the importance of that kind of measures for time distribution networks. This time, we have take the PPS outputs from WRS and WR-ZEN and we have performed some long time measurements and plotted them with a Time Deviation (TDEV) analysis. \ftglnote{Meter la fórmula del TDEV($\tau$) concreto y sacar un par de valores}
 
-Phase difference on each hop can be checked on figure ??.
+All the equipment for that test was under laboratory conditions. To connect 
+each one of the WR devices we've used a 20km fiber spool and SFPs from 
+FiberStore (SFP-GE-BX80 with 1490/1550 nm wavelengths). PPS phase difference is 
+measured from the WR-ZEN to the WRS in GM configuration using a Keysight 52320A 
+counter along 4 hours.
 
-\begin{figure}[H]
-    \begin{subfigure}[t]{.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{img/pps_p1.png}
-        \caption{TDEV for the first configuration.}
-        \label{fig:pps_p1}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[t]{.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{img/pps_p2.png}
-        \caption{TDEV for the second configuration.}
-        \label{fig:pps_p2}
-    \end{subfigure}
-    
-    \centering
-    \begin{subfigure}[t]{.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{img/pps_p3.png}
-        \caption{TDEV for the third configuration.}
-        \label{fig:pps_p3}
-    \end{subfigure}
-    \caption{Time Deviation plots for the PPS distribution system}
-    \label{fig:tdev_plots}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/tdev_exp3}
+	\caption[TDEV of the end-nodes in the scalability test.]{Time Deviation 
+	plot comparing the PPS signal from the end-nodes (WR-ZEN) to the Grand 
+	Master of the network.}
+	\label{fig:tdevnet}
 \end{figure}
+
+TDEV and MTIE values have been calculated by octaves, the numerical values can 
+be found in Table \ref{tab:netresults}. Graphical representations are included 
+in Figures \ref{fig:tdevnet} and \ref{fig:mtienet} respectively. TDEV results 
+show that expected synchronization accuracy for the end-nodes is around tens of 
+ps. The maximum PPS error during this test is bounded in hundred of ps, which 
+is more than enough what SKA1-mid needs (5ns).
 
 \begin{table*}\centering
-    \begin{tabular}{cccc}
-        & 1st config. & 2nd config. & 3rd config \\ 
-        Max & 118 ps & 353 ps & 646 ps \\ 
-        Min & -27 ps & 196 ps & 524 ps \\ 
-        Pk-to-Pk & 146 ps & 156 ps & 122 ps \\ 
-        Mean & 50 ps & 273 ps & 15 ps \\ 
-        $\sigma$ & 19 ps & 23 ps & 15 ps \\ 
-    \end{tabular}
-    \caption{Time results from network experiment.}
-    \label{tab:netres}
+	\ra{0.8}
+	\begin{tabular}{@{} rcc@{}}%\toprule
+		& TDEV (s)  & MTIE (s) \\ \midrule
+		\textbf{$\tau$ (s)}\\
+		\small{1}     & 2.32509201e-11  & 1.36718750e-10 \\
+		\small{2}     & 1.33315382e-11  & 1.36718750e-10 \\
+		\small{4}     & 9.08699704e-12  & 1.36718750e-10 \\
+		\small{10}    & 5.82194037e-12  & 1.36718750e-10 \\
+		\small{20}    & 3.97732795e-12  & 1.36718750e-10 \\
+		\small{40}    & 2.91762201e-12  & 1.46484375e-10 \\
+		\small{1e2}   & 2.07423753e-12  & 1.46484375e-10 \\
+		\small{2e2}   & 2.15075917e-12  & 1.46484375e-10 \\
+		\small{4e2}   & 3.37401257e-12  & 1.51367188e-10 \\
+		\small{1e3}  & 7.18913143e-12  & 1.66015625e-10 \\
+		\small{2e3}  & 9.75471284e-12  & 1.66015625e-10 \\
+		\small{4e3}  & 7.54252759e-12  & 1.90429688e-10 \\
+		\small{1e4}  &                 & 2.05078125e-10 \\
+		
+		\bottomrule
+	\end{tabular}
+	\caption{Results of the scalability analysis.}
+	\label{tab:netresults}
 \end{table*}
 
-\ftgnote{TODO: format this table}
+With those results, it's proved that a WR network with two levels can provide 
+synchronization to all the equipment expected for the SKA1-mid facilities. 
+Although long-distance fiber links have been used for that test, thermal 
+influence should be take into account in order to confirm the goodness of the 
+WR solution in the SKA timing distribution. The next experiment will evaluate 
+how the temperature change in the fiber link can affect the accuracy of the 
+synchronization. 
 
-\begin{figure}[H]
-    \begin{subfigure}[t]{.3\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{img/prueba1_pd.png}
-        \caption{Phase difference for experiment 1}
-        \label{fig:prueba1_pd}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[t]{.30\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{img/prueba2_pd.png}
-        \caption{Phase Difference for experiment 2}
-        \label{fig:prueba2_pd}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[t]{.3\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{img/prueba3_pd.png}
-        \caption{Phase difference for experiment 3}
-        \label{fig:prueba3_pd}
-    \end{subfigure}
-    \caption{Phase difference plots for the different configurations of the network PPS stability analysis.}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{img/MTIE_exp3}
+	\caption[MTIE of the end-nodes in the scalability test.]{Maximum Time 
+	Interval Error
+	plot comparing the PPS signal from the end-nodes (WR-ZEN) to the Grand 
+	Master of the network.}
+	\label{fig:mtienet}
 \end{figure}
-
-\textit{TODO:} Hablar del tipo de ruido predominante en las gráficas de TDEV 
-cuando las repita y se verifiquen. Reemplazar Pk-to-Pk por MTIE.
-
 
 \subsection{Fiber operational temperature influence on time accuracy}
 
