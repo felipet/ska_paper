@@ -6,8 +6,8 @@ developed system fulfills SKA's requirements for the PPS distribution system.
 characterization of the PPS distribution system. The second one emulates a 
 example of WR network like the one needed to distribute timing in the SKA1-mid, 
 and evaluates the synchronization accuracy. Finally, the influence of external 
-conditions over the fiber links and its effect on the synchronization accuracy 
-is analyzed.
+conditions over the fibre links and its effect on the synchronization accuracy 
+is analysed.
 
 The principal equipment and tools utilized to accomplish the presented 
 experiments is depicted below:
@@ -38,8 +38,6 @@ experiments is depicted below:
 
 \subsection{Characterization of the WR-ZEN platform}
 \label{subsec: charact_zen}
-
-% Aquí las pruebas típicas de caracterización
 
 The new components included in the clocking's scheme of the WR-ZEN, described in section \ftglnote{Meter ref cuando esté integrado en el resto} 4.1, offer a performance improvement respect to previous WR designs, such as the WRS. 
 
@@ -207,10 +205,10 @@ links. The timing solution must compensate appropriately those effects in order
 to maintain the synchronization performance inside the limits required by the 
 SKA's infrastructure.
 
-On this contribution we've focused on the temperature change effect on the 
-\textit{round-trip} (RTT) time and the PPS's performance. To evaluate that, we 
-own a 
-climate chamber in the laboratory and some fiber spools of tens of kilometers. 
+On this contribution we've focused on the temperature change effect on the cable
+\textit{round-trip} time (CRTT) and the PPS performance. To evaluate that, we 
+own a climate chamber in the laboratory and some fiber spools of tens of 
+kilometers. 
 We couldn't evaluate properly wind impact with our equipment, because of this, 
 the experiments will only determine temperature effect on synchronization.
 
@@ -219,52 +217,41 @@ que viajan por la fibra al cambiar la temperatura. Índice de refracción.
 Aportar referencias!!!!}
 
 Theoretically, WR, is able to dynamically calibrate the master to slave 
-propagation delay from the total \textit{round-trip} time, \ftglnote{se 
-necesita una ref aquí?} and therefore PPS offset shall maintain constant even 
-when the propagation delay changes. The accurate estimation of the one-way 
-propagation delay is achieved by the use of a constant value, $\alpha$, which 
-express the ratio between propagation times with the two wavelengths used in 
-the WR link. A complete explanation of the link model could be read in 
-\cite{Wlostowski2011} and \cite{Daniluk2012}.
+propagation delay from the total \textit{round-trip} time, and therefore PPS 
+offset shall maintain constant even when the propagation delay changes. The 
+accurate estimation of the one-way propagation delay is achieved by the use of 
+a constant value, $\alpha$, which express the ratio between propagation times 
+with the two wavelengths used in the WR link. A complete explanation of the 
+link model could be read in \cite{Wlostowski2011} and \cite{Daniluk2012}.
 
 In the real world, $\alpha$ is temperature dependent, because of the change in 
 the refraction index due to a temperature variation in the fiber. For small and 
 mid-distance links, in laboratory conditions, $\alpha$ is nearly negligible and 
-the current link model works very well. The WR network in SKA will be formed by 
-long distance links exposed to external elements. In the concrete situation of 
-the South Africa facilities, the chosen location was the Karoo region. 
+the current link model behaves very well. The WR network in SKA will be formed 
+by long distance links exposed to external elements. In the concrete situation 
+of the South Africa facilities, the chosen location was the Karoo region. 
 \ftglnote{comprobar eso porque lo he sacado de Wikipedia} This region is a 
 semi-desert area, very adequate to reduce human interferences in the high 
 resolution data acquisition equipment, but with a inconvenient respec to the 
 temperature point of view: desertic zones have a high difference between day 
 and night temperatures.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{img/tempsetup}
+	\caption[Configuration of the climate chamber experiments]{Experimental 
+		setup to analyze the influence of the temperature gradient over the 
+		fiber 
+		link and the synchronization accuracy.}
+	\label{fig:tempsetup}
+\end{figure}
+
 We performed a series of experiments introducing a 50 km length fiber spool in 
-a climate chamber. The RTT and the PPS's offset between master and slave were 
-evaluated for a temperature range from 20 ºC to 50 ºC with 10 ºC steps. The 
-average temperature difference between day and night in the Karoo region on 
+a climate chamber. The CRTT and the PPS offset between master and slave have 
+been evaluated for a temperature range from 20 ºC to 50 ºC with 10 ºC steps. 
+The average temperature difference between day and night in the Karoo region on 
 each month is below 20 ºC, so the experiment covers comfortably the expected 
 temperature operation conditions.
-
-Our work hypothesis is that PPS's offset should keep constant for a varying 
-RTT, in other words, the offset and the RTT do not present any kind of 
-relationship between them. To prove this hypothesis, we have simulated the 
-expected temperature conditions for a 50km fiber link using a climate chamber. 
-Outside, in laboratory conditions, two WR-ZENs are connected using that fiber 
-in a master-slave configuration. Then we've measured the offset of the PPS 
-signal from slave to master with a timer (Keysight 53230A). The usual SFPs in 
-WR deployments were not suitable for this experiment due to the long distance 
-fiber link. We've used bidir SFPs from FiberStore with support up to 80 km 
-distance links using 1550/1490 nm wavelengths. The setup schema is depicted in 
-Figure ??. \ftglnote{hacer figura}
-
-We had to perform the WR calibration procedure described in \cite{man:calib} to 
-properly compensate the characteristic delays of the WR-ZEN board and the 
-$\alpha$ constant of the used wavelengths. Once all the equipment was setup and 
-calibrated, we started the thermal characterization of the link. To do that, we 
-accomplished 4 independent experiments, where each one was related to one of 
-the operation temperatures for the fiber spool. We started the measurement when 
-the temperature of the system reached a stable point according to the targets. 
 
 \begin{table*}\centering
 	\ra{0.8}
@@ -274,53 +261,69 @@ the temperature of the system reached a stable point according to the targets.
 		\cmidrule(l){2-3}  \cmidrule{5-6}
 		\textbf{Spool temp (ºC)} & $\overline{x}$ & $s$ & & $\overline{x}$ 
 		& $s$ \\ \midrule
-	\small{20} & 479347020 & 365 & & 194 & 17 \\
-	\small{30} & 478503719 & 50  & & 203 & 17 \\
-	\small{40} & 478533492 & 807 & & 150 & 17 \\
-	\small{50} & 478567050 & 399 & & 110 & 14 \\
-	\bottomrule
+		\small{20} & 478471695 & 303 & & 193 & 17 \\
+		\small{30} & 478503719 & 50  & & 203 & 17 \\
+		\small{40} & 478533492 & 807 & & 150 & 17 \\
+		\small{50} & 478567050 & 399 & & 110 & 14 \\
+		\bottomrule
 	\end{tabular}
 	\caption{Results of the thermal characterization for an operational fiber 
 		temperature in range 20ºC to 50ºC with 10ºC steps.}
 	\label{tab:temp}
 \end{table*}
 
+Our test is intended to prove the hypothesis that PPS offset is not related to 
+the cable \textit{round-trip} time, i.e. changes in CRTT will not affect the 
+synchronization accuracy. We have performed a series of experiments where the 
+operational temperature of a 50 km fiber link is set in a point from 20ºC to 
+50ºC. When the fiber reached the target temperature we started to measure the 
+rest of dependent values such as CRTT and PPS offset. All the WR equipment was 
+calibrated in order to compensate the characteristic delays of each device 
+following the official calibration procedure \cite{man:calib}.  The test setup 
+is depicted in figure \ref{fig:tempsetup}.
+
 The most relevant results are included in Table \ref{tab:temp}: (i) the mean 
-value of RTT and PPS offset samples, and (ii) their sample standard deviation. 
+value of CRTT and PPS offset samples, and (ii) their sample standard deviation. 
 A total of 7200 samples (2 hours) have been used to compute the presented 
-statistics. Round-trip time average for all the samples is 479347020 ps ($s=365 
-ps$), and for the PPS offset we have an average of 194 ps ($s=17 ps$)
-The correlation coefficient, expressed by the formula \ref{eq:r}, of the 
-variables Offset (O) and RTT (R) is 0.08. This indicates a very weak linear 
-relationship between both variables, which is just what we expected with our 
-hypothesis.
-Figure \ref{fig:ppsvsrtt} joins all the data from the experiments with 
-different fiber temperature and makes visual that both variables are weakly 
-related. Red line represents a fit linear model for the PPS offset given a RTT 
-value. Line's slope is positive but with a very low increment. The reason for 
-the deviation from 0 could be the use of a computed approximation of the real 
-$\alpha$ value. 
+statistics. The amplitude of the CRTT sampled data is 96496 ps. Dividing it by 
+the temperature range we obtained a CRTT variation of 3213 ps/ºC. It's 
+important to remark the huge change in the propagation delay. Considering a 
+synchronization system that is not capable of dynamically calibrate that 
+change, the final performance would suffer of an enormous degradation, which is 
+unacceptable for the SKA equipment. The peak-to-peak difference for the PPS 
+offset is 211 ps which leaves us a 7 ps/ºC and if we divide by the total link 
+length: $0.14 ps/ºC \cdot km$.
 
-\begin{equation}\label{eq:r}
-r_{OR} = \frac{s_{OR}}{s_{O} s_{R}}
-\end{equation}
+Figure \ref{fig:crttvstemp} shows a clear linear dependency between the 
+temperature and the CRTT as stated on ?? \ftglnote{hablar con Jose para alguna 
+ref de dispersión cromática y temperatura}. The PPS offset is not constant as 
+we suppose in our initial hypothesis. The Figure \ref{fig:ppsvscrtt} suggests 
+an inverse linear dependency between CRTT and offset, but if we take the 
+standard error values into account, we can't state clearly that linear 
+relation. It must be considered that $\alpha$ is computed experimentally using 
+fixed-point arithmetic (the LM32 has no floating-point unit). While it seemed 
+to work right for distances lower than a few kilometres, it may be insufficient 
+for such long distances as we used in our experiments. Nevertheless, the 
+observed offset variation for a long distance link and a 30ºC temperature 
+gradient is only 200 ps that joined to the results from the previous 
+experiments make the new PPS distribution system suitable for the SKA1-mid 
+timing system.
 
-The expected slave to master PPS offset related to distance and temperature of 
-the fiber link is defined by the expression \ref{eq:offset}. We experimentally 
-obtained that $k=0.13 ps$ \ftglnote{a javi: este k lo calculo de los valores 
-medios experimentales, eso está bien? sería mejor con los del peor de los 
-casos?}
-\ftgnote{Comprobar el modelo haciendo una prueba con una fibra de 20km!!!!}
 
-\begin{equation}\label{eq:offset}
-	\hat{offset_{SM}} (T,d) = \frac {k ps} {T ºC \cdot d km}
-\end{equation}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=1\linewidth]{img/ppsvsrtt}
-	\caption[Evolution of the PPS offset and the RTT on multiple working 
-	temperature for the fiber link]{Evolution of the PPS offset and the RTT on 
-	multiple working temperature for the fiber link}
-	\label{fig:ppsvsrtt}
+	\begin{subfigure}[t]{0.48\textwidth}
+		\includegraphics[width=\textwidth]{img/crttvstemp}
+		\caption[CRTT vs. Fiber temperature]{The figure shows the relation 
+		between the fiber temperature and the cable round-trip time.}
+		\label{fig:crttvstemp}
+	\end{subfigure}
+	~ % This symbol adds a white space between images
+	\begin{subfigure}[t]{0.48\textwidth}
+		\includegraphics[width=\textwidth]{img/ppsvscrtt}
+		\caption[PPS offset vs. CRTT]{This figure shows how PPS offset is 
+		sightly influenced by changes in the cable round-trip time.}
+		\label{fig:ppsvscrtt}
+	\end{subfigure}
 \end{figure}
