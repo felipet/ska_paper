@@ -2,14 +2,17 @@
 
 This section describes the accomplished experiments that prove how the 
 developed system fulfills SKA's requirements for the PPS distribution system. 
-\ftglnote{demasiado pretencioso?} The first experiment is a general 
+\ftglnote{demasiado pretencioso?} \klyonelnote{Yo lo veo bien pero quizás 
+yo lo reformularía un poco: This section presents the different experiments 
+that prove that the SKA's PPS distribution requirements are well fulfilled by 
+the developed system.} The first experiment is a general 
 characterization of the PPS distribution system. The second one emulates a 
 example of WR network like the one needed to distribute timing in the SKA1-mid, 
 and evaluates the synchronization accuracy. Finally, the influence of external 
-conditions over the fibre links and its effect on the synchronization accuracy 
-is analysed.
+conditions over the fiber links and its effect on the synchronization accuracy 
+is analyzed.
 
-The principal equipment and tools utilized to accomplish the presented 
+The principal equipment and tools utilized to \st{accomplish} perform the presented 
 experiments is depicted below:
 
 \begin{itemize}
@@ -20,19 +23,20 @@ experiments is depicted below:
     \item Two White Rabbit ZEN Time Provider (WR-ZEN TP) to test the 
     performance 
     of the new developed platform as WR nodes of the SKA facilities. The 
-    firmware version is 1.2.
+    firmware version is 1.2. \klyonelnote{¿Aquí vamos a poner alguna referencia a 
+    la WR-ZEN v3 o simplemente podemos la version del firmware?}
     
     \item A High-resolution counter from Keysight, the 52320A.
     
     \item Multiple components for the setup of the equipment:
     \begin{itemize}
-        \item Small form-factor pluggable transceptors (SFPs) to stablish the 
+        \item Small form-factor pluggable transceptors (SFPs) to establish the 
         link between WR devices. For the shorter links we've used the most 
         common bidirectional SFPs for WR: AXCEN 1310/1490 nm. For larger links, 
         we tried 
         SFPs from FiberStore: GE-BX-80 1490/1550 nm.
         \item Simplex optical fiber links (G652D). For the device 
-        characterization short distance fibres have been used, meanwhile for 
+        characterization short distance fibers have been used, meanwhile for 
         the scalability and temperature tests we have used long distance links: 
         20 and 50 km respectively.
         \item A OCXO Morion MV89 as frequency reference for the GM mode.
@@ -48,9 +52,12 @@ PPS distribution using the WR-ZEN. The connection schema is formed by two
 WR-ZENs, one as WR master and the other as WR slave, whose PPS output signals 
 are introduced in a time counter to measure the offset between them. With this 
 experiment we focus on the WR-ZEN performance, so that we set all the equipment 
-to a constant temperature and we use a short fibre link (few meters) in order 
-to avoid instability occasioned by chromatic dispersion on long fibre links.
+to a constant temperature and we use a short fiber link (few meters) in order 
+to avoid instability occasioned by chromatic dispersion on long fiber links.
 
+\klyonelnote{En esta tabla no están el MDEV y TDEV de las dos últimas filas ¿Es eso normal? 
+Con respecto al tamaño de la tabla, yo la dejaría así porque no creo que esta plantilla sea 
+el formato final de la revista y lo cambiarán a posteriori.}
 \begin{table*}\centering
 	\ra{0.8}
 	\begin{tabular}{@{} rccc@{}}%\toprule
@@ -79,14 +86,19 @@ to avoid instability occasioned by chromatic dispersion on long fibre links.
 	\label{tab:exp1res}
 \end{table*}
 
-The numerical results are included in Table \ref{tab:exp1res}. Those same 
-results are represented graphically on Figures \ref{fig:mdev_exp1}, 
+The numerical results are included in Table \ref{tab:exp1res} and are represented 
+graphically on Figures \ref{fig:mdev_exp1}, 
 \ref{fig:tdev_exp1} and \ref{fig:mtie_exp1}. The slope of the Modified Allan 
 Deviation curve shows that noise is dominated by white phase modulated noise. 
 In the time domain, TDEV shows that the expected error is tens of ps and the 
 worst-case showed in the MTIE plot is bounded around 200 ps for the sampling 
 period. 
 
+\klyonelnote{Comentarios acerca de las figuras 9a,b y c. En general no las veo mal, 
+es cierto que el visor de PDF hace cosas raras con el renderizado y hasta que no haces 
+zoom no se ve bien del todo. Sin embargo, la 9c si la veo algo pequeña si te fijas en 
+las letras de los ejes se ven un poco regular incluso ampliando. El resto creo que no 
+están mal en cuanto a resolución.}
 
 \begin{figure}
 	\centering
@@ -112,21 +124,20 @@ period.
 	\end{subfigure}
 \end{figure}
 
-The obtained values reveal that the proposed PPS distribution system fulfils 
+The obtained values reveal that the proposed PPS distribution solution fulfills 
 the requirements to be used in the SKA PPS distribution system. Although, it is 
-necessary to evaluate the solution in more realistic conditions before 
-concluding the goodness of the solution:
+necessary to evaluate it in more realistic conditions before concluding its goodness:
 
 \begin{itemize}
 	\item Evaluate the WR-ZEN as final node of a WR network. The purpose of 
 	this device is to be placed on each acquisition instrument to provide an 
 	accurate time reference. The results presented in the subsection 
-	\ref{subsec: net_exp} states perfomance for a realistic WR deployment.
+	\ref{subsec: net_exp} states performance for a realistic WR deployment.
 	
 	\item Moreover, SKA1-mid facilities will be placed in a desert zone, and 
-	the nodes will be linked by long-distance fibre links. Because of that, 
+	the nodes will be linked by long-distance fiber links. Because of that, 
 	it's 
-	necessary to analyse if the meteorological conditions can degrade 
+	necessary to analyze if the meteorological conditions can degrade 
 	significantly the synchronization accuracy. A thermal characterization of 
 	the influence of the variation of propagation delays in the PPS accuracy is 
 	presented in subsection \ref{subsec:temp}.
@@ -139,7 +150,7 @@ The next experiment covers a scalability analysis of the WR solution for the
 SKA timing system. In section \ref{sec:ska} there is a estimation of the final 
 nodes that need to be synchronized for the SKA1-mid: around 250 endpoints that 
 must be synchronized with an accuracy below 5ns. A WR network with only two 
-hops is suitable to synchronize up to 306 endnodes by the use of WR Switches as 
+hops is suitable to synchronize up to 306 end-nodes by the use of WR Switches as 
 Boundary Clocks.
 
 We set up a test network composed by a WRS at the top, which is locked to an 
@@ -147,6 +158,8 @@ external time reference, another WRS as intermediate BC and a WR-ZEN as
 endpoint. This configuration allows synchronizing up to 306 WR nodes with an 
 expected performance similar to the results obtained in our test for the WR-ZEN.
 
+\klyonelnote{Esta figura (Fig. 10) está bien de tamaño pero quizás aumentaría un 
+poco la fuente de las letras más pequeñas que cuesta un poco leerlas.}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{img/prueba_red}
@@ -173,13 +186,14 @@ counter along 4 hours.
 	\label{fig:tdevnet}
 \end{figure}
 
-TDEV and MTIE values have been calculated by octaves, the numerical values can 
+TDEV and MTIE values have been calculated by octaves \klyonelnote{¿Esto de "octaves" está bien?}, the numerical values can 
 be found in Table \ref{tab:netresults}. Graphical representations are included 
 in Figures \ref{fig:tdevnet} and \ref{fig:mtienet} respectively. TDEV results 
 show that expected synchronization accuracy for the end-nodes is around tens of 
 ps. The maximum PPS error during this test is bounded in hundred of ps, which 
 is more than enough what SKA1-mid needs (5ns).
 
+\klyonelnote{Mismo comentario que para la tabla anterior, ¿Falta algún valor?}
 \begin{table*}\centering
 	\ra{0.8}
 	\begin{tabular}{@{} rcc@{}}%\toprule
@@ -205,7 +219,7 @@ is more than enough what SKA1-mid needs (5ns).
 	\label{tab:netresults}
 \end{table*}
 
-With those results, it's proved that a WR network with two levels can provide 
+With those \st{results} findings, it's proved that a WR network with two levels can provide 
 synchronization to all the equipment expected for the SKA1-mid facilities. 
 Although long-distance fiber links have been used for that test, thermal 
 influence should be take into account in order to confirm the goodness of the 
@@ -231,7 +245,7 @@ One of the key aspects of the timing solution for the SKA facilities is the
 influence evaluation of the external elements in the timing performance. 
 Synchronization signals are spread over hundred of nodes which are connected by 
 long distance fiber links. Meteorological elements, such as wind or large 
- temperature changes, can alter propagation delays over the fiber 
+temperature changes, can alter propagation delays over the fiber 
 links. The timing solution must compensate appropriately those effects in order 
 to maintain the synchronization performance inside the limits required by the 
 SKA's infrastructure.
@@ -247,7 +261,7 @@ the experiments will only determine temperature effect on synchronization.
 que viajan por la fibra al cambiar la temperatura. Índice de refracción. 
 Aportar referencias!!!!}
 
-Theoretically, WR, is able to dynamically calibrate the master to slave 
+Theoretically, WR is able to dynamically calibrate the master to slave 
 propagation delay from the total \textit{round-trip} time, and therefore PPS 
 offset shall maintain constant even when the propagation delay changes. The 
 accurate estimation of the one-way propagation delay is achieved by the use of 
@@ -263,8 +277,8 @@ by long distance links exposed to external elements. In the concrete situation
 of the South Africa facilities, the chosen location was the Karoo region. 
 \ftglnote{comprobar eso porque lo he sacado de Wikipedia} This region is a 
 semi-desert area, very adequate to reduce human interferences in the high 
-resolution data acquisition equipment, but with a inconvenient respec to the 
-temperature point of view: desertic zones have a high difference between day 
+resolution data acquisition equipment, but with a inconvenient respect to the 
+temperature point of view: desert zones have a high difference between day 
 and night temperatures.
 
 \begin{figure}
@@ -272,8 +286,7 @@ and night temperatures.
 	\includegraphics[width=0.7\linewidth]{img/tempsetup}
 	\caption[Configuration of the climate chamber experiments]{Experimental 
 		setup to analyze the influence of the temperature gradient over the 
-		fiber 
-		link and the synchronization accuracy.}
+		fiber link and the synchronization accuracy.}
 	\label{fig:tempsetup}
 \end{figure}
 
@@ -307,7 +320,7 @@ Our test is intended to prove the hypothesis that PPS offset is not related to
 the cable \textit{round-trip} time, i.e. changes in CRTT will not affect the 
 synchronization accuracy. We have performed a series of experiments where the 
 operational temperature of a 50 km fiber link is set in a point from 20ºC to 
-50ºC. When the fiber reached the target temperature we started to measure the 
+50ºC. When the fiber reached the target temperature, we started to measure the 
 rest of dependent values such as CRTT and PPS offset. All the WR equipment was 
 calibrated in order to compensate the characteristic delays of each device 
 following the official calibration procedure \cite{man:calib}.  The test setup 
