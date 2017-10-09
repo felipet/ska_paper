@@ -1,19 +1,16 @@
-%% Section that includes the experiments performed.
+%% Section to describe and comment the results from the experiments performed.
+%% lang: en-GB
 
-This section describes the accomplished experiments that prove how the 
-developed system fulfills SKA's requirements for the PPS distribution system. 
-\ftglnote{demasiado pretencioso?} \klyonelnote{Yo lo veo bien pero quizás 
-yo lo reformularía un poco: This section presents the different experiments 
-that prove that the SKA's PPS distribution requirements are well fulfilled by 
-the developed system.} The first experiment is a general 
-characterization of the PPS distribution system. The second one emulates a 
-example of WR network like the one needed to distribute timing in the SKA1-mid, 
-and evaluates the synchronization accuracy. Finally, the influence of external 
-conditions over the fiber links and its effect on the synchronization accuracy 
-is analyzed.
+In this section we detail the accomplished experiments and their results in 
+order to evaluate the presented PPS distribution system for the SKA1-mid timing 
+system. The first experiment is a general characterization of the PPS 
+distribution system. The second one emulates a example of WR network like the 
+one needed to distribute timing in the SKA1-mid, and evaluates the 
+synchronization accuracy. Finally, the influence of external conditions over 
+the fibre links and its effect on the synchronization accuracy is analysed.
 
-The principal equipment and tools utilized to \st{accomplish} perform the presented 
-experiments is depicted below:
+The principal equipment and tools utilized during the experiments is listed 
+below:
 
 \begin{itemize}
     \item Two White Rabbit Switches to emulate a two-hops WR network. Both are 
@@ -21,10 +18,8 @@ experiments is depicted below:
     firmware (v5.0).
     
     \item Two White Rabbit ZEN Time Provider (WR-ZEN TP) to test the 
-    performance 
-    of the new developed platform as WR nodes of the SKA facilities. The 
-    firmware version is 1.2. \klyonelnote{¿Aquí vamos a poner alguna referencia a 
-    la WR-ZEN v3 o simplemente podemos la version del firmware?}
+    performance of the new developed platform as WR nodes of the SKA 
+    facilities. Firmware version is 1.2 while the hardware is v3.0.
     
     \item A High-resolution counter from Keysight, the 52320A.
     
@@ -35,8 +30,8 @@ experiments is depicted below:
         common bidirectional SFPs for WR: AXCEN 1310/1490 nm. For larger links, 
         we tried 
         SFPs from FiberStore: GE-BX-80 1490/1550 nm.
-        \item Simplex optical fiber links (G652D). For the device 
-        characterization short distance fibers have been used, meanwhile for 
+        \item Simplex optical fibre links (G652D). For the device 
+        characterization short distance fibres have been used, meanwhile for 
         the scalability and temperature tests we have used long distance links: 
         20 and 50 km respectively.
         \item A OCXO Morion MV89 as frequency reference for the GM mode.
@@ -55,9 +50,11 @@ experiment we focus on the WR-ZEN performance, so that we set all the equipment
 to a constant temperature and we use a short fiber link (few meters) in order 
 to avoid instability occasioned by chromatic dispersion on long fiber links.
 
-\klyonelnote{En esta tabla no están el MDEV y TDEV de las dos últimas filas ¿Es eso normal? 
-Con respecto al tamaño de la tabla, yo la dejaría así porque no creo que esta plantilla sea 
-el formato final de la revista y lo cambiarán a posteriori.}
+\klyonelnote{En esta tabla no están el MDEV y TDEV de las dos últimas filas ¿Es 
+eso normal?}
+\ftglnote{Es por el tipo de cálculo que se hace para dichos estadísticos, que 
+consume más datos que en el caso de las varianzas. Si queda raro podemos quitar 
+los dos últimos del MTIE.}
 \begin{table*}\centering
 	\ra{0.8}
 	\begin{tabular}{@{} rccc@{}}%\toprule
@@ -86,8 +83,8 @@ el formato final de la revista y lo cambiarán a posteriori.}
 	\label{tab:exp1res}
 \end{table*}
 
-The numerical results are included in Table \ref{tab:exp1res} and are represented 
-graphically on Figures \ref{fig:mdev_exp1}, 
+The numerical results are included in Table \ref{tab:exp1res} and are 
+represented graphically on Figures \ref{fig:mdev_exp1}, 
 \ref{fig:tdev_exp1} and \ref{fig:mtie_exp1}. The slope of the Modified Allan 
 Deviation curve shows that noise is dominated by white phase modulated noise. 
 In the time domain, TDEV shows that the expected error is tens of ps and the 
@@ -193,7 +190,6 @@ show that expected synchronization accuracy for the end-nodes is around tens of
 ps. The maximum PPS error during this test is bounded in hundred of ps, which 
 is more than enough what SKA1-mid needs (5ns).
 
-\klyonelnote{Mismo comentario que para la tabla anterior, ¿Falta algún valor?}
 \begin{table*}\centering
 	\ra{0.8}
 	\begin{tabular}{@{} rcc@{}}%\toprule
@@ -202,16 +198,17 @@ is more than enough what SKA1-mid needs (5ns).
 		\small{1}     & 2.32509201e-11  & 1.36718750e-10 \\
 		\small{2}     & 1.33315382e-11  & 1.36718750e-10 \\
 		\small{4}     & 9.08699704e-12  & 1.36718750e-10 \\
-		\small{10}    & 5.82194037e-12  & 1.36718750e-10 \\
-		\small{20}    & 3.97732795e-12  & 1.36718750e-10 \\
-		\small{40}    & 2.91762201e-12  & 1.46484375e-10 \\
-		\small{1e2}   & 2.07423753e-12  & 1.46484375e-10 \\
-		\small{2e2}   & 2.15075917e-12  & 1.46484375e-10 \\
-		\small{4e2}   & 3.37401257e-12  & 1.51367188e-10 \\
-		\small{1e3}  & 7.18913143e-12  & 1.66015625e-10 \\
-		\small{2e3}  & 9.75471284e-12  & 1.66015625e-10 \\
-		\small{4e3}  & 7.54252759e-12  & 1.90429688e-10 \\
-		\small{1e4}  &                 & 2.05078125e-10 \\
+		\small{8}     & 6.51222259e-12  & 1.36718750e-10 \\
+		\small{16}    & 4.48330572e-12  & 1.36718750e-10 \\
+		\small{32}    & 3.22792513e-12  & 1.36718750e-10 \\
+		\small{64}    & 2.37194854e-12  & 1.46484375e-10 \\
+		\small{128}   & 2.02186966e-12  & 1.46484375e-10 \\
+		\small{256}   & 2.36616321e-12  & 1.46484375e-10 \\
+		\small{512}   & 4.38155942e-12  & 1.61132813e-10 \\
+		\small{1024}  & 7.27858642e-12  & 1.66015625e-10 \\
+		\small{2048}  & 9.75139418e-12  & 1.75781250e-10 \\
+		\small{4096}  & 7.97809951e-12  & 1.90429688e-10 \\
+		\small{8192}  &                 & 2.00195313e-10 \\
 		
 		\bottomrule
 	\end{tabular}
@@ -219,7 +216,7 @@ is more than enough what SKA1-mid needs (5ns).
 	\label{tab:netresults}
 \end{table*}
 
-With those \st{results} findings, it's proved that a WR network with two levels can provide 
+With those findings, it's proved that a WR network with two levels can provide 
 synchronization to all the equipment expected for the SKA1-mid facilities. 
 Although long-distance fiber links have been used for that test, thermal 
 influence should be take into account in order to confirm the goodness of the 
