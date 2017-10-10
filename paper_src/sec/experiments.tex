@@ -53,33 +53,35 @@ to avoid instability occasioned by chromatic dispersion on long fiber links.
 \klyonelnote{En esta tabla no están el MDEV y TDEV de las dos últimas filas ¿Es 
 eso normal?}
 \ftglnote{Es por el tipo de cálculo que se hace para dichos estadísticos, que 
-consume más datos que en el caso de las varianzas. Si queda raro podemos quitar 
-los dos últimos del MTIE.}
+consume más datos que en el caso de las varianzas. Como quedaba raro y además 
+redundante con gráfica y tabla he decidido mostrar solo los valores más 
+relevantes.}
 \begin{table*}\centering
 	\ra{0.8}
 	\begin{tabular}{@{} rccc@{}}%\toprule
-		& MDEV & TDEV (s)  & MTIE (s) \\ \midrule
-		\textbf{$\tau$ (s)}\\
-		\small{1}     & 2.41868093e-11 & 1.39642609e-11  & 8.78906250e-11 \\
-		\small{2}     & 8.18381977e-12 & 9.44986109e-12  & 9.27734375e-11 \\
-		\small{4}     & 2.92095805e-12 & 6.74566367e-12  & 1.02539063e-10 \\
-		\small{8}     & 1.05378923e-12 & 4.86724395e-12  & 1.02539063e-10 \\
-		\small{16}    & 3.70004736e-13 & 3.41795734e-12  & 1.02539063e-10 \\
-		\small{32}    & 1.36916757e-13 & 2.52956566e-12  & 1.02539063e-10 \\
-		\small{64}    & 5.26969486e-14 & 1.94717424e-12  & 1.02539063e-10 \\
-		\small{128}   & 2.41679947e-14 & 1.78603498e-12  & 1.02539063e-10 \\
-		\small{256}   & 1.14864284e-14 & 1.69771329e-12  & 1.22070312e-10 \\
-		\small{512}   & 6.76882083e-15 & 2.00088603e-12  & 1.22070312e-10 \\
-		\small{1024}  & 4.60374214e-15 & 2.72176309e-12  & 1.22070312e-10 \\
-		\small{2028}  & 3.37370493e-15 & 3.98911375e-12  & 1.22070312e-10 \\
-		\small{4096}  & 1.20303843e-15 & 2.84497740e-12  & 1.31835938e-10 \\
-		\small{8192}  & 8.69742436e-16 & 4.11358028e-12  & 1.56250000e-10 \\
-		\small{16384} & 			   &                 & 1.66015625e-10 \\
-		\small{32768} &				   &                 & 1.66015625e-10 \\
+		\textbf{$\tau$ (s)} & MDEV & TDEV (s)  & MTIE (s) \\ \midrule
+		\small{1}     & 2.41e-11 & 1.39e-11  & 8.78e-11 \\
+		%%\small{2}     & 8.18381977e-12 & 9.44986109e-12  & 9.27734375e-11 \\
+		%%\small{4}     & 2.92095805e-12 & 6.74566367e-12  & 1.02539063e-10 \\
+		\small{8}     & 1.05e-12 & 4.86e-12  & 1.02e-10 \\
+		%%\small{16}    & 3.70004736e-13 & 3.41795734e-12  & 1.02539063e-10 \\
+		%%\small{32}    & 1.36916757e-13 & 2.52956566e-12  & 1.02539063e-10 \\
+		\small{64}    & 5.26e-14 & 1.94e-12  & 1.02e-10 \\
+		%%\small{128}   & 2.41679947e-14 & 1.78603498e-12  & 1.02539063e-10 \\
+		\small{256}   & 1.14e-14 & 1.69e-12  & 1.22e-10 \\
+		\small{512}   & 6.76e-15 & 2.00e-12  & 1.22e-10 \\
+		%%\small{1024}  & 4.60374214e-15 & 2.72176309e-12  & 1.22070312e-10 \\
+		%%\small{2028}  & 3.37370493e-15 & 3.98911375e-12  & 1.22070312e-10 \\
+		\small{4096}  & 1.20e-15 & 2.84e-12  & 1.31e-10 \\
+		%%\small{8192}  & 8.69742436e-16 & 4.11358028e-12  & 1.56250000e-10 \\
+		%%\small{16384} & 			   &                 & 1.66015625e-10 \\
+		%%\small{32768} &				   &                 & 1.66015625e-10 \\
 		
 		\bottomrule
 	\end{tabular}
-	\caption{Results of the PPS performance analysis.}
+	\caption{In this table it can be checked out the most relevant statistics 
+	for the device characterization performed in the subsection \ref{subsec: 
+	charact_zen}.}
 	\label{tab:exp1res}
 \end{table*}
 
@@ -91,11 +93,11 @@ In the time domain, TDEV shows that the expected error is tens of ps and the
 worst-case showed in the MTIE plot is bounded around 200 ps for the sampling 
 period. 
 
-\klyonelnote{Comentarios acerca de las figuras 9a,b y c. En general no las veo mal, 
-es cierto que el visor de PDF hace cosas raras con el renderizado y hasta que no haces 
-zoom no se ve bien del todo. Sin embargo, la 9c si la veo algo pequeña si te fijas en 
-las letras de los ejes se ven un poco regular incluso ampliando. El resto creo que no 
-están mal en cuanto a resolución.}
+\klyonelnote{Comentarios acerca de las figuras 9a,b y c. En general no las veo 
+mal, es cierto que el visor de PDF hace cosas raras con el renderizado y hasta 
+que no haces zoom no se ve bien del todo. Sin embargo, la 9c si la veo algo 
+pequeña si te fijas en las letras de los ejes se ven un poco regular incluso 
+ampliando. El resto creo que no están mal en cuanto a resolución.}
 
 \begin{figure}
 	\centering
@@ -112,18 +114,21 @@ están mal en cuanto a resolución.}
 		transfer between two WR-ZEN.}
 		\label{fig:tdev_exp1}
 	\end{subfigure}
-	
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{img/MTIE_exp1}
+\end{figure}
+
+\begin{figure}
+		\centering
+		\includegraphics[width=0.5\textwidth]{img/MTIE_exp1}
 		\caption[MTIE plot for the WR-ZEN]{Maximum Time Interval Error for a 
 		time transfer between two WR-ZEN.}
 		\label{fig:mtie_exp1}
-	\end{subfigure}
+
 \end{figure}
 
-The obtained values reveal that the proposed PPS distribution solution fulfills 
-the requirements to be used in the SKA PPS distribution system. Although, it is 
-necessary to evaluate it in more realistic conditions before concluding its goodness:
+The obtained values reveal that the proposed WR node for the PPS distribution 
+solution fulfills the requirements to be used in the SKA PPS distribution 
+system. Although, it is necessary to evaluate it in more realistic conditions 
+before concluding its goodness:
 
 \begin{itemize}
 	\item Evaluate the WR-ZEN as final node of a WR network. The purpose of 
@@ -155,8 +160,6 @@ external time reference, another WRS as intermediate BC and a WR-ZEN as
 endpoint. This configuration allows synchronizing up to 306 WR nodes with an 
 expected performance similar to the results obtained in our test for the WR-ZEN.
 
-\klyonelnote{Esta figura (Fig. 10) está bien de tamaño pero quizás aumentaría un 
-poco la fuente de las letras más pequeñas que cuesta un poco leerlas.}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{img/prueba_red}
@@ -176,14 +179,17 @@ counter along 4 hours.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\linewidth]{img/tdev_exp3}
+	\includegraphics[width=0.5\linewidth]{img/tdev_exp3}
 	\caption[TDEV of the end-nodes in the scalability test.]{Time Deviation 
 	plot comparing the PPS signal from the end-nodes (WR-ZEN) to the Grand 
 	Master of the network.}
 	\label{fig:tdevnet}
 \end{figure}
 
-TDEV and MTIE values have been calculated by octaves \klyonelnote{¿Esto de "octaves" está bien?}, the numerical values can 
+TDEV and MTIE values have been calculated by octaves \klyonelnote{¿Esto de 
+"octaves" está bien?} \ftglnote{Sí, quiere decir doblando el valor, en lugar de 
+multiplicando por 10, lo que nos hace ganar algunos puntos más.}, the numerical 
+values can 
 be found in Table \ref{tab:netresults}. Graphical representations are included 
 in Figures \ref{fig:tdevnet} and \ref{fig:mtienet} respectively. TDEV results 
 show that expected synchronization accuracy for the end-nodes is around tens of 
@@ -195,24 +201,25 @@ is more than enough what SKA1-mid needs (5ns).
 	\begin{tabular}{@{} rcc@{}}%\toprule
 		& TDEV (s)  & MTIE (s) \\ \midrule
 		\textbf{$\tau$ (s)}\\
-		\small{1}     & 2.32509201e-11  & 1.36718750e-10 \\
-		\small{2}     & 1.33315382e-11  & 1.36718750e-10 \\
-		\small{4}     & 9.08699704e-12  & 1.36718750e-10 \\
-		\small{8}     & 6.51222259e-12  & 1.36718750e-10 \\
-		\small{16}    & 4.48330572e-12  & 1.36718750e-10 \\
-		\small{32}    & 3.22792513e-12  & 1.36718750e-10 \\
-		\small{64}    & 2.37194854e-12  & 1.46484375e-10 \\
-		\small{128}   & 2.02186966e-12  & 1.46484375e-10 \\
-		\small{256}   & 2.36616321e-12  & 1.46484375e-10 \\
-		\small{512}   & 4.38155942e-12  & 1.61132813e-10 \\
-		\small{1024}  & 7.27858642e-12  & 1.66015625e-10 \\
-		\small{2048}  & 9.75139418e-12  & 1.75781250e-10 \\
-		\small{4096}  & 7.97809951e-12  & 1.90429688e-10 \\
-		\small{8192}  &                 & 2.00195313e-10 \\
+		\small{1}     & 2.32e-11  & 1.36e-10 \\
+		%\small{2}     & 1.33315382e-11  & 1.36718750e-10 \\
+		%\small{4}     & 9.08699704e-12  & 1.36718750e-10 \\
+		\small{8}     & 6.51e-12  & 1.36e-10 \\
+		%\small{16}    & 4.48330572e-12  & 1.36718750e-10 \\
+		%\small{32}    & 3.22792513e-12  & 1.36718750e-10 \\
+		\small{64}    & 2.37e-12  & 1.46e-10 \\
+		%\small{128}   & 2.02186966e-12  & 1.46484375e-10 \\
+		%\small{256}   & 2.36616321e-12  & 1.46484375e-10 \\
+		\small{512}   & 4.38e-12  & 1.61e-10 \\
+		\small{1024}  & 7.27e-12  & 1.66e-10 \\
+		\small{2048}  & 9.75e-12  & 1.75e-10 \\
+		\small{4096}  & 7.97e-12  & 1.90e-10 \\
+		%\small{8192}  &                 & 2.00195313e-10 \\
 		
 		\bottomrule
 	\end{tabular}
-	\caption{Results of the scalability analysis.}
+	\caption{This table contains the Time Deviation and Maximum Time Interval 
+	Error results from the scalability test.}
 	\label{tab:netresults}
 \end{table*}
 
@@ -227,7 +234,7 @@ synchronization.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.9\linewidth]{img/MTIE_exp3}
+	\includegraphics[width=0.5\linewidth]{img/MTIE_exp3}
 	\caption[MTIE of the end-nodes in the scalability test.]{Maximum Time 
 	Interval Error
 	plot comparing the PPS signal from the end-nodes (WR-ZEN) to the Grand 
@@ -247,16 +254,13 @@ links. The timing solution must compensate appropriately those effects in order
 to maintain the synchronization performance inside the limits required by the 
 SKA's infrastructure.
 
-On this contribution we've focused on the temperature change effect on the cable
+On this contribution, we've focused on the temperature change effect over the 
+cable
 \textit{round-trip} time (CRTT) and the PPS performance. To evaluate that, we 
 own a climate chamber in the laboratory and some fiber spools of tens of 
 kilometers. 
 We couldn't evaluate properly wind impact with our equipment, because of this, 
 the experiments will only determine temperature effect on synchronization.
-
-\ftgnote{Aquí un párrafo mencionando los efectos físicos sobre los haces de luz 
-que viajan por la fibra al cambiar la temperatura. Índice de refracción. 
-Aportar referencias!!!!}
 
 Theoretically, WR is able to dynamically calibrate the master to slave 
 propagation delay from the total \textit{round-trip} time, and therefore PPS 
@@ -272,11 +276,10 @@ mid-distance links, in laboratory conditions, $\alpha$ is nearly negligible and
 the current link model behaves very well. The WR network in SKA will be formed 
 by long distance links exposed to external elements. In the concrete situation 
 of the South Africa facilities, the chosen location was the Karoo region. 
-\ftglnote{comprobar eso porque lo he sacado de Wikipedia} This region is a 
-semi-desert area, very adequate to reduce human interferences in the high 
-resolution data acquisition equipment, but with a inconvenient respect to the 
-temperature point of view: desert zones have a high difference between day 
-and night temperatures.
+This region is a semi-desert area, very adequate to reduce human interferences 
+in the high resolution data acquisition equipment, but with a inconvenient 
+respect to the temperature point of view: desert zones have a high difference 
+between day and night temperatures.
 
 \begin{figure}
 	\centering
@@ -289,7 +292,7 @@ and night temperatures.
 
 We performed a series of experiments introducing a 50 km length fiber spool in 
 a climate chamber. The CRTT and the PPS offset between master and slave have 
-been evaluated for a temperature range from 20 ºC to 50 ºC with 10 ºC steps. 
+been measured for a temperature range from 20 ºC to 50 ºC with 10 ºC steps. 
 The average temperature difference between day and night in the Karoo region on 
 each month is below 20 ºC, so the experiment covers comfortably the expected 
 temperature operation conditions.
@@ -325,19 +328,35 @@ is depicted in figure \ref{fig:tempsetup}.
 
 The most relevant results are included in Table \ref{tab:temp}: (i) the mean 
 value of CRTT and PPS offset samples, and (ii) their sample standard deviation. 
-A total of 7200 samples (2 hours) have been used to compute the presented 
-statistics. The amplitude of the CRTT sampled data is 96496 ps. Dividing it by 
-the temperature range we obtained a CRTT variation of 3213 ps/ºC. It's 
-important to remark the huge change in the propagation delay. Considering a 
-synchronization system that is not capable of dynamically calibrate that 
-change, the final performance would suffer of an enormous degradation, which is 
-unacceptable for the SKA equipment. The peak-to-peak difference for the PPS 
-offset is 211 ps which leaves us a 7 ps/ºC and if we divide by the total link 
-length: $0.14 ps/ºC \cdot km$.
+A total of 7200 samples (2 hours) per temperature step have been used to 
+compute the presented statistics. The amplitude of the CRTT sampled data is 
+96496 ps. Dividing it by the temperature range we obtained a CRTT variation of 
+3213 ps/ºC. It's important to remark the huge change in the propagation delay. 
+Considering a synchronization system that is not capable of dynamically 
+calibrate that change, the final performance would suffer of an enormous 
+degradation, which is unacceptable for the SKA equipment. The peak-to-peak 
+difference for the PPS offset is 211 ps which leaves us a 7 ps/ºC and if we 
+divide by the total link length: $0.14 ps/ºC \cdot km$.
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{0.48\textwidth}
+		\includegraphics[width=\textwidth]{img/crttvstemp}
+		\caption[CRTT vs. Fiber temperature]{The figure shows the relation 
+			between the fiber temperature and the cable round-trip time.}
+		\label{fig:crttvstemp}
+	\end{subfigure}
+	~ % This symbol adds a white space between images
+	\begin{subfigure}[t]{0.48\textwidth}
+		\includegraphics[width=\textwidth]{img/ppsvscrtt}
+		\caption[PPS offset vs. CRTT]{This figure shows how PPS offset is 
+			sightly influenced by changes in the cable round-trip time.}
+		\label{fig:ppsvscrtt}
+	\end{subfigure}
+\end{figure}
 
 Figure \ref{fig:crttvstemp} shows a clear linear dependency between the 
-temperature and the CRTT as stated on ?? \ftglnote{hablar con Jose para alguna 
-ref de dispersión cromática y temperatura}. The PPS offset is not constant as 
+temperature and the CRTT. Although, the PPS offset is not constant as 
 we suppose in our initial hypothesis. The Figure \ref{fig:ppsvscrtt} suggests 
 an inverse linear dependency between CRTT and offset, but if we take the 
 standard error values into account, we can't state clearly that linear 
@@ -349,22 +368,3 @@ observed offset variation for a long distance link and a 30ºC temperature
 gradient is only 200 ps that joined to the results from the previous 
 experiments make the new PPS distribution system suitable for the SKA1-mid 
 timing system.
-
-
-
-\begin{figure}
-	\centering
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{img/crttvstemp}
-		\caption[CRTT vs. Fiber temperature]{The figure shows the relation 
-		between the fiber temperature and the cable round-trip time.}
-		\label{fig:crttvstemp}
-	\end{subfigure}
-	~ % This symbol adds a white space between images
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{img/ppsvscrtt}
-		\caption[PPS offset vs. CRTT]{This figure shows how PPS offset is 
-		sightly influenced by changes in the cable round-trip time.}
-		\label{fig:ppsvscrtt}
-	\end{subfigure}
-\end{figure}
