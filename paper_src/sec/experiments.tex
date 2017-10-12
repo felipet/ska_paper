@@ -47,15 +47,9 @@ PPS distribution using the WR-ZEN. The connection schema is formed by two
 WR-ZENs, one as WR master and the other as WR slave, whose PPS output signals 
 are introduced in a time counter to measure the offset between them. With this 
 experiment we focus on the WR-ZEN performance, so that we set all the equipment 
-to a constant temperature and we use a short fiber link (few meters) in order 
-to avoid instability occasioned by chromatic dispersion on long fiber links.
+to a constant temperature and we use a short fibre link (few meters) in order 
+to avoid instability occasioned by chromatic dispersion on long fibre links.
 
-\klyonelnote{En esta tabla no están el MDEV y TDEV de las dos últimas filas ¿Es 
-eso normal?}
-\ftglnote{Es por el tipo de cálculo que se hace para dichos estadísticos, que 
-consume más datos que en el caso de las varianzas. Como quedaba raro y además 
-redundante con gráfica y tabla he decidido mostrar solo los valores más 
-relevantes.}
 \begin{table*}\centering
 	\ra{0.8}
 	\begin{tabular}{@{} rccc@{}}%\toprule
@@ -92,12 +86,6 @@ Deviation curve shows that noise is dominated by white phase modulated noise.
 In the time domain, TDEV shows that the expected error is tens of ps and the 
 worst-case showed in the MTIE plot is bounded around 200 ps for the sampling 
 period. 
-
-\klyonelnote{Comentarios acerca de las figuras 9a,b y c. En general no las veo 
-mal, es cierto que el visor de PDF hace cosas raras con el renderizado y hasta 
-que no haces zoom no se ve bien del todo. Sin embargo, la 9c si la veo algo 
-pequeña si te fijas en las letras de los ejes se ven un poco regular incluso 
-ampliando. El resto creo que no están mal en cuanto a resolución.}
 
 \begin{figure}
 	\centering
@@ -137,9 +125,9 @@ before concluding its goodness:
 	\ref{subsec: net_exp} states performance for a realistic WR deployment.
 	
 	\item Moreover, SKA1-mid facilities will be placed in a desert zone, and 
-	the nodes will be linked by long-distance fiber links. Because of that, 
+	the nodes will be linked by long-distance fibre links. Because of that, 
 	it's 
-	necessary to analyze if the meteorological conditions can degrade 
+	necessary to analyse if the meteorological conditions can degrade 
 	significantly the synchronization accuracy. A thermal characterization of 
 	the influence of the variation of propagation delays in the PPS accuracy is 
 	presented in subsection \ref{subsec:temp}.
@@ -172,7 +160,7 @@ expected performance similar to the results obtained in our test for the WR-ZEN.
 
 
 All the equipment for that test was under laboratory conditions. To connect 
-each one of the WR devices we've used a 20km fiber spool and SFPs from 
+each one of the WR devices we've used a 20km fibre spool and SFPs from 
 FiberStore (SFP-GE-BX80 with 1490/1550 nm wavelengths). PPS phase difference is 
 measured from the WR-ZEN to the WRS in GM configuration using a Keysight 52320A 
 counter along 4 hours.
@@ -186,9 +174,7 @@ counter along 4 hours.
 	\label{fig:tdevnet}
 \end{figure}
 
-TDEV and MTIE values have been calculated by octaves \klyonelnote{¿Esto de 
-"octaves" está bien?} \ftglnote{Sí, quiere decir doblando el valor, en lugar de 
-multiplicando por 10, lo que nos hace ganar algunos puntos más.}, the numerical 
+TDEV and MTIE values have been calculated by octaves, the numerical 
 values can 
 be found in Table \ref{tab:netresults}. Graphical representations are included 
 in Figures \ref{fig:tdevnet} and \ref{fig:mtienet} respectively. TDEV results 
@@ -225,10 +211,10 @@ is more than enough what SKA1-mid needs (5ns).
 
 With those findings, it's proved that a WR network with two levels can provide 
 synchronization to all the equipment expected for the SKA1-mid facilities. 
-Although long-distance fiber links have been used for that test, thermal 
+Although long-distance fibre links have been used for that test, thermal 
 influence should be take into account in order to confirm the goodness of the 
 WR solution in the SKA timing distribution. The next experiment will evaluate 
-how the temperature change in the fiber link can affect the accuracy of the 
+how the temperature change in the fibre link can affect the accuracy of the 
 synchronization. 
 
 
@@ -242,14 +228,14 @@ synchronization.
 	\label{fig:mtienet}
 \end{figure}
 
-\subsection{Fiber operational temperature influence on time accuracy}
+\subsection{Fibre operational temperature influence on time accuracy}
 \label{subsec:temp}
 
 One of the key aspects of the timing solution for the SKA facilities is the 
 influence evaluation of the external elements in the timing performance. 
 Synchronization signals are spread over hundred of nodes which are connected by 
-long distance fiber links. Meteorological elements, such as wind or large 
-temperature changes, can alter propagation delays over the fiber 
+long distance fibre links. Meteorological elements, such as wind or large 
+temperature changes, can alter propagation delays over the fibre 
 links. The timing solution must compensate appropriately those effects in order 
 to maintain the synchronization performance inside the limits required by the 
 SKA's infrastructure.
@@ -257,7 +243,7 @@ SKA's infrastructure.
 On this contribution, we've focused on the temperature change effect over the 
 cable
 \textit{round-trip} time (CRTT) and the PPS performance. To evaluate that, we 
-own a climate chamber in the laboratory and some fiber spools of tens of 
+own a climate chamber in the laboratory and some fibre spools of tens of 
 kilometers. 
 We couldn't evaluate properly wind impact with our equipment, because of this, 
 the experiments will only determine temperature effect on synchronization.
@@ -271,7 +257,7 @@ with the two wavelengths used in the WR link. A complete explanation of the
 link model could be read in \cite{Wlostowski2011} and \cite{Daniluk2012}.
 
 In the real world, $\alpha$ is temperature dependent, because of the change in 
-the refraction index due to a temperature variation in the fiber. For small and 
+the refraction index due to a temperature variation in the fibre. For small and 
 mid-distance links, in laboratory conditions, $\alpha$ is nearly negligible and 
 the current link model behaves very well. The WR network in SKA will be formed 
 by long distance links exposed to external elements. In the concrete situation 
@@ -285,12 +271,12 @@ between day and night temperatures.
 	\centering
 	\includegraphics[width=0.7\linewidth]{img/tempsetup}
 	\caption[Configuration of the climate chamber experiments]{Experimental 
-		setup to analyze the influence of the temperature gradient over the 
-		fiber link and the synchronization accuracy.}
+		setup to analyse the influence of the temperature gradient over the 
+		fibre link and the synchronization accuracy.}
 	\label{fig:tempsetup}
 \end{figure}
 
-We performed a series of experiments introducing a 50 km length fiber spool in 
+We performed a series of experiments introducing a 50 km length fibre spool in 
 a climate chamber. The CRTT and the PPS offset between master and slave have 
 been measured for a temperature range from 20 ºC to 50 ºC with 10 ºC steps. 
 The average temperature difference between day and night in the Karoo region on 
@@ -311,7 +297,7 @@ temperature operation conditions.
 		\small{50} & 478567050 & 399 & & 110 & 14 \\
 		\bottomrule
 	\end{tabular}
-	\caption{Results of the thermal characterization for an operational fiber 
+	\caption{Results of the thermal characterization for an operational fibre 
 		temperature in range 20ºC to 50ºC with 10ºC steps.}
 	\label{tab:temp}
 \end{table*}
@@ -319,8 +305,8 @@ temperature operation conditions.
 Our test is intended to prove the hypothesis that PPS offset is not related to 
 the cable \textit{round-trip} time, i.e. changes in CRTT will not affect the 
 synchronization accuracy. We have performed a series of experiments where the 
-operational temperature of a 50 km fiber link is set in a point from 20ºC to 
-50ºC. When the fiber reached the target temperature, we started to measure the 
+operational temperature of a 50 km fibre link is set in a point from 20ºC to 
+50ºC. When the fibre reached the target temperature, we started to measure the 
 rest of dependent values such as CRTT and PPS offset. All the WR equipment was 
 calibrated in order to compensate the characteristic delays of each device 
 following the official calibration procedure \cite{man:calib}.  The test setup 
@@ -343,7 +329,7 @@ divide by the total link length: $0.14 ps/ºC \cdot km$.
 	\begin{subfigure}[t]{0.48\textwidth}
 		\includegraphics[width=\textwidth]{img/crttvstemp}
 		\caption[CRTT vs. Fiber temperature]{The figure shows the relation 
-			between the fiber temperature and the cable round-trip time.}
+			between the fibre temperature and the cable round-trip time.}
 		\label{fig:crttvstemp}
 	\end{subfigure}
 	~ % This symbol adds a white space between images
