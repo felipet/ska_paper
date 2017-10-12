@@ -43,7 +43,7 @@ former are well-defined equipment with known interfaces and software support.
 However, there is a problem related to the current WR nodes: they are based on 
 PCIe interface cards to be plugged on standard computers, microTCA or VME-64 
 crates and therefore, a specific computer is necessary to provide the high 
-level software functionalities. Although most of these cards can be used on 
+level software management functionalities. Although most of these cards can be used on 
 stand-alone operation mode, they just use a FPGA device as processing engine 
 and this make very complicated to add new functionalities or standard software 
 tools. The main WR node designs include a soft-microprocessor on the FPGA gateware but it is not 
@@ -71,6 +71,8 @@ In the following section we will describe the proposed node hardware, gateware a
 %% ------------------------------------------------------------------------
 
 The PPS distribution system for SKA is based on the WR-ZEN platform that provides the WR support in order to ensure the synchronization accuracy in the system. The first design of the PPS system includes the Fine Delay FMC card that is used to generate the timing signals through mezzanine channels and has two Network Interface Cores (NIC) that allows accessing optical fiber ports as conventional Linux network interfaces.
+
+Nowadays, the utilization of the Fine Delay FMC card is still under discussion and there is a possible design whose its final architecture could be addressed without this module.
 
 \subsubsection{Hardware}
 \label{subsec:hardware}
@@ -122,18 +124,20 @@ by the design in Hardware Description Language, HDL, which includes the major pa
 
 The board adds two Ethernet copper ports. In the current design, they are used mainly for remote management of the board, but in future developments, those ports would be connected to standard PTP devices via copper links. The WR-NIC drivers allow the communication and forwarding of packets between the copper Ethernet interfaces and the fibre ones used by the WR network. Other relevant connection included is the FMC HPC socket. In the current design the FMC Fine Delay board 
 is supported but any of the FMC boards developed by the Open Hardware 
-Repository (OHWR \cite{ohwr:repo}) community (among any other board using an FMC interface) could be added. For the SKA PPS distribution system, the Fine Delay FMC board \cite{ohwr:fmc-fine-delay} is used. It has four TTL output channels that can be programed to generate signals with different period and duty cycle properties. Moreover, it has a TTL input port and each of its four output channel can be set with an independent and variable delay in a range between 600ps and 120s respect to the input port. The Fine Delay FMC includes an ACAM TDC chip to implement all the functionalities described above. 
+Repository (OHWR \cite{ohwr:repo}) community (among any other board using an FMC interface) could by added. For the SKA PPS distribution system, the Fine Delay FMC board \cite{ohwr:fmc-fine-delay} is used. It has four TTL output channels that can be programed to generate signals with different period and duty cycle properties. Moreover, it has a TTL input port and each of its four output channel can be set with an independent and variable delay in a range between 600ps and 120s respect to the input port. The Fine Delay FMC includes an ACAM TDC chip to implement all the functionalities described above. 
 
 The WR-ZEN also includes a SAMTEC connector that is used to add extra circuitry to provide redundancy (duplicate power supply) and other additional components such as fans, LCD display, power supply control chips, etc.
 
 The usual clock schema included in standard WR designs has been modified looking for an improvement of the clock stability and a more flexible schema to synthesize clock signals from the main clock reference used by WR. The new clock circuitry is depicted in diagram ??. The main WR crystal oscillator (XO) is replaced by a Crystek CVHD-950 with a nominal frequency of 50 MHz. This oscillator is better isolated and offers a lower noise profile compared to previous designs with the VM53S3 XO. Some phase noise plots are included in  \textit{ref a ??} showing a comparison between the new clock circuitry and the standard from previous WR designs. \klyonelnote{Aquí falta extender un poco esta parte, concretando las "bondades" del nuevo esquema de relojes. Creo que podemos simplemente describirlo sin tener que hacer un diagrama como habiamos planteado inicialmente.}
 
-The main clock frequency is controlled by a Digital-to-Analog Converter (DAC) that receives the control values from the WR logic and tunes the oscillator's frequency to follow the clock reference from the master device in the network. The WR-ZEN board adds a new DAC which offers better response time and stability compared to the previously used DACs. The main XO fed a PLL used to synthesize the required clock signals for the WR logic. Traditionally, WR designs used a PLL from Analog Devices, the AD9516-4. In this new design, a second PLL has been introduced between the main XO and the AD9516-4 PLL, the Texas Instrument LMK03806. The main reason is the better noise profile of this PLL that is used to latch the 10 MHz clock signal produced by the WR logic inside the PL. There is a jitter reduction of that signal due to the inclusion of the LMK, a phase noise comparison can be found in Fig. \ref{fig:zen_pn_all}. The AD9516-4 is maintained and receives the main clock source directly from the LMK thanks to an option of the later which allows to output the input clock signal without adding jitter. Designers can play with the clock schema in order to produce specific clock frequencies and they can choose which PLL is used to drive the GPTs or the WR logic.
+The main clock frequency is controlled by a Digital-to-Analog Converter (DAC) that receives the control values from the WR logic and tunes the oscillator's frequency to follow the clock reference from the master device in the network. The WR-ZEN's board adds a new DAC which offers better response time and stability compared to the previously used DACs. The main XO fed a PLL used to synthesize the required clock signals for the WR logic. Traditionally, WR designs used a PLL from Analog Devices, the AD9516-4. In this new design, a second PLL has been introduced between the main XO and the AD9516-4 PLL, the Texas Instrument LMK03806. The main reason is the better noise profile of this PLL that is used to latch the 10 MHz clock signal produced by the WR logic inside the PL. There is a jitter reduction of that signal due to the inclusion of the LMK, a phase noise comparison can be found in Fig. \ref{fig:zen_pn_all}. The AD9516-4 is maintained and receives the main clock source directly from the LMK thanks to an option of the later which allows to output the input clock signal without adding jitter. Designers can play with the clock schema in order to produce specific clock frequencies and they can choose which PLL is used to drive the GPTs or the WR logic.
 
 \missingfigure{Figura del esquema de relojes de la ZEN}
 
 % FIXME: Mira lo siguiente e integra lo que veas interesante...
 %The WR-ZEN is a board designed by Seven Solutions company and contains a Xilinx Zynq SoC. %This SoC has a ARM dual core microprocessor (Cortex-A9 MPCore with CoreSight) and a FPGA %device (Artix with 74K logic cells, 380KB of embedded memory and 160 DSP blocks). This %versatile architecture removes the necessity of a conventional PC because all the high-level %software components can be implemented in the on-board processor. The WR-ZEN has been %conceived with an improved clocking scheme in relation to older WR nodes. It takes into %advantage of better oscillators and additional PLL to be capable to generate a wide range of %frequencies for several kind of different applications. The WR-ZEN is fully connected thanks %to its two optical fiber SFP interfaces and two RJ45 sockets and has other standard ports %such as FMC, SAMTEC, UART, I2C, SPI, etc. The expansion connectors (FMC and SAMTEC) are %though to add other boards that implement specific features or capabilities. Typical %applications for the FMC mezzanine board are Analog to Digital Converter (ADC), Digital to %Analog Converter (DAC), Time to Digital Converter (TDC), Fine Delay, Digital I/O (DIO), etc. %The SAMTEC connector is used to add extra circuitry to provide redundancy (duplicate power %supply) and other additional components such as fans, LCD display, power supply control %chips, etc.
+
+\klyonelnote{Como dijimos y Javi apunta tenemos que poner otra foto más chula.}
 
 \begin{figure}[H]
     \centering
@@ -184,7 +188,7 @@ The main clock frequency is controlled by a Digital-to-Analog Converter (DAC) th
 %
 %% ------------------------------------------------------------------------
 
-The term gateware is referred to the reference architecture with all the components that will be synthesized in the FPGA device. It is built on two different level. The former uses the AMBA bus specification and considers the main elements for the Zynq ecosystem with several components such as Zynq Processing subsystem that takes care of configuring the ARM microprocessor and controlling the bus interconnections with it, a reset and clocking module that manages the clock and reset signals, an AXI QSPI core to program the hardware PLL chip, an AXI crossbar to glue everything together and a specific IP core that represents the next level of the design that is explained in following lines.
+The design gateware (FPGA firmware) is built on two different levels. The former uses the AMBA bus specification and considers the main elements for the Zynq ecosystem with several components such as Zynq Processing subsystem that takes care of configuring the ARM microprocessor and controlling the bus interconnections with it, a reset and clocking module that manages the clock and reset signals, an AXI QSPI core to program the hardware PLL chip, an AXI crossbar to glue everything together and a specific IP core that represents the next level of the design that is explained in following lines.
 
 %\missingfigure{Add figure to show first level architecture.}
 
@@ -322,9 +326,7 @@ facilities of an OS: a hardware abstraction layer, and drivers which abstract
 the management of the underlaying logic. This middleware adds also more 
 security controlling the access to the hardware.
 
-The counterpart is an increment in the complexity of the system design. 
-The new platform takes advantage of its hard dual core microprocessor to 
-deploy a Linux system or a standalone application.
+The counterpart is an increment in the complexity of the system design. The new platform takes advantage of its hard dual core microprocessor to deploy a Linux system or a standalone application.
 
 In the SKA system, the WR-ZEN is used with a Linux 
 kernel to implement the specific applications needed by the system. To 
