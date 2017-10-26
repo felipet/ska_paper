@@ -190,6 +190,21 @@ The main clock frequency is controlled by a Digital-to-Analog Converter (DAC) th
 
 The design gateware (FPGA firmware) is built on two different levels. The former uses the AMBA bus specification and considers the main elements for the Zynq ecosystem with several components such as Zynq Processing subsystem that takes care of configuring the ARM microprocessor and controlling the bus interconnections with it, a reset and clocking module that manages the clock and reset signals, an AXI QSPI core to program the hardware PLL chip, an AXI crossbar to glue everything together and a specific IP core that represents the next level of the design that is explained in following lines.
 
+The design (shown in the Fig. \ref{fig:gateware_first_level}) is based on AXI and WB buses and has several crossbar modules to interconnect
+all the components. Due to the different buses, there is an AXI-WB bridge that is responsible 
+for converting AXI transactions into WB ones. This is necessary because the Zynq Processing System 
+uses the AXI protocol but most WR compliant modules are based on Open Core WB bus. The WR Dual Port 
+core implements the WR functionalities for the WR node. The main components of the WR Dual port core 
+are the LM32 soft-microprocessor that runs a specific firmware with WR functions stored in the WB RAM, 
+a WR endpoint that is charge of network transmissions/receptions over a 1 Gigabit Ethernet link, 
+the WB PPSgen core that contains the timebase counter for the WR technology and the SoftPLL
+that controls the servo loop algorithm to follow the master clock. The GT transceiver is a Xilinx primitive
+that allows to implement high speed interfaces such as 1 Gigabit Ethernet links. The NIC cores are responsible
+for receiving/sending packets between the ARM microprocessor and the network. The TxTSU module is a conventional
+FIFO designed to store the transmission timestamps of the sent packets in order to give some time to the driver to
+access them. The Fine Delay FMC core is a controller for the Fine Delay FMC mezzanine card. The main task for this 
+board is to configure a delay to transmit a signal from the TTL trigger buffer to one of its four outputs.
+
 %\missingfigure{Add figure to show first level architecture.}
 
 \begin{figure}[H]
@@ -210,23 +225,6 @@ information about the different components attached to it in order to discover
 them with a scan operation. Thanks to it, the WB peripherals can be discovered 
 automatically by software tools and this allows not to hard-code the different 
 addresses inside the source code improving the maintainability of the system. 
-The main modules at this level are the following:
-
-\begin{itemize}
-	\item{\textbf{AXI-WB bridge:} It converts transactions between WB and AXI buses. This is important because the Zynq Processing System is thought to use the AXI bus and the original project of WR was developed with the Open Core WB bus. }
-	\item{\textbf{WR Dual Port core:} It is most important module for WR nodes and it is charged to implement WR functionalities. Its internal architecture includes a soft-microprocessor (LM32) that runs a specific bare-metal firmware with WR functions/capabilities stored in the WB RAM core. The WR endpoints include some state machines to manage Ethernet packets of a Gigabit network. The Mini-NIC core receives and sends WR-PTP packets from/to network. The WB Syscon is the general controller of the system that manages communications protocols such as UART, I2C or 1-Wire and contains system control registers too. The WB PPSgen contains the timebase counter for the WR technology and the SoftPLL that is a special component that perform phase measurement between different clocks and has a PI control loop to set up the DAC chip on the board to change the local oscillator frequency. }
-	\item{\textbf{WB Crossbar:} It is responsible to connect all the modules together in order to allow communication between them. However, the real design is more complex because it has several WB crossbar at different hierarchy levels. }
-	\item{\textbf{GT modules:} Gitabit Transceivers are device specific primitives to implement the high speed interfaces. They are used to create two Gigabit Ethernet ports for optical links through SFP modules.}
-	\item{\textbf{NIC components:} They are responsible to receive/transmit Ethernet packets from/to the network. Nevertheless, its initial design is not suitable for high bandwidth interfaces because it does not incorporate a DMA controller. 
-	%This feature is planned future improvement for the project.
-	}
-	\item{\textbf{TxTSU core:} When a packet is received from the network, the timestamp is appended to it as Out-of-Band (OOB) data. So, the software driver in the ARM can recover this information reading it from the packet. However, for the transmitted packets, this mechanism is not possible. To solve this problem, a Transmit Timestamp Unit is added to the design. Its main purpose is to store timestamps for outgoing packets in a FIFO memory until the ARM accesses them. Thanks to this trick, we can get the timestamp for every packet. 
-		
-	%At this point, there are other enhancement to be into consideration. The timestamp granularity is limited by the clock %frequency of the system. An interesting task is to extend the precision to nanosecond scale as White Rabbit technology %promises.
-	}
-	\item{\textbf{Fine Delay FMC module:} It is a controller for the Fine Delay FMC mezzanine card. The main task of this board is to configure a delay to transmit a signal from the TTL trigger buffer to one of its four outputs. The delay range is between 600 ns and 120 s with a resolution of 1 ns. In addition, more complex mode can be programed and a wide variety of signal can be generated.}
-	\item{\textbf{WB I2C arbiter:} This simple module multiplexes several I2C bus transactions that have to use the same I2C physical bus. It is necessary because the WR-ZEN only have an I2C bus accessible from the FPGA device.}
-\end{itemize}
 
 \subsubsection{Firmware}
 
@@ -332,18 +330,16 @@ allow user intervention and provides standard configuration for Linux kernel,
 Busybox and root filesystem.  
 Moreover the basic Linux components, some userspace tools and custom kernel 
 drivers have been developed to manage the main modules in the WR-ZEN reference 
-design. The kernel drivers that have been used, modified or implemented from 
-others are the following:
-
-%\missingfigure{Add figure to show device driver relations.}
-
-\begin{itemize}
-	\item {\textbf{fmc:} It is retrieved from OHWR repository and it has not been modified. Its main purpose is implementing a generic support for FMC bus in the Linux kernel. It is necessary because many other drivers such as Fine Delay FMC one use its generic functions.}
-	\item {\textbf{zen:} It is the main driver for the WR-ZEN board. It manages all the IP cores in the design and provides advanced features such as character device methods, NIC capabilities integrated with the Linux networking subsystem, reprogram the FPGA with the reference design, etc.}
-	\item{\textbf{zio:} It is retrieved from OHWR repository and it has not been modified. It creates the ZIO bus that exports its attributes through the SysFS. The Fine Delay FMC driver is located at the top of the \textit{zio} one.}
-	\item{\textbf{fmc-fine-del:} It is based on the OHWR repository version and includes some modifications to work properly in the WR-ZEN platform. It controls the Fine Delay FMC core and allows to set up the different working modes. An important consideration about this driver is the reprogramming of the FPGA with the Fine Delay FMC bitstream through the \textit{zen} API.}
-	\item {\textbf{zen-nic:} It is additional module that is charged to enable/disable NIC methods. However, it does not implement these functions because they are in \textit{zen} kernel module. The \textit{zen-nic} is necessary because the Fine Delay FMC driver reprograms the FPGA and for this reason, the network initialization can not be performed in the \textit{zen} module directly.}
-\end{itemize}
+design. The FMC kernel driver (\textbf{fmc}) is retrived from OHWR repository and it has not
+been modified. Its main purpose is to implement a generic support for FMC bus
+in the Linux kernel. The main driver for the WR-ZEN platform is the \textbf{zen} one
+and manages all the IP cores in the design, create standard Linux network interfaces and
+reprogram the FPGA with the proper bitstream. The \textbf{zio} driver is retrived from OHWR
+repository and it has not been modified. It creates the ZIO bus that exports driver attributes
+through the SysFS. The \textbf{fmc-fine-del} module implements the Fine Delay FMC functions and
+it is based on the OHWR repository one but includes some modifications to work properly in the
+WR-ZEN platform. The \textbf{zen-nic} driver is responsible to enable/disable the network 
+interface methods of the \textbf{zen} module.
 
 As previously seen, there are dependencies between the different kernel drivers and it establishes the installation order. The \textit{zen} one depends on \textit{fmc}. The \textit{fmc-fine-del} needs \textit{zen}, \textit{zio} and \textit{fmc}. The \textit{zen-nic} only uses the \textit{zen}.
 
