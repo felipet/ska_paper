@@ -123,7 +123,33 @@
 %\listoffixmes
 
 \begin{abstract} 
-	This contribution is focused on finding a solution to provide ultra-accurate PPS signal distribution for the international project known as Square Kilometer Array (SKA) Telescope.The SKA will be the largest radio-telescope of the world and it will be located in two different geographical areas (South-Africa and Australia/New Zeland). One of the network of the SKA is known as synchronization and timing (SAT) one and specifies an average time requirement better than 2 ns. Due to the SKA needs, the widely standard technologies can not be used as final solution. Our proposal is based on the White Rabbit (WR) protocol that is able to synchronized different devices in a sub-nanosecond scale. In this context, the WR Zynq Embedded Node (WR-ZEN) is the chosen platform to be used in the SKA PPS distribution system. Its architecture is composed of a hard dual-core ARM microprocessor and a FPGA device. It allows to implement specific hardware circuitry inside the FPGA in order to speed up critical operations and to include some operating system in the microprocessor that controls and monitors everything. Our implementation is tested in different scenarios in order to check that the system works in special conditions varying the temperature. It is necessary because the SKA's deployment will be performed in dessert zones and the environment is not as stable as a laboratory. Finally, the conclusions extract from the present work justify that the WR protocol fulfill all the SKA's requirements and behaves perfectly in temperature change conditions and allow to define some tasks for the future work in this promising develop line.
+	This contribution is focused on finding a solution to provide a very 
+	accurate PPS signal distribution for the international project known as 
+	Square Kilometer Array (SKA) Telescope.The SKA will be the largest 
+	radio-telescope of the world and it will be located in two different 
+	geographical areas (South-Africa and Australia/New Zeland). 
+    
+    On each one of those locations, there will be placed hundred of antennas 
+    whose individual observations will be combined as if they would be acquired 
+    by only big one antenna. In order to archive that, a high level of 
+    synchronization accuracy must be provided to each one of the antennas, more 
+    precisely, it is consider a 2ns time requirement. That accuracy can't be 
+    achieved by the current standard synchronization technologies, because of 
+    that, we proposed a new design based on a FPGA-SoC device with an improved 
+    version of the hardware clocking circuitry and the White 
+    Rabbit (WR) protocol.
+    
+    In this context, 
+	the WR Zynq Embedded Node (WR-ZEN) is the chosen platform to be used in the 
+	SKA PPS distribution system. Our implementation is tested in different 
+	scenarios in order to check that the system works in special conditions 
+	varying the temperature. It is necessary because the SKA's deployment will 
+	be performed in dessert zones and the environment is not as stable as a 
+	laboratory. Finally, the conclusions extract from the present work justify 
+	that the WR protocol seems to work properly with all the SKA's requirements 
+	and compensates temperature change conditions. Finally, we present most 
+	promising work lines and some tasks related to evolve the White Rabbit 
+	technology for the SKA system in the future work section.
 \end{abstract}
 
 \begin{keyword}
