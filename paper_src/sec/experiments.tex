@@ -139,7 +139,7 @@ before concluding its goodness:
 The next experiment covers a scalability analysis of the WR solution for the 
 SKA timing system. In section \ref{sec:ska} there is a estimation of the final 
 nodes that need to be synchronized for the SKA1-mid: around 250 endpoints that 
-must be synchronized with an accuracy below 5ns. A WR network with only two 
+must be synchronized with an accuracy below 2ns. A WR network with only two 
 hops is suitable to synchronize up to 306 end-nodes by the use of WR Switches as 
 Boundary Clocks.
 
@@ -180,7 +180,7 @@ be found in Table \ref{tab:netresults}. Graphical representations are included
 in Figures \ref{fig:tdevnet} and \ref{fig:mtienet} respectively. TDEV results 
 show that expected synchronization accuracy for the end-nodes is around tens of 
 ps. The maximum PPS error during this test is bounded in hundred of ps, which 
-is more than enough what SKA1-mid needs (5ns).
+is more than enough what SKA1-mid needs (2ns).
 
 \begin{table*}\centering
 	\ra{0.8}
@@ -323,6 +323,8 @@ calibrate that change, the final performance would suffer of an enormous
 degradation, which is unacceptable for the SKA equipment. The peak-to-peak 
 difference for the PPS offset is 211 ps which leaves us a 7 ps/ºC and if we 
 divide by the total link length: $0.14 ps/ºC \cdot km$.
+
+\klyonelnote{Revisar las graficas y agrandar un poco la leyenda y los textos.}
 
 \begin{figure}
 	\centering
