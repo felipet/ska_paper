@@ -10,12 +10,11 @@ The key science goals for this instrument are:
 	\item {Habitable extra-solar planets (proto-planetary disks, biomarkers).}
 \end{itemize}
 
-The SKA facility will use several kind of antennas targeting different geographical locations and time schedule. During SKA1 and according to the SKA1 System Baseline description \cite{ska:baseline_description_v2}, for building such facility two different kinds of antennas will be used depending on their capabilities to sense. They are: 
-
-\begin{itemize}
-	\item {SKA-LOW, 50 - 350 MHz Australia, 131,000 aperture array dipole 512 stations of 256 antennas.}
-	\item {DISHES, 350 MHz - 14GHz South-Africa SKA1\_Mid 350 MHz – 14 GHz 64 MeerKAT dishes plus additional 133 SKA1 dishes.}
-\end{itemize}
+It will be two different SKA facility locations depending on the frequency 
+range for the sky observations. A common factor in both situations will be the 
+huge number of antennas needed which require a high level accuracy 
+synchronization. More information can be found in  
+\cite{ska:baseline_description_v2}. 
 
 %\begin{figure}[H]
 %	\centering
@@ -30,7 +29,10 @@ The SKA facility will use several kind of antennas targeting different geographi
 
 %The SKA1 telescope is being designed to optimize its performance and some key facts about both types of instruments are shown %on Fig. \ref{fig:ska_instruments1}. 
 
-The scale of the SKA Telescope represents a huge leap forward in both engineering, research and development towards building and delivering a unique instrument, with the detailed design and preparation now well under way. The high performance specifications require the utilization of best technologies and design strategies possible and represent an unprecedented challenge for all the elements to be built. 
+The scale of the SKA Telescope represents a huge leap forward in both 
+engineering, research and development. The high performance specifications 
+require the utilization of best technologies and design strategies possible and 
+represent an unprecedented challenge for all the elements to be built. 
 
 \subsection{SKA Telescope Network}
 
@@ -63,6 +65,22 @@ The PPS distribution system will be in charge to deliver its output at the follo
  
 Note that if the offset frequency scheme is to be applied to all SKA1-Mid dishes, an additional 64 STFR endpoints will be needed in SKA1-mid. This provides between 182 and 246 endpoints to synchronize. 
 The general array SAT requirements for the frequency distribution is 1 ps while the time synchronization and time-stamp requirement is 10ns. SaDT uses different mechanisms for achieving goals, frequency dissemination and PPS distribution. As consequence, because the goal in this contribution is just describing a solution for PPS distribution, the contribution work only considers the second requirement, the 10 ns synchronization as needed for example for the long-term timing Pulsar studies. Note that a complete description of the SKA network elements and topology is out of the scope of this contribution and only the requirements needed are presented to properly understand the need of the solution here developed. 
-It is important to remark than the 10 ns requirement is allocated for the whole network. Because elements such as main clock also consume part of this, it translates into PPS-distribution time requirement of 5 ns. The error here includes PPS distribution, delay center precision, Dish timing transport and time-stamping errors and should be distributed on the different elements of the system that rely on the network topology that determine the number of hops. Based on current SAT network topology, the target specification for the elements of the PPS distribution system provides them an average time better than 2 ns. This is a quite challenging goal not only because impose a high accuracy synchronization goal but especially having into account the installation environmental conditions. The SKA1 use aerial optical fiber networks that are significantly affected by the large temperature excursion during operation, more than 50º due to the installation on desert locations of Sud-Africa and Australia. Furthermore the outdoor wind velocities during normal operation could achieve up to 40 km/h. it makes the fibers oscillate, changing their length, which must be compensated on real-time during execution or averaged them out. 
+It is important to remark than the 10 ns requirement is allocated for the whole 
+network. Because elements such as main clock also consume part of this, it 
+translates into PPS-distribution time requirement of 5 ns. The error here 
+includes PPS distribution, delay center precision, Dish timing transport and 
+time-stamping errors and should be distributed on the different elements of the 
+system that rely on the network topology that determine the number of hops. 
+Based on current SAT network topology, the target specification for the 
+elements of the PPS distribution system provides them an average time better 
+than 2 ns. This is a quite challenging goal not only because impose a high 
+accuracy synchronization goal but especially having into account the 
+installation environmental conditions. The SKA1 use aerial optical fiber 
+networks that are significantly affected by the large temperature excursion 
+during operation, more than 20º due to the installation on desert locations of 
+Sud-Africa and Australia. Furthermore the outdoor wind velocities during normal 
+operation could achieve up to 40 km/h. it makes the fibers oscillate, changing 
+their length, which must be compensated on real-time during execution or 
+averaged them out. 
 
 Next section will provide the description of the solution proposed to be use on SKA1 as mechanism for PPS distribution. 
