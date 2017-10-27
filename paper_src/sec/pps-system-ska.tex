@@ -120,6 +120,18 @@ The WR-ZEN board is a proprietary design of the Seven
 Solutions company developed in 2015 aiming to improve the current designs of WR nodes.
 The new platform includes a new family of SoC from Xilinx, the Zynq-7000. That family is characterized by joining a hard core microprocessor and a FPGA in the same chip. Hence, WR nodes, can achieve a performance increment while keeping costs low. The other key aspect of the new board design is the incorporation of a better clocking resources for the WR-logic and a more flexible clock schema that allows to generate a broad range of output synchronization signals very useful for custom designs which may need frequency sources different of 10 MHz.
 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{img/zenclkschema}
+	\caption[WR-ZEN clocking schema]{The figure depicts the new clocking schema 
+	presented in the WR-ZEN desing. The most relevant changes considering 
+	previous designs are: the inclusion of an external PLL to lock an external 
+	stable clock reference (GrandMaster mode), and a flexible path in the main 
+	clocks path allowing the final user to choose between a low-noise PLL and a 
+	full-featured PLL with many options such as programmable output delays.}
+	\label{fig:zenclkschema}
+\end{figure}
+
 The Zynq-7000 SoC chosen is the XC7Z015. We will expose the 
 key components under a WR point of view: the dual ARM Cortex-A9 MPCore allows the execution of a Linux based OS. There are enough computation resources to include other synchronization protocols, such as NTP or IRIG-B, full implementations of monitoring software, like SMTP, or to rise the WR PTP Core software logic from the LM32 to the ARM. A Dual-core architecture allows hybrid processing schemas, where a core is used by the Linux OS, and the other is focused on real time (RT) tasks such as the SoftPLL management. This could lead 
 some research to avoid using the embedded LM32 soft-processor an ease the system development with all the code executed by the ARM processor. Xilinx calls that part \textit{Processing System}.
