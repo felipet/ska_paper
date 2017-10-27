@@ -20,7 +20,12 @@ The White Rabbit protocol requires a network topology similar to the ITU-T G.827
 
 The WR switches are responsible for generating the WR timing signal from the SAT clock ensembles. They lock to an external 10MHz reference and to a PPS signal, and use NTP or IRIG-B to determine the UTC time of each PPS edge. Synchronization between WR devices is performed over a a single fiber link up to 120 km using commercial SFPs.
 However, the distances for SKA1-MID are longer and it is necessary to use 
-intermediate WR switches as repeaters with a penalty over the system performance due to increment of the inherent noise of each WR device that it is propagated to the downlink nodes. An analysis of the jitter evolution for network with many hops could be read in \cite{torres2016scalability}. Thanks to network similarities between WR and SKA, both can use the same single fiber strand available for the SAT network. 
+intermediate WR switches as repeaters with a penalty over the system 
+performance due to increment of the inherent noise of each WR device that it is 
+propagated to the down-link nodes. An analysis of the jitter evolution for 
+network with many hops could be read in \cite{torres2016scalability}. Thanks to 
+network similarities between WR and SKA, both can use the same single fiber 
+strand available for the SAT network. 
 
 \begin{figure}[H]
 	\centering
@@ -35,7 +40,7 @@ An important feature of the system to take into account is that the PPS pulse it
 
 The centrally located WR switches and the WR end-nodes are connected to by a 
 single strand of single-mode fiber with LC/PC connectors and industry standard 
-bi-directional SFPs that use two wavelengths (downlink and uplink) to produce 
+bi-directional SFPs that use two wavelengths (down-link and up-link) to produce 
 optical signals to be transmitted. Finally the end nodes generate a 1PPS signal available. 
 
 As previously described, this solution requires WR switches and nodes. The 
@@ -216,7 +221,7 @@ board is to configure a delay to transmit a signal from the TTL trigger buffer t
 
 The second level is referred to the specific IP core that takes into 
 consideration the WR protocol and other basic features such as Gigabit 
-networking, serial debug communication, Timestamp mechanism, etc. This module 
+networking, serial debug communication, timestamp mechanism, etc. This module 
 uses the Wishbone Open Cores bus specification and is mainly 
 vendor-independent. It is composed of many IP cores that are interconnected 
 through a WB crossbar that allows bidirectional communication between any two 
@@ -311,7 +316,7 @@ does not have an on-board hard microprocessor).
 
 The WR-ZEN is the first WR node taking advantage of a Linux 
 based operative system (OS). Due to the inclusion of a dual-core ARM 
-microprocessor in the platform, the system design is not longer tighted to 
+microprocessor in the platform, the system design is not longer tied to 
 low-level software design. New functionalities, such as communication 
 protocols, management tools and so on, are quickly added because of the 
 facilities of an OS: a hardware abstraction layer, and drivers which abstract 
@@ -334,7 +339,8 @@ design. The FMC kernel driver (\textbf{fmc}) is retrived from OHWR repository an
 been modified. Its main purpose is to implement a generic support for FMC bus
 in the Linux kernel. The main driver for the WR-ZEN platform is the \textbf{zen} one
 and manages all the IP cores in the design, create standard Linux network interfaces and
-reprogram the FPGA with the proper bitstream. The \textbf{zio} driver is retrived from OHWR
+reprogram the FPGA with the proper bitstream. The \textbf{zio} driver is 
+retrieved from OHWR
 repository and it has not been modified. It creates the ZIO bus that exports driver attributes
 through the SysFS. The \textbf{fmc-fine-del} module implements the Fine Delay FMC functions and
 it is based on the OHWR repository one but includes some modifications to work properly in the

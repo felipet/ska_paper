@@ -1,4 +1,13 @@
-There are many mechanisms to distribute time information and signals. Some of them use GNNS receivers to get timing from the Satellites (GPS, Glonass, Galileo) meanwhile others use wired protocols to provide the time reference through the network. In all these cases is important to note that it is not the same to distribute frequency than distributing phase information. The first problem is about sending the oscillator signal through a wire or provide a mechanism to regenerate the clock frequency and usually is called syntonization. On the other hand, the latter ensures that in all the elements of a network the events trigger exactly at the same instant and is known as synchronization. 
+There are many mechanisms to distribute time information and signals. Some of 
+them use GNSS receivers to get timing from the Satellites (GPS, Glonass, 
+Galileo) meanwhile others use wired protocols to provide the time reference 
+through the network. In all these cases is important to note that it is not the 
+same to distribute frequency than distributing phase information. The first 
+problem is about sending the oscillator signal through a wire or provide a 
+mechanism to regenerate the clock frequency and usually is called 
+syntonization. On the other hand, the latter ensures that in all the elements 
+of a network the events trigger exactly at the same instant and is known as 
+synchronization. 
 
 In the phase distribution scenario, the phase information is encoded on a pulse that is transmitted thought the wire periodically each second and use this as reference to know when a new second starts. This is typically called PPS (Pulse Per Second) signal. Finally, the last problem is the provision of the time that is not only ticking at the same time, having the same reference about when to start the counting but also having the same time in all the devices. This can be distributed by propagation of the time information from a central time server and then, by measuring the propagation time of this message, annotating it in each node. A network is synchronized when takes into consideration these three elements: frequency, phase (PPS) and time.
 
