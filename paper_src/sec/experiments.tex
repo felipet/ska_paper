@@ -2,10 +2,10 @@
 %% lang: en-GB
 
 In this section we detail the accomplished experiments and their results in 
-order to evaluate the presented PPS distribution system for the SKA1-mid timing 
+order to evaluate the presented PPS distribution system for the SKA's timing 
 system. The first experiment is a general characterization of the PPS 
 distribution system. The second one emulates a example of WR network like the 
-one needed to distribute timing in the SKA1-mid, and evaluates the 
+one needed to distribute timing in the SKA telescope, and evaluates the 
 synchronization accuracy. Finally, the influence of external conditions over 
 the fibre links and its effect on the synchronization accuracy is analysed.
 
@@ -124,7 +124,7 @@ before concluding its goodness:
 	accurate time reference. The results presented in the subsection 
 	\ref{subsec: net_exp} states performance for a realistic WR deployment.
 	
-	\item Moreover, SKA1-mid facilities will be placed in a desert zone, and 
+	\item Moreover, SKA facilities will be placed in a desert zone, and 
 	the nodes will be linked by long-distance fibre links. Because of that, 
 	it's 
 	necessary to analyse if the meteorological conditions can degrade 
@@ -138,7 +138,7 @@ before concluding its goodness:
 
 The next experiment covers a scalability analysis of the WR solution for the 
 SKA timing system. In section \ref{sec:ska} there is a estimation of the final 
-nodes that need to be synchronized for the SKA1-mid: around 250 endpoints that 
+nodes that need to be synchronized for the SKA: around 250 endpoints that 
 must be synchronized with an accuracy below 2ns. A WR network with only two 
 hops is suitable to synchronize up to 306 end-nodes by the use of WR Switches as 
 Boundary Clocks.
@@ -152,7 +152,7 @@ expected performance similar to the results obtained in our test for the WR-ZEN.
 	\centering
 	\includegraphics[width=0.7\linewidth]{img/prueba_red}
 	\caption[WR Scalability test's setup for SKA]{To evaluate the scalability 
-	of the WR solution for the expected SKA1-mid timing network, a sample WR 
+	of the WR solution for the expected SKA timing network, a sample WR 
 	network has been evaluated. At the top there's a WRS as GM, a second layer 
 	of WRS to finally provide synchronization to the end-nodes (WR-ZEN).}
 	\label{fig:pruebared}
@@ -180,7 +180,7 @@ be found in Table \ref{tab:netresults}. Graphical representations are included
 in Figures \ref{fig:tdevnet} and \ref{fig:mtienet} respectively. TDEV results 
 show that expected synchronization accuracy for the end-nodes is around tens of 
 ps. The maximum PPS error during this test is bounded in hundred of ps, which 
-is more than enough what SKA1-mid needs (2ns).
+is more than enough what SKA needs (2ns).
 
 \begin{table*}\centering
 	\ra{0.8}
@@ -210,7 +210,7 @@ is more than enough what SKA1-mid needs (2ns).
 \end{table*}
 
 With those findings, it's proved that a WR network with two levels can provide 
-synchronization to all the equipment expected for the SKA1-mid facilities. 
+synchronization to all the equipment expected for the SKA facilities. 
 Although long-distance fibre links have been used for that test, thermal 
 influence should be take into account in order to confirm the goodness of the 
 WR solution in the SKA timing distribution. The next experiment will evaluate 
@@ -354,5 +354,5 @@ to work right for distances lower than a few kilometres, it may be insufficient
 for such long distances as we used in our experiments. Nevertheless, the 
 observed offset variation for a long distance link and a 30ºC temperature 
 gradient is only 200 ps that joined to the results from the previous 
-experiments make the new PPS distribution system suitable for the SKA1-mid 
+experiments make the new PPS distribution system suitable for the SKA 
 timing system.
