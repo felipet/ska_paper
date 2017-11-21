@@ -5,6 +5,11 @@ Century and, when complete, one of the world’s engineering marvels. It will be
 constructed on different phases SKA1 (phase 1 2018-2023) and SKA2 (phase 2 
 2023-2033). The development will be deployed using on two different pathfinders 
 existing on each place (MeerKAT in South Africa and ASKAP in Australia). 
+The SKA Telescope will be built on two different phases. The first one (SKA1)
+starts at 2018 and is intended to provide the ~10\% of the total area at low and 
+mid frequencies by 2023. The second phase (SKA2) has the goal to get the full
+array working at low and mid frequencies by 2030. However, this timing schedule is
+not the final decision and some changes could be applied for future versions.
 
 The key science goals for this instrument are:
 
@@ -57,7 +62,7 @@ The final part of the SaDT is the Synchronization and Timing (SAT) that provides
 
 %\missingfigure{The SKA Telescope network architecture figure.}
 
-\subsection{Distribution of high accuracy timing signals for SKA}
+\subsection{Distribution of high accuracy timing signals for SKA1}
 
 As determined by SaDT, SKA telescope should be able to distribute a common frequency reference to all the telescopes and, in addition, provides a uniform time reference to register all the events with ultra-high accuracy through time stamps. This task is done by the SAT (Synchronization and Timing) element that belongs to SaDT. The SKA timescale is maintained by the central clock ensemble for each telescope and will be steered to within designed limits of UTC (Coordinated Universal Time) and monitored with respect to UTC via GNSS time transfer techniques. These clock ensembles form the fundamental timescale for SKA and will be the basis for precision measurements of pulsars and other time-dependent phenomenas. As consequence, during this distribution, UTC refers to UTC (SKA), as realized by the central SKA clock ensemble.
 This article will focus on the solutions to distribute the UTC time by means of PPS (Pulse-Per-Second signal). This PPS signal guarantees that all the scientific data are time-tag using a common reference. This time reference has high requirements coming from science that are not mandatory by other elements of the SKA systems as the monitor and control network. For these other elements, standard time transfer protocols as NTP or IEEE-1588 are a feasible solution. For the Telescope core, we illustrate that the high performance requirements imposed by the challenging scientific goals force to provide much more sophisticated approaches. 
