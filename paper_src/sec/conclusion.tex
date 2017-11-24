@@ -1,12 +1,10 @@
 In this contribution, we have presented an implementation of a high accuracy 
 PPS distribution system based on the WR technology. The chosen platform for 
 this device is the WR-ZEN which improves the previous existing WR node designs 
-thanks to the inclusion of the FPGA-SoC platform and evolved hardware clocking 
-circuitry. Thanks to the new architecture, the develop process is easier than 
-in embedded platforms because a Linux kernel is used and allows you to abstract 
-specific hardware details. Moreover, the flexibility of the system has been 
-improved so that many clocking schemas can be test looking for the best 
-synchronization quality results targeting the SKA needs.
+due to the inclusion of the FPGA-SoC platform and evolved hardware clocking 
+circuitry. The former allows to run a Linux kernel and add high-level capabilities without using an external PC. The enhanced clocking circuitry can be configured using different schemas in order to look for the best synchronization quality results targeting the SKA needs. 
+
+We have worked in the gateware, firmware and software aspects for the WR-ZEN platform in order to fit with the SKA needs. The gateware design includes all the logic elements for the FPGA that enables the White Rabbit synchronization and the Fine Delay FMC features. The firmware is responsible to control the gateware and the White Rabbit protocol. The software implements the high-level capabilities and incorporates a Linux kernel, some custom drivers and several specific tools. 
 
 One of the challenges of the SKA facilities is keeping the high accuracy 
 synchronization through huge amount of nodes which are connected using long 
@@ -14,17 +12,16 @@ distance fibre links along dessert areas which present severe climatic
 conditions. In addition to that, SKA demands a strict timing requirements: a 
 jitter in the tens of the picoseconds level and a time budget below 10 ns. 
 However, not all of this budget is available for the PPS distribution system 
-which needs to maintain the timing accuracy below 2ns. The proposed developed 
+which needs to maintain the timing accuracy below 2 ns. The proposed developed 
 system creates a ecosystem with several applications, drivers and scripts that 
 eases the user interaction with the rest of the 
-SKA components providing synchronization but also allowing to extend the system 
-capabilities through additional FMC cards.
+SKA components providing synchronization but also allowing to extend the system capabilities through additional FMC cards.
 
 We have also consider to evaluate the current PPS distribution system proposal 
 in order to validate the developed solution for its inclusion in the SKA 
 infrastructure. The results, given by the device performance evaluation tests, 
-prove that the synchronization accuracy is bounded below 200ps which is far 
-away from the 2ns SKA requirements. In addition to a device characterization, 
+prove that the synchronization accuracy is bounded below 200 ps which is far 
+away from the 2 ns SKA requirements. In addition to a device characterization, 
 the evaluation of the scalability was an important result due to the high 
 number of nodes in SKA. We stated that a 2 level WR network is enough to 
 synchronize all the expected nodes of the SKA system maintaining the required 

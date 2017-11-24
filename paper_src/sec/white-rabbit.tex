@@ -26,7 +26,10 @@ The WR synchronization mechanisms include the following elements:
 WR implements mechanisms to ensure deterministic and reliable data transfer 
 between a thousand of nodes connected with  optical fiber links up to 10 km. 
 However, it can easily be extended up to 50 km without significant degradation 
-and up to 120 km without the needs of optical amplification. A typical WR 
+and up to 120 km without the needs of optical amplification. 
+
+\subsection{Network topology and devices} \label{subsec:wr-net-devices}
+A typical WR 
 network is arranged in tree topology. This is very common in timing networks 
 where time reference is propagated down-link from a root device, known as Grand 
 Master, that can be connected to a very stable clock, such as an atomic clock 
@@ -56,8 +59,13 @@ oscillators to provide synchronization for a specific application or facility.
 
 %\missingfigure{Añadir figura para mostrar la topología WR}
 
-WR is designed to be fitted in a Field Programmable Gate Array (FPGA) device due to its flexibility to use in designs in a continuous development state. The source code is mainly written in Hardware Description Languages (HDLs) such as VHDL or Verilog. Moreover, there are several platforms that can implement WR that ensures the vendor-independent feature of WR. The most extended vendor in WR world is Xilinx, some examples of devices using Xilinx's FPGAs are the SPEC board \cite{ohwr:spec} and the WRS \cite{ohwr:wrs}. The other vendor used in WR is Altera. Some examples of boards could be found in \cite{cesar-altera-wr}. The main Intellectual Property (IP) block is the WR PTP core (WRPC) for WR nodes and the Real Time Subsystem (RTS) for WR switches. The most common WR nodes are based on carrier boards such as SPEC or SVEC and can be plugged in a PCIe/VME socket of a conventional PC. Some WR nodes have a standalone mode but in this case they can not benefit of high level features usually provided by a PC CPU.
+WR is designed to be fitted in a Field Programmable Gate Array (FPGA) device due to its flexibility to use in designs in a continuous development state. The source code is mainly written in Hardware Description Languages (HDLs) such as VHDL or Verilog. Moreover, there are several platforms that can implement WR that ensures the vendor-independent feature of WR. The most extended vendor in WR world is Xilinx, some examples of devices using Xilinx's FPGAs are the SPEC board \cite{ohwr:spec} and the WRS \cite{ohwr:wrs}. The other vendor used in WR is Altera. Some examples of boards could be found in \cite{cesar-altera-wr}. The main Intellectual Property (IP) block is the WR PTP core (WRPC) for WR nodes and the Real Time Subsystem (RTS) for WR switches. 
 
-The WR Zynq Embedded Node (WR-ZEN) is a new generation board that includes a Xilinx Zynq System-on-Chip (SoC). The Zynq SoC is composed of a FPGA and a hard ARM dual core microprocessor that can run an application that controls the hardware directly or a standard Operating System such as Linux that can host many different kind of processes at the same time. The WR-ZEN has been proposed to be used in the SKA project to implement the PPS distribution system.
+The utilization of the previous WR-compliant nodes in the SKA system presents an important problem: they are based on PCIe interface cards to be plugged on standard computers, microTCA or VME-64 crates and therefore, a specific computer is necessary to provide the high 
+level software management functionalities. Although most of these cards can be used on stand-alone operation mode, they just use a FPGA device as processing engine and this make very complicated to add new functionalities or standard software tools. The main WR node designs include a soft-microprocessor on the FPGA gateware but it is not 
+enough to fully solve the problem because it requires using complex 
+non-standard firmware programming tools and it normally translates on high time-intensive development effort and makes difficult the upgrade of the system firmware. We have worked with these platform in order to build a sensor network based on the SPEC board allowing the PC-hosted and the standalone modes \cite{migueljl-paper-wr-spec}.
 
-Next sections will present the main possible WR contributions for SKA time dissemination: WR Precision Time Protocol for clock propagation and the generation of PPS signal. 
+As a different solution, we present a new platform based on an enhanced technology: The WR Zynq Embedded Node (WR-ZEN) \cite{sevensols:wr_zen}. It is a new generation board that includes a Xilinx Zynq System-on-Chip (SoC) \cite{xilinx:zynq}. The Zynq SoC is composed of a FPGA and a hard ARM dual core microprocessor that can run an application that controls the hardware directly or a standard Operating System such as Linux that can host many different kind of processes at the same time. Moreover, the WR-ZEN allows developing gateware and software on the same chip, tightly integrating performance and flexibility thanks to the use of the co-design strategies. The WR-ZEN offers several advantages over the old WR-compliant nodes (WR-LEN, SPEC or SVEC) such as an enhanced standalone mode with a Linux system that can include high level software capabilities without an external PC and the new clocking circuitry among others. Accordingly, the WR-ZEN has been proposed to be used in the SKA project to implement the PPS distribution system and currently, it is being evaluated as a candidate solution for the SKA PPS distribution system.  
+
+Next sections will present the proposed system for SKA and the main WR contributions: WR Precision Time Protocol for clock propagation and the generation of PPS signal. 

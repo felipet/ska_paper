@@ -43,31 +43,14 @@ single strand of single-mode fiber with LC/PC connectors and industry standard
 bi-directional SFPs that use two wavelengths (down-link and up-link) to produce 
 optical signals to be transmitted. Finally the end nodes generate a 1PPS signal available. 
 
-As previously described, this solution requires WR switches and nodes. The 
-former are well-defined equipment with known interfaces and software support. 
-However, there is a problem related to the current WR nodes: they are based on 
-PCIe interface cards to be plugged on standard computers, microTCA or VME-64 
-crates and therefore, a specific computer is necessary to provide the high 
-level software management functionalities. Although most of these cards can be used on 
-stand-alone operation mode, they just use a FPGA device as processing engine 
-and this make very complicated to add new functionalities or standard software 
-tools. The main WR node designs include a soft-microprocessor on the FPGA gateware but it is not 
-enough to fully solve the problem because it requires using complex 
-non-standard firmware programming tools and it normally translates on high 
-time-intensive development effort and makes difficult the upgrade of the system 
-firmware.
+As previously described, this solution requires WR switches and nodes. The former are well-defined equipment with known interfaces and software support. 
 
-As different solution, we have proposed the utilization of the ZEN board 
-\cite{sevensols:wr_zen}. It is WR-compliant and powered by a Zynq FPGA-SoC device \cite{xilinx:zynq} that allows developing 
-gateware and software on the same chip, tightly integrating performance and 
-flexibility. Its new architecture is suitable to the utilization of 
-software-hardware co-design strategies to take full advantages of the platform. 
-Thus, the utilization of a host computer/crate to host the FPGA card can be avoided which reduces significantly the equipment price and is also a remarkable improvement in term of dependability which is a key factor taking into account that SKA Telescope should have an annual availability of about 95\% of the time (although degraded operation modes can be allowed under some circumstances).
+For the implementation of the SKA nodes, we have proposed the utilization of the WR-ZEN board. Thanks to this new platform, the utilization of a host computer/crate to host the FPGA card can be avoided which reduces significantly the equipment price and is also a remarkable improvement in term of dependability which is a key factor taking into account that SKA Telescope should have an annual availability of about 95\% of the time (although degraded operation modes can be allowed under some circumstances).
 Finally note that all these features are possible keeping the full flexibility of a complete CPU+FPGA system on a single board. 
 
 In the following section we will describe the proposed node hardware, gateware and firmware that have been developed as a candidate solution for the SKA Telescope PPS distribution system. 
 
-\subsection{A PPS distribution node architecture}
+\subsection{A PPS distribution node architecture} \label{subsec:ska-pps-system-arch}
 
 %% ------------------------ Javi ------------------------------------------
 %% As a case of study, we can focus on the ZEN board that holds the Dual WRC (D-WRC), a revision from the original WRC developed by Seven Solution in our new line Xilinx 7 Series products. The D-WRC is %% able to synchronize two WR nodes or to be an intermediate link in a daisy chain network. In addition, the ZEN board includes high precision, low jitter and temperature compensated clock resources 
@@ -75,7 +58,7 @@ In the following section we will describe the proposed node hardware, gateware a
 %% the ZEN resources. The on-board Linux allows the utilization of new and interesting features as webservices for configuration, SNMP support for status monitoring and remote firmware load and update. 
 %% ------------------------------------------------------------------------
 
-The PPS distribution system for SKA is based on the WR-ZEN platform that provides the WR support in order to ensure the synchronization accuracy in the system. The first design of the PPS system includes the Fine Delay FMC card that is used to generate the timing signals through mezzanine channels and has two Network Interface Cores (NIC) that allows accessing optical fiber ports as conventional Linux network interfaces.
+The PPS distribution system for SKA is based on the WR-ZEN platform that provides the WR support in order to ensure the synchronization accuracy in the system. The first design of the PPS system includes the Fine Delay FMC card that is used to generate the timing signals through mezzanine channels and has two Network Interface Cores (NIC) that allows accessing optical fiber ports as conventional Linux network interfaces. An introduction to this platform is presented in \cite{migueljl-paper-wr-zen-intro} and a contribution that improves the NIC bandwidth of the design in \cite{jorgesg-paper-wr-zen-dma}. Moreover, the WR-ZEN is also under study for other FMC cards such as the FMC ADC one to build a distributed oscilloscope \cite{joselj-paper-wr-zen-adc}.
 
 Nowadays, the utilization of the Fine Delay FMC card is still under discussion and there is a possible design whose its final architecture could be addressed without this module.
 
@@ -198,6 +181,7 @@ distribution stability requirements of the SKA project.
 
 
 \subsubsection{Gateware}
+\label{subsec:gateware}
 
 %% ---------------- From WR-ZEN article (EFTF2016) ------------------------
 %
@@ -276,7 +260,7 @@ them with a scan operation. Thanks to it, the WB peripherals can be discovered
 automatically by software tools and this allows not to hard-code the different 
 addresses inside the source code improving the maintainability of the system. 
 
-\subsubsection{Firmware}
+\subsubsection{Firmware} \label{subsec:firmware}
 
 The firmware code is related to all the functionalities needed by the White 
 Rabbit protocol. In the node architecture, the embedded software part of the WR 
