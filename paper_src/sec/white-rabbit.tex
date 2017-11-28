@@ -1,9 +1,10 @@
-In the case of SKA, different solutions for time transfer were analyzed. For instance, GPS devices provide a reference frequency (10-50 MHz), a PPS signal and a serial code to provide the time (typically based on the NMEA protocol). This approach is widely used in many systems that require accurate synchronization (since various instrumentation can be easily connected to different GPS receivers) but it is sensitive to jamming issues. However, some studies reveal that the synchronization mechanisms can help and reduce the issues related to the interferences \cite{NOURA2016130}. Alternatively and thanks to the packet networks popularity, the timing protocols are little by little imposing as main solution for time transfer over the network. Low performance protocols as Network Time Protocol (NTP), the protocol used in Internet to synchronize the computers through the network), \cite{ntf:ntp_std} are widely used while for industrial applications the preferred protocol is the IEEE-1588v2 (known as Precision Time Protocol or PTPv2) \cite{ieee:ieee1588_std} \cite{itu:TG8275_1_Y_1369_1}. IEEE-1588v2 is an industrial evolution of NTP, characterized by the utilization of hardware time-stamping mechanisms that significantly improved time synchronization accuracy. Typically, NTP provides about 1 ms synchronization accuracy while PTPv2, working on very well designed time-aware networks is able to achieve about 50 ns synchronization accuracy. The IEEE-1588v2 is a candidate technology for control applications such as Smart Grid \cite{NAFI201623} where the time requirement are very strict and the synchronization is one of the key aspects to take into consideration \cite{COLAK2016396}.
-Although previous approaches are quite accurate, they are not appropriated to fulfill the specifications of the 2 ns requirement associated to the SKA telescope. As alternative solution, the utilization of the White Rabbit (WR) protocol has been proposed because it is an evolution of IEEE-1588v2 protocol and able to distribute an absolute time reference with an accuracy of 1ns. Equipment located at each endpoint delivers a 1PPS signal with its edge aligned to the start of the UTC second. Therefore, each telescope can then be phased up by observing the white light fringe on one or more bright, compact sources.
+In the case of SKA, different solutions for time transfer were analyzed. For instance, GPS devices provide a reference frequency (10-50 MHz), a PPS signal and a serial code to provide the time (typically based on the NMEA protocol). \textcolor{red}{This approach is widely used in many systems that require accurate synchronization (since various instrumentation can be easily connected to different GPS receivers) but it is sensitive to jamming issues. However, some studies reveal that the synchronization mechanisms can help and reduce the issues related to the interferences \cite{NOURA2016130}.  Alternatively and thanks to the packet networks popularity, the timing protocols are little by little imposing as main solution for time transfer over the network. Low performance protocols as Network Time Protocol (NTP), the protocol used in Internet to synchronize the computers through the network), \cite{ntf:ntp_std} are widely used while for industrial applications the preferred protocol is the IEEE-1588v2 (known as Precision Time Protocol or PTPv2) \cite{ieee:ieee1588_std} \cite{itu:TG8275_1_Y_1369_1}. IEEE-1588v2 is an industrial evolution of NTP, characterized by the utilization of hardware time-stamping mechanisms that significantly improved time synchronization accuracy. Typically, NTP provides about 1 ms synchronization accuracy while PTPv2, working on very well designed time-aware networks is able to achieve about 50 ns synchronization accuracy. The IEEE-1588v2 is a candidate technology for control applications such as Smart Grid \cite{NAFI201623} where the time requirement are very strict and the synchronization is one of the key aspects to take into consideration \cite{COLAK2016396}.
+Although previous approaches are quite accurate, they are not appropriated to fulfill the specifications of the 2 ns requirement associated to the SKA telescope. As alternative solution, the utilization of the White Rabbit (WR) protocol has been proposed because it is an evolution of IEEE-1588v2 protocol and able to distribute an absolute time reference with an accuracy of 1ns. Equipment located at each endpoint delivers a 1PPS signal with its edge aligned to the start of the UTC second. Therefore, each telescope can then be phased up by observing the white light fringe on one or more bright, compact sources. (\textbf{esto precisamente me parece más cosa de introducción/motivación})}
 
-The White Rabbit (WR) technology is an international, collaborative project started at CERN in 2009, and then joined by other laboratories and companies. It was born as replacement technology for the timing system at CERN, but thanks to its versatility, improved performance, compared to the alternatives, and open nature of the project, it was quickly adopted by other scientific institutions. There is also a strong interest in private companies to extend WR in the industrial world such as Seven Solutions \cite{sevensols:wr}. Furthermore, from its very early stages, WR was launched as an open Sw/Hw initiative with sources available at the Open Hardware Repository \cite{ohwr:repo}. This encouraged different companies and research institutions to openly collaborate in its development.
+The White Rabbit \gutinote{una vez puesto el acrónimo, solo se usa el acrónimo} (WR) technology is an international, collaborative project started at CERN in 2009, and then joined by other laboratories and companies. It was born as replacement technology for the timing system at CERN, but thanks to its versatility, improved performance, compared to the alternatives, and open nature of the project, it was quickly adopted by other scientific institutions. There is also a strong interest in private companies to extend WR in the industrial world such as Seven Solutions \cite{sevensols:wr}. Furthermore, from its very early stages, WR was launched as an open Sw/Hw initiative with sources available at the Open Hardware Repository \cite{ohwr:repo}. This encouraged different companies and research institutions to openly collaborate in its development.
 
-The WR protocol extends Precise Time Protocol version 2 (PTPv2) with extra messages, proposed to be included in the new PTP release (PTPv3) as High Accuracy profile. Its main goal is to provide a synchronization accuracy better than 1ns and precision in the scale of picoseconds. The major improvements introduced in the WR protocol address weak aspects of the PTPv2: the limitation in the phase difference measurements to one period of the system clock; and the assumption of symmetry between the transmission and reception paths. It inherently performs self-calibration over optical fiber links and it is capable of distributing time to a very large number of devices with very small degradation. Nevertheless, this technology in the origin was not designed to address large distances or provide embedded nodes with monitoring and dependable mechanism. Although SKA is working on improving both issues, we particularly focus on this contribution on providing a novel platform capable disseminate the PPS signal ad with flexibility and dependability characteristics.  
+The WR protocol extends Precise Time Protocol version 2 (PTPv2) with extra messages, proposed to be included in the new PTP release (PTPv3) as High Accuracy profile \textcolor{red}{[REF]}
+. Its main goal is to provide a synchronization accuracy better than 1 ns and precision in the scale of picoseconds. The major improvements introduced in the WR protocol address weak aspects of the PTPv2: the limitation in the phase difference measurements to one period of the system clock; and the assumption of symmetry between the transmission and reception paths. It inherently performs self-calibration over optical fiber links and it is capable of distributing time to a very large number of devices with very small degradation. Nevertheless, this technology in the origin was not designed to address large distances or provide embedded nodes with monitoring and dependable mechanism. Although SKA is working on improving both issues, we particularly focus on this contribution on providing a novel platform capable disseminate the PPS signal ad with flexibility and dependability characteristics.  
 
 %\textst{WR is based on other technologies such as the L1 synthonization of Synchronous Ethernet (SyncE), an extension of PTPv2 (WR-PTP) and additional phase %alignment techniques. The L1 synthonization is responsible for transmitting the master clock inside the data stream in order to slave devices can recover it from %the network and adjust their oscillator frequencies to follow the reference clock.} 
 
@@ -12,7 +13,7 @@ The WR protocol extends Precise Time Protocol version 2 (PTPv2) with extra messa
 The WR synchronization mechanisms include the following elements:
 
 \begin{itemize}
-	\item {Frequency synchronization (syntonization): It uses L1 syntonization 
+	\item {Frequency synchronization (syntonization): It uses L1 syntonization \gutinote{yo diría physical layer L1, y ya en el resto del paper diría solo L1}
 	of Synchronous Ethernet (SyncE) to encode the clock signal in the data 
 	carrier. It is responsible for recovering the clock from the network and to 
 	adjust local oscillator to follow it.}
@@ -31,31 +32,38 @@ and up to 120 km without the needs of optical amplification.
 \subsection{Network topology and devices} \label{subsec:wr-net-devices}
 A typical WR 
 network is arranged in tree topology. This is very common in timing networks 
-where time reference is propagated down-link from a root device, known as Grand 
-Master, that can be connected to a very stable clock, such as an atomic clock 
-or a GPS receiver. Currently, new network topologies are under-study in WR to 
-add some mechanisms for improving the redundancy and security. An example of 
+where time reference is propagated down-link from a root device, known as Grandmaster, that can be connected to a very stable clock, such as an atomic clock 
+or a GPS receiver \textcolor{red}{[REF]}. Currently, new network topologies are under-study in WR to 
+add some mechanisms to improve fault tolerance \gutinote{la redundancia mejora la tolerancia a fallos, es decir, no puedes "mejorar" la redundancia, mejoras la tolerance a fallos desarrollando mecanismos de redundancia} and security. An example of 
 this research is \cite{jlgutierrez-paper-redundancy} that incorporates the 
-Transparent clocks (TC) to WR protocol and allows implementing redundancy 
+Transparent Clocks (TC) to WR protocol and allows implementing redundancy 
 protocols such as HSR or PRP to ensure the data delivery and reception in 
 critical applications.
 
-The intermediate levels of the network spread the timing packets to the final 
-nodes and are composed of other devices such as WR Switches, WR-ZEN or WR-LEN 
+The intermediate levels of the network disseminate the timing packets to the final 
+nodes, which are composed of other devices such as WR Switches, WR-ZEN or WR-LEN 
 that have several ports and can behave as PTPv2 Boundary Clocks (BC). Their 
-different ports are divided on two types: one of them is the slave (up-link) 
+different ports are divided into two types: one of them is the slave (up-link) 
 and connects to the upper layer and the other ports are masters (down-links) 
 and they are charged to propagate the synchronization to the next level of the 
-hierarchy. The nodes of the last level of the network are known as Slave 
+hierarchy . The nodes of the last level of the network are known as Slave 
 devices that recover the clock signal of the link and synchronizes their local 
 oscillators to provide synchronization for a specific application or facility.
+\textcolor{red}{[reescribirlo recortando un poco las frases, deberiais usar más la adjetivación en lugar de "and" and "and"]}
+\textcolor{red}{[os tenéis que asegurar de referenciar en el texto las figuras, y utilizarlas de apoyo para explicar las cosas en el texto]}
+\textcolor{red}{no son dos tipos de puerto, maestro-esclavo es un modelo de comunicación. Los puertos esclavos son "upstream" y los maestros "downstream"}
+\textcolor{red}{hay que mantener cierta coherencia con mayúsculas y minúsculas. Si vais a poner Slave o slave, debéis mantenerlo a lo largo del texto}
+
+
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{img/wr_hierarchy}
-	\caption{The WR network is a tree hierarchy where the root node is the Grand Master that is responsible for distributing the reference time signals. The intermediate elements are WR Switches that acts as Gigabit Ethernet switchers and as Boundary clocks propagating the time signals from the upper layers of the network. Finally, the leaf nodes are known as nodes and its main purpose is to provide timing to another specific application.}
+	\caption{The WR network is a tree hierarchy where the root node is the Grand Master that is responsible for distributing the reference time signals. The intermediate elements are WR Switches that acts as Gigabit Ethernet switchers and as Boundary clocks propagating the time signals from the upper layers of the network. Finally, \textcolor{red}{the leaf nodes are known as nodes (esto es obvio, sobra)} which main purpose is to provide timing to another specific application.}
 	\label{fig:wr_hierarchy}
 \end{figure}
+
+
 
 %\missingfigure{Añadir figura para mostrar la topología WR}
 

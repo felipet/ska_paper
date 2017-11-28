@@ -1,10 +1,10 @@
-In this contribution, we have presented an implementation of a high accuracy 
-PPS distribution system based on the WR technology. The chosen platform for 
-this device is the WR-ZEN which improves the previous existing WR node designs 
-due to the inclusion of the FPGA-SoC platform and evolved hardware clocking 
-circuitry. The former allows to run a Linux kernel and add high-level capabilities without using an external PC. The enhanced clocking circuitry can be configured using different schemas in order to look for the best synchronization quality results targeting the SKA needs. 
+This contribution presents an implementation of a high accuracy 
+PPS distribution system based on the WR technology. The platform used for 
+this approach is the WR-ZEN, which improves previous existing WR node designs 
+due to the inclusion of the \textcolor{red}{Zynq?} FPGA-SoC platform and evolved hardware clocking 
+circuitry. The former allows to run a Linux kernel adding high-level capabilities without using an external PC. The enhanced clocking circuitry can be configured using different schemas in order to look for the best synchronization quality results targeting the SKA needs. 
 
-We have worked in the gateware, firmware and software aspects for the WR-ZEN platform in order to fit with the SKA needs. The gateware design includes all the logic elements for the FPGA that enables the White Rabbit synchronization and the Fine Delay FMC features. The firmware is responsible to control the gateware and the White Rabbit protocol. The software implements the high-level capabilities and incorporates a Linux kernel, some custom drivers and several specific tools. 
+We have developed gateware, firmware and software aspects for the WR-ZEN to meet the SKA requirements. The gateware design includes all the logic elements for the FPGA that enables WR synchronization and Fine Delay FMC features. The firmware is responsible for controlling the gateware and WR functionalities. The software implements the high-level capabilities and incorporates a Linux kernel, custom drivers and several specific tools. 
 
 One of the challenges of the SKA facilities is keeping the high accuracy 
 synchronization through huge amount of nodes which are connected using long 
@@ -15,13 +15,11 @@ However, not all of this budget is available for the PPS distribution system
 which needs to maintain the timing accuracy below 2 ns. The proposed developed 
 system creates a ecosystem with several applications, drivers and scripts that 
 eases the user interaction with the rest of the 
-SKA components providing synchronization but also allowing to extend the system capabilities through additional FMC cards.
+SKA components providing synchronization but also allowing to extend the system capabilities through additional FMC cards. \textcolor{red}{esto es bastante redundante con el anterior párrafo. Fusionarlo y ser más claro. Lo que no sea de SKA o no sea relevante a la contribución del paper, va fuera}
 
-We have also consider to evaluate the current PPS distribution system proposal 
+We have also considered the evaluation of the current PPS distribution system proposal 
 in order to validate the developed solution for its inclusion in the SKA 
-infrastructure. The results, given by the device performance evaluation tests, 
-prove that the synchronization accuracy is bounded below 200 ps which is far 
-away from the 2 ns SKA requirements. In addition to a device characterization, 
+infrastructure. The results prove that the synchronization accuracy is bounded below 200 ps, being significally better that the 2 ns SKA requirement. In addition to a device characterization, 
 the evaluation of the scalability was an important result due to the high 
 number of nodes in SKA. We stated that a 2 level WR network is enough to 
 synchronize all the expected nodes of the SKA system maintaining the required 
@@ -31,8 +29,14 @@ looking for evaluating the thermal change influence in the propagation delay
 and its repercussion in the PPS distribution system. We observed that for a 
 20ºC temperature difference the propagation delay is increased tens of 
 nanoseconds (~ 96 ns) but the PPS offset keeps its accuracy with an offset that 
-does not exceed the hundred of picoseconds (~ 211 ps). 
+does not exceed the hundred of picoseconds (~ 211 ps).  \textcolor{red}{reescribir, está muy lioso todo este párrafo.}
 
-Finally, we can conclude with the presented results that the proposed PPS 
-distribution system based on WR fulfil the expected timing requirement for SKA 
-radio-telescope infrastructure.
+Finally, the experimental results evidence that the proposed PPS distribution system based on WR fulfil the expected timing requireemnts for SKA.
+
+\textcolor{red}{hay que ser mucho más directo y claro. Hemos hecho esto, esto y esto, que antes era "imposible", y ahora gracias a lo que hemos hecho es posible y además tenemos unos resultados mucho mejores que los propios requisitos de SKA. En los resultados hay que, sin llegar a parecer prepotente, dejar una clara evidencia y lo bueno que es el trabajo realizado.}
+
+\textcolor{red}{hay una cosa generalizada dentro del paper, hay veces que da la impresión de que la ZEN es la plataforma elegida para distribuir el PPS, otras parece que no, que se va a evaluar y ya se verá. O es una cosa o es la otra, pero no de puede dejar esa ambigüedad}
+
+\textcolor{red}{a veces parece que el paper va de SKA, y que el desarrollo ha sido un daño colateral...}
+
+

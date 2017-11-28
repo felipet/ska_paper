@@ -51,7 +51,6 @@
 \newcommand{\klyonelnote}[1]{\todo[bordercolor=red, backgroundcolor=yellow]{#1}}
 \newcommand{\ftgnote}[1]{\todo[bordercolor=violet, backgroundcolor=yellow, noline]{#1}}
 \newcommand{\klyonenote}[1]{\todo[bordercolor=red, backgroundcolor=yellow, noline]{#1}}
-\newcommand{\gutinote}[1]{\todo[bordercolor=green, backgroundcolor=yellow, noline]{#1}}
 
 %% Notes with high level of importance
 \newcommand{\ftglwarning}[1]{\todo[bordercolor=violet, backgroundcolor=orange]{#1}}
@@ -97,7 +96,7 @@
 
 \begin{frontmatter}
 
-\title{A fully programmable White-Rabbit node for PPS distribution system of the SKA Telescope \gutinote{sugerencia: A fully programmable White-Rabbit node for the SKA Telescope PPS distribution system}}
+\title{A fully programmable White-Rabbit node for PPS distribution system of the SKA Telescope}
 %\title{Elsevier \LaTeX\ template\tnoteref{mytitlenote}}
 %\tnotetext[mytitlenote]{Fully documented templates are available in the elsarticle package on %\href{http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle}{CTAN}.}
 
@@ -125,26 +124,33 @@
 %\listoffixmes
 
 \begin{abstract} 
-	\textcolor{red}{el abstract tiene que dar una idea general de lo que va el paper. Es decir, hay que puntualizar en qué dominio se ha realizado la aportación, qué necesidades eran necesarias cubrir y qué es lo que proporciona nuestra contribución a esa problemática}
-	This contribution focuses on finding a solution to provide a very 
-	accurate Pulse per Second (PPS) signal distribution system for the international project known as 
+	This contribution is focused on finding a solution to provide a very 
+	accurate PPS signal distribution for the international project known as 
 	Square Kilometre Array (SKA) Telescope.The SKA will be the largest 
 	radio-telescope of the world and it will be located in two different 
-	geographical areas (South-Africa and Australia/New Zealand).
+	geographical areas (South-Africa and Australia/New Zealand). 
     
     On each one of those locations, there will be placed hundred of antennas 
-    whose individual observations will be combined as if they were acquired 
-    by only big one antenna. In order to archive that, all antennas must be synchronized to the same reference very accurately, being required a synchronization performance below 2 ns. This accuracy is not achievable by current standard synchronization technologies. Due to this, we propose a new design based on a FPGA-SoC \textcolor{red}{(falta poner el nombre completo de FPGA-SOC)} device with an enhanced 
-    version the White Rabbit technology (WR) using a very accurate hardware clocking circuitry, able to reach sub-nanosecond accuracies.
+    whose individual observations will be combined as if they would be acquired 
+    by only big one antenna. In order to archive that, a high level of 
+    synchronization accuracy must be provided to each one of the antennas, more 
+    precisely, it is consider a 2ns time requirement. That accuracy can't be 
+    achieved by the current standard synchronization technologies, because of 
+    that, we proposed a new design based on a FPGA-SoC device with an improved 
+    version of the hardware clocking circuitry and the White 
+    Rabbit (WR) protocol.
     
     In this context, 
-	the WR Zynq Embedded Node (WR-ZEN) is the platform used for the 
-	SKA PPS distribution system. Our proposed approach has been tested in different scenarios to check the correct behaviour of the system during severe temperature fluctuations. This is necessary since SKA's deployment will 
-	be built in dessert areas where temperature varies significantly. Finally, the results extracted from the work presented in this paper justify 
-	that the WR protocol together with the enhanced clocking system seem to meet all SKA's requirements properly. Furthermore, our approach is able to compensate synchronization variations caused by temperature change conditions (\textcolor{red}{NOTA: faltaría algo así como "over long fiber links"}). \textcolor{red}{
-	Finally, we present most 
+	the WR Zynq Embedded Node (WR-ZEN) is the chosen platform to be used in the 
+	SKA PPS distribution system. Our implementation is tested in different 
+	scenarios in order to check that the system works in special conditions 
+	varying the temperature. It is necessary because the SKA's deployment will 
+	be performed in dessert zones and the environment is not as stable as a 
+	laboratory. Finally, the conclusions extract from the present work justify 
+	that the WR protocol seems to work properly with all the SKA's requirements 
+	and compensates temperature change conditions. Finally, we present most 
 	promising work lines and some tasks related to evolve the White Rabbit 
-	technology for the SKA system in the future work section. (esto no va aquí, pertenece al final de la intro)}
+	technology for the SKA system in the future work section.
 \end{abstract}
 
 \begin{keyword}
@@ -172,7 +178,7 @@
 
 \input{sec/pps-system-ska.tex}
 
-\section{Experiments \& results} \label{sec:experiments}
+\section{Experiments} \label{sec:experiments}
 
 \input{sec/experiments.tex}
 

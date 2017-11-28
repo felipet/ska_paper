@@ -11,7 +11,7 @@
 %
 %% ------------------------------------------------------------------------
 
-The White Rabbit protocol requires a network topology similar to the ITU-T G.8275.1/Y.1369.1 standard, a IEEE-1588v2 telecommunication profile that describes a time-aware network capable to provide full timing support \cite{itu:TG8275_1_Y_1369_1} as explained in previous section. It uses a master time reference (SKA1 clock) that is distributed following a tree topology in a master-slave configuration. The SKA PPS distribution system is composed of two different kinds of devices: 
+The WR protocol requires a network topology similar to the ITU-T G.8275.1/Y.1369.1 standard \textcolor{red}{[REF]}, a IEEE-1588v2 telecommunication profile that describes a time-aware network capable to provide full timing support \cite{itu:TG8275_1_Y_1369_1} as explained in previous section. It uses a master time reference (SKA1 clock) that is distributed following a tree topology in a master-slave configuration. The SKA PPS distribution system is composed of two different kinds of devices: 
 
 \begin{itemize}
 	\item {The WR Switches \cite{sevensols:wr_switch}. They are standard 1U height rack-mounted equipment with 18 SFP ports and are placed in the CSPs at each of the clock ensembles. For SKA1-MID, one is placed halfway along each of the 3 spiral arms to regenerate the signal for the longest links.}
@@ -125,10 +125,10 @@ Programmable Logic (PL) including modules described in HDL; and (ii) the
 Processing System (PS) formed by all the software executed by the ARM processor.
 The inclusion of a hard-processor is something new in the node architecture. 
 Previous designs argued for a simple and cost-effective design where software 
-code was executed in an embedded-processor. But the adoption of the WR 
+code was executed in an embedded-processor \textcolor{red}{[REF]}. But the adoption of the WR 
 technology by other scientific and industrial entities stated the lack of free 
 system resources and a clear development process in order to host their 
-customizations. These problems have been solved by the WR-ZEN design: a 
+customizations \textcolor{red}{[REF]}. These problems have been solved by the WR-ZEN design: a 
 powerful hard-processor for software and more free resources in the FPGA side 
 due to pass some of the software from the embedded-processor to the ARM. In 
 addition to that, the Zynq platform includes the needed physical components by 
@@ -222,7 +222,8 @@ distribution stability requirements of the SKA project.
 %
 %% ------------------------------------------------------------------------
 
-The design gateware (FPGA firmware) is built on two different levels. The former uses the AMBA bus specification and considers the main elements for the Zynq ecosystem with several components such as Zynq Processing subsystem that takes care of configuring the ARM microprocessor and controlling the bus interconnections with it, a reset and clocking module that manages the clock and reset signals, an AXI QSPI core to program the hardware PLL chip, an AXI crossbar to glue everything together and a specific IP core that represents the next level of the design that is explained in following lines.
+The designed gateware (FPGA firmware) is built on two different levels. The former uses the AMBA bus specification and considers the main elements for the Zynq ecosystem with several components such as Zynq Processing subsystem that takes care of configuring the ARM microprocessor and controlling the bus interconnections with it, a reset and clocking module that manages the clock and reset signals, an AXI QSPI core to program the hardware PLL chip, an AXI crossbar to glue everything together and a specific IP core that represents the next level of the design that is explained in following lines.
+\textcolor{red}{[muy tocho, hay que reescribirlo con frases más cortas]}
 
 The design (shown in the Fig. \ref{fig:gateware_first_level}) is based on AXI and WB buses and has several crossbar modules to interconnect
 all the components. Due to the different buses, there is an AXI-WB bridge that is responsible 
@@ -260,17 +261,18 @@ them with a scan operation. Thanks to it, the WB peripherals can be discovered
 automatically by software tools and this allows not to hard-code the different 
 addresses inside the source code improving the maintainability of the system. 
 
+\textcolor{red}{[esta sección tiene demasiados detalles de ingeniería que hacen perder el hilo de lo que se está intentando conseguir. Hay que ser muy claro diciendo cómo es el gateware y qué funcionalidad tiene pero creo que hay detalles que se pueden obviar.]}
+
 \subsubsection{Firmware} \label{subsec:firmware}
 
-The firmware code is related to all the functionalities needed by the White 
-Rabbit protocol. In the node architecture, the embedded software part of the WR 
+The firmware code is related to all the functionalities needed by the WR protocol. In the node architecture, the embedded software part of the WR 
 protocol and some device drivers runs in the soft-microprocessor describe in 
 the previous section. The main tasks of the WR routines are the servo 
 loop algorithm which, maintains the lock to the recovered frequency from the 
 master device, and the implementation of the WR-PTP stack. In addition, a 
 simple Command Language Interface (CLI) is introduced to allow 
-the user interaction (think that some WR nodes can work in standalone mode and 
-does not have an on-board hard microprocessor).
+the user interaction \textcolor{red}{esto es demasiado informal: (think that some WR nodes can work in standalone mode and 
+does not have an on-board hard microprocessor)}.
 
 \subsubsection{Software} \label{subsec:software}
 
@@ -347,8 +349,8 @@ The WR-ZEN is the first WR node taking advantage of a Linux
 based operative system (OS). Due to the inclusion of a dual-core ARM 
 microprocessor in the platform, the system design is not longer tied to 
 low-level software design. New functionalities, such as communication 
-protocols, management tools and so on, are quickly added because of the 
-facilities of an OS: a hardware abstraction layer, and drivers which abstract 
+protocols, management tools, etc., are quickly added because of the 
+facilities \textcolor{red}{facilities???} of an OS: a hardware abstraction layer, and drivers which abstract 
 the management of the underlaying logic. This middleware adds also more 
 security controlling the access to the hardware.
 
@@ -358,7 +360,7 @@ In the SKA system, the WR-ZEN is used with a Linux
 kernel to ease the implementation of the specific applications and providing 
 conventional mechanisms to add more functionalities and update the entire 
 system in a fast and ease way which is not included in the current WR node 
-embedded design. In order to build all the software components, some custom 
+embedded design \textcolor{red}{info duplicada}. In order to build all the software components, some custom 
 scripts (inspired by WR Switch Software project ones from OHWR) are added to 
 allow user intervention and provides standard configuration for Linux kernel, 
 Busybox and root filesystem.  
@@ -404,3 +406,8 @@ specific user applications.
 		functionalities. }
 	\label{fig:software_architecture}
 \end{figure}
+
+\textcolor{red}{Demasiada tela. No sé hasta qué punto es interesante decir que se han hecho drivers, sus nombres, funcionalidad, el FSBL, los scripts que se usan para generar las imágenes... Esto no es para un artículo. Tenéis la imagen, hablad sobre ella, lo que está fuera de ella que no sea relevante, se debería quitar.}
+
+\textcolor{red}{lo siguiente son los experimentos, falta hilo conductor}
+

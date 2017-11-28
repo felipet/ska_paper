@@ -3,10 +3,13 @@
 
 In this section we detail the accomplished experiments and their results in 
 order to evaluate the presented PPS distribution system for the SKA's timing 
-system. First we show some results from the evaluation of the developed system and we compared those results with another WR node available nowadays. Next we present an experiment that try to emulate a example of WR network like the 
+system. First we show some results from the evaluation of the developed system and we compared those results with another WR node available nowadays. Next we present an experiment that tries to simulate a example of WR network like the 
 one needed to distribute timing in the SKA telescope. Scalability and accuracy were analysed in that experiment. Finally, the influence of external conditions over the fibre links and its effect on the synchronization accuracy is studied.
 
-The principal equipment and tools utilized during the experiments is listed 
+\textcolor{red}{yo pondría los experimentos con bullet points. QUé experimentos vamos a hacer y para demostrar qué. Ha de quedar claro.}
+
+
+The principal equipment and tools utilized during the experiments are listed 
 below:
 
 \begin{itemize}
@@ -47,6 +50,8 @@ experiment we focus on the WR-ZEN performance, so that we set all the equipment
 to a constant temperature and we use a short fibre link (few meters) in order 
 to avoid instability occasioned by chromatic dispersion on long fibre links.
 
+\textcolor{red}{falta imagen del setup}
+
 \begin{table*}\centering
 	\ra{0.8}
 	\begin{tabular}{@{} rccc@{}}%\toprule
@@ -72,7 +77,7 @@ to avoid instability occasioned by chromatic dispersion on long fibre links.
 	\end{tabular}
 	\caption{In this table it can be checked out the most relevant statistics 
 	for the device characterization performed in the subsection \ref{subsec: 
-	charact_zen}.}
+	charact_zen}. \textcolor{red}{esto hay que explicarlo más e intentarlo meterlo dentro de su sección}}
 	\label{tab:exp1res}
 \end{table*}
 
@@ -109,6 +114,8 @@ period. In addition we have repeated the same experiment for another WR node, th
 		\label{fig:mtie_exp1}
 
 \end{figure}
+
+\textcolor{red}{las imágenes hay que agrandar la fuente y bueno, las imágenes en sí}
 
 The obtained values reveal that the proposed WR node for the PPS distribution 
 solution fulfils the requirements to be used in the SKA PPS distribution 
@@ -179,6 +186,8 @@ show that expected synchronization accuracy for the end-nodes is around tens of
 ps. The maximum PPS error during this test is bounded in hundred of ps, which 
 is more than enough what SKA needs (2ns).
 
+\textcolor{red}{aunque se diga que los resultados están en la tabla, hay que hablar de ellos.}
+
 \begin{table*}\centering
 	\ra{0.8}
 	\begin{tabular}{@{} rcc@{}}%\toprule
@@ -225,7 +234,8 @@ synchronization.
 	\label{fig:mtienet}
 \end{figure}
 
-\subsection{Fibre operational temperature influence on time accuracy}
+\subsection{Temperature influence on time accuracy}
+%\subsection{Fibre operational temperature influence on time accuracy}
 \label{subsec:temp}
 
 One of the key aspects of the timing solution for the SKA facilities is the 
@@ -243,12 +253,14 @@ that must be taken into consideration. The main conclusion of this study is the
 need of compensation techniques in order to control the timing drift due to
 temperature changes.
 
+\gutinote{we've: no, no se ponen contracciones en un artículo}
+
 On this contribution, we've focused on the temperature change effect over the 
 cable
 \textit{round-trip} time (CRTT) and the PPS performance. To evaluate that, we 
-own a climate chamber in the laboratory and some fibre spools of tens of 
-kilometers. 
-We couldn't evaluate properly wind impact with our equipment, because of this, 
+have used a climate chamber in the laboratory and some fibre spools of tens of 
+kilometers. \gutinote{fibre o fiber? inglés USA o UK? qué dice la revista?}
+Wind impact has not been evaluated properly with our equipment, because of this, 
 the experiments will only determine temperature effect on synchronization.
 
 Theoretically, WR is able to dynamically calibrate the master to slave 
@@ -263,12 +275,12 @@ In the real world, $\alpha$ is temperature dependent, because of the change in
 the refraction index due to a temperature variation in the fibre. For small and 
 mid-distance links, in laboratory conditions, $\alpha$ is nearly negligible and 
 the current link model behaves very well. The WR network in SKA will be formed 
-by long distance links exposed to external elements. In the concrete situation 
+by long distance links exposed to external elements. \textcolor{red}{In the concrete situation 
 of the South Africa facilities, the chosen location was the Karoo region. 
 This region is a semi-desert area, very adequate to reduce human interferences 
 in the high resolution data acquisition equipment, but with a inconvenient 
 respect to the temperature point of view: desert zones have a high difference 
-between day and night temperatures.
+between day and night temperatures. (sobra)}
 
 \begin{figure}
 	\centering
@@ -362,6 +374,9 @@ gradient is only 200 ps that joined to the results from the previous
 experiments make the new PPS distribution system suitable for the SKA 
 timing system.
 
-For the presented experiments, we have not considered the influence of a variable environment conditions over the WR equipment itself. Because we really don't know if the equipment will be placed in rooms with controlled environmental conditions or not, we have not considered realising experiments to analyse that. Although we have not analysed it by ourselves, it is important to mention that there is some publications about that, for example \cite{Li2015a}. Results included in that paper reflect the importance to correct the effects of a variable external temperature in order to maintain the high level of accuracy expected.
+For the presented experiments, we have not considered the influence of a variable environment conditions over the WR equipment itself. Because we really don't know if the equipment will be placed in rooms with controlled environmental conditions or not, we have not considered realising experiments to analyse that. Although we have not analysed it by ourselves, it is important to mention that there is some publications about that, for example \cite{Li2015a}. Results included in that paper reflect the importance to correct the effects of a variable external temperature in order to maintain the high level of accuracy expected. \textcolor{red}{reescribirlo con mayor rigor científico, nada de suposiciones, o no sabemos, o contracciones, etc}
+
 
 Another important issue that we have experimented is the deviation from the nominal wavelength expected for the used SFPs in our experiments. Because of the same SFPs seem to be choosen by SKA for the WR deployment, it will be important to study the repercussion of that undesired issue over the WR calibration and the $\alpha$ measurement. One of the key aspects of WR is the dynamic calibration of the propagation delay and the facility to reuse the same calibration parameters between devices with the same hardware and firmware. If the choose SFPs can't guarantee a similar wavelength between items of the same model there will be needed to explore alternative solutions.
+
+\textcolor{red}{estos dos últimos párrafos parecen dar más problemas que presentar resultados. Yo diría de resumirlo o reescribirlo centrándose en resultados puramente.}
