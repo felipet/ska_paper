@@ -41,11 +41,6 @@
 %% Commands for the annotations
 \usepackage[spanish, colorinlistoftodos, textsize=tiny]{todonotes}
 
-%% Para los colores de las anotaciones, eliminar para vf!!
-\usepackage{color}
-\usepackage{soul} % para tachar palabras
-\setstcolor{teal}
-
 %% Standard notes
 \newcommand{\ftglnote}[1]{\todo[bordercolor=violet, backgroundcolor=yellow]{#1}}
 \newcommand{\klyonelnote}[1]{\todo[bordercolor=red, backgroundcolor=yellow]{#1}}
@@ -97,7 +92,7 @@
 
 \begin{frontmatter}
 
-\title{A fully programmable White-Rabbit node for PPS distribution system of the SKA Telescope \gutinote{sugerencia: A fully programmable White-Rabbit node for the SKA Telescope PPS distribution system}}
+\title{A fully programmable White-Rabbit node for the SKA Telescope PPS distribution system} %\gutinote{sugerencia: A fully programmable White-Rabbit node for the SKA Telescope PPS distribution system}}
 %\title{Elsevier \LaTeX\ template\tnoteref{mytitlenote}}
 %\tnotetext[mytitlenote]{Fully documented templates are available in the elsarticle package on %\href{http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle}{CTAN}.}
 
@@ -107,7 +102,7 @@
 %\fntext[myfootnote]{Since 1880.}
 
 %% Group authors per affiliation:
-\author{Miguel Jiménez-López, Felipe Torres-González, Jose Luis Gutiérrez-Rivas, Javier Díaz, Manolo Rodríguez-Álvarez}
+\author{Miguel Jiménez-López, Felipe Torres-González, Jose Luis Gutiérrez-Rivas, Manolo Rodríguez-Álvarez, Javier Díaz}
 \address{CITIC, ETSIIT, University of Granada, Spain}
 
 %% or include affiliations in footnotes:
@@ -117,7 +112,7 @@
 %\author[mysecondaryaddress]{Global Customer 
 %Service\corref{mycorrespondingauthor}}
 \cortext[mycorrespondingauthor]{Corresponding author.}
-\ead{klyone@ugr.es,felipetg@ugr.es,jlgutierrez@ugr.es,jda@ugr.es,manolo@ugr.es}
+\ead{klyone@ugr.es,felipetg@ugr.es,jlgutierrez@ugr.es,manolo@ugr.es,jda@ugr.es}
 
 %\address[mymainaddress]{1600 John F Kennedy Boulevard, Philadelphia}
 %\address[mysecondaryaddress]{360 Park Avenue South, New York}
@@ -149,7 +144,7 @@
 
 \begin{keyword}
 	Square Kilometre Array, White Rabbit, Synchronization, Network, Gigabit 
-	Ethernet, Optical fibre, GNSS
+	Ethernet, Optical fibre, Global Navigation Satellite System
 \end{keyword}
 
 \end{frontmatter}
@@ -159,6 +154,9 @@
 \section{Introduction} \label{sec:intro}
 
 \input{sec/introduction.tex}
+
+\section{Related work} \label{sec:related-work}
+\input{sec/related-work.tex}
 
 \section{The SKA telescope} \label{sec:ska}
 

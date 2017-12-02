@@ -1,17 +1,4 @@
-%% ---------------- From WR-ZEN article (EFTF2016) ------------------------
-%
-%The WR-ZEN is a new kind of WR node that incorporates
-%a FPGA device and a hard ARM dual core microprocessor
-%inside the same chip. The ARM is able to run a Linux kernel
-%and this eliminates the need to use a conventional PC with an
-%operating system. The flexibility of the platform has motivated
-%that WR-ZEN is under study to be used in important scientific
-%infrastructures such as Square Kilometer Array [11] (SKA)
-%and Cherenkov Telescope Array [12] (CTA) among others.
-%
-%% ------------------------------------------------------------------------
-
-The WR protocol requires a network topology similar to the ITU-T G.8275.1/Y.1369.1 standard \textcolor{red}{[REF]}, a IEEE-1588v2 telecommunication profile that describes a time-aware network capable to provide full timing support \cite{itu:TG8275_1_Y_1369_1} as explained in previous section. It uses a master time reference (SKA1 clock) that is distributed following a tree topology in a master-slave configuration. The SKA PPS distribution system is composed of two different kinds of devices: 
+The WR protocol requires a network topology similar to the ITU-T G.8275.1/Y.1369.1 standard, a IEEE-1588v2 telecommunication profile that describes a time-aware network capable to provide full timing support \cite{itu:TG8275_1_Y_1369_1} as explained in previous section. It uses a master time reference (SKA1 clock) that is distributed following a tree topology in a master-slave configuration. The SKA PPS distribution system is composed of two different kinds of devices: 
 
 \begin{itemize}
 	\item {The WR Switches \cite{sevensols:wr_switch}. They are standard 1U height rack-mounted equipment with 18 SFP ports and are placed in the CSPs at each of the clock ensembles. For SKA1-MID, one is placed halfway along each of the 3 spiral arms to regenerate the signal for the longest links.}
@@ -34,8 +21,6 @@ strand available for the SAT network.
 	\label{fig:ska_pps_dist_network}
 \end{figure}
 
-%\missingfigure{Example of a network topology for PPS signal distribution based on WR switches % and nodes}
- 
 An important feature of the system to take into account is that the PPS pulse itself at each station is derived from the reference frequency distributed from the SKA clock and not from the WR system. In normal operations, the WR system only monitors the absolute time of each PPS and reports it back activating an alert if the PPS signal does not align with the start of the UTC second. This condition indicates something is wrong in the timing chain and the station must be discard data to ensure not to introduce corrupt one in the system. Other functionality associated with the WR part is to temporarily alter the division ratio to bring the PPS edge back in alignment with UTC time. In this case, fringe finding must then be performed to restore full calibration again.
 
 The centrally located WR switches and the WR end-nodes are connected to by a 
@@ -52,52 +37,12 @@ In the following section we will describe the proposed node hardware, gateware a
 
 \subsection{A PPS distribution node architecture} \label{subsec:ska-pps-system-arch}
 
-%% ------------------------ Javi ------------------------------------------
-%% As a case of study, we can focus on the ZEN board that holds the Dual WRC (D-WRC), a revision from the original WRC developed by Seven Solution in our new line Xilinx 7 Series products. The D-WRC is %% able to synchronize two WR nodes or to be an intermediate link in a daisy chain network. In addition, the ZEN board includes high precision, low jitter and temperature compensated clock resources 
-%% controlled by the D-WRC. Furthermore, the Dual core ARM Cortex processor, run under Linux OS, facilitating the development of user applications taking advance of the best from the WR technology and 
-%% the ZEN resources. The on-board Linux allows the utilization of new and interesting features as webservices for configuration, SNMP support for status monitoring and remote firmware load and update. 
-%% ------------------------------------------------------------------------
-
 The PPS distribution system for SKA is based on the WR-ZEN platform that provides the WR support in order to ensure the synchronization accuracy in the system. The first design of the PPS system includes the Fine Delay FMC card that is used to generate the timing signals through mezzanine channels and has two Network Interface Cores (NIC) that allows accessing optical fiber ports as conventional Linux network interfaces. An introduction to this platform is presented in \cite{migueljl-paper-wr-zen-intro} and a contribution that improves the NIC bandwidth of the design in \cite{jorgesg-paper-wr-zen-dma}. Moreover, the WR-ZEN is also under study for other FMC cards such as the FMC ADC one to build a distributed oscilloscope \cite{joselj-paper-wr-zen-adc}.
 
 Nowadays, the utilization of the Fine Delay FMC card is still under discussion and there is a possible design whose its final architecture could be addressed without this module.
 
 \subsubsection{Hardware}
 \label{subsec:hardware}
-
-%% ---------------- From WR-ZEN article (EFTF2016) ------------------------
-%
-%The WR-ZEN is a small stand-alone board that integrates
-%the latest Xilinx Zynq Z-7015 device with a Dual ARM
-%Cortex-A9 MPCore with CoreSight and containing an Artix
-%FPGA-logic with 74K logic cells, 380KB of embedded mem-
-%ory and 160 DSP blocks. It has two optical SFP Ethernet
-%interfaces, two copper Ethernet ports and the FMC expansion
-%connector. On addition to FMC, a SAMTEC connector is
-%available for developing of simple expansion boards and some
-%USB sockets for monitoring. The WR-ZEN node is provided
-%with improved oscillators, PLLs and a clocking scheme that
-%provides significant better short term stability than previous
-%WR node designs. It also includes several SMA outputs that
-%can be configured to generate signals from the FPGA and an
-%input that allows the WR-ZEN to behave as grandmaster. The
-%WR-ZEN can be used with several FMC cards depending on
-%the application: ADC, DAC, TDC, DDS, Fine delay, Digital
-%I/O, etc.
-%
-%% ------------------------------------------------------------------------
-
-%% ------------------------ Javi ------------------------------------------
-%%The ZEN board is intended to be a high precise time provider and offers a large amount of possibilities facilitated by diverse connections and expansions:
-%% - IRIG-B I/O: This is the Time of Day used by the ZEN board. It is able to work as master or slave.
-%%- Two 10/100/1000 Ethernet ports connected to the ARM processors that can be used for diverse network applications and protocols (NTP, sNTP, PTPv2, management, etc..).
-%% -Two SFP Cages where the WR compliant links are plugged.
-%% -SMA connectors to enable the ZEN to synchronize itself with more precise clocks, e.g. GPS source or high stable oscillators, or providing a diverse set of clocks synchronized by WR.
-%% - FMC connector to plug one of the mezzanine boards developed in the framework of the WR project or any other industrial one existing in the market. These FMC cards enhance the possibilities of the %%ZEN; e. g. FMC-ADC, FMC-DIO, FMC-FineDelay, FMC-DAC, etc; and allows many products configurations. 
-%% - Memory resources; SD, DDR3, Flash.
-%% - Two UART-USB connectors; for management and debugging in the D-WRC and Cortex processors.
-%%In brief, the ZEN board offers to the final user a node capable to reach sub-nanosecond synchronization, working in daisy chain schemes, and provides the best of the Zynq and its new level of system %%design capabilities.
-%% ------------------------------------------------------------------------
 
 The WR-ZEN board is a proprietary design of the Seven Solutions company 
 developed in 2015. The major design changes respect to previous designs for 
@@ -183,64 +128,7 @@ distribution stability requirements of the SKA project.
 \subsubsection{Gateware}
 \label{subsec:gateware}
 
-%% ---------------- From WR-ZEN article (EFTF2016) ------------------------
-%
-%The gateware refers to the design that must be programmed
-%in the Programmable Logic (PL) and the Processing system
-%(PS) configuration to be applied. The PL is based on the Wish-
-%bone (WB) bus [13] and has a main crossbar that interconnects
-%the different IP cores.
-%In the Fig. 2, the PL architecture is represented in more
-%detail.
-%* GIGABIT TRANSCEIVER PORTS (GTP): These
-%blocks contain primitives to transfer data through a
-%high performance dedicated interfaces. The GTPs are
-%connected to the SFP sockets and allow to send/receive
-%packets to/from the Gigabit Ethernet network.
-%* WR PTP DUAL PORT CORE (WRPC-2P): It is the
-%key core for WR nodes and contains all the elements
-%needed to implement the WR protocol for two optical
-%fiber ports.
-%* AXI TO WB BRIDGE (AXI-WB BRIDGE): The PS
-%must be able to talk to the PL. However, the PS
-%uses the AMBA/AXI bus specification instead of the
-%WB one of the PL. The AXI-WB bridge is able to
-%convert from WB transactions to AXI transactions and
-%viceversa.
-%* FMC CORE: This IP core gives the specific function-
-%alities for a certain kind of FMC card. In the reference
-%design, the Fine Delay FMC core is included.
-%* NETWORK INTERFACE CORE (NIC): It provides a
-%network controller that is directly accesible from the
-%Linux kernel. The NIC module can be managed like a
-%standard network interface thanks to a specific driver.
-%The gateware design carries out a WR compliant node
-%with network capabilities and support for several FMC cards.
-%However, the reference design only uses the Fine Delay FMC
-%card, it can be extended easily to work with other cards such
-%as DIO, TDC, ADC, etc.
-%
-%% ------------------------------------------------------------------------
-
-The designed gateware (FPGA firmware) is built on two different levels. The former uses the AMBA bus specification and considers the main elements for the Zynq ecosystem with several components such as Zynq Processing subsystem that takes care of configuring the ARM microprocessor and controlling the bus interconnections with it, a reset and clocking module that manages the clock and reset signals, an AXI QSPI core to program the hardware PLL chip, an AXI crossbar to glue everything together and a specific IP core that represents the next level of the design that is explained in following lines.
-\textcolor{red}{[muy tocho, hay que reescribirlo con frases más cortas]}
-
-The design (shown in the Fig. \ref{fig:gateware_first_level}) is based on AXI and WB buses and has several crossbar modules to interconnect
-all the components. Due to the different buses, there is an AXI-WB bridge that is responsible 
-for converting AXI transactions into WB ones. This is necessary because the Zynq Processing System 
-uses the AXI protocol but most WR compliant modules are based on Open Core WB bus. The WR Dual Port 
-core implements the WR functionalities for the WR node. The main components of the WR Dual port core 
-are the LM32 soft-microprocessor that runs a specific firmware with WR functions stored in the WB RAM, 
-a WR endpoint that is charge of network transmissions/receptions over a 1 Gigabit Ethernet link, 
-the WB PPSgen core that contains the timebase counter for the WR technology and the SoftPLL
-that controls the servo loop algorithm to follow the master clock. The GT transceiver is a Xilinx primitive
-that allows to implement high speed interfaces such as 1 Gigabit Ethernet links. The NIC cores are responsible
-for receiving/sending packets between the ARM microprocessor and the network. The TxTSU module is a conventional
-FIFO designed to store the transmission timestamps of the sent packets in order to give some time to the driver to
-access them. The Fine Delay FMC core is a controller for the Fine Delay FMC mezzanine card. The main task for this 
-board is to configure a delay to transmit a signal from the TTL trigger buffer to one of its four outputs.
-
-%\missingfigure{Add figure to show first level architecture.}
+The gateware (FPGA firmware) is responsible for configuring the embedded ARM microprocessor and the FPGA inside the Zynq SoC. The main block diagram is shown in the Fig. \ref{fig:gateware_first_level}. It includes the WRPC Dual port core that implements the high accuracy timing protocol based on White Rabbit and provides basic capabilities such as Gigabit networking, timestamp mechanism, debug interfaces, etc. The GT ports include the Gitabit transceiver needed to send/receive packets to/from the network. The NIC cores are in charge of processing the incoming/outcoming packets and notify these events to the ARM. The TxTSU is an additional module that allows recovering the outcoming packet timestamps. The Fine Delay core controls the operation of the Fine Delay FMC card if any is plugged into the FMC socket. The WB Crossbar interconnects all the elements of the architecture and eases the configuration process performed by the ARM. The AXI-WB Bridge is a bus converter between AMBA AXI and Wishbone ones. This conversion is needed because the ARM microprocessor uses the AMBA specification while others components are based on WB.
 
 \begin{figure}[H]
 	\centering
@@ -248,20 +136,6 @@ board is to configure a delay to transmit a signal from the TTL trigger buffer t
 	\caption{Gateware project design. The figure shows the main components of the design. The most important one is the WRPC dual port that is responsible for implementing the WR protocol. The Gigabit Transceiver ports allows to transmit/receive packets to/from the network through the optical SFP modules. The NIC cores manage Ethernet packets and behave as standard network interface cards for the ARM microprocessor. The AXI-WB Bridge translates AXI transactions into WB ones. It is important because the ARM is connected using AMBA specification meanwhile the WR FPGA cores use Wishbone bus standard. Finally, the Fine Delay core contains the resources needed to control the Fine Delay FMC card.}
 	\label{fig:gateware_first_level}
 \end{figure}
-
-The second level is referred to the specific IP core that takes into 
-consideration the WR protocol and other basic features such as Gigabit 
-networking, serial debug communication, timestamp mechanism, etc. This module 
-uses the Wishbone Open Cores bus specification and is mainly 
-vendor-independent. It is composed of many IP cores that are interconnected 
-through a WB crossbar that allows bidirectional communication between any two 
-IP cores. Moreover, the crossbar can store Self Descriptor Bus (SDB) 
-information about the different components attached to it in order to discover 
-them with a scan operation. Thanks to it, the WB peripherals can be discovered 
-automatically by software tools and this allows not to hard-code the different 
-addresses inside the source code improving the maintainability of the system. 
-
-\textcolor{red}{[esta sección tiene demasiados detalles de ingeniería que hacen perder el hilo de lo que se está intentando conseguir. Hay que ser muy claro diciendo cómo es el gateware y qué funcionalidad tiene pero creo que hay detalles que se pueden obviar.]}
 
 \subsubsection{Firmware} \label{subsec:firmware}
 
@@ -271,127 +145,34 @@ the previous section. The main tasks of the WR routines are the servo
 loop algorithm which, maintains the lock to the recovered frequency from the 
 master device, and the implementation of the WR-PTP stack. In addition, a 
 simple Command Language Interface (CLI) is introduced to allow 
-the user interaction \textcolor{red}{esto es demasiado informal: (think that some WR nodes can work in standalone mode and 
-does not have an on-board hard microprocessor)}.
+the user interaction when it is used in standalone mode without an external PC.
 
 \subsubsection{Software} \label{subsec:software}
-
-%% ---------------- From WR-ZEN article (EFTF2016) ------------------------
-%
-%In this section, the software components needed to run a
-%Linux kernel/Baremetal application on the WR-ZEN board are
-%described. The Zynq devices needs a binary file (BOOT.bin)
-%that is composed of a specific Xilinx bootloader known as First
-%Stage Bootloader (FSBL), a gateware bitstream to program
-%the FPGA and a baremetal application or a Second Stage
-%Bootloader (SSBL) if Linux kernel must be loaded. The FSBL
-%is encharged to initialize different peripherals, configure the
-%FPGA with a bitstream and run the baremetal application
-%or the SSBL. The baremetal application is encouraged to be
-%coded with the Xilinx SDK because all the gateware details
-%are imported to the software project and we can use all the
-%functionalities of the Xilinx Board Package Support (BSP). On
-%the other hand, the SSBL is a independent project and must be
-%downloaded and compiled separately. The most common SSBL
-%are U-boot [14] and Barebox [15]. The chosen bootloader is U-
-%boot instead of Barebox because there is a Xilinx repository
-%[16] that includes custom code for the Zynq devices. When
-%everything is generated, the Xilinx SDK or bootgen tool must
-%be used to pack all the binaries in a single file, the BOOT.bin.
-%The following step is to compile the Linux kernel, kernel
-%modules, libraries and userspace tools. To face this task, there
-%are two ways. The first one is to compile every component
-%separately and manually. It is very slow, tedious and error
-%prone but it is the best way to control the different steps
-%and customize them if necessary. On the other hand, there
-%are some tools that automate the process such as Yocto [17]
-%or Buildroot [18]. However, they present a disadvantage: the
-%user loses the control and it is more difficult to add some mod-
-%ifications because the tool does everything automatically. For
-%the reference design, the Buildroot is used to ease and speed
-%up the compilation of the Linux kernel, U-boot bootloader, the
-%kernel modules and userspace tools. The Buildroot package is
-%retrived from the official project website. It is very configurable
-%and includes the Kconfig support to enable/disable the different
-%features similar to the Linux kernel. Although the Buildroot
-%eases very much the compilation process, it has many options
-%and may be confusing for a non-expert user. To solve this
-%issue, a set of scripts have been implemented to perform all
-%the actions needed and configuration files for the Busybox,
-%Linux kernel and the Buildroot are provided. This scripts are
-%based on others from the WR Switch Software project [19] of
-%the OHWR repository.
-%In addition of the Linux kernel and the bootloader, some
-%kernel modules and userspace tools for the WR-ZEN board
-%have been written. The main kernel driver is the WR-ZEN
-%carrier, known as zen, and is responsible for reprogramming
-%the FPGA device and reading the EEPROM information of
-%the WR-ZEN board. This driver is based on the fmc-bus
-%[20] (OHWR) and it also gives NIC capabilities to manage
-%the optical fiber ports as standard network interfaces from
-%the Linux kernel. Some userspace tools to read/write the
-%FPGA register (zenmem), reprogram the FPGA bitstrean (zen-
-%fwloader.sh), reprogram the soft-microprocessor program (zen-
-%cl) and send commands to the soft-microprocessor (zen-vuart)
-%are included too. The driver and all these tools are inspired by
-%the SPEC Software project [21] of the OHWR repository. As
-%we saw in the previous section, the reference design has also
-%a Fine Delay core that must be controlled by a specific kernel
-%driver. Actually, there are two drivers (zio [22] and fmc-fine-
-%delay [23]) and some userspace tools in the OHWR for the
-%Fine Delay FMC card in a SPEC card. Using these ones as
-%starting point, some minor modifications have been made to
-%incorporated them to the WR-ZEN reference design.
-%
-%% ------------------------------------------------------------------------
 
 The WR-ZEN is the first WR node taking advantage of a Linux 
 based operative system (OS). Due to the inclusion of a dual-core ARM 
 microprocessor in the platform, the system design is not longer tied to 
 low-level software design. New functionalities, such as communication 
-protocols, management tools, etc., are quickly added because of the 
-facilities \textcolor{red}{facilities???} of an OS: a hardware abstraction layer, and drivers which abstract 
+protocols, management tools, etc., are quickly added thanks to the support 
+provided by the OS: a hardware abstraction layer, and drivers which abstract 
 the management of the underlaying logic. This middleware adds also more 
 security controlling the access to the hardware.
 
-The counterpart is an increment in the complexity of the system design. The new platform takes advantage of its hard dual core microprocessor to deploy a Linux system or a standalone application.
+The software components are presented in the Fig. \ref{fig:software_architecture}.
+It is divided into the userspace utilities and the kernel support. 
+The former include the Zen library that implements the basic functionalities for the Zen tools through the C standard library. The Zen tools provides some mechanisms to program the FPGA
+design and connect to the internal UART for debugging/configuration tasks among others. 
+Moreover, other utilities are included to control the Fine Delay FMC card if it is plugged into the FMC socket.
 
-In the SKA system, the WR-ZEN is used with a Linux 
-kernel to ease the implementation of the specific applications and providing 
-conventional mechanisms to add more functionalities and update the entire 
-system in a fast and ease way which is not included in the current WR node 
-embedded design \textcolor{red}{info duplicada}. In order to build all the software components, some custom 
-scripts (inspired by WR Switch Software project ones from OHWR) are added to 
-allow user intervention and provides standard configuration for Linux kernel, 
-Busybox and root filesystem.  
-Moreover the basic Linux components, some userspace tools and custom kernel 
-drivers have been developed to manage the main modules in the WR-ZEN reference 
-design. The FMC kernel driver (\textbf{fmc}) is retrived from OHWR repository and it has not
-been modified. Its main purpose is to implement a generic support for FMC bus
-in the Linux kernel. The main driver for the WR-ZEN platform is the \textbf{zen} one
-and manages all the IP cores in the design, create standard Linux network interfaces and
-reprogram the FPGA with the proper bitstream. The \textbf{zio} driver is 
-retrieved from OHWR
-repository and it has not been modified. It creates the ZIO bus that exports driver attributes
-through the SysFS. The \textbf{fmc-fine-del} module implements the Fine Delay FMC functions and
-it is based on the OHWR repository one but includes some modifications to work properly in the
-WR-ZEN platform. The \textbf{zen-nic} driver is responsible to enable/disable the network 
-interface methods of the \textbf{zen} module.
+In the kernel side, some kernel drivers have been implemented. The main one is the \textit{zen}
+driver that is responsible for setting up all the IP cores in the FPGA and creates the 
+standard Linux network interfaces. The \textit{fmc} and \textit{zio} drivers are retrieved from the 
+OHWR repository and implements a generic support for FMC and ZIO buses respectively. 
+The \textit{zio} driver has been modified in order to work properly in the WR-ZEN platform.
+The \textit{zen-nic} kernel modue is in charge of enabling/desabling the network capabilities of 
+the zen driver. The \textit{fmc-fine-del} driver provides basic functionalities for the Fine Delay FMC card.
 
-As previously seen, there are dependencies between the different kernel drivers and it establishes the installation order. The \textit{zen} one depends on \textit{fmc}. The \textit{fmc-fine-del} needs \textit{zen}, \textit{zio} and \textit{fmc}. The \textit{zen-nic} only uses the \textit{zen}.
-
-In addition to device drivers, there are several custom userspace tools related with drivers previous explained. Those that use the \textit{zen} driver API are \textit{zenmem} that is responsible for accessing memory map of the WR-ZEN IP cores, \textit{zen-fwloader} that programs the FPGA with a given bitstream, \textit{zen-vuart} and \textit{zen-cl} that allows talking to the soft-microprocessor (see the gateware section) and loading other firmware respectively. On the other hand, the  \textit{fmc-fine-del} driver has associated tools such as \textit{fmc-fdelay-board-time} that is used to get the current time, \textit{fmc-fdelay-pulse} that generates pulses with certain characteristics (frequency, initial delay, duty cycle, etc), \textit{fmc-fdelay-input} that prints some information when an incoming signal raises the input connector of the mezzanine card, \textit{fmc-fdelay-list} that enumerates the Fine Delay FMC cards plugged in the system (only one for WR-ZEN but however more for conventional PCs), \textit{fmc-fdelay-status} that check the status of Fine Delay FMC core and \textit{fmc-fdelay-term} that configures the termination of each channel among others.
-
-Apart from the Linux or standalone environment described before, more 
-components are needed  for the WR-ZEN platform. Previously any application or 
-Operating system can run, a specific bootloader must initialize some hardware 
-devices. In the Zynq technology, there is a special bootloader known as First 
-Stage Bootloader (FSBL) that is responsible for early initializations and it is 
-the first step to perform in whatever system based on Zynq. The FSBL sets up 
-different peripherals, configures the FPGA with a bitstream and runs the 
-standalone application or the Second Stage Bootloader (SSBL) which finally 
-loads the Linux kernel in the RAM memory and prepare the system to run the 
-specific user applications.
+As previously mentioned, there are dependencies between the different kernel drivers and it establishes the installation order. The \textit{zen} one depends on \textit{fmc}. The \textit{fmc-fine-del} needs \textit{zen}, \textit{zio} and \textit{fmc}. The \textit{zen-nic} only uses the \textit{zen}.
 
 \begin{figure}[H]
 	\centering
@@ -407,7 +188,5 @@ specific user applications.
 	\label{fig:software_architecture}
 \end{figure}
 
-\textcolor{red}{Demasiada tela. No sé hasta qué punto es interesante decir que se han hecho drivers, sus nombres, funcionalidad, el FSBL, los scripts que se usan para generar las imágenes... Esto no es para un artículo. Tenéis la imagen, hablad sobre ella, lo que está fuera de ella que no sea relevante, se debería quitar.}
-
-\textcolor{red}{lo siguiente son los experimentos, falta hilo conductor}
+The next section describes the main experiments performed and the results obtained.
 

@@ -6,9 +6,6 @@ order to evaluate the presented PPS distribution system for the SKA's timing
 system. First we show some results from the evaluation of the developed system and we compared those results with another WR node available nowadays. Next we present an experiment that tries to simulate a example of WR network like the 
 one needed to distribute timing in the SKA telescope. Scalability and accuracy were analysed in that experiment. Finally, the influence of external conditions over the fibre links and its effect on the synchronization accuracy is studied.
 
-\textcolor{red}{yo pondría los experimentos con bullet points. QUé experimentos vamos a hacer y para demostrar qué. Ha de quedar claro.}
-
-
 The principal equipment and tools utilized during the experiments are listed 
 below:
 
@@ -26,7 +23,7 @@ below:
     \item Multiple components for the setup of the equipment:
     \begin{itemize}
         \item Small form-factor pluggable transceptors (SFPs) to establish the 
-        link between WR devices. For the shorter links we've used the most 
+        link between WR devices. For the shorter links we have used the most 
         common bidirectional SFPs for WR: AXCEN 1310/1490 nm. For larger links, 
         we tried 
         SFPs from FiberStore: GE-BX-80 1490/1550 nm.
@@ -37,6 +34,19 @@ below:
         \item A OCXO Morion MV89 as frequency reference for the GM mode.
     \end{itemize}
     
+\end{itemize}
+
+The experiments that have been performed are briefly described in the following lines:
+
+\klyonenote{Completar con más información y revisar el resto de la sección...}
+\gutinote{yo pondría los experimentos con bullet points. Qué experimentos vamos a hacer y para demostrar qué. Ha de quedar claro.}
+
+\begin{itemize}
+	\item {WR-ZEN performance test: This scenarios connects two WR-ZEN boards and analyses
+	the timing performance. The goal of this test is to demostrate that the platform is
+	a valid candidate to be used as part of the PPS distribution system.}
+	\item {Scalability test: It uses two WR switches and a WR-ZEN in a cascade configuration. The main purpose is to check that this kind of topology does not affect to the timing performance.}
+	\item {Temperature influence test: It connects two WR-ZEN boards by a long fibre link which temperature is modified during the test. This test demostrates that these environment conditions do not reduce the timing performance of the system.}
 \end{itemize}
 
 \subsection{PPS performance of the WR-ZEN platform}
@@ -50,9 +60,10 @@ experiment we focus on the WR-ZEN performance, so that we set all the equipment
 to a constant temperature and we use a short fibre link (few meters) in order 
 to avoid instability occasioned by chromatic dispersion on long fibre links.
 
-\textcolor{red}{falta imagen del setup}
+\missingfigure{Jose Luis: Falta imagen del setup}
 
-\begin{table*}\centering
+\begin{table*}
+	\centering
 	\ra{0.8}
 	\begin{tabular}{@{} rccc@{}}%\toprule
 		\textbf{$\tau$ (s)} & MDEV & TDEV (s)  & MTIE (s) \\ \midrule
@@ -130,14 +141,14 @@ before concluding its goodness:
 	
 	\item Moreover, SKA facilities will be placed in a desert zone, and 
 	the nodes will be linked by long-distance fibre links. Because of that, 
-	it's 
+	it is
 	necessary to analyse if the meteorological conditions can degrade 
 	significantly the synchronization accuracy. A thermal characterization of 
 	the influence of the variation of propagation delays in the PPS accuracy is 
 	presented in subsection \ref{subsec:temp}.
 \end{itemize}   
 
-\subsection{WR scalability for SKA} %% Buscar un nombre mejor
+\subsection{WR scalability for SKA}
 \label{subsec: net_exp}
 
 The next experiment covers a scalability analysis of the WR solution for the 
@@ -157,14 +168,14 @@ expected performance similar to the results obtained in our test for the WR-ZEN.
 	\includegraphics[width=0.7\linewidth]{img/prueba_red}
 	\caption[WR Scalability test's setup for SKA]{To evaluate the scalability 
 	of the WR solution for the expected SKA timing network, a sample WR 
-	network has been evaluated. At the top there's a WRS as GM, a second layer 
+	network has been evaluated. At the top there is a WRS as GM, a second layer 
 	of WRS to finally provide synchronization to the end-nodes (WR-ZEN).}
 	\label{fig:pruebared}
 \end{figure}
 
 
 All the equipment for that test was under laboratory conditions. To connect 
-each one of the WR devices we've used a 20km fibre spool and SFPs from 
+each one of the WR devices we have used a 20km fibre spool and SFPs from 
 FiberStore (SFP-GE-BX80 with 1490/1550 nm wavelengths). PPS phase difference is 
 measured from the WR-ZEN to the WRS in GM configuration using a Keysight 52320A 
 counter along 4 hours.
@@ -215,7 +226,7 @@ is more than enough what SKA needs (2ns).
 	\label{tab:netresults}
 \end{table*}
 
-With those findings, it's proved that a WR network with two levels can provide 
+With those findings, it has proved that a WR network with two levels can provide 
 synchronization to all the equipment expected for the SKA facilities. It is also important to mention that some links could be broken in two WR links due to distance to some antennas, e.g. an intermediate WR device will be placed between the master WRS and the end-node. Introducing an extra WR level for some antennas should not be a problem to fulfil the timing requirements, a prove of that can be found in \cite{torres2016scalability}, where the results show that even a 10-hop network can reach the required time-budget for SKA.
 
 Although long-distance fibre links have been used for that test, thermal 
@@ -253,9 +264,7 @@ that must be taken into consideration. The main conclusion of this study is the
 need of compensation techniques in order to control the timing drift due to
 temperature changes.
 
-\gutinote{we've: no, no se ponen contracciones en un artículo}
-
-On this contribution, we've focused on the temperature change effect over the 
+In this contribution, we have focused on the temperature change effect over the 
 cable
 \textit{round-trip} time (CRTT) and the PPS performance. To evaluate that, we 
 have used a climate chamber in the laboratory and some fibre spools of tens of 
@@ -275,12 +284,12 @@ In the real world, $\alpha$ is temperature dependent, because of the change in
 the refraction index due to a temperature variation in the fibre. For small and 
 mid-distance links, in laboratory conditions, $\alpha$ is nearly negligible and 
 the current link model behaves very well. The WR network in SKA will be formed 
-by long distance links exposed to external elements. \textcolor{red}{In the concrete situation 
-of the South Africa facilities, the chosen location was the Karoo region. 
-This region is a semi-desert area, very adequate to reduce human interferences 
-in the high resolution data acquisition equipment, but with a inconvenient 
-respect to the temperature point of view: desert zones have a high difference 
-between day and night temperatures. (sobra)}
+by long distance links exposed to external elements. 
+
+%In the concrete situation of the South Africa facilities, the chosen location 
+% was the Karoo region. This region is a semi-desert area, very adequate to reduce human interferences in the high resolution data acquisition equipment, but with a inconvenient 
+%respect to the temperature point of view: desert zones have a high difference 
+%between day and night temperatures.
 
 \begin{figure}
 	\centering
@@ -332,14 +341,12 @@ value of CRTT and PPS offset samples, and (ii) their sample standard deviation.
 A total of 7200 samples (2 hours) per temperature step have been used to 
 compute the presented statistics. The amplitude of the CRTT sampled data is 
 96496 ps. Dividing it by the temperature range we obtained a CRTT variation of 
-3213 ps/ºC. It's important to remark the huge change in the propagation delay. 
+3213 ps/ºC. It is important to remark the huge change in the propagation delay. 
 Considering a synchronization system that is not capable of dynamically 
 calibrate that change, the final performance would suffer of an enormous 
 degradation, which is unacceptable for the SKA equipment. The peak-to-peak 
 difference for the PPS offset is 211 ps which leaves us a 7 ps/ºC and if we 
 divide by the total link length: $0.14 ps/ºC \cdot km$.
-
-\klyonelnote{Revisar las graficas y agrandar un poco la leyenda y los textos.}
 
 \begin{figure}
 	\centering
@@ -364,7 +371,7 @@ Figure \ref{fig:crttvstemp} shows a clear linear dependency between the
 temperature and the CRTT. Although, the PPS offset is not constant as 
 we suppose in our initial hypothesis. The Figure \ref{fig:ppsvscrtt} suggests 
 an inverse linear dependency between CRTT and offset, but if we take the 
-standard error values into account, we can't state clearly that linear 
+standard error values into account, we can not state clearly that linear 
 relation. It must be considered that $\alpha$ is computed experimentally using 
 fixed-point arithmetic (the LM32 has no floating-point unit). While it seemed 
 to work right for distances lower than a few kilometres, it may be insufficient 
@@ -374,9 +381,8 @@ gradient is only 200 ps that joined to the results from the previous
 experiments make the new PPS distribution system suitable for the SKA 
 timing system.
 
-For the presented experiments, we have not considered the influence of a variable environment conditions over the WR equipment itself. Because we really don't know if the equipment will be placed in rooms with controlled environmental conditions or not, we have not considered realising experiments to analyse that. Although we have not analysed it by ourselves, it is important to mention that there is some publications about that, for example \cite{Li2015a}. Results included in that paper reflect the importance to correct the effects of a variable external temperature in order to maintain the high level of accuracy expected. \textcolor{red}{reescribirlo con mayor rigor científico, nada de suposiciones, o no sabemos, o contracciones, etc}
+For the presented experiments, we have not considered the influence of a variable environment conditions over the WR equipment itself. Because we really do not know if the equipment will be placed in rooms with controlled environmental conditions or not, we have not considered realising experiments to analyse that. Although we have not analysed it by ourselves, it is important to mention that there is some publications about that, for example \cite{Li2015a}. Results included in that paper reflect the importance to correct the effects of a variable external temperature in order to maintain the high level of accuracy expected. \textcolor{red}{reescribirlo con mayor rigor científico, nada de suposiciones, o no sabemos, o contracciones, etc}
 
-
-Another important issue that we have experimented is the deviation from the nominal wavelength expected for the used SFPs in our experiments. Because of the same SFPs seem to be choosen by SKA for the WR deployment, it will be important to study the repercussion of that undesired issue over the WR calibration and the $\alpha$ measurement. One of the key aspects of WR is the dynamic calibration of the propagation delay and the facility to reuse the same calibration parameters between devices with the same hardware and firmware. If the choose SFPs can't guarantee a similar wavelength between items of the same model there will be needed to explore alternative solutions.
+Another important issue that we have experimented is the deviation from the nominal wavelength expected for the used SFPs in our experiments. Because of the same SFPs seem to be choosen by SKA for the WR deployment, it will be important to study the repercussion of that undesired issue over the WR calibration and the $\alpha$ measurement. One of the key aspects of WR is the dynamic calibration of the propagation delay and the facility to reuse the same calibration parameters between devices with the same hardware and firmware. If the choose SFPs can not guarantee a similar wavelength between items of the same model there will be needed to explore alternative solutions.
 
 \textcolor{red}{estos dos últimos párrafos parecen dar más problemas que presentar resultados. Yo diría de resumirlo o reescribirlo centrándose en resultados puramente.}
