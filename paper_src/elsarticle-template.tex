@@ -120,26 +120,14 @@
 %\listoffixmes
 
 \begin{abstract} 
-	\textcolor{red}{el abstract tiene que dar una idea general de lo que va el paper. Es decir, hay que puntualizar en qué dominio se ha realizado la aportación, qué necesidades eran necesarias cubrir y qué es lo que proporciona nuestra contribución a esa problemática}
-	This contribution focuses on finding a solution to provide a very 
-	accurate Pulse per Second (PPS) signal distribution system for the international project known as 
-	Square Kilometre Array (SKA) Telescope.The SKA will be the largest 
-	radio-telescope of the world and it will be located in two different 
-	geographical areas (South-Africa and Australia/New Zealand).
-    
-    On each one of those locations, there will be placed hundred of antennas 
-    whose individual observations will be combined as if they were acquired 
-    by only big one antenna. In order to archive that, all antennas must be synchronized to the same reference very accurately, being required a synchronization performance below 2 ns. This accuracy is not achievable by current standard synchronization technologies. Due to this, we propose a new design based on a FPGA-SoC \textcolor{red}{(falta poner el nombre completo de FPGA-SOC)} device with an enhanced 
-    version the White Rabbit technology (WR) using a very accurate hardware clocking circuitry, able to reach sub-nanosecond accuracies.
-    
-    In this context, 
-	the WR Zynq Embedded Node (WR-ZEN) is the platform used for the 
-	SKA PPS distribution system. Our proposed approach has been tested in different scenarios to check the correct behaviour of the system during severe temperature fluctuations. This is necessary since SKA's deployment will 
-	be built in dessert areas where temperature varies significantly. Finally, the results extracted from the work presented in this paper justify 
-	that the WR protocol together with the enhanced clocking system seem to meet all SKA's requirements properly. Furthermore, our approach is able to compensate synchronization variations caused by temperature change conditions (\textcolor{red}{NOTA: faltaría algo así como "over long fiber links"}). \textcolor{red}{
-	Finally, we present most 
-	promising work lines and some tasks related to evolve the White Rabbit 
-	technology for the SKA system in the future work section. (esto no va aquí, pertenece al final de la intro)}
+	
+	Distributed data adquisition system (DAQ) is a very important component in many scientific and industrial applications. One of the main issues in this field is the synchronization mechanism. All the elements in the network must be synchronized in order to work properly. There are several technologies for the timing synchronization with different accuracy performance such as Network Time Protocol (NTP), Precise Time Protocol (PTP) or White Rabbit (WR). 
+	In our contribution, we work in the Square Kilometer Array (SKA) international project framework. The SKA will be the largest radio-telescope of the world and it will be located in two different geographical areas (South-Africa and Australia/New Zealand).
+	On each one of those locations, there will be placed hundred of antennas 
+	whose individual observations will be combined as if they were acquired 
+	by only big one antenna. In order to archive that, all antennas must be synchronized to the same reference very accurately, being required a synchronization performance below 2 ns. This accuracy is not achievable by current standard synchronization technologies. In this context, we propose The WR Zynq Embedded Node (WR-ZEN) platform, a new design based on a Field Programmable Gate Array System-on-Chip (FPGA-SoC), that uses WR technology to reach sub-nanosecond accuracy. This platform has several advantanges compared to the older WR implementations due to the inclusion of an ARM microprocessor and the enhanced clocking circuitry. It enables to add high-level software capabilities in a standard way using conventional operating systems (OS) based on Linux.
+	
+	The WR-ZEN platform has been tested in different scenarios in order to demostrate the system performance and the behavior in extreme tempeture conditions. It is necessary because SKA's deployment will be built in dessert areas where temperature varies significantly. Finally, the results extracted from the work presented in this contribution reveal that the proposed PPS distribution system meets all SKA's requirements perfectly. Furthermore, our approach is able to compensate synchronization variations caused by temperature change conditions over long fibre links.
 \end{abstract}
 
 \begin{keyword}
@@ -155,8 +143,8 @@
 
 \input{sec/introduction.tex}
 
-\section{Related work} \label{sec:related-work}
-\input{sec/related-work.tex}
+%\section{Related work} \label{sec:related-work}
+%\input{sec/related-work.tex}
 
 \section{The SKA telescope} \label{sec:ska}
 
