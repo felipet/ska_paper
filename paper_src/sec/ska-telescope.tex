@@ -16,11 +16,6 @@ huge number of antennas needed which require a high level accuracy
 synchronization. More information can be found in  
 \cite{ska:baseline_description_v2}. In this context and as \cite{HUANG201727} suggests, the computer network in astrophysics science is one of the most important elements and determines key aspects such as system performance.
 
-The scale of the SKA Telescope represents a huge leap forward in both 
-engineering, research and development. The high performance specifications 
-require the utilization of best technologies and design strategies possible and 
-represent an unprecedented challenge for all the elements to be built. 
-
 \subsection{SKA Telescope Network} \label{subsec:ska-telescope}
 
 The SKA Telescope uses different types of networks to guarantee a proper operation of the infrastructure. These networks are describe briefly in the Fig. \ref{fig:ska_net_arch1}. The design of the network corresponds to the Signal and Data Transport (SaDT) element \cite{ska:sadt_website} and it includes all hardware and software necessary for the transmission of data and information between the elements of the SKA. SADT also contains details about the provision of timing which is critical for interferometry.
@@ -36,21 +31,12 @@ The final part of the SaDT is the Synchronization and Timing (SAT) that provides
 	\label{fig:ska_net_arch1}
 \end{figure}
 
-%\gutinote{la figura no está referenciada en el texto}
-%\textcolor{red}{[hay que revisar todo el tema de acrónimos, está muy mezclado todo]}
-
 \subsection{High-accuracy timing signals distribution for SKA1} \label{subsec:ska-distribution}
 
 As determined by SaDT, SKA Telescope should be able to distribute a common frequency reference to all the telescopes and, in addition, provides a uniform time reference to register all the events with ultra-high accuracy through time stamps. This task is done by the SAT (Synchronization and Timing) element that belongs to SaDT. The SKA timescale is maintained by the central clock ensemble for each telescope and will be steered to within designed limits of UTC (Coordinated Universal Time) and monitored with respect to UTC via GNSS time transfer techniques. These clock ensembles form the fundamental timescale for SKA and will be the basis for precision measurements of pulsars and other time-dependent phenomenas. As consequence, during this distribution, UTC refers to UTC (SKA), as realized by the central SKA clock ensemble.
 This article focuses on the solutions to distribute the UTC time by means of PPS (Pulse-Per-Second signal). This PPS signal guarantees that all the scientific data are time-tag using a common reference. This time reference has high requirements coming from science that are not mandatory by other elements of the SKA systems as the monitor and control network. For these other elements, standard time transfer protocols as NTP or IEEE-1588 are a feasible solution. For the Telescope core, we illustrate that the high performance requirements imposed by the challenging scientific goals force to provide much more sophisticated approaches. 
-The PPS distribution system will be in charge to deliver its output at the following locations:
+The PPS distribution system will be in charge to deliver its output at the following locations: SKA1-MID with 133 dishes connected to optical fibre links between 120-150 km and SKA1-LOW wit 45 stations along 3 spiral arms connected to optical fibre links between 70-80 km.
 
-\begin{itemize}
-	\item {Each of the 133 dishes of SKA1-MID, and once to the Meerkat system. The maximum receptor baseline lengths are between 120-150 km.}
-	\item {The core of SKA1-LOW, and the 45 stations in total along the 3 spiral arms. The maximum receptor baseline lengths are between 70-80 km. }
-	\item {The encoded absolute time signal will be delivered to each of the three CSPs.}
-\end{itemize}
- 
 Note that if the offset frequency scheme is to be applied to all SKA1-MID dishes, an additional 64 endpoints will be needed in SKA1-MID. This provides between 182 and 246 endpoints to synchronize. 
 The general array SAT requirements for the frequency distribution is 1 ps while the time synchronization and time-stamp requirement is 10 ns. SaDT uses different mechanisms for achieving goals, frequency dissemination and PPS distribution. As consequence, because the goal in this contribution is just describing a solution for PPS distribution, the contribution work only considers the second requirement, the 10 ns synchronization as needed for example for the long-term timing Pulsar studies. Note that a complete description of the SKA network elements and topology is out of the scope of this contribution and only the requirements needed are presented to properly understand the need of the solution here developed. 
 It is important to remark than the 10 ns requirement is allocated for the whole 
@@ -73,5 +59,4 @@ averaged them out.
 
 Next section will provide the description of the solution proposed to be use on SKA Telescope as mechanism for PPS distribution. 
 
-\textcolor{red}{esta  sección tiene mucho texto que realmente no es necesario para entender la contribución. Hay que resumirlo y dejar únicamente lo que le puede interesar al lector para comprender el resto del artículo. En este sentido esto no es un "cuanto más, mejor".}
 

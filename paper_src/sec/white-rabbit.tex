@@ -7,9 +7,8 @@ The WR synchronization mechanisms include the following elements:
 
 \begin{itemize}
 	\item {Frequency synchronization (syntonization): It uses L1 physical layer of Synchronous Ethernet (SyncE) to encode the clock signal in the data 
-	carrier. It is responsible for recovering the clock from the network and to 
-	adjust local oscillator to follow it.}
-	\item {Phase synchronization: The physical clock of a node is retransmitted to the master element and viceversa so that master can compare the phase of this signal (coming from the slave) with its own phase. The deviation should be equal to the propagation time of the signal through the fiber. The master can determine the phase difference between its own clock and the network recovered one and send back this information to the slave. The phase measurement is performed by an IP core known as Digital Dual Mixed Time Difference (DDMTD) present in the gateware design.}
+	carrier. }
+	\item {Phase synchronization: Thanks to the synthonization, both nodes in a link are able to recover the other physical clock and compare it to its own in order to get the phase difference. The phase measurement is performed by an IP core known as Digital Dual Mixed Time Difference (DDMTD) present in the gateware design.}
 	\item {Time synchronization: It is implemented by PTPv2 protocol and provides a global notion of time to the entire network. WR also takes into account the asymmetries in the propagation time due to the utilization of different wavelengths in the same fiber link improving the accuracy of standard PTP protocol.}
 \end{itemize}
 
@@ -21,30 +20,27 @@ and up to 120 km without the needs of optical amplification.
 \subsection{Network topology} 
 \label{subsec:wr-net}
 
-A typical WR network presents a tree topology and is composed of three different kind of elements: a Grandmaster, several intermediate devices such as switches and the end-nodes as shown in the Fig. \ref{fig:wr_hierarchy}. The Grandmaster is normally connected to a very stable clock such as an atomic clock or a GPS receiver \cite{Daniluk2012}. The intermediate levels of the network disseminate the timing packets to the final nodes, which are composed of other devices such as WR Switches, WR-ZEN or WR-LEN that have several ports and can behave as PTPv2 Boundary Clocks (BC). The different devices are connected using the master-slave scheme: some ports acting as slave (upstream) and connects to the upper layer while the others are masters (downstreams) and they are charged to propagate the synchronization to the next level of the hierarchy. The nodes of the last level of the network are known as Slave devices that recover the clock signal of the link and synchronizes their local oscillators to provide synchronization for a specific application.
+A typical WR network presents a tree topology and is composed of three different kind of elements: a Grandmaster, several intermediate devices such as switches and the end-nodes as shown in the Fig. \ref{fig:wr_hierarchy}. The Grandmaster is normally connected to a very stable clock such as an atomic clock or a GPS receiver \cite{Daniluk2012}. The intermediate levels of the network disseminate the timing packets to the final nodes, which are composed of other devices such as WR Switches, WR-ZEN or WR-LEN. These devices have several ports and can behave as PTPv2 Boundary Clocks (BC). Moreover, they are connected using the master-slave scheme: some ports acting as slave (upstream) and connects to the upper layer while the others are masters (downstreams) and they are charged to propagate the synchronization to the next level of the hierarchy. The nodes of the last level of the network are known as slave devices that recover the clock signal of the link and synchronizes their local oscillators to provide synchronization for a specific application.
 
 In addition to the conventional tree topology of the timing networks, new network topologies are under-study in WR to add some mechanisms to improve fault tolerance and security currently. An example of this research is \cite{jlgutierrez-paper-redundancy} that incorporates the Transparent Clocks (TC) to WR protocol and allows implementing redundancy protocols such as HSR or PRP to ensure the data delivery and reception in critical applications such as control network, real-time applications or Smart Grids among others.
-
-\textcolor{red}{[reescribirlo recortando un poco las frases, deberiais usar más la adjetivación en lugar de "and" and "and"]}
-\textcolor{red}{[os tenéis que asegurar de referenciar en el texto las figuras, y utilizarlas de apoyo para explicar las cosas en el texto]}
-\textcolor{red}{no son dos tipos de puerto, maestro-esclavo es un modelo de comunicación. Los puertos esclavos son "upstream" y los maestros "downstream"}
-\textcolor{red}{hay que mantener cierta coherencia con mayúsculas y minúsculas. Si vais a poner Slave o slave, debéis mantenerlo a lo largo del texto}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{img/wr_hierarchy}
-	\caption{The WR network is a tree hierarchy where the root node is the Grand Master that is responsible for distributing the reference time signals. The intermediate elements are WR Switches that acts as Gigabit Ethernet switchers and as Boundary clocks propagating the time signals from the upper layers of the network. Finally, the main purpose of the end-nodes is to provide timing to another specific application.}
+	\caption{The WR network is a tree hierarchy where the root node is the Grandmaster that is responsible for distributing the reference time signals. The intermediate elements are WR Switches that acts as Gigabit Ethernet switchers and as Boundary clocks propagating the time signals from the upper layers of the network. Finally, the main purpose of the end-nodes is to provide timing to another specific application.}
 	\label{fig:wr_hierarchy}
 \end{figure}
 
-\subsection{WR devices for SKA} 
+\subsection{WR devices} 
 \label{subsec:wr-dev}
 
-WR is designed to be fitted in a Field Programmable Gate Array (FPGA) device due to its flexibility to use in designs in a continuous development state. The source code is mainly written in Hardware Description Languages (HDLs) such as VHDL or Verilog. Moreover, there are several platforms that can implement WR that ensures the vendor-independent feature of WR. The most extended vendor in WR world is Xilinx, some examples of devices using Xilinx's FPGAs are the SPEC board \cite{ohwr:spec} and the WRS \cite{ohwr:wrs}. The other vendor used in WR is Altera. Some examples of boards could be found in \cite{cesar-altera-wr}. The main Intellectual Property (IP) block is the WR PTP core (WRPC) for WR nodes and the Real Time Subsystem (RTS) for WR switches. 
+WR is designed to be fitted in a Field Programmable Gate Array (FPGA) device due to its flexibility to use in designs in a continuous development state. The source code is mainly written in Hardware Description Languages (HDLs) such as VHDL or Verilog. Moreover, there are several platforms that can implement WR that ensures the vendor-independent feature of WR. Some examples are SPEC board \cite{ohwr:spec}, WRS \cite{ohwr:wrs}, Plexaria or Exploder \cite{cesar-altera-wr} among others. 
+
+%The main Intellectual Property (IP) block is the WR PTP core (WRPC) for WR nodes and the Real Time Subsystem (RTS) for WR switches. 
 
 The utilization of the previous WR-compliant nodes in the SKA system presents an important problem: they are based on PCIe interface cards to be plugged on standard computers, microTCA or VME-64 crates and therefore, a specific computer is necessary to provide the high 
 level software management functionalities. Although most of these cards can be used on stand-alone operation mode, they just use a FPGA device as processing engine and this make very complicated to add new functionalities or standard software tools. The main WR node designs include a soft-microprocessor on the FPGA gateware but it is not 
-enough to fully solve the problem because it requires using complex 
+enough to fully solve the problem. This design requires using complex 
 non-standard firmware programming tools and it normally translates on high time-intensive development effort and makes difficult the upgrade of the system firmware. We have worked with these platform in order to build a sensor network based on the SPEC board allowing the PC-hosted and the standalone modes \cite{migueljl-paper-wr-spec}.
 
 As a different solution, we present a new platform based on an enhanced technology: The WR Zynq Embedded Node (WR-ZEN) \cite{sevensols:wr_zen}. It is a new generation board that includes a Xilinx Zynq System-on-Chip (SoC) \cite{xilinx:zynq}. The Zynq SoC is composed of a FPGA and a hard ARM dual core microprocessor that can run an application that controls the hardware directly or a standard Operating System such as Linux that can host many different kind of processes at the same time. Moreover, the WR-ZEN allows developing gateware and software on the same chip, tightly integrating performance and flexibility thanks to the use of the co-design strategies. The WR-ZEN offers several advantages over the old WR-compliant nodes (WR-LEN, SPEC or SVEC) such as an enhanced standalone mode with a Linux system that can include high level software capabilities without an external PC and the new clocking circuitry among others. Accordingly, the WR-ZEN has been proposed to be used in the SKA project to implement the PPS distribution system and currently, it is being evaluated as a candidate solution for the SKA PPS distribution system.  
