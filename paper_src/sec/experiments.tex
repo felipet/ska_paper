@@ -28,7 +28,7 @@ below:
     \item A \textbf{WR-LEN} (hardware v1.0) an a \textbf{SPEC} board with a FMC 
     DIO connected for the comparison between WR nodes.
     
-    \item A \textbf{WR-ZEN TP} (Time Provider) to test the 
+    \item Two \textbf{WR-ZEN TP} (Time Provider) to test the 
     performance of the new developed platform as WR nodes of the SKA 
     facilities. Firmware version is 1.2 while the hardware is v3.0.
     
@@ -366,23 +366,43 @@ degradation, which is unacceptable for the SKA equipment. The peak-to-peak
 difference for the PPS offset is 211 ps which leaves us a 7 ps/ºC and if we 
 divide by the total link length: $0.14 ps/ºC \cdot km$.
 
-\begin{figure}
+%\begin{figure}
+%	\centering
+%	\begin{subfigure}[t]{0.48\textwidth}
+%		\includegraphics[width=\textwidth]{img/crttvstemp}
+%		\caption[CRTT vs. Fiber temperature]{The figure shows the relation 
+%			between the fibre temperature and the cable round-trip time.}
+%		\label{fig:crttvstemp}
+%	\end{subfigure}
+%	~ % This symbol adds a white space between images
+%	\begin{subfigure}[t]{0.48\textwidth}
+%		\includegraphics[width=\textwidth]{img/ppsvscrtt}
+%		\caption[PPS offset vs. CRTT]{This figure shows how PPS offset is 
+%			sightly influenced by changes in the cable round-trip time.}
+%		\label{fig:ppsvscrtt}
+%	\end{subfigure}
+%	\caption{Evaluation of the cable \textit{round-trip} time and the PPS 
+%		offset with variable temperature conditions for the fibre link.}
+%\end{figure}
+
+
+	
+\begin{figure}[t]
 	\centering
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{img/crttvstemp}
-		\caption[CRTT vs. Fiber temperature]{The figure shows the relation 
-			between the fibre temperature and the cable round-trip time.}
-		\label{fig:crttvstemp}
-	\end{subfigure}
-	~ % This symbol adds a white space between images
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{img/ppsvscrtt}
-		\caption[PPS offset vs. CRTT]{This figure shows how PPS offset is 
-			sightly influenced by changes in the cable round-trip time.}
-		\label{fig:ppsvscrtt}
-	\end{subfigure}
+	\includegraphics[width=0.7\linewidth]{img/crttvstemp}
+	\caption[CRTT vs. Fiber temperature]{The figure shows the relation 
+	between the fibre temperature and the cable round-trip time.}
+	\label{fig:crttvstemp}
+\end{figure}
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.7\linewidth]{img/ppsvscrtt}
+	\caption[PPS offset vs. CRTT]{This figure shows how PPS offset is 
+	sightly influenced by changes in the cable round-trip time.}
+	\label{fig:ppsvscrtt}
 	\caption{Evaluation of the cable \textit{round-trip} time and the PPS 
-		offset with variable temperature conditions for the fibre link.}
+	offset with variable temperature conditions for the fibre link.}
 \end{figure}
 
 Figure \ref{fig:crttvstemp} shows a clear linear dependency between the 
