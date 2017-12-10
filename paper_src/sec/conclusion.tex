@@ -1,19 +1,34 @@
-In this contribution, we have introduced the distributed DAQ systems and its specific requirements. We have also reviewed the different synchronization mechanisms. We focus on the SKA project and we briefly describes its strict timing requirements. Nowadays, there is not any standard system that can fulfill the SKA needs. The WR technology is presented because it is based on the standard protocols and its results ensure a sub-nanosecond accuracy. In this context, we present an implementation of a high accuracy PPS distribution system based on the WR technology that presents . This platform has been propsed to be integrated in the SKA infraestructure and currently, it is under a evaluation process. 
-Our solution is based on the WR-ZEN which improves previous existing WR node designs 
-thanks to the inclusion of the high-level software capabilities, the high accuracy gateware
-design and an enhaced clock circuitry.
-To provide the high-level capabilities, we have developed a Linux-based environment with some
-userspace tools and drivers. The gateware design includes all the elements to implement the 
-White Rabbit protocol and some additional FMC functionalities. The enhanced clocking circuitry can be configured using different schemas in order to look for the best synchronization quality results targeting the SKA needs. 
+In this contribution, we have introduced the distributed DAQ systems and its 
+specific requirements. We have also reviewed the different synchronization 
+mechanisms. We focus on the SKA project and we briefly describes its strict 
+timing requirements. Nowadays, there is not any standard time distribution 
+system that fulfils the SKA telescope needs. The WR technology is presented 
+because it is based on standard protocols and its results ensure a 
+sub-nanosecond accuracy. In this context, we present an implementation of a 
+high accuracy PPS distribution system based on the WR technology that presents. 
+This platform has been proposed to be integrated in the SKA infrastructure and 
+currently, it is under a evaluation process. 
 
-In addition to the platform development, we have also perform several test in order to check the system fulfills the strict SKA timing: 2 ns for the PPS distribution system. The results prove that the synchronization accuracy is bounded below 200ps, being significally better than the SKA need. Moreover, the scalability tests reveal that the synchronization accuracy is maintained for a high number of nodes with several network levels. Furthermore, we have 
-designed several experiments simulating the SKA climatic place conditions 
-looking for evaluating the thermal change influence in the propagation delay 
-and its repercussion in the PPS distribution system. We observed that for a 
-20ºC temperature difference the propagation delay is increased tens of 
-nanoseconds (96 ns) but the PPS offset keeps its accuracy with an offset that 
-does not exceed the hundred of picoseconds (211 ps). 
+Our solution is based on the WR-ZEN board. This WR node improves the previous  
+designs thanks to: (i) the inclusion of high-level software capabilities, and 
+(ii) a high accuracy firmware design with an enhanced clock circuitry.
+To provide the high-level capabilities, we have developed a Linux-based 
+environment with some user-space tools and drivers. The firmware design 
+includes all the elements to implement the WR protocol and some additional 
+functionalities for FMC boards. The enhanced clocking circuitry can be 
+configured using different schemas in order to look for the best 
+synchronization quality results targeting the SKA needs. 
 
-Finally, the experimental results evidence that the proposed PPS distribution system based on WR not only fits perfectly with the SKA requierements but also improve them.
+In addition to the platform development, we have also performed several 
+experiments. We have compared some of the commercially available WR nodes and 
+we obtained that the WR-ZEN platform offers the best results both in design 
+flexibility and timing performance. Then we have proved that a two layer WR 
+network does fully synchronize the entire number of nodes expected in the SKA's 
+deployment. The MTIE results also evidence that a two layer WR network with the 
+WR-ZEN as end node, satisfies the 2 ns time budget. Finally, we have measured 
+the influence of temperature changes in the fibre link. For a 20ºC temperature 
+gradient, the PPS offset experiments a variation around 2e-10 s.
+All those experimental results evidence that the proposed PPS distribution 
+system based on WR not fits perfectly with the SKA telescope requirements.
 
 
