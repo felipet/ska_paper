@@ -1,24 +1,38 @@
 %% Section to describe and comment the results from the experiments performed.
 %% lang: en-GB
 
-In this section we detail the accomplished experiments and their results in 
+In this section, we detail the accomplished experiments and their results in 
 order to evaluate the presented PPS distribution system for the SKA's timing 
-system. First we show some results from the evaluation of the developed system and we compared those results with another WR node available nowadays. Next we present an experiment that tries to simulate a example of WR network like the 
-one needed to distribute timing in the SKA telescope. Scalability and accuracy were analysed in that experiment. Finally, the influence of external conditions over the fibre links and its effect on the synchronization accuracy is studied.
+system:
+
+\begin{itemize}
+	\item \textbf{WR node comparison:} we compare the three WR devices analysed 
+	previously. The PPS stability is measured.
+	\item \textbf{Scalability test:} The second experiment covers a scalability 
+	analysis of the WR solution for the SKA timing system. We look to determine 
+	if WR is able to fully synchronize the entire number of nodes expected in 
+	the SKA telescope.
+	\item \textbf{Environmental conditions test:} we measure the PPS stability 
+	while changing the external conditions for the fibre link, as it is 
+	expected in the final deployment.
+\end{itemize}
 
 The principal equipment and tools utilized during the experiments are listed 
 below:
 
 \begin{itemize}
-    \item Two White Rabbit Switches to emulate a two-hops WR network. Both are 
+    \item Two \textbf{WRS} to emulate a two-hops WR network. Both are 
     hardware version 3.4 and are flashed with the last version of the WR 
     firmware (v5.0).
     
-    \item Two White Rabbit ZEN Time Provider (WR-ZEN TP) to test the 
+    \item A \textbf{WR-LEN} (hardware v1.0) an a \textbf{SPEC} board with a FMC 
+    DIO connected for the comparison between WR nodes.
+    
+    \item A \textbf{WR-ZEN TP} (Time Provider) to test the 
     performance of the new developed platform as WR nodes of the SKA 
     facilities. Firmware version is 1.2 while the hardware is v3.0.
     
-    \item A High-resolution counter from Keysight, the 52320A.
+    \item A High-resolution counter from \textbf{Keysight}, the \textbf{52320A}.
     
     \item Multiple components for the setup of the equipment:
     \begin{itemize}
@@ -31,107 +45,107 @@ below:
         characterization short distance fibres have been used, meanwhile for 
         the scalability and temperature tests we have used long distance links: 
         20 and 50 km respectively.
-        \item A OCXO Morion MV89 as frequency reference for the GM mode.
+        \item An OCXO Morion MV89 as frequency reference for the GM mode.
     \end{itemize}
     
 \end{itemize}
 
-The experiments that have been performed are briefly described in the following lines:
+\subsection{PPS performance}
+\label{subsec:pps_performance}
 
-\klyonenote{Completar con más información y revisar el resto de la sección...}
-\gutinote{yo pondría los experimentos con bullet points. Qué experimentos vamos a hacer y para demostrar qué. Ha de quedar claro.}
+The PPS performance is evaluated for the three WR nodes analysed previously. 
+Each node, was connected to the same WRS with a short fibre link (Figure 
+\ref{fig:prueba1pps}). Once the node was fully synchronized, we started to 
+measure the time interval between the PPS from the WRS and the PPS from the 
+slave node. Each measure lasts 24 hours under laboratory conditions.
 
-\begin{itemize}
-	\item {WR-ZEN performance test: This scenarios connects two WR-ZEN boards and analyses
-	the timing performance. The goal of this test is to demostrate that the platform is
-	a valid candidate to be used as part of the PPS distribution system.}
-	\item {Scalability test: It uses two WR switches and a WR-ZEN in a cascade configuration. The main purpose is to check that this kind of topology does not affect to the timing performance.}
-	\item {Temperature influence test: It connects two WR-ZEN boards by a long fibre link which temperature is modified during the test. This test demostrates that these environment conditions do not reduce the timing performance of the system.}
-\end{itemize}
-
-\subsection{PPS performance of the WR-ZEN platform}
-\label{subsec: charact_zen}
-
-With this first experimental results we present a performance analysis of the 
-PPS distribution using the WR-ZEN. The connection schema is formed by two 
-WR-ZENs, one as WR master and the other as WR slave, whose PPS output signals 
-are introduced in a time counter to measure the offset between them. With this 
-experiment we focus on the WR-ZEN performance, so that we set all the equipment 
-to a constant temperature and we use a short fibre link (few meters) in order 
-to avoid instability occasioned by chromatic dispersion on long fibre links.
-
-\missingfigure{Jose Luis: Falta imagen del setup}
-
-\begin{table*}
+\begin{figure}[H]
 	\centering
-	\ra{0.8}
-	\begin{tabular}{@{} rccc@{}}%\toprule
-		\textbf{$\tau$ (s)} & MDEV & TDEV (s)  & MTIE (s) \\ \midrule
-		\small{1}     & 2.41e-11 & 1.39e-11  & 8.78e-11 \\
-		%%\small{2}     & 8.18381977e-12 & 9.44986109e-12  & 9.27734375e-11 \\
-		%%\small{4}     & 2.92095805e-12 & 6.74566367e-12  & 1.02539063e-10 \\
-		\small{8}     & 1.05e-12 & 4.86e-12  & 1.02e-10 \\
-		%%\small{16}    & 3.70004736e-13 & 3.41795734e-12  & 1.02539063e-10 \\
-		%%\small{32}    & 1.36916757e-13 & 2.52956566e-12  & 1.02539063e-10 \\
-		\small{64}    & 5.26e-14 & 1.94e-12  & 1.02e-10 \\
-		%%\small{128}   & 2.41679947e-14 & 1.78603498e-12  & 1.02539063e-10 \\
-		\small{256}   & 1.14e-14 & 1.69e-12  & 1.22e-10 \\
-		\small{512}   & 6.76e-15 & 2.00e-12  & 1.22e-10 \\
-		%%\small{1024}  & 4.60374214e-15 & 2.72176309e-12  & 1.22070312e-10 \\
-		%%\small{2028}  & 3.37370493e-15 & 3.98911375e-12  & 1.22070312e-10 \\
-		\small{4096}  & 1.20e-15 & 2.84e-12  & 1.31e-10 \\
-		%%\small{8192}  & 8.69742436e-16 & 4.11358028e-12  & 1.56250000e-10 \\
-		%%\small{16384} & 			   &                 & 1.66015625e-10 \\
-		%%\small{32768} &				   &                 & 1.66015625e-10 \\
-		
-		\bottomrule
-	\end{tabular}
-	\caption{In this table it can be checked out the most relevant statistics 
-	for the device characterization performed in the subsection \ref{subsec: 
-	charact_zen}. \textcolor{red}{esto hay que explicarlo más e intentarlo meterlo dentro de su sección}}
-	\label{tab:exp1res}
-\end{table*}
+	\includegraphics[width=0.7\linewidth]{img/prueba1_pps}
+	\caption[Connection diagram for the PPS performance test.]{For the PPS 
+	performance test, the PPS output of the device under test (DUT) is input to 
+	a Timer that measures the time interval between the PPS from the WRS and 
+	the PPS from the DUT.}
+	\label{fig:prueba1pps}
+\end{figure}
 
-The numerical results are included in Table \ref{tab:exp1res} and are 
-represented graphically on Figures \ref{fig:mdev_exp1}, 
-\ref{fig:tdev_exp1} and \ref{fig:mtie_exp1}. The slope of the Modified Allan 
-Deviation curve shows that noise is dominated by white phase modulated noise. 
-In the time domain, TDEV shows that the expected error is tens of ps and the 
-worst-case showed in the MTIE plot is bounded around 200 ps for the sampling 
-period. In addition we have repeated the same experiment for another WR node, the WR-LEN. \ftglnote{se debería haber detallado la LEN en el párrafo ese de comparativa así que aquí no menciono nada más.} The results ... \ftglnote{completar cuando estén terminados.}
+Figure \ref{fig:tdev_exp1} corresponds to the Time Deviation (TDEV) statistic. 
+It express the stability of the phase difference between the WR master and the 
+WR slave versus the observation interval, $\tau$. For a $\tau=1$ we obtained a 
+TDEV value of X.Xe-11 for the WR-ZEN. This is X.Y s and W.Z s less than WR-LEN 
+and SPEC, respectively. The lowest value is X.X s for the WR-ZEN at an 
+observation time of Z s. Differences between the lowest values of WR-LEN and 
+the SPEC board respect to the WR-ZEN are notable: AA and BB respectively.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{img/tdev_exp1}
+    \caption[TDEV for the WR devices comparison.]{The Time Deviation plot show 
+        that all devices maintain good PPS performance. Nevertheless, the 
+        WR-ZEN 
+        achieves the best results.}
+    \label{fig:tdev_exp1}
+\end{figure}
+
+Modified Allan Deviation (MDEV) results are included in Figure 
+\ref{fig:mdev_exp1}. Noises levels for the WR-ZEN and WR-LEN are very close. 
+The SPEC board ... In the three cases the dominating noise is phase modulated 
+white noise.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.7\linewidth]{img/mdev_exp1}
+    \caption[MDEV for the WR devices comparison.]{The Modified Allan Deviation 
+        plot show there is not undesired noise effects on any of the three 
+        devices. 
+        In the three plots the dominant noise is phase modulated white noise.}
+    \label{fig:mdev_exp1}
+\end{figure}
+
+%\begin{table*}\centering
+%	\ra{0.8}
+%	\begin{tabular}{@{} cccccccccccc@{}}%\toprule
+%		& \multicolumn{3}{c}{\bfseries{SPEC}} &&
+%		\multicolumn{3}{c}{\bfseries{WR-LEN}} && 
+%		\multicolumn{3}{c}{\bfseries{WR-ZEN}} \\
+%		\cmidrule(l){2-5}  \cmidrule{6-9} \cmidrule{10-12}
+%%		\small{\textbf{$\tau$ (s)} & MDEV & TDEV & MTIE & & MDEV & TDEV & MTIE 	
+%%		& & MDEV & TDEV & MTIE} \\
+%		\small{\textbf{$\tau$ (s)}} & \tiny{MDEV} & \tiny{TDEV} & 
+%		\tiny{MTIE} & & \tiny{MDEV} & \tiny{TDEV} & 
+%		\tiny{MTIE} & & \tiny{MDEV} & \tiny{TDEV} & 
+%		\tiny{MTIE} \\
+%		1 & X & Y & Z && 
+%		\bottomrule
+%	\end{tabular}
+%	\caption{In this table it can be checked out the most relevant statistics 
+%	for the device characterization performed in the subsection \ref{subsec: 
+%	charact_zen}. \textcolor{red}{esto hay que explicarlo más e intentarlo 
+%	meterlo dentro de su sección}}
+%	\label{tab:exp1res}
+%\end{table*}
+
+Finally worst case analysis is done with the Maximum Time Interval Error (MTIE) 
+statistic (Figure \ref{fig:mtie_exp1}). With the TDEV results, we observed that 
+all the WR devices fulfil the 2 ns time budget requirement. In the worst case, 
+we also observed that requirement is well fulfilled. For the WR-ZEN the 
+difference between the WRS PPS and its PPS is bounded on 1.5e-10 s. Again, the 
+WR-ZEN achieves the best results: X less than the WR-LEN and Y less that SPEC.
 
 \begin{figure}
 	\centering
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{img/mdev_exp1}
-		\caption[MDEV plot for the WR-ZEN]{Modified Allan Deviation plot for a 
-		time transfer between two WR-ZEN.}
-		\label{fig:mdev_exp1}
-	\end{subfigure}
-	~ % This symbol adds a white space between images
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{img/tdev_exp1}
-		\caption[TDEV plot for the WR-ZEN]{Time Deviation plot for a time 
-		transfer between two WR-ZEN.}
-		\label{fig:tdev_exp1}
-	\end{subfigure}
+	\includegraphics[width=0.7\linewidth]{img/mtie_exp1}
+	\caption[MTIE for the WR devices comparison.]{The worst case scenario 
+	verifies that the three devices fulfil the time budget requirement. The 
+	WR-ZEN with the registered PPS output performs the best of the three.}
+	\label{fig:mtie_exp1}
 \end{figure}
 
-\begin{figure}
-		\centering
-		\includegraphics[width=0.5\textwidth]{img/MTIE_exp1}
-		\caption[MTIE plot for the WR-ZEN]{Maximum Time Interval Error for a 
-		time transfer between two WR-ZEN.}
-		\label{fig:mtie_exp1}
-
-\end{figure}
-
-\textcolor{red}{las imágenes hay que agrandar la fuente y bueno, las imágenes en sí}
 
 The obtained values reveal that the proposed WR node for the PPS distribution 
-solution fulfils the requirements to be used in the SKA PPS distribution 
-system. Although, it is necessary to evaluate it in more realistic conditions 
-before concluding its goodness:
+solution fulfils the requirements to be used in the SKA telescope's PPS 
+distribution system. Although, it is necessary to evaluate it in more realistic 
+conditions before concluding its goodness:
 
 \begin{itemize}
 	\item Evaluate the WR-ZEN as final node of a WR network. The purpose of 
