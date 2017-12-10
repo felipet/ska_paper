@@ -1,20 +1,20 @@
 %% Section to describe and comment the results from the experiments performed.
 %% lang: en-GB
 
-In this section, we detail the accomplished experiments and their results in 
-order to evaluate the presented PPS distribution system for the SKA's timing 
-system:
+In this section, we detail the accomplished experiments and their results. In 
+order to evaluate properly the project's timing requirements, we have performed 
+three experiments:
 
 \begin{itemize}
-	\item \textbf{WR node comparison:} we compare the three WR devices analysed 
-	previously. The PPS stability is measured.
-	\item \textbf{Scalability test:} The second experiment covers a scalability 
-	analysis of the WR solution for the SKA timing system. We look to determine 
-	if WR is able to fully synchronize the entire number of nodes expected in 
-	the SKA telescope.
-	\item \textbf{Environmental conditions test:} we measure the PPS stability 
-	while changing the external conditions for the fibre link, as it is 
-	expected in the final deployment.
+	\item \textbf{A WR node comparison:} We have compared the three WR devices 
+	analysed previously. The PPS stability is measured.
+	\item \textbf{A scalability test:} The second experiment covers a 
+	scalability analysis of the WR solution for the SKA timing system. We 
+	looked to determine if WR is able to fully synchronize the entire number of 
+	nodes expected in the SKA telescope.
+	\item \textbf{A test under changing environmental conditions:} We measure 
+	the PPS stability while changing the external conditions for the fibre 
+	link, as it is expected in the final deployment.
 \end{itemize}
 
 The principal equipment and tools utilized during the experiments are listed 
@@ -64,7 +64,7 @@ slave node. Each measure lasts 24 hours under laboratory conditions.
 	\includegraphics[width=0.7\linewidth]{img/prueba1_pps}
 	\caption[Connection diagram for the PPS performance test.]{For the PPS 
 	performance test, the PPS output of the device under test (DUT) is input to 
-	a Timer that measures the time interval between the PPS from the WRS and 
+	a timer that measures the time interval between the PPS from the WRS and 
 	the PPS from the DUT.}
 	\label{fig:prueba1pps}
 \end{figure}
@@ -143,25 +143,10 @@ SPEC.
 \end{figure}
 
 
-The obtained values reveal that the proposed WR node for the PPS distribution 
-solution fulfils the requirements to be used in the SKA telescope's PPS 
-distribution system. Although, it is necessary to evaluate it in more realistic 
-conditions before concluding its goodness:
-
-\begin{itemize}
-	\item Evaluate the WR-ZEN as final node of a WR network. The purpose of 
-	this device is to be placed on each acquisition instrument to provide an 
-	accurate time reference. The results presented in the subsection 
-	\ref{subsec: net_exp} states performance for a realistic WR deployment.
-	
-	\item Moreover, SKA facilities will be placed in a desert zone, and 
-	the nodes will be linked by long-distance fibre links. Because of that, 
-	it is
-	necessary to analyse if the meteorological conditions can degrade 
-	significantly the synchronization accuracy. A thermal characterization of 
-	the influence of the variation of propagation delays in the PPS accuracy is 
-	presented in subsection \ref{subsec:temp}.
-\end{itemize}   
+The obtained values reveal that the proposed solution fulfils the requirements 
+to be used in the SKA telescope's PPS distribution system. Although, it is 
+necessary to evaluate it in more realistic conditions before concluding its 
+goodness.
 
 \subsection{WR scalability for SKA}
 \label{subsec: net_exp}
@@ -249,10 +234,8 @@ that can be found in \cite{torres2016scalability}, where the results show that
 even a 10-hop network can reach the required time-budget for SKA.
 
 Although long-distance fibre links have been used for that test, thermal 
-influence should be take into account in order to confirm the goodness of the 
-WR solution in the SKA timing distribution. The next experiment will evaluate 
-how the temperature change in the fibre link can affect the accuracy of the 
-synchronization. 
+influence should be considered previous to confirm the goodness of the 
+WR solution for the SKA's timing distribution system. 
 
 \begin{figure}
 	\centering
@@ -286,9 +269,9 @@ In this contribution, we have focused on the temperature change effect over the
 cable
 \textit{round-trip} time (CRTT) and the PPS performance. To evaluate that, we 
 have used a climate chamber in the laboratory and some fibre spools of tens of 
-kilometers. \gutinote{fibre o fiber? inglés USA o UK? qué dice la revista?}
-Wind impact has not been evaluated properly with our equipment, because of this, 
-the experiments will only determine temperature effect on synchronization.
+kilometers. Wind impact has not been evaluated properly with our equipment, 
+because of this, the experiments will only determine temperature effect on 
+synchronization.
 
 Theoretically, WR is able to dynamically calibrate the master to slave 
 propagation delay from the total \textit{round-trip} time, and therefore PPS 
@@ -321,9 +304,6 @@ by long distance links exposed to external elements.
 We performed a series of experiments introducing a 50 km length fibre spool in 
 a climate chamber. The CRTT and the PPS offset between master and slave have 
 been measured for a temperature range from 20 ºC to 50 ºC with 10 ºC steps. 
-The average temperature difference between day and night in the Karoo region on 
-each month is below 20 ºC, so the experiment covers comfortably the expected 
-temperature operation conditions.
 
 \begin{table*}\centering
 	\ra{0.8}
@@ -418,9 +398,3 @@ observed offset variation for a long distance link and a 30ºC temperature
 gradient is only 200 ps that joined to the results from the previous 
 experiments make the new PPS distribution system suitable for the SKA 
 timing system.
-
-For the presented experiments, we have not considered the influence of a variable environment conditions over the WR equipment itself. Because we really do not know if the equipment will be placed in rooms with controlled environmental conditions or not, we have not considered realising experiments to analyse that. Although we have not analysed it by ourselves, it is important to mention that there is some publications about that, for example \cite{Li2015a}. Results included in that paper reflect the importance to correct the effects of a variable external temperature in order to maintain the high level of accuracy expected. \textcolor{red}{reescribirlo con mayor rigor científico, nada de suposiciones, o no sabemos, o contracciones, etc}
-
-Another important issue that we have experimented is the deviation from the nominal wavelength expected for the used SFPs in our experiments. Because of the same SFPs seem to be choosen by SKA for the WR deployment, it will be important to study the repercussion of that undesired issue over the WR calibration and the $\alpha$ measurement. One of the key aspects of WR is the dynamic calibration of the propagation delay and the facility to reuse the same calibration parameters between devices with the same hardware and firmware. If the choose SFPs can not guarantee a similar wavelength between items of the same model there will be needed to explore alternative solutions.
-
-\textcolor{red}{estos dos últimos párrafos parecen dar más problemas que presentar resultados. Yo diría de resumirlo o reescribirlo centrándose en resultados puramente.}
