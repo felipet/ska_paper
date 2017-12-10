@@ -197,7 +197,7 @@ counter along 4 hours.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth]{img/tdev_exp3}
+	\includegraphics[width=0.7\linewidth]{img/tdev_exp3}
 	\caption[TDEV of the end-nodes in the scalability test.]{Time Deviation 
 	plot comparing the PPS signal from the end-nodes (WR-ZEN) to the Grand 
 	Master of the network.}
@@ -205,14 +205,12 @@ counter along 4 hours.
 \end{figure}
 
 TDEV and MTIE values have been calculated by octaves, the numerical 
-values can 
-be found in Table \ref{tab:netresults}. Graphical representations are included 
-in Figures \ref{fig:tdevnet} and \ref{fig:mtienet} respectively. TDEV results 
-show that expected synchronization accuracy for the end-nodes is around tens of 
-ps. The maximum PPS error during this test is bounded in hundred of ps, which 
-is more than enough what SKA needs (2ns).
-
-\textcolor{red}{aunque se diga que los resultados están en la tabla, hay que hablar de ellos.}
+values can be found in Table \ref{tab:netresults}. For the short-therm 
+stability we obtained a TDEV result of 2.32e-11 s. The minimum is reached at 
+$\tau=64$, after that, frequency drift is observed from $\tau=200$ to 
+$\tau=1000$ (see Figure \ref{fig:tdevnet}). The MTIE results show that maximum 
+PPS error, during this test, is bounded below 2e-10 s (see Figure 
+\ref{fig:mtienet}).
 
 \begin{table*}\centering
 	\ra{0.8}
@@ -241,8 +239,14 @@ is more than enough what SKA needs (2ns).
 	\label{tab:netresults}
 \end{table*}
 
-With those findings, it has proved that a WR network with two levels can provide 
-synchronization to all the equipment expected for the SKA facilities. It is also important to mention that some links could be broken in two WR links due to distance to some antennas, e.g. an intermediate WR device will be placed between the master WRS and the end-node. Introducing an extra WR level for some antennas should not be a problem to fulfil the timing requirements, a prove of that can be found in \cite{torres2016scalability}, where the results show that even a 10-hop network can reach the required time-budget for SKA.
+With those findings, it has been proved that a WR network with two levels can 
+provide synchronization to all the equipment expected for the SKA facilities. 
+It is also important to mention that some links could be broken in two WR links 
+due to distance to some antennas, e.g. an intermediate WR device will be placed 
+between the master WRS and the end-node. Introducing an extra WR level for some 
+antennas should not be a problem to fulfil the timing requirements, a prove of 
+that can be found in \cite{torres2016scalability}, where the results show that 
+even a 10-hop network can reach the required time-budget for SKA.
 
 Although long-distance fibre links have been used for that test, thermal 
 influence should be take into account in order to confirm the goodness of the 
@@ -252,11 +256,10 @@ synchronization.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth]{img/MTIE_exp3}
+	\includegraphics[width=0.7\linewidth]{img/mtie_exp3}
 	\caption[MTIE of the end-nodes in the scalability test.]{Maximum Time 
-	Interval Error
-	plot comparing the PPS signal from the end-nodes (WR-ZEN) to the Grand 
-	Master of the network.}
+	Interval Errorplot comparing the PPS signal from the end-nodes (WR-ZEN) to 
+	the Grand Master of the network.}
 	\label{fig:mtienet}
 \end{figure}
 
