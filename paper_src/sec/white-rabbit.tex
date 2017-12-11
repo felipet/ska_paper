@@ -1,37 +1,36 @@
 The WR technology \cite{Wlostowski2011} is an international, collaborative project started at CERN in 2009, and then joined by other laboratories and companies. It was born as replacement technology for the timing system at CERN, but thanks to its versatility, improved performance, compared to the alternatives, and open nature of the project, it was quickly adopted by other scientific institutions. There is also a strong interest in private companies to extend WR in the industrial world such as Seven Solutions \cite{sevensols:wr}. Furthermore, from its very early stages, WR was launched as an open Sw/Hw initiative with sources available at the Open Hardware Repository (OHWR) \cite{ohwr:repo}. This encouraged different companies and research institutions to openly collaborate in its development.
 
-The WR protocol extends PTPv2 with extra messages, proposed to be included in the new PTP release (PTPv3) as High Accuracy (HA) profile \cite{wr:maciej-ptpv3-standard}
-. Its main goal is to provide a synchronization accuracy better than 1 ns and precision in the scale of picoseconds. The major improvements introduced in the WR protocol address weak aspects of the PTPv2: the limitation in the phase difference measurements to one period of the system clock; and the assumption of symmetry between the transmission and reception paths. It inherently performs self-calibration over optical fiber links and it is capable of distributing time to a very large number of devices with very small degradation. Nevertheless, this technology in the origin was not designed to address large distances or provide embedded nodes with monitoring and dependable mechanisms. Although SKA is working on improving both issues, we particularly focus on this contribution on providing a novel platform capable disseminate the PPS signal ad with flexibility and dependability features.  
+The WR protocol extends PTPv2 with extra messages and has been proposed to be included in the new PTP release (PTPv3) as High Accuracy (HA) profile \cite{wr:maciej-ptpv3-standard}
+. Its main goal is to provide a synchronization accuracy better than 1 ns and precision in the scale of picoseconds. The major improvements introduced in the WR protocol address weak aspects of the PTPv2: the limitation in the phase difference measurements to one period of the system clock; and the assumption of symmetry between the transmission and reception paths. It inherently performs self-calibration over optical fibre links and it is capable of distributing time to a very large number of devices with very small degradation. Nevertheless, this technology in the origin was not designed to address large distances and the inclusion of monitoring and dependable mechanisms in the nodes. Although SKA is working on improving both issues, we particularly focus on this contribution on presenting a new platform capable to disseminate the PPS signal incorporating flexibility and dependability features.  
 
 The WR synchronization mechanisms include the following elements:
 
 \begin{itemize}
-	\item {Frequency synchronization (syntonization): It uses physical layer (L1) of Synchronous Ethernet (SyncE) to encode the clock signal in the data 
-	carrier. }
-	\item {Phase synchronization: Thanks to the synthonization, both nodes in a link are able to recover the other physical clock and compare it to its own in order to get the phase difference. The phase measurement is performed by an IP core known as Digital Dual Mixed Time Difference (DDMTD) present in the gateware design.}
-	\item {Time synchronization: It is implemented by PTPv2 protocol and provides a global notion of time to the entire network. WR also takes into account the asymmetries in the propagation time due to the utilization of different wavelengths in the same fiber link improving the accuracy of standard PTP protocol.}
+	\item {Frequency synchronization (syntonization): It uses physical layer (L1) of Synchronous Ethernet (SyncE) to encode the clock signal in the data stream. }
+	\item {Phase synchronization: Thanks to the synthonization, both nodes in a link are able to recover the other physical clock and compare it to its own clock in order to get the phase difference. The phase measurement is performed by an IP core known as Digital Dual Mixed Time Difference (DDMTD) present in the gateware design.}
+	\item {Time synchronization: It is implemented by an enhanced version of the PTPv2 protocol and provides a global notion of time to the entire network. WR also takes into account the asymmetries in the propagation time due to the utilization of different wavelengths in the same fibre link improving the accuracy of standard PTP protocol.}
 \end{itemize}
 
 WR implements mechanisms to ensure deterministic and reliable data transfer 
-between a thousand of nodes connected with  optical fiber links up to 10 km. 
+between a thousand of nodes connected with  optical fibre links up to 10 km. 
 However, it can easily be extended up to 50 km without significant degradation 
 and up to 120 km without the needs of optical amplification. 
 
 \subsection{Network topology} 
 \label{subsec:wr-net}
 
-A typical WR network presents a tree topology and is composed of three different kind of elements: a Grandmaster, several intermediate devices such as switches and the end-nodes as shown in the Fig. \ref{fig:wr_hierarchy}. The Grandmaster is normally connected to a very stable clock such as an atomic clock or a GPS receiver \cite{Daniluk2012}. The intermediate levels of the network disseminate the timing packets to the final nodes, which are composed of other devices such as WR Switches, WR-ZEN or WR Light Embedded Node (WR-LEN). These devices have several ports and can behave as PTPv2 Boundary Clocks (BC). Moreover, they are connected using the master-slave scheme: some ports acting as slave (upstream) and connect to the upper layer while the others are masters (downstreams) and they are charged of propagating the synchronization to the next level of the hierarchy. The nodes of the last level of the network are known as slave devices that recover the clock signal of the link and synchronizes their local oscillators to provide synchronization for a specific application.
+A typical WR network presents a tree topology and is composed of three different kind of elements: a Grandmaster (GM), several intermediate devices such as switches and the end-nodes as shown in the Figure \ref{fig:wr_hierarchy}. The GM is normally connected to a very stable clock such as an atomic clock or a GPS receiver \cite{Daniluk2012}. The intermediate levels of the network disseminate the timing packets to the final nodes, which are composed of other devices such as WR Switches, WR-ZEN or WR Light Embedded Node (WR-LEN). These devices have several ports and can behave as PTPv2 Boundary Clocks (BC). Moreover, they are connected using the master-slave scheme: some ports acting as slave (upstream) and connect to the upper layer while the others are masters (downstreams) and they are charged of propagating the synchronization to the next level of the hierarchy. The nodes of the last level of the network are known as slave devices that recover the clock signal of the link and synchronizes their local oscillators to provide synchronization for a specific application.
 
-In addition to the conventional tree topology of the timing networks, new network topologies are under-study in WR to add some mechanisms to improve fault tolerance and security currently. An example of this research is \cite{jlgutierrez-paper-redundancy} that incorporates the Transparent Clocks (TC) to WR protocol and allows implementing redundancy protocols such as HSR or PRP to ensure the data delivery and reception in critical applications such as control network, real-time applications or Smart Grids among others.
+In addition to the conventional tree topology of the timing networks, new network topologies are under-study in WR to add some mechanisms to improve fault tolerance and security currently. An example of this research is \cite{jlgutierrez-paper-redundancy} that incorporates the Transparent Clocks (TC) to WR protocol and allows implementing redundancy protocols such as High-availability Seamless Redundancy (HSR) or Parallel Redundancy Protocol (PRP) to ensure the data delivery and reception in critical applications such as control network, real-time applications or Smart Grids among others.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.4]{img/wr_hierarchy}
-	\caption{The WR network is a tree hierarchy where the root node is the Grandmaster that is responsible for distributing the reference time signals. The intermediate elements are WR Switches that acts as Gigabit Ethernet switchers and as Boundary clocks propagating the time signals from the upper layers of the network. Finally, the main purpose of the end-nodes is to provide timing to another specific application.}
+	\caption{The WR network is a tree hierarchy where the root node is the GM that is responsible for distributing the reference time signals. The intermediate elements are WR Switches that acts as Gigabit Ethernet switchers and as Boundary clocks propagating the time signals from the upper layers of the network. Finally, the main purpose of the end-nodes is to provide timing to another specific application.}
 	\label{fig:wr_hierarchy}
 \end{figure}
 
-\subsection{Selection of WR devices for the SKA telescope} 
+\subsection{Selection of WR devices for the SKA Telescope} 
 \label{subsec:wr-dev}
 
 Regardless of the case of use for the WR technology, it will be needed to 
@@ -45,11 +44,11 @@ master (downstream) and the rest as slaves (upstream). It is also important to
 remark another I/O ports such as: five coaxial RF connectors and one management 
 Ethernet RJ45 connector. Although there are other WR devices that could act as 
 BC, the WRS is the most appropriate for a network with a high number of nodes, 
-such as is the SKA telescope, because of its high number of SFP slots.
+such as is the SKA Telescope, because of its high number of SFP slots.
 
-The election of the device acting as OC is not as easy. There are many options 
-nowadays, so that, we have analysed three WR devices taking into account the 
-specific requirements of the SKA project.
+The selection of the device acting as OC is not an easy task. Nowadays, there are
+several platforms including the WR technology, so that, we have analysed three devices 
+taking into account the specific requirements of the SKA project.
 
 Table \ref{tab:wr_devcomp} contains a comparison between the following three WR 
 devices: 
@@ -82,8 +81,7 @@ devices:
 	included on that, the node's design is improved by the use of an Linux-like 
 	OS. The board main I/O connectors are: a FMC high pin count (HPC), two 
 	SFPs, five coaxial RF and two Ethernet RJ45. The clocking resources include 
-	a low-noise oscillator and a flexible PLL schema. That changes are deeply 
-	explained in ??.
+	a low-noise oscillator and a flexible PLL schema.
 \end{itemize}
 
  \begin{threeparttable}\centering
@@ -122,10 +120,10 @@ devices:
 	\label{tab:wr_devcomp}
 \end{threeparttable}
 
-The WR-ZEN is selected among the rest of WR nodes for the SKA telescope. It is 
-a standalone node with Linux support that also includes enough I/O ports (RF, 
-FMC, etc.) and improved clocking resources looking to fulfil the timing 
-requirements of the project.
+The WR-ZEN is selected among the rest of WR nodes for the SKA Telescope because
+it is most flexible platform. It is a standalone node with Linux support that 
+also includes enough I/O ports (RF, FMC, etc.) and improved clocking resources 
+looking to fulfil the timing requirements of the project.
 
 %WR is designed to be fitted in a Field Programmable Gate Array (FPGA) device 
 %due to its flexibility to use in designs in a continuous development state. 

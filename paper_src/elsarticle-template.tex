@@ -123,18 +123,13 @@
 %\listoffixmes
 
 \begin{abstract} 
-	The Distributed data adquisition systems (DAQ) are in charge of converting different analog enviroment signals into digital domain and send this data to a computer system to control, monitor or perform any additional task. DAQ are main components for many industrial and scientific applications. Due to the distance between several elements in the system, the DAQ must provide a computer network technology to share data. However, some additional mechanisms must be included to match data with a specific event. The main issue related to these mechanisms is the synchronization. All the elements in the network must be synchronized in order to perform a timing correspondence of the events. To solve this, there are several technologies for the timing synchronization with different accuracy performance such as Network Time Protocol (NTP), Precise Time Protocol (PTP) or White Rabbit (WR). 
-	In our contribution, we work in the Square Kilometer Array (SKA) international project framework. The SKA will be the largest radio-telescope of the world and it will be located in two different geographical areas (South-Africa and Australia/New Zealand).
-	On each one of those locations, there will be placed hundred of antennas 
-	whose individual observations will be combined as if they were acquired 
-	by only big one antenna. In order to archive that, all antennas must be synchronized to the same reference very accurately, being required a synchronization performance below 2 ns. This accuracy is not achievable by current standard synchronization technologies such as NTP or PTP. In this context, we propose The WR Zynq Embedded Node (WR-ZEN) platform, a new design based on a Field Programmable Gate Array System-on-Chip (FPGA-SoC), that uses WR technology to reach sub-nanosecond accuracy. This platform has several advantanges compared to the older WR implementations due to the inclusion of an ARM microprocessor and the enhanced clocking circuitry. It enables to add high-level software capabilities in a standard way using conventional operating systems (OS) based on Linux.
-	
-	The WR-ZEN platform has been tested in different scenarios in order to demostrate the system performance and the behavior in extreme tempeture conditions. It is necessary because SKA's deployment will be built in dessert areas where temperature varies significantly. Finally, the results extracted from the work presented in this contribution reveal that the proposed Pulse Per Second (PPS) distribution system meets all SKA's requirements perfectly. Furthermore, our approach is able to compensate synchronization variations caused by temperature change conditions over long fibre links.
+	The Distributed data acquisition systems (DAQ) are in charge of converting different analog environment signals into digital domain and perform control and monitor tasks. DAQ are main components for many industrial and scientific applications. However,they require a computer network technology to share data between their different elements. The DAQ system need additional mechanisms to match data with specific events under study. A possible solution is to include a timing synchronization technology such as Network Time Protocol (NTP), Precise Time Protocol (PTP) or White Rabbit (WR). 
+	Our contribution is focused on the Square Kilometer Array (SKA) international project framework. The SKA will be the largest radio-telescope of the world and it will be located in two different geographical areas (South-Africa and Australia/New Zealand). SKA Telescope will be composed of hundred of antennas and their individual observations will be combined as if they were acquired by only big one antenna. In order to archive that, they must be synchronized to the same reference very accurately, being required a synchronization performance below 2 ns. This accuracy is not achievable by current standard synchronization technologies such as NTP or PTP. Under this context, the authors propose the WR Zynq Embedded Node (WR-ZEN) platform as a candidate for the SKA's Pulse Per Second (PPS) distribution system.  It is a new design based on a Field Programmable Gate Array System-on-Chip (FPGA-SoC) that uses WR technology to reach sub-nanosecond accuracy. Moreover, it presents several advantages compared to the older WR implementations such as an enhanced clocking circuitry and high-level software capabilities. Finally, the WR-ZEN has been evaluated in different scenarios to demonstrate its timing performance and the dynamic behavior in extreme environment conditions. 
 \end{abstract}
 
 \begin{keyword}
 	Square Kilometre Array, White Rabbit, Synchronization, Network, Gigabit 
-	Ethernet, Optical fibre, Global Navigation Satellite System
+	Ethernet, Optical fibre
 \end{keyword}
 
 \end{frontmatter}
@@ -148,7 +143,7 @@
 %\section{Related work} \label{sec:related-work}
 %\input{sec/related-work.tex}
 
-\section{The SKA telescope} \label{sec:ska}
+\section{The SKA Telescope} \label{sec:ska}
 
 \input{sec/ska-telescope.tex}
 

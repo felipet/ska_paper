@@ -11,7 +11,7 @@ system:
 	\item \textbf{Scalability test:} The second experiment covers a scalability 
 	analysis of the WR solution for the SKA timing system. We look to determine 
 	if WR is able to fully synchronize the entire number of nodes expected in 
-	the SKA telescope.
+	the SKA Telescope.
 	\item \textbf{Environmental conditions test:} we measure the PPS stability 
 	while changing the external conditions for the fibre link, as it is 
 	expected in the final deployment.
@@ -70,7 +70,7 @@ slave node. Each measure lasts 24 hours under laboratory conditions.
 \end{figure}
 
 Figure \ref{fig:tdev_exp1} corresponds to the Time Deviation (TDEV) statistic. 
-It express the stability of the phase difference between the WR master and the 
+It expresses the stability of the phase difference between the WR master and the 
 WR slave versus the observation interval, $\tau$. For a $\tau=1$ we obtained a 
 TDEV value of X.Xe-11 for the WR-ZEN. This is X.Y s and W.Z s less than WR-LEN 
 and SPEC, respectively. The lowest value is X.X s for the WR-ZEN at an 
@@ -143,7 +143,7 @@ WR-ZEN achieves the best results: X less than the WR-LEN and Y less that SPEC.
 
 
 The obtained values reveal that the proposed WR node for the PPS distribution 
-solution fulfils the requirements to be used in the SKA telescope's PPS 
+solution fulfils the requirements to be used in the SKA Telescope's PPS 
 distribution system. Although, it is necessary to evaluate it in more realistic 
 conditions before concluding its goodness:
 
@@ -170,7 +170,7 @@ SKA timing system. In section \ref{sec:ska} there is a estimation of the final
 nodes that need to be synchronized for the SKA: around 250 endpoints that 
 must be synchronized with an accuracy below 2ns. A WR network with only two 
 hops is suitable to synchronize up to 306 end-nodes by the use of WR Switches as 
-Boundary Clocks.
+BCs.
 
 We set up a test network composed by a WRS at the top, which is locked to an 
 external time reference, another WRS as intermediate BC and a WR-ZEN as 
@@ -198,8 +198,7 @@ counter along 4 hours.
 	\centering
 	\includegraphics[width=0.5\linewidth]{img/tdev_exp3}
 	\caption[TDEV of the end-nodes in the scalability test.]{Time Deviation 
-	plot comparing the PPS signal from the end-nodes (WR-ZEN) to the Grand 
-	Master of the network.}
+	plot comparing the PPS signal from the end-nodes (WR-ZEN) to the GM of the network.}
 	\label{fig:tdevnet}
 \end{figure}
 
@@ -245,7 +244,7 @@ synchronization to all the equipment expected for the SKA facilities. It is also
 
 Although long-distance fibre links have been used for that test, thermal 
 influence should be take into account in order to confirm the goodness of the 
-WR solution in the SKA timing distribution. The next experiment will evaluate 
+WR solution in the SKA timing distribution. The next experiment evaluates 
 how the temperature change in the fibre link can affect the accuracy of the 
 synchronization. 
 
@@ -290,14 +289,14 @@ Theoretically, WR is able to dynamically calibrate the master to slave
 propagation delay from the total \textit{round-trip} time, and therefore PPS 
 offset shall maintain constant even when the propagation delay changes. The 
 accurate estimation of the one-way propagation delay is achieved by the use of 
-a constant value, $\alpha$, which express the ratio between propagation times 
+a constant value, $\alpha$, which expresses the ratio between propagation times 
 with the two wavelengths used in the WR link. A complete explanation of the 
 link model could be read in \cite{Wlostowski2011} and \cite{Daniluk2012}.
 
 In the real world, $\alpha$ is temperature dependent, because of the change in 
 the refraction index due to a temperature variation in the fibre. For small and 
-mid-distance links, in laboratory conditions, $\alpha$ is nearly negligible and 
-the current link model behaves very well. The WR network in SKA will be formed 
+mid-distance links, in laboratory conditions, $\alpha$ variation is nearly negligible and 
+the current link model behaves very well. However, the WR network in SKA will be formed 
 by long distance links exposed to external elements. 
 
 %In the concrete situation of the South Africa facilities, the chosen location 
@@ -348,7 +347,7 @@ operational temperature of a 50 km fibre link is set in a point from 20ºC to
 rest of dependent values such as CRTT and PPS offset. All the WR equipment was 
 calibrated in order to compensate the characteristic delays of each device 
 following the official calibration procedure \cite{man:calib}.  The test setup 
-is depicted in figure \ref{fig:tempsetup}.
+is depicted in Figure \ref{fig:tempsetup}.
 
 The most relevant results are included in Table \ref{tab:temp}: (i) the mean 
 value of CRTT and PPS offset samples, and (ii) their sample standard deviation. 
