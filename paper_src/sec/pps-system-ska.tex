@@ -5,7 +5,7 @@ The WR protocol requires a network topology similar to the ITU-T G.8275.1/Y.1369
 	\item{The end-nodes. They consist of a WR-ZEN node \cite{sevensols:wr_zen} powered by a Zynq FPGA-SoC and placed on inside a 1U rack enclosure. They will be located at the cores of SKA1-LOW and SKA1-SURVEY, along their spiral arms, one for each SKA1-MID dish and one for each CSP.}
 \end{itemize}
 
-The WR switches are responsible for generating the WR timing signal from the SAT clock ensembles. They lock to an external 10MHz reference and to a PPS signal, and use NTP or IRIG-B to determine the UTC time of each PPS edge. Synchronization between WR devices is performed over a a single fibre link up to 120 km using commercial SFPs.
+The WR switches are responsible for generating the WR timing signal from the SAT clock ensembles. They lock to an external 10MHz reference and to a PPS signal, and use NTP or IRIG-B to determine the UTC time of each PPS edge. Synchronisation between WR devices is performed over a a single fibre link up to 120 km using commercial SFPs.
 However, the distances for SKA1-MID are longer and it is necessary to use 
 intermediate WR switches as repeaters with a penalty over the system 
 performance due to increment of the inherent noise of each WR device that it is 
@@ -30,16 +30,16 @@ optical signals to be transmitted. Finally the end nodes generate a PPS signal a
 
 As previously described, this solution requires WR switches and nodes. The former are well-defined equipment with known interfaces and software support. 
 
-For the implementation of the SKA nodes, we have proposed the utilization of the WR-ZEN board. Thanks to this new platform, the utilization of a host computer/crate to host the FPGA card can be avoided which reduces significantly the equipment price and is also a remarkable improvement in term of dependability which is a key factor taking into account that SKA Telescope should have an annual availability of about 95\% of the time (although degraded operation modes can be allowed under some circumstances).
+For the implementation of the SKA nodes, we have proposed the utilisation of the WR-ZEN board. Thanks to this new platform, the utilisation of a host computer/crate to host the FPGA card can be avoided which reduces significantly the equipment price and is also a remarkable improvement in term of dependability which is a key factor taking into account that SKA Telescope should have an annual availability of about 95\% of the time (although degraded operation modes can be allowed under some circumstances).
 Finally note that all these features are possible keeping the full flexibility of a complete CPU+FPGA system on a single board. 
 
 In the following section we describe the proposed node hardware, gateware and firmware that have been developed as a candidate solution for the SKA Telescope PPS distribution system. 
 
 \subsection{A PPS distribution node architecture} \label{subsec:ska-pps-system-arch}
 
-The PPS distribution system for SKA is based on the WR-ZEN platform that provides the WR support in order to ensure the synchronization accuracy in the system. The first design of the PPS system includes the Fine Delay FMC card that is used to generate the timing signals through mezzanine channels. Moreover, it has two Network Interface Cores (NIC) that allows accessing optical fibre ports as conventional Linux network interfaces. An introduction to this platform is presented in \cite{migueljl-paper-wr-zen-intro} and a contribution that improves the NIC bandwidth of the design in \cite{jorgesg-paper-wr-zen-dma}. In addition, the WR-ZEN is also under study for other FMC cards such as the FMC ADC one to build a distributed oscilloscope \cite{joselj-paper-wr-zen-adc}.
+The PPS distribution system for SKA is based on the WR-ZEN platform that provides the WR support in order to ensure the synchronisation accuracy in the system. The first design of the PPS system includes the Fine Delay FMC card that is used to generate the timing signals through mezzanine channels. Moreover, it has two Network Interface Cores (NIC) that allows accessing optical fibre ports as conventional Linux network interfaces. An introduction to this platform is presented in \cite{migueljl-paper-wr-zen-intro} and a contribution that improves the NIC bandwidth of the design in \cite{jorgesg-paper-wr-zen-dma}. In addition, the WR-ZEN is also under study for other FMC cards such as the FMC ADC one to build a distributed oscilloscope \cite{joselj-paper-wr-zen-adc}.
 
-Nowadays, the utilization of the Fine Delay FMC card is still under discussion and there is a possible design whose its final architecture could be addressed without this module.
+Nowadays, the utilisation of the Fine Delay FMC card is still under discussion and there is a possible design whose its final architecture could be addressed without this module.
 
 \subsubsection{Hardware}
 \label{subsec:hardware}
@@ -48,13 +48,13 @@ The WR-ZEN board is a proprietary design of the Seven Solutions company
 developed in 2015. The major design changes respect to previous designs for 
 WR-nodes are the inclusion of a Zynq FPGA-SoC platform from Xilinx, and a 
 flexible and enhanced clocking scheme. The former, enables a more structured design where 
-the software can be organized in abstraction layers. This is achieved by the 
+the software can be organised in abstraction layers. This is achieved by the 
 inclusion of an Linux-like OS and many low-level drivers and a Hardware 
 Abstraction Layer (HAL). These components allow an easy and quick 
 development of new functionalities on top of all the software that interfaces 
 with the underlying hardware. A deeper detailing of the software structure is 
 given at subsection \ref{subsec:software}. The new clocking circuitry, makes the new board 
-suitable for many synchronization applications with diverse requirements.
+suitable for many synchronisation applications with diverse requirements.
 
 \begin{figure}[H]
 	\centering
@@ -74,10 +74,10 @@ powerful hard-processor for software and more free resources in the FPGA side
 due to pass some of the software from the embedded-processor to the ARM. In 
 addition to that, the Zynq platform includes the needed physical components by 
 the WR design: internal programmable PLLs, Gigabit Transceiver Ports (GTPs), 
-and other not strictly fundamental por a WR-node but which could be very 
+and other not strictly fundamental for a WR-node but which could be very 
 helpful in future designs such as Ethernet interfaces with hardware timestamping 
 support (allowing PTPv2 support). I/O ports are also very important because 
-they will interface with external components which can obtain synchronization 
+they will interface with external components which can obtain synchronisation 
 from the base board. The most relevant I/O interfaces of the WR-ZEN are the FMC 
 HPC socket (support for the OHWR \cite{ohwr:repo} FMC cards 
 \cite{ohwr:fmc-fine-delay}), two SFPs sockets capable of BC configurations, and 
@@ -87,7 +87,7 @@ many external RF connectors for input/output of RF signals and the PPS.
 	\centering
 	\includegraphics[width=0.7\linewidth]{img/zenclkschema}
 	\caption[WR-ZEN clocking schema]{The figure depicts the new clocking schema 
-		presented in the WR-ZEN desing. The most relevant changes considering 
+		presented in the WR-ZEN design. The most relevant changes considering 
 		previous designs are: the inclusion of an external PLL to lock an 
 		external 
 		stable clock reference (GM mode), and a flexible path in the 
@@ -100,7 +100,7 @@ many external RF connectors for input/output of RF signals and the PPS.
 
 The extended WR clock schema is depicted in Figure \ref{fig:zenclkschema}. 
 Besides including new components, the WR-ZEN design, upgrades some of them 
-looking for an increment of the clock stability. All the clock path: Digital to Analog
+looking for an increment of the clock stability. All the clock path: Digital to Analogue
 Converter (DAC), Voltage-controlled crystal oscillator (VCXO), 
 Phase-Locked loop (PLL) has received an upgrade. A new DAC with a better response time and 
 stability, and low-noise VCXO and PLL have been included. But the PLL from 
@@ -115,7 +115,7 @@ performance is limited by the noise when locking to an external reference, in
 the so called Granmaster mode, described in \cite{Rizzi2016}. The conclusion of 
 that contribution is that in order to decrease the noise when locking to an 
 external reference, internal PLLs in the FPGA should be avoid. Instead of it, 
-it is recommended an Analog external PLL which locks to the external reference 
+it is recommended an Analogue external PLL which locks to the external reference 
 and generated the needed clock signals by the internal elements of the WR-logic 
 in the FPGA. That enhanced features are included in the version 3.0 of the WR-ZEN as 
 shown in Figure \ref{fig:zenclkschema} looking to achieve the expected PPS 

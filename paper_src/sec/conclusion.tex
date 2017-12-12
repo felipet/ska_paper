@@ -1,12 +1,12 @@
-In this contribution, we have introduced the distributed DAQ systems and its specific requirements. We have also reviewed the different synchronization mechanisms. We focus on the SKA project and we briefly describes its strict timing requirements. Nowadays, there is not any standard system that can fulfill the SKA needs. The WR technology is presented because it is based on the standard protocols and its results ensure a sub-nanosecond accuracy. Under this context, we describe an implementation of a high accuracy PPS distribution system based on the WR technology that presents . This platform has been proposed to be integrated in the SKA infraestructure and currently, it is under a evaluation process. 
+In this contribution, we have introduced the distributed DAQ systems and its specific requirements. We have also reviewed the different synchronisation mechanisms. We focus on the SKA project and we briefly describes its strict timing requirements. Nowadays, there is not any standard system that can fulfil the SKA needs. The WR technology is presented because it is based on the standard protocols and its results ensure a sub-nanosecond accuracy. Under this context, we describe an implementation of a high accuracy PPS distribution system based on the WR technology that presents . This platform has been proposed to be integrated in the SKA infrastructure and currently, it is under a evaluation process. 
 Our solution is based on the WR-ZEN which improves previous existing WR node designs 
 thanks to the inclusion of the high-level software capabilities, the high accuracy gateware
-design and an enhaced clock circuitry.
+design and an enhanced clock circuitry.
 To provide the high-level capabilities, we have developed a Linux-based environment with some
 userspace tools and drivers. The gateware design includes all the elements to implement the 
-WR protocol and some additional FMC functionalities. The enhanced clocking circuitry can be configured using different schemas in order to look for the best synchronization quality results targeting the SKA needs. 
+WR protocol and some additional FMC functionalities. The enhanced clocking circuitry can be configured using different schemes in order to look for the best synchronisation quality results targeting the SKA needs. 
 
-In addition to the platform development, we have also perform several tests in order to check the system fulfills the strict SKA timing: 2 ns for the PPS distribution system. The results prove that the synchronization accuracy is bounded below 200 ps, being significally better than SKA needs. Moreover, the scalability tests reveal that the synchronization accuracy is maintained for a high number of nodes with several network levels. Furthermore, we have 
+In addition to the platform development, we have also perform several tests in order to check the system fulfils the strict SKA timing: 2 ns for the PPS distribution system. The results prove that the synchronisation accuracy is bounded below 200 ps, being significantly better than SKA needs. Moreover, the scalability tests reveal that the synchronisation accuracy is maintained for a high number of nodes with several network levels. Furthermore, we have 
 designed several experiments simulating the SKA climatic place conditions 
 looking for evaluating the thermal change influence in the propagation delay 
 and its repercussion in the PPS distribution system. We observed that for a 
@@ -14,6 +14,6 @@ and its repercussion in the PPS distribution system. We observed that for a
 nanoseconds (96 ns) but the PPS offset keeps its accuracy with an offset that 
 does not exceed the hundred of picoseconds (211 ps). 
 
-Finally, the experimental results evidence that the proposed PPS distribution system based on WR not only fits perfectly with the SKA requierements but also improve them.
+Finally, the experimental results evidence that the proposed PPS distribution system based on WR not only fits perfectly with the SKA requirements but also improve them.
 
 
