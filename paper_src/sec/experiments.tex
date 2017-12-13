@@ -57,7 +57,7 @@ The PPS performance is evaluated for the three WR nodes analysed previously.
 Each node, was connected to the same WRS with a short fibre link (Figure 
 \ref{fig:prueba1pps}). Once the node was fully synchronized, we started to 
 measure the time interval between the PPS from the WRS and the PPS from the 
-slave node. Each measure lasts 24 hours under laboratory conditions.
+slave node. All measurements last 24 hours under laboratory conditions.
 
 \begin{figure}[H]
 	\centering
@@ -72,10 +72,7 @@ slave node. Each measure lasts 24 hours under laboratory conditions.
 Figure \ref{fig:tdev_exp1} corresponds to the Time Deviation (TDEV) statistic. 
 It express the stability of the phase difference between the WR master and the 
 WR slave versus the observation interval, $\tau$. For a $\tau=1$ we obtained a 
-TDEV value of 1.47e-11 for the WR-ZEN. This is 3.6e-12 s and W.Z s less than 
-WR-LEN and SPEC, respectively. The lowest value is 1.0e-12 s for the WR-ZEN. 
-Differences between the lowest values of WR-LEN and the SPEC board respect to 
-the WR-ZEN are: 6.2e-13 and BB respectively.
+TDEV value of 1.47e-11 for the WR-ZEN. This is 3.6e-12 s and 1.18e-11 s less than WR-LEN and SPEC, respectively. The lowest value is 1.0e-12 s for the WR-ZEN. Differences between the lowest values of WR-LEN and the SPEC board respect to the WR-ZEN are: 6.2e-13 and 4.6e-13 respectively.
 
 \begin{figure}
     \centering
@@ -88,9 +85,7 @@ the WR-ZEN are: 6.2e-13 and BB respectively.
 \end{figure}
 
 Modified Allan Deviation (MDEV) results are included in Figure 
-\ref{fig:mdev_exp1}. Noises levels for the WR-ZEN and WR-LEN are very close. 
-The SPEC board ... In the three cases the dominating noise is phase modulated 
-white noise.
+\ref{fig:mdev_exp1}. From the TDEV (\ref{fig:tdev_exp1}) and MDEV (\ref{fig:mdev_exp1}) results we observe that white PM noise dominates from $\tau=1$ to a few hundred os seconds averaging time (depending of the observed device). After that, the rest remains as flicker FM noise.
 
 \begin{figure}
     \centering
