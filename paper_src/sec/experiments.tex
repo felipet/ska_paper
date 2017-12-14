@@ -1,20 +1,20 @@
 %% Section to describe and comment the results from the experiments performed.
 %% lang: en-GB
 
-In this section, we detail the accomplished experiments and their results in 
-order to evaluate the presented PPS distribution system for the SKA's timing 
-system:
+In this section, we detail the accomplished experiments and their results. In 
+order to evaluate properly the project's timing requirements, we have performed 
+three experiments:
 
 \begin{itemize}
-	\item \textbf{WR node comparison:} we compare the three WR devices analysed 
-	previously. The PPS stability is measured.
-	\item \textbf{Scalability test:} The second experiment covers a scalability 
-	analysis of the WR solution for the SKA timing system. We look to determine 
-	if WR is able to fully synchronize the entire number of nodes expected in 
-	the SKA Telescope.
-	\item \textbf{Environmental conditions test:} we measure the PPS stability 
-	while changing the external conditions for the fibre link, as it is 
-	expected in the final deployment.
+	\item \textbf{A WR node comparison:} We have compared the three WR devices 
+	analysed previously. The PPS stability is measured.
+	\item \textbf{A scalability test:} The second experiment covers a 
+	scalability analysis of the WR solution for the SKA timing system. We 
+	looked to determine if WR is able to fully synchronize the entire number of 
+	nodes expected in the SKA telescope.
+	\item \textbf{A test under changing environmental conditions:} We measure 
+	the PPS stability while changing the external conditions for the fibre 
+	link, as it is expected in the final deployment.
 \end{itemize}
 
 The principal equipment and tools utilized during the experiments are listed 
@@ -28,7 +28,7 @@ below:
     \item A \textbf{WR-LEN} (hardware v1.0) an a \textbf{SPEC} board with a FMC 
     DIO connected for the comparison between WR nodes.
     
-    \item A \textbf{WR-ZEN TP} (Time Provider) to test the 
+    \item Two \textbf{WR-ZEN TP} (Time Provider) to test the 
     performance of the new developed platform as WR nodes of the SKA 
     facilities. Firmware version is 1.2 while the hardware is v3.0.
     
@@ -57,25 +57,22 @@ The PPS performance is evaluated for the three WR nodes analysed previously.
 Each node, was connected to the same WRS with a short fibre link (Figure 
 \ref{fig:prueba1pps}). Once the node was fully synchronized, we started to 
 measure the time interval between the PPS from the WRS and the PPS from the 
-slave node. Each measure lasts 24 hours under laboratory conditions.
+slave node. All measurements last 24 hours under laboratory conditions.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth]{img/prueba1_pps}
 	\caption[Connection diagram for the PPS performance test.]{For the PPS 
 	performance test, the PPS output of the device under test (DUT) is input to 
-	a Timer that measures the time interval between the PPS from the WRS and 
+	a timer that measures the time interval between the PPS from the WRS and 
 	the PPS from the DUT.}
 	\label{fig:prueba1pps}
 \end{figure}
 
 Figure \ref{fig:tdev_exp1} corresponds to the Time Deviation (TDEV) statistic. 
-It expresses the stability of the phase difference between the WR master and the 
+It express the stability of the phase difference between the WR master and the 
 WR slave versus the observation interval, $\tau$. For a $\tau=1$ we obtained a 
-TDEV value of X.Xe-11 for the WR-ZEN. This is X.Y s and W.Z s less than WR-LEN 
-and SPEC, respectively. The lowest value is X.X s for the WR-ZEN at an 
-observation time of Z s. Differences between the lowest values of WR-LEN and 
-the SPEC board respect to the WR-ZEN are notable: AA and BB respectively.
+TDEV value of 1.47e-11 for the WR-ZEN. This is 3.6e-12 s and 1.18e-11 s less than WR-LEN and SPEC, respectively. The lowest value is 1.0e-12 s for the WR-ZEN. Differences between the lowest values of WR-LEN and the SPEC board respect to the WR-ZEN are: 6.2e-13 and 4.6e-13 respectively.
 
 \begin{figure}
     \centering
@@ -88,9 +85,7 @@ the SPEC board respect to the WR-ZEN are notable: AA and BB respectively.
 \end{figure}
 
 Modified Allan Deviation (MDEV) results are included in Figure 
-\ref{fig:mdev_exp1}. Noises levels for the WR-ZEN and WR-LEN are very close. 
-The SPEC board ... In the three cases the dominating noise is phase modulated 
-white noise.
+\ref{fig:mdev_exp1}. From the TDEV (\ref{fig:tdev_exp1}) and MDEV (\ref{fig:mdev_exp1}) results we observe that white PM noise dominates from $\tau=1$ to a few hundred os seconds averaging time (depending of the observed device). After that, the rest remains as flicker FM noise.
 
 \begin{figure}
     \centering
@@ -130,7 +125,8 @@ statistic (Figure \ref{fig:mtie_exp1}). With the TDEV results, we observed that
 all the WR devices fulfil the 2 ns time budget requirement. In the worst case, 
 we also observed that requirement is well fulfilled. For the WR-ZEN the 
 difference between the WRS PPS and its PPS is bounded on 1.5e-10 s. Again, the 
-WR-ZEN achieves the best results: X less than the WR-LEN and Y less that SPEC.
+WR-ZEN achieves the best results: 3.90e-11 less than the WR-LEN and 1.02e-10 less that 
+SPEC.
 
 \begin{figure}
 	\centering
@@ -142,25 +138,10 @@ WR-ZEN achieves the best results: X less than the WR-LEN and Y less that SPEC.
 \end{figure}
 
 
-The obtained values reveal that the proposed WR node for the PPS distribution 
-solution fulfils the requirements to be used in the SKA Telescope's PPS 
-distribution system. Although, it is necessary to evaluate it in more realistic 
-conditions before concluding its goodness:
-
-\begin{itemize}
-	\item Evaluate the WR-ZEN as final node of a WR network. The purpose of 
-	this device is to be placed on each acquisition instrument to provide an 
-	accurate time reference. The results presented in the subsection 
-	\ref{subsec: net_exp} states performance for a realistic WR deployment.
-	
-	\item Moreover, SKA facilities will be placed in a desert zone, and 
-	the nodes will be linked by long-distance fibre links. Because of that, 
-	it is
-	necessary to analyse if the meteorological conditions can degrade 
-	significantly the synchronization accuracy. A thermal characterization of 
-	the influence of the variation of propagation delays in the PPS accuracy is 
-	presented in subsection \ref{subsec:temp}.
-\end{itemize}   
+The obtained values reveal that the proposed solution fulfils the requirements 
+to be used in the SKA telescope's PPS distribution system. Although, it is 
+necessary to evaluate it in more realistic conditions before concluding its 
+goodness.
 
 \subsection{WR scalability for SKA}
 \label{subsec: net_exp}
@@ -170,7 +151,7 @@ SKA timing system. In section \ref{sec:ska} there is a estimation of the final
 nodes that need to be synchronized for the SKA: around 250 endpoints that 
 must be synchronized with an accuracy below 2ns. A WR network with only two 
 hops is suitable to synchronize up to 306 end-nodes by the use of WR Switches as 
-BCs.
+Boundary Clocks.
 
 We set up a test network composed by a WRS at the top, which is locked to an 
 external time reference, another WRS as intermediate BC and a WR-ZEN as 
@@ -196,21 +177,20 @@ counter along 4 hours.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth]{img/tdev_exp3}
+	\includegraphics[width=0.7\linewidth]{img/tdev_exp3}
 	\caption[TDEV of the end-nodes in the scalability test.]{Time Deviation 
-	plot comparing the PPS signal from the end-nodes (WR-ZEN) to the GM of the network.}
+	plot comparing the PPS signal from the end-nodes (WR-ZEN) to the Grand 
+	Master of the network.}
 	\label{fig:tdevnet}
 \end{figure}
 
 TDEV and MTIE values have been calculated by octaves, the numerical 
-values can 
-be found in Table \ref{tab:netresults}. Graphical representations are included 
-in Figures \ref{fig:tdevnet} and \ref{fig:mtienet} respectively. TDEV results 
-show that expected synchronization accuracy for the end-nodes is around tens of 
-ps. The maximum PPS error during this test is bounded in hundred of ps, which 
-is more than enough what SKA needs (2ns).
-
-\textcolor{red}{aunque se diga que los resultados están en la tabla, hay que hablar de ellos.}
+values can be found in Table \ref{tab:netresults}. For the short-therm 
+stability we obtained a TDEV result of 2.32e-11 s. The minimum is reached at 
+$\tau=64$, after that, frequency drift is observed from $\tau=200$ to 
+$\tau=1000$ (see Figure \ref{fig:tdevnet}). The MTIE results show that maximum 
+PPS error, during this test, is bounded below 2e-10 s (see Figure 
+\ref{fig:mtienet}).
 
 \begin{table*}\centering
 	\ra{0.8}
@@ -239,22 +219,25 @@ is more than enough what SKA needs (2ns).
 	\label{tab:netresults}
 \end{table*}
 
-With those findings, it has proved that a WR network with two levels can provide 
-synchronization to all the equipment expected for the SKA facilities. It is also important to mention that some links could be broken in two WR links due to distance to some antennas, e.g. an intermediate WR device will be placed between the master WRS and the end-node. Introducing an extra WR level for some antennas should not be a problem to fulfil the timing requirements, a prove of that can be found in \cite{torres2016scalability}, where the results show that even a 10-hop network can reach the required time-budget for SKA.
+With those findings, it has been proved that a WR network with two levels can 
+provide synchronization to all the equipment expected for the SKA facilities. 
+It is also important to mention that some links could be broken in two WR links 
+due to distance to some antennas, e.g. an intermediate WR device will be placed 
+between the master WRS and the end-node. Introducing an extra WR level for some 
+antennas should not be a problem to fulfil the timing requirements, a prove of 
+that can be found in \cite{torres2016scalability}, where the results show that 
+even a 10-hop network can reach the required time-budget for SKA.
 
 Although long-distance fibre links have been used for that test, thermal 
-influence should be take into account in order to confirm the goodness of the 
-WR solution in the SKA timing distribution. The next experiment evaluates 
-how the temperature change in the fibre link can affect the accuracy of the 
-synchronization. 
+influence should be considered previous to confirm the goodness of the 
+WR solution for the SKA's timing distribution system. 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5\linewidth]{img/MTIE_exp3}
+	\includegraphics[width=0.7\linewidth]{img/mtie_exp3}
 	\caption[MTIE of the end-nodes in the scalability test.]{Maximum Time 
-	Interval Error
-	plot comparing the PPS signal from the end-nodes (WR-ZEN) to the Grand 
-	Master of the network.}
+	Interval Errorplot comparing the PPS signal from the end-nodes (WR-ZEN) to 
+	the Grand Master of the network.}
 	\label{fig:mtienet}
 \end{figure}
 
@@ -281,22 +264,22 @@ In this contribution, we have focused on the temperature change effect over the
 cable
 \textit{round-trip} time (CRTT) and the PPS performance. To evaluate that, we 
 have used a climate chamber in the laboratory and some fibre spools of tens of 
-kilometers. \gutinote{fibre o fiber? inglés USA o UK? qué dice la revista?}
-Wind impact has not been evaluated properly with our equipment, because of this, 
-the experiments will only determine temperature effect on synchronization.
+kilometers. Wind impact has not been evaluated properly with our equipment, 
+because of this, the experiments will only determine temperature effect on 
+synchronization.
 
 Theoretically, WR is able to dynamically calibrate the master to slave 
 propagation delay from the total \textit{round-trip} time, and therefore PPS 
 offset shall maintain constant even when the propagation delay changes. The 
 accurate estimation of the one-way propagation delay is achieved by the use of 
-a constant value, $\alpha$, which expresses the ratio between propagation times 
+a constant value, $\alpha$, which express the ratio between propagation times 
 with the two wavelengths used in the WR link. A complete explanation of the 
 link model could be read in \cite{Wlostowski2011} and \cite{Daniluk2012}.
 
 In the real world, $\alpha$ is temperature dependent, because of the change in 
 the refraction index due to a temperature variation in the fibre. For small and 
-mid-distance links, in laboratory conditions, $\alpha$ variation is nearly negligible and 
-the current link model behaves very well. However, the WR network in SKA will be formed 
+mid-distance links, in laboratory conditions, $\alpha$ is nearly negligible and 
+the current link model behaves very well. The WR network in SKA will be formed 
 by long distance links exposed to external elements. 
 
 %In the concrete situation of the South Africa facilities, the chosen location 
@@ -316,9 +299,6 @@ by long distance links exposed to external elements.
 We performed a series of experiments introducing a 50 km length fibre spool in 
 a climate chamber. The CRTT and the PPS offset between master and slave have 
 been measured for a temperature range from 20 ºC to 50 ºC with 10 ºC steps. 
-The average temperature difference between day and night in the Karoo region on 
-each month is below 20 ºC, so the experiment covers comfortably the expected 
-temperature operation conditions.
 
 \begin{table*}\centering
 	\ra{0.8}
@@ -347,7 +327,7 @@ operational temperature of a 50 km fibre link is set in a point from 20ºC to
 rest of dependent values such as CRTT and PPS offset. All the WR equipment was 
 calibrated in order to compensate the characteristic delays of each device 
 following the official calibration procedure \cite{man:calib}.  The test setup 
-is depicted in Figure \ref{fig:tempsetup}.
+is depicted in figure \ref{fig:tempsetup}.
 
 The most relevant results are included in Table \ref{tab:temp}: (i) the mean 
 value of CRTT and PPS offset samples, and (ii) their sample standard deviation. 
@@ -361,23 +341,43 @@ degradation, which is unacceptable for the SKA equipment. The peak-to-peak
 difference for the PPS offset is 211 ps which leaves us a 7 ps/ºC and if we 
 divide by the total link length: $0.14 ps/ºC \cdot km$.
 
-\begin{figure}
+%\begin{figure}
+%	\centering
+%	\begin{subfigure}[t]{0.48\textwidth}
+%		\includegraphics[width=\textwidth]{img/crttvstemp}
+%		\caption[CRTT vs. Fiber temperature]{The figure shows the relation 
+%			between the fibre temperature and the cable round-trip time.}
+%		\label{fig:crttvstemp}
+%	\end{subfigure}
+%	~ % This symbol adds a white space between images
+%	\begin{subfigure}[t]{0.48\textwidth}
+%		\includegraphics[width=\textwidth]{img/ppsvscrtt}
+%		\caption[PPS offset vs. CRTT]{This figure shows how PPS offset is 
+%			sightly influenced by changes in the cable round-trip time.}
+%		\label{fig:ppsvscrtt}
+%	\end{subfigure}
+%	\caption{Evaluation of the cable \textit{round-trip} time and the PPS 
+%		offset with variable temperature conditions for the fibre link.}
+%\end{figure}
+
+
+	
+\begin{figure}[t]
 	\centering
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{img/crttvstemp}
-		\caption[CRTT vs. Fiber temperature]{The figure shows the relation 
-			between the fibre temperature and the cable round-trip time.}
-		\label{fig:crttvstemp}
-	\end{subfigure}
-	~ % This symbol adds a white space between images
-	\begin{subfigure}[t]{0.48\textwidth}
-		\includegraphics[width=\textwidth]{img/ppsvscrtt}
-		\caption[PPS offset vs. CRTT]{This figure shows how PPS offset is 
-			sightly influenced by changes in the cable round-trip time.}
-		\label{fig:ppsvscrtt}
-	\end{subfigure}
+	\includegraphics[width=0.7\linewidth]{img/crttvstemp}
+	\caption[CRTT vs. Fiber temperature]{The figure shows the relation 
+	between the fibre temperature and the cable round-trip time.}
+	\label{fig:crttvstemp}
+\end{figure}
+
+\begin{figure}[t]
+	\centering
+	\includegraphics[width=0.7\linewidth]{img/ppsvscrtt}
+	\caption[PPS offset vs. CRTT]{This figure shows how PPS offset is 
+	sightly influenced by changes in the cable round-trip time.}
+	\label{fig:ppsvscrtt}
 	\caption{Evaluation of the cable \textit{round-trip} time and the PPS 
-		offset with variable temperature conditions for the fibre link.}
+	offset with variable temperature conditions for the fibre link.}
 \end{figure}
 
 Figure \ref{fig:crttvstemp} shows a clear linear dependency between the 
@@ -393,9 +393,3 @@ observed offset variation for a long distance link and a 30ºC temperature
 gradient is only 200 ps that joined to the results from the previous 
 experiments make the new PPS distribution system suitable for the SKA 
 timing system.
-
-For the presented experiments, we have not considered the influence of a variable environment conditions over the WR equipment itself. Because we really do not know if the equipment will be placed in rooms with controlled environmental conditions or not, we have not considered realising experiments to analyse that. Although we have not analysed it by ourselves, it is important to mention that there is some publications about that, for example \cite{Li2015a}. Results included in that paper reflect the importance to correct the effects of a variable external temperature in order to maintain the high level of accuracy expected. \textcolor{red}{reescribirlo con mayor rigor científico, nada de suposiciones, o no sabemos, o contracciones, etc}
-
-Another important issue that we have experimented is the deviation from the nominal wavelength expected for the used SFPs in our experiments. Because of the same SFPs seem to be choosen by SKA for the WR deployment, it will be important to study the repercussion of that undesired issue over the WR calibration and the $\alpha$ measurement. One of the key aspects of WR is the dynamic calibration of the propagation delay and the facility to reuse the same calibration parameters between devices with the same hardware and firmware. If the choose SFPs can not guarantee a similar wavelength between items of the same model there will be needed to explore alternative solutions.
-
-\textcolor{red}{estos dos últimos párrafos parecen dar más problemas que presentar resultados. Yo diría de resumirlo o reescribirlo centrándose en resultados puramente.}
