@@ -17,7 +17,22 @@ Some scientific facilities need a distributed DAQ system to perform its activity
 Different technologies and solutions were analysed for the SKA timing system. On the one hand, GPS devices provide a reference frequency (10-50 MHz), a PPS signal and a serial code to provide the time (typically based on the NMEA protocol). On the other hand, the standard packet-based protocols such as NTP, PTP or PTPv2 are not appropriated to fulfil the SKA's strict timing specifications (2 ns for the SKA Telescope).
 In this context, the authors of this paper are currently working as a partner in the SKA Signal and Data Transport (SaDT) \cite{ska:sadt_website} work package. Our proposal consists in the development of a new device based on the technology called WR \cite{ohwr:wr_wiki} to disseminate a PPS signal very accurately over fibre links. WR is an evolution of the PTPv2 protocol, being able to distribute an absolute time reference with an accuracy below 1 ns. The equipment located at each endpoint delivers a PPS signal with its edge aligned to the start of the UTC second. Therefore, each telescope can then be phased up by observing the white light fringe on one or more bright, compact sources.
 
-This paper is organised in several sections. The current one presents the introduction and the motivation. Section \ref{sec:ska} introduces the SKA Telescope project and the different network and timing requirements that evidence that current industrial solutions are not suitable for SKA. Section \ref{sec:wr} focuses on the fundamentals of the WR technology. Section \ref{sec:ska-pps-system} describes the proposed end-node for SKA including the justification, architecture and software support. The synchronisation performance of the proposed solution is evaluated in different scenarios with special consideration on the scalability of the WR technology for the SKA deployment and the synchronisation accuracy taking into account different meteorological conditions in section \ref{sec:experiments}. Final remarks and conclusions are described in section \ref{sec:conclusion}. %Last sections (\ref{sec:future-work} and \ref{sec:acknowledgments}) present the future work and the acknowledgements.
+This paper is organised in several sections. The current one presents the 
+introduction and the motivation. Section \ref{sec:ska} introduces the SKA 
+Telescope project and the different network and timing requirements that 
+evidence that current industrial solutions are not suitable for SKA. Section 
+\ref{sec:wr} focuses on the fundamentals of the WR technology. Section 
+\ref{sec:ska-pps-system} describes the proposed end-node for SKA including the 
+justification, architecture and software support. The synchronisation 
+performance of the proposed solution is evaluated in different scenarios with 
+special consideration on the scalability of the WR technology for the SKA 
+deployment and the synchronisation accuracy taking into account different 
+meteorological conditions in section \ref{sec:experiments}. 
+\textcolor{teal}{Seguramente sea culpa m�a... Esta ultima frase es demasiado 
+larga. Quiz�s dej�ndola: with special consideration on: (i) the sca...; and 
+(ii) the synchro... in section 5.} Final remarks and conclusions are described 
+in section \ref{sec:conclusion}. %Last sections (\ref{sec:future-work} and 
+%\ref{sec:acknowledgments}) present the future work and the acknowledgements.
 
 %\textcolor{red}{La motivación es pobre. Hay que ser más preciso: qué necesita SKA, qué es lo %que no cubren otras tecnologías similares (o qué desventajas tienen) y cómo (hemos %pensado)/pensamos solucionarlo.}
 
