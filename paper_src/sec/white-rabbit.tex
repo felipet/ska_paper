@@ -4,7 +4,15 @@ companies. It was born as a replacement technology for CERN's accelerator timing
 but due to its versatility and improved performance compared to other
 alternatives, together with its open nature, it was quickly adopted by other
 scientific institutions. \textcolor{red}{There is also a strong interest amongst private companies to
-extend WR to the industrial domain, such as Seven Solutions S.L. \cite{sevensols:wr} [esta frase, en mi opinion, es un canteo]}.
+extend WR to the industrial domain, such as Seven Solutions S.L. 
+\cite{sevensols:wr} [esta frase, en mi opinion, es un canteo]} 
+\textcolor{teal}{Cierto, pero a mi tambien me gusta hacer el guigno a seven en 
+los papers. Yo daria fuerza a la frase para obligar a referenciar a seven. Como 
+dices que hay un fuerte interes (que realmente es mentira porque si no seven no 
+tendria nada que hacer... ) da algunas muestras de ese supuesto interes: cuando 
+dices lo del industrial domain da tres ejemplos como gps backup, smart grid y 
+cualquier otra mierda, haces link a la pagina de proyectos de 7s que es 
+realmente lo unico que hay y todos contentos}. 
 Furthermore, from its very early stages, WR was launched as an open SW/HW
 initiative with available online sources at CERN's Open Hardware Repository (OHWR)
 \cite{ohwr:repo}. This encouraged different companies and research institutions
@@ -27,15 +35,28 @@ particularly presents a new platform capable of disseminating the PPS signal inc
 
 The WR synchronisation mechanisms include the following elements:
 
-\begin{itemize} \item {Frequency synchronisation (syntonization): It uses
-		physical layer (L1) of Synchronous Ethernet (SyncE) to encode
-	the clock signal in the data stream. } \item {Phase synchronisation:
+\begin{itemize} 
+        \item {Frequency synchronisation (syntonization): It uses
+		physical layer (L1) of Synchronous Ethernet (SyncE) 
+		\textcolor{teal}{NOOOOOOO!!!! Si lo he leido antes y se me ha escapado 
+		decirlo es para pegarme una paliza. Supongo que lo que pretendia leer 
+		es que se recupera la señal de reloj con la que se codifican los datos 
+		en la capa fisica o L1 del modelo OSI (sin mencionar a SyncE)} to encode
+	    the clock signal in the data stream. } 
+        
+        \item {Phase synchronisation:
 		Thanks to the syntonization, both nodes in a link are able to
 		recover the other physical clock and compare it to its own clock
 		in order to get the phase difference. The phase measurement is
 		performed by an IP core known as Digital Dual Mixed Time
-		Difference (DDMTD) present in the gateware design.} \item {Time
-			synchronisation: It is implemented by an enhanced
+		Difference (DDMTD) present in the gateware design.\textcolor{teal}{Yo 
+		reescribiría el párrafo porque no queda claro por qué se necesita la 
+		sintonización para el DDMTD (me acabo de encontrar esto: 
+		http://www.ee.ucl.ac.uk/lcs/previous/LCS2011/LCS1136.pdf, quizás sea 
+		interesante referenciarlo). Aunque si lo dejas asi muy poca gente se 
+		dara cuenta del fallo...} 
+    
+        \item {Time synchronisation: It is implemented by an enhanced
 			version of the PTPv2 protocol and provides a global
 			notion of time to the entire network. WR also takes into
 			account the asymmetries in the propagation time due to
@@ -46,7 +67,12 @@ The WR synchronisation mechanisms include the following elements:
 WR implements mechanisms to ensure deterministic and reliable data transfer
 between thousand of nodes connected over optical fibre links up to 10 km.
 However, it can easily be extended up to 50 km without significant degradation
-and up to 120 km without the needs of optical amplification \textcolor{red}{alguna REF de esto??}. 
+and up to 120 km without the needs of optical amplification 
+\textcolor{red}{alguna REF de esto??} \textcolor{teal}{No creo que sea 
+necesaria una ref si se comenta en la frase que se puede extender facilmente 
+hasta 120 (nada de primero 50 y luego 120, eso es tonteria) utilizando modelos 
+de sfps ya existentes en el mercado (es un producto que se compra no es 
+ciencia, no hay misterio en pasar de enlaces de 10 a 120, solo dinero)}. 
 
 \subsection{Network topology} \label{subsec:wr-net}
 
@@ -56,7 +82,9 @@ switches, and end-nodes as shown in the Figure \ref{fig:wr_hierarchy}. The GM
 is normally connected to a very stable clock such as an atomic clock or a GPS
 receiver \cite{Daniluk2012}. The intermediate levels of the network disseminate
 the timing packets to the final nodes, which are composed of other devices such
-as WR Switches, WR-ZENs or WR Light Embedded Nodes (WR-LEN). These devices have
+as WR Switches, WR-ZENs or WR Light Embedded Nodes (WR-LEN) 
+\textcolor{teal}{este si es un canteo de verdad, o mencionas una seleccion de 
+nodos (donde no haya mas de uno de 7s) o nada}. These devices have
 several ports and can behave as PTPv2 Boundary Clocks (BC). Moreover, they are
 connected using the master-slave scheme: some ports act as slave (upstream)
 of the to the upper layer while the others are masters (downstreams) and
@@ -77,7 +105,12 @@ control network, real-time applications or Smart Grids among others.
 	\caption{The WR network is a tree hierarchy where the root node is the
 	GM that is responsible for distributing the reference time signals. The
 	intermediate elements are WR Switches that acts as Gigabit Ethernet
-	switchers and as Boundary clocks propagating the time signals from the
+	switchers \textcolor{teal}{Def. switcher: a person who administers 
+	punishment by wielding a switch or whip, sobra algo no?} and as Boundary 
+	clocks \textcolor{teal}{la puta o la f... los comentarios se me van de las 
+	manos a ciertas horas. O se pone Boundary Clock (ambas con mayuscula) o 
+	boundary clock (ambas con minuscula), pero no un mix} propagating the time 
+	signals from the
 	upper layers of the network. Finally, the main purpose of the end-nodes
 	is to provide timing to another specific application.}
 \label{fig:wr_hierarchy} \end{figure}
@@ -90,7 +123,11 @@ according to a typical WR network: devices which act as BC, and those that act a
 Ordinary Clocks (OC). Currently, the WRS \cite{ohwr:wrs} is the most convenient
 BC among all the WR devices. 
 
-The WRS has a total of 18 Small Form-factor Pluggable (SFP) transceivers which one could be configured as slave
+The WRS has a total of 18 Small Form-factor Pluggable (SFP) transceivers which 
+\textcolor{teal}{seguro que es which y no where lo que pega aqui?? 
+Fijate en que el sustantivo es one no which, por tanto aqui va una conjuncion 
+no un pronombre.} 
+one could be configured as slave
 (upstream) and the rest as masters (downstream). It is also important to remark
 another I/O ports such as: five coaxial RF connectors and one management
 Ethernet RJ45 connector. Although there are other WR devices that could act as
@@ -101,7 +138,9 @@ Nowadays, there  are several WR platforms that can act as OCs.
 For this reason, we have analysed three devices taking into account the specific requirements of the SKA project.
 
 Table \ref{tab:wr_devcomp} contains a comparison between the following three WR
-devices: \begin{itemize} \item The Simple PCIe FMC carrier (SPEC)
+devices: \begin{itemize} \item The Simple PCIe FMC \textcolor{teal}{FMC no ha 
+sido desglosado antes pero queda raro porque luego viene spec entre parétesis, 
+que hacemos??} carrier (SPEC)
 			\cite{ohwr:spec} is a WR-compliant FMC carrier that
 			supports low pin count (LPC) boards. It includes a
 			Xilinx's Spartan-6 FPGA, a SFP connector and a PCIe
