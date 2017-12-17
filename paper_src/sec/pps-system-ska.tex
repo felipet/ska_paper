@@ -34,7 +34,7 @@ SKA, the same single fibre strand can be used for the SAT network.
 \caption{Network topology for PPS signal distribution based on WR switches and
 nodes. }
 \label{fig:ska_pps_dist_network} \end{figure}
-\gutinote{la figura no está referenciada en el texto}
+\gutinote{la figura no estï¿½ referenciada en el texto}
 
 An important feature of the system that must be taken into account is that the PPS pulse
 at each station is derived from the reference frequency distributed from
@@ -55,7 +55,7 @@ signal.
 
 As previously described, this solution requires WR switches and nodes. The
 former are well-defined equipment with known interfaces and software support. 
-\gutinote{cuando se dice "the former" obligatoriamente hay que hablar de "the latter". En caso contrario habría que reescribirlo quitando "the former"}
+\gutinote{cuando se dice "the former" obligatoriamente hay que hablar de "the latter". En caso contrario habrï¿½a que reescribirlo quitando "the former"}
 
 For the implementation of the SKA nodes, we have proposed the utilisation of
 the WR-ZEN board. Thanks to this new platform, the utilisation of a host
@@ -84,7 +84,8 @@ to this platform is presented in \cite{migueljl-paper-wr-zen-intro} and a
 contribution that improves the NIC bandwidth of the design in
 \cite{jorgesg-paper-wr-zen-dma}. In addition, the WR-ZEN is also under study
 for other FMC cards such as the FMC ADC one to build a distributed oscilloscope
-\cite{joselj-paper-wr-zen-adc}.
+\cite{joselj-paper-wr-zen-adc} \textcolor{teal}{Esta frase esta bien contruida? 
+FMC adc one to build me suena raro}.
 
 Nowadays, the utilisation of the Fine Delay FMC card is still under discussion
 and there is a possible design which final architecture could be addressed
@@ -92,8 +93,10 @@ without this module.
 
 \subsubsection{Hardware} \label{subsec:hardware}
 
-The WR-ZEN board is a proprietary design developed in 2015 by Seven Solutions S.L.. 
-The major design changes regarding previous WR-nodes designs
+The WR-ZEN board is a proprietary design developed in 2015 by Seven Solutions 
+S.L..\textcolor{teal}{sobra un punto} 
+The major design changes regarding previous WR-nodes \textcolor{teal}{nunca se 
+ha usado el guion}designs
 are the inclusion of a Xilinx Zynq FPGA-SoC platform and a
 flexible and enhanced clocking scheme. The former, enables a more structured
 design in which software can be organised in abstraction layers. This is
@@ -153,7 +156,8 @@ the reference. This schema enables using both PLLs at the same time. One of
 them is used to generate all the WR-clocks and the other can be used to
 generate custom frequencies. The WR general performance is limited by noise
 when locking to an external reference, in the so called Granmaster mode,
-described in \cite{Rizzi2016}. This contribution states that, in
+described in \cite{Rizzi2016}. This \textcolor{teal}{that mejor, this parece 
+que menciona a la nuetra y no es asÃ­.} contribution states that, in
 order to decrease the noise when locking to an external reference, internal
 PLLs in the FPGA should be avoid. Instead of it, it is recommended to use
 an analogue external PLL to locks to the external reference generating the necessary
@@ -168,7 +172,9 @@ stability requirements of the SKA project.
 The gateware (FPGA firmware) is responsible for configuring the embedded ARM
 microprocessor and the FPGA inside the Zynq SoC. \gutinote{el gateware es el que configura el ARM?????????}
 The main block diagram is shown in Figure \ref{fig:gateware_first_level}. 
-It includes the WRPC Dual port (WRPC-2p) core that implements the high accuracy timing protocol based on
+It includes the WRPC Dual port (WRPC-2p) \textcolor{teal}{previamente se han 
+utilizado otras siglas} core that implements the high accuracy timing protocol 
+based on
 WR and provides basic capabilities, such as Gigabit networking, time-stamp
 mechanisms, debug interfaces, etc. The Gigabit transceiver (GT) ports include the
 necessary modules to send/receive packets to/from the network. The NIC are in charge of processing the incoming/outcoming
@@ -183,7 +189,9 @@ uses the AMBA specification while others components are based on WB.
 
 \begin{figure}[H] \centering
 	\includegraphics[scale=0.4]{img/gateware_first_level} \caption{Gateware
-	project design. WR-ZEN FPGA gateware design. The the WRPC-2p core that is responsible for
+	project design. WR-ZEN FPGA gateware design. The the WRPC-2p 
+	\textcolor{teal}{previamente se han utilizado otras siglas} core that is 
+	responsible for
 	implementing the WR protocol. The GT ports allows to transmit/receive
 	packets to/from the network through the optical SFP modules. The NIC
 	cores manage Ethernet packets and behave as standard network interface
@@ -216,7 +224,8 @@ security access to the hardware.
 
 The software components are presented in Figure
 \ref{fig:software_architecture}.  Software is divided into the userspace utilities
-and the kernel support.  The former includes the Zen library that implements the
+and the kernel support.  The former includes the Zen \textcolor{teal}{Pues nada 
+aquÃ­ una serie de Zen en minÃºsculas...} library that implements the
 basic functionalities for the Zen tools through the C standard library. The Zen
 tools provide some mechanisms to program the FPGA design and connect to the
 internal UART for debugging/configuration tasks among others.  Moreover, other
@@ -240,10 +249,12 @@ on \textit{fmc}. The \textit{fmc-fine-del} needs \textit{zen}, \textit{zio} and
 \begin{figure}[H] \centering
 	\includegraphics[scale=0.4]{img/software_architecture}
 	\caption{Software architecture. WR-ZEN software
-	architecture. It is based on Linux kernel, in which
+	architecture. \textcolor{teal}{Me sobra una de las dos}It is based on Linux 
+	kernel, in which
 	several tools and drivers have been developed to manage the WR functionality. The
 	tools can be used to program the FPGA, update the soft-microprocessor
-	code or connect to the virtual UART interface of the WRPC-2p. They call
+	code or connect to the virtual UART interface of the 
+	WRPC-2p\textcolor{teal}{ejemejem}. They call
 	the Zen Library procedures that use C Library functions and
 	switch to kernel mode through system calls. In the kernel space, the
 drivers are responsible for implementing all the requested functionalities. }
