@@ -17,7 +17,19 @@ In the case of SKA, different solutions for time transfer were analysed. For ins
 In this context, our research group at the University of Granada is working as a partner in the Signal and Data Transport (SaDT) \cite{ska:sadt_website} work package. Our proposal consists on the development of a new device based on the technology called WR \cite{ohwr:wr_wiki} to disseminate a PPS signal very accurately over fibre links. WR is an evolution of IEEE-1588v2 protocol and able to distribute an absolute time reference with an accuracy of 1 ns. Equipment located at each endpoint delivers a PPS signal with its edge aligned to the start of the UTC second. Therefore, each telescope can then be phased up by observing the white light fringe on one or more bright, compact sources.
 
 This paper is organised in several sections. The current one 
-presents the introduction and the motivation. Section \ref{sec:ska} introduces the SKA Telescope project, the different network and timing requirements that evidence that industrial solutions are not suitable for SKA. Section \ref{sec:wr} focuses on the fundamentals of the WR technology. Section \ref{sec:ska-pps-system} describes the proposed end-node for SKA including the justification, architecture and software support. The synchronisation performance of the proposed solution is evaluated in different scenarios with special consideration on the scalability of the WR technology for the SKA deployment and the synchronisation accuracy taking into account different meteorological conditions in section \ref{sec:experiments}. Final remarks and conclusions are described in section \ref{sec:conclusion}. Last sections (\ref{sec:future-work} and \ref{sec:acknowledgments}) present the future work and the acknowledgements.
+presents the introduction and the motivation. Section \ref{sec:ska} introduces 
+the SKA Telescope project, the different network and timing requirements that 
+evidence that industrial solutions are not suitable for SKA. Section 
+\ref{sec:wr} focuses on the fundamentals of the WR technology. Section 
+\ref{sec:ska-pps-system} describes the proposed end-node for SKA including the 
+justification, architecture and software support. The synchronisation 
+performance of the proposed solution is evaluated in different scenarios with 
+special consideration on: (i) the scalability of the WR technology for the SKA 
+deployment; and (ii), the synchronisation accuracy taking into account 
+different meteorological conditions, in section \ref{sec:experiments}. Final 
+remarks and conclusions are described in section \ref{sec:conclusion}. Last 
+sections (\ref{sec:future-work} and \ref{sec:acknowledgments}) present the 
+future work and the acknowledgements.
 
 %\textcolor{red}{La motivación es pobre. Hay que ser más preciso: qué necesita SKA, qué es lo %que no cubren otras tecnologías similares (o qué desventajas tienen) y cómo (hemos %pensado)/pensamos solucionarlo.}
 
