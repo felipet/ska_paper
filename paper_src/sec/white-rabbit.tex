@@ -3,12 +3,10 @@ project started at CERN in 2009, and then joined by other laboratories and
 companies. It was born as replacement technology for the timing system at CERN,
 but thanks to its versatility, improved performance, compared to the
 alternatives, and open nature of the project, it was quickly adopted by other
-scientific institutions. There is also a strong interest in private companies to
-extend WR in the industrial world such as Seven Solutions \cite{sevensols:wr}.
-Furthermore, from its very early stages, WR was launched as an open Sw/Hw
-initiative with sources available at the Open Hardware Repository (OHWR)
-\cite{ohwr:repo}. This encouraged different companies and research institutions
-to openly collaborate in its development.
+scientific institutions.  There is also interest by some private companies, 
+such as Creotech or Seven Solutions, for extending the use of WR in the 
+industrial world. Some examples of that effort are the projects WR-SYNTEF 
+\cite{web:creotech_projects} and IFMIF/EVEDA \cite{web:seven_projects}. 
 
 The WR protocol extends PTPv2 with extra messages and has been proposed to be
 included in the new PTP release (PTPv3) as High Accuracy (HA) profile
@@ -27,26 +25,31 @@ disseminate the PPS signal incorporating flexibility and dependability features.
 
 The WR synchronisation mechanisms include the following elements:
 
-\begin{itemize} \item {Frequency synchronisation (syntonization): It uses
-		physical layer (L1) of Synchronous Ethernet (SyncE) to encode
-	the clock signal in the data stream. } \item {Phase synchronisation:
-		Thanks to the syntonization, both nodes in a link are able to
-		recover the other physical clock and compare it to its own clock
-		in order to get the phase difference. The phase measurement is
-		performed by an IP core known as Digital Dual Mixed Time
-		Difference (DDMTD) present in the gateware design.} \item {Time
-			synchronisation: It is implemented by an enhanced
-			version of the PTPv2 protocol and provides a global
-			notion of time to the entire network. WR also takes into
-			account the asymmetries in the propagation time due to
-			the utilisation of different wavelengths in the same
-			fibre link improving the accuracy of standard PTP
-			protocol.} \end{itemize}
+\begin{itemize}
+    
+\item Frequency synchronisation (syntonization): The recovered clock from the 
+physical layer (L1) of the Open Systems Interconnection model (OSI) is used by 
+the WR logic to syntonize the local oscillator. That means that all the WR 
+network run syntonized with the main clock reference.
+
+\item Phase synchronisation: Thanks to the syntonization, the one-cicle time 
+resolution limitation is resolved via the use of the Dual Mixed Time Difference 
+method (DMTD). A digital implementation of that \ref{Moreira2011} is used to 
+achieve sub-picosecond resolution when measuring phase difference between the 
+local oscillator and the recovered one from the upwards node.
+
+\item Time synchronisation: It is implemented by an enhanced version of the 
+PTPv2 protocol and provides a global notion of time to the entire network. WR 
+also takes into account the asymmetries in the propagation time due to
+the utilisation of different wavelengths in the same fibre link improving the 
+accuracy of standard PTP protocol. 
+\end{itemize}
 
 WR implements mechanisms to ensure deterministic and reliable data transfer
 between a thousand of nodes connected with  optical fibre links up to 10 km.
-However, it can easily be extended up to 50 km without significant degradation
-and up to 120 km without the needs of optical amplification. 
+However, it can easily be extended up to a hundred of km without the need of 
+optical amplification. This is easily achieved using transceivers for long 
+distances commercially available.
 
 \subsection{Network topology} \label{subsec:wr-net}
 
@@ -78,7 +81,7 @@ control network, real-time applications or Smart Grids among others.
 	\caption{The WR network is a tree hierarchy where the root node is the
 	GM that is responsible for distributing the reference time signals. The
 	intermediate elements are WR Switches that acts as Gigabit Ethernet
-	switchers and as Boundary clocks propagating the time signals from the
+	switches and as Boundary Clocks propagating the time signals from the
 	upper layers of the network. Finally, the main purpose of the end-nodes
 	is to provide timing to another specific application.}
 \label{fig:wr_hierarchy} \end{figure}
@@ -91,12 +94,13 @@ according to a typical WR network: devices which act as BC, and ones that act as
 Ordinary Clocks (OC). Currently, the WRS \cite{ohwr:wrs} is the most convenient
 BC among all the WR devices. 
 
-The WRS has a total of 18 SFP connectors where one could be configured as master
-(downstream) and the rest as slaves (upstream). It is also important to remark
-another I/O ports such as: five coaxial RF connectors and one management
-Ethernet RJ45 connector. Although there are other WR devices that could act as
-BC, the WRS is the most appropriate for a network with a high number of nodes,
-such as is the SKA Telescope, because of its high number of SFP slots.
+The WRS has a total of 18 Small Form-factor Pluggable (SFP) transceivers, one 
+of which can be configured as slave (upstream) and the rest as masters 
+(downstream). It is also important to remark another I/O ports such as: five 
+coaxial RF connectors and one management Ethernet RJ45 connector. Although 
+there are other WR devices that could act as BC, the WRS is the most 
+appropriate for a network with a high number of nodes, such as is the SKA 
+Telescope, because of its high number of SFP slots.
 
 The selection of the device acting as OC is not an easy task. Nowadays, there
 are several platforms including the WR technology, so that, we have analysed
