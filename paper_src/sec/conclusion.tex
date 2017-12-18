@@ -1,17 +1,16 @@
 The contribution presented by the authors is based on a PPS distribution system using the WR technology as a candidate for the SKA Telescope timing system. The strict timing requirements of this project requires the utilization of novel timing technologies able to provide an accuracy below 2 ns. This accuracy is not achievable using current standard timing protocols such as NTP and PTP.
 For this reason, authors proposed a solution is based on the WR-ZEN which improves previous existing WR node designs 
-due to the inclusion of high-level software capabilities, a high accuracy gateware design and an enhanced clock circuitry, being able to provide accuracies below 1 ns (\textcolor{añadid aqui el mejor valor de sincronizacion obtenido en las pruebas})
-\gutinote{que es un "high accuracy gateware"? Hay que dejar claro cual es la aportacion y no poner cosas abstractas o ambiguas}
+due to the inclusion of high-level software capabilities, a new gateware design compliant with HA protocols and an enhanced clock circuitry, being able to provide accuracies below 2 ns.
 
 Regarding high-level capabilities, we have developed a Linux-based environment with some
 userspace tools and drivers. The gateware design includes all the elements to implement the 
 WR protocol and some additional FMC functionalities. The enhanced clocking circuitry can be configured using different schemes in order to offer the best synchronisation performance and quality results targeting the SKA needs. 
 
 Several tests have been performed in order to evaluate whether the 2 ns SKA strict timing requirement for the PPS distribution system is fulfilled or not under diverse conditions.
-Results demonstrate that the synchronisation accuracy is bounded below 200 ps, being significantly better than the SKA needs. Moreover, the scalability tests reveal that the synchronisation accuracy is maintained for a high number of nodes with several network levels. \gutinote{yo no pondria "a high number of nodes", pondria el numero de hops exactos junto con el nivel de red}
+Results demonstrate that the synchronisation accuracy is bounded below 200 ps, being significantly better than the SKA needs. Moreover, the scalability tests reveal that the synchronisation accuracy is maintained for hundred of nodes with several network levels. 
 Furthermore, several experiments have been designed to simulate the SKA climatic place conditions 
 in order to evaluate the thermal change influence in the propagation delay 
-and its repercussion in the PPS distribution system. The obtained results evidences that the propagation delay increases ten of ns (96 ns) for each 20ÂºC temperature difference, but alongside that, the PPS offset maintains its accuracy with an offset not exceeding hundred of picoseconds (211 ps). 
+and its repercussion in the PPS distribution system. The obtained results evidences that the propagation delay increases ten of ns (96 ns) for each 20 C temperature difference, but alongside that, the PPS offset maintains its accuracy with an offset not exceeding hundred of picoseconds (211 ps). 
 
 Finally, the experimental results evidence that the proposed PPS distribution system based on WR not only fits perfectly the SKA requirements but also improve them.
 

@@ -1,14 +1,12 @@
 %% Section to describe and comment the results from the experiments performed.
 %% lang: en-GB
 
-In this section, we detail the experiments performed to demonstrate that the WR-ZEN
-is a suitable node for the SKA Telescope PPS distribution system and the results obtained. 
-In order to evaluate properly the project's timing requirements, we have performed 
-three experiments:
+In this section, we detail the experiments performed to demonstrate that the WR-ZEN is a suitable node for the SKA Telescope PPS distribution system and the results obtained. 
+In order to evaluate properly the project's timing requirements, we have performed three experiments:
 
 \begin{itemize}
 	\item \textbf{A WR node comparison:} We have study the PPS stability of three different WR devices 
-	previously analysed in section \textcolor{red}{a�adir la seccion}.
+	previously analysed in section \ref{subsec:wr-dev}.
 	\item \textbf{A scalability test:} The second experiment covers a 
 	scalability analysis of the WR solution for the SKA timing system.
 	\item \textbf{A test under changing environmental conditions:} We have measured 
@@ -69,7 +67,7 @@ slave node. All measurements have been carried out for 24 hours under laboratory
 	the PPS from the DUT.}
 	\label{fig:prueba1pps}
 \end{figure}
-\gutinote{los caption de las figuras tienen que decir lo que es, lo que representa, no necesariamente evaluar su contenido, para eso ya est� en texto}
+\gutinote{los caption de las figuras tienen que decir lo que es, lo que representa, no necesariamente evaluar su contenido, para eso ya esta en texto}
 
 
 Figure \ref{fig:tdev_exp1} corresponds to the Time Deviation (TDEV) statistic. 
@@ -86,7 +84,7 @@ TDEV value of 1.47e-11 for the WR-ZEN. This is 3.6e-12 s and 1.18e-11 s less tha
         achieves the best results.}
     \label{fig:tdev_exp1}
 \end{figure}
-\gutinote{los caption de las figuras tienen que decir lo que es, lo que representa, no nocesariamente evaluar su contenido, para eso ya est� en texto}
+\gutinote{los caption de las figuras tienen que decir lo que es, lo que representa, no nocesariamente evaluar su contenido, para eso ya esta en texto}
 
 
 Modified Allan Deviation (MDEV) results are included in Figure 
@@ -101,7 +99,7 @@ Modified Allan Deviation (MDEV) results are included in Figure
         In the three plots the dominant noise is phase modulated white noise.}
     \label{fig:mdev_exp1}
 \end{figure}
-\gutinote{los caption de las figuras tienen que decir lo que es, lo que representa, no nocesariamente evaluar su contenido, para eso ya est� en texto}
+\gutinote{los caption de las figuras tienen que decir lo que es, lo que representa, no nocesariamente evaluar su contenido, para eso ya esta en texto}
 
 
 %\begin{table*}\centering
@@ -141,7 +139,7 @@ WR-ZEN achieves the best results: 3.90e-11 less than the WR-LEN and 1.02e-10 les
 	WR-ZEN with the registered PPS output performs the best of the three.}
 	\label{fig:mtie_exp1}
 \end{figure}
-\gutinote{los caption de las figuras tienen que decir lo que es, lo que representa, no necesariamente evaluar su contenido, para eso ya est� en texto}
+\gutinote{los caption de las figuras tienen que decir lo que es, lo que representa, no necesariamente evaluar su contenido, para eso ya esta en texto}
 
 
 The obtained values reveal that the proposed solution fulfils the requirements 
@@ -243,7 +241,7 @@ WR solution for the SKA's timing distribution system.
 	the Grand Master of the network.}
 	\label{fig:mtienet}
 \end{figure}
-\gutinote{la fuente de esta figura sigue peque�a. Ponedla como las dem�s.}
+\gutinote{la fuente de esta figura sigue chica. Ponedla como las demas.}
 
 \subsection{Temperature influence on time accuracy}
 %\subsection{Fibre operational temperature influence on time accuracy}
@@ -258,19 +256,14 @@ links. The timing solution must compensate appropriately those effects in order
 to maintain the synchronization performance inside the limits required by the 
 SKA's infrastructure. 
 
-The proposed system has been tested by JIVE \textcolor{red}{[REF]} in the SKA specific dessert zones of 
+The proposed system has been tested by JIVE \cite{jive:website} in the SKA specific dessert zones of 
 the South Africa and \cite{paul-boven-paper-icalepcs} describes the main issues 
 that must be taken into consideration. The main conclusion of this study is the
 need of compensation techniques to control the timing drift because of
 temperature changes.
 
 In this contribution, we have focused on the temperature change effect over the 
-cable
-\textit{round-trip} time (CRTT) and the PPS performance. To evaluate this, we 
-have used a climate chamber in the laboratory and some fibre spools of tens of 
-kilometers. Wind impact has not been evaluated properly with our equipment, \gutinote{no se ha evaluado correctamente, o es que no se ha evaluado�?}
-because of this, the experiments will only determine temperature effect on 
-synchronization.
+cable \textit{round-trip} time (CRTT) and the PPS performance. To evaluate this, we have used a climate chamber in the laboratory and some fibre spools of tens of kilometers. Wind impact has not been evaluated due to the lack of the specific equipment in our laboratory. Then, the experiments will only determine temperature effect on synchronization.
 
 Theoretically, WR is able to dynamically calibrate the master-slave 
 propagation delay from the total \textit{round-trip} time, and therefore PPS 
@@ -303,7 +296,7 @@ links that can exposed to external elements.
 
 A series of experiments introducing a 50 km length fibre spool in a climate chamber has been performed.
 The CRTT and the master-slave PPS offset have 
-been measured for a temperature range from 20 ºC to 50 ºC with 10 ºC steps. 
+been measured for a temperature range from 20\degree C to 50\degree C with 10\degree C steps. 
 
 \begin{table*}\centering
 	\ra{0.8}
@@ -311,7 +304,7 @@ been measured for a temperature range from 20 ºC to 50 ºC with 10 ºC steps.
 		& \multicolumn{2}{c}{\bfseries{RTT (ps)}} & &
 		\multicolumn{2}{c}{\bfseries{PPS $offset_{SM}$ (ps)}} \\
 		\cmidrule(l){2-3}  \cmidrule{5-6}
-		\textbf{Spool temp (ºC)} & $\overline{x}$ & $s$ & & $\overline{x}$ 
+		\textbf{Spool temp (\degree C)} & $\overline{x}$ & $s$ & & $\overline{x}$ 
 		& $s$ \\ \midrule
 		\small{20} & 478471695 & 303 & & 193 & 17 \\
 		\small{30} & 478503719 & 50  & & 203 & 17 \\
@@ -320,15 +313,15 @@ been measured for a temperature range from 20 ºC to 50 ºC with 10 ºC steps.
 		\bottomrule
 	\end{tabular}
 	\caption{Results of the thermal characterization for an operational fibre 
-		temperature in range 20ºC to 50ºC with 10ºC steps.}
+		temperature in range 20\degree C to 50\degree C with 10\degree C steps.}
 	\label{tab:temp}
 \end{table*}
 
 Our test is intended to prove the hypothesis that PPS offset is not related to 
 the cable \textit{round-trip} time, i.e. changes in CRTT will not affect the 
 synchronization accuracy. We have performed a series of experiments where the 
-operational temperature of a 50 km fibre link is set in a point from 20ºC to 
-50ºC. The measurement of the rest of dependent values such as CRTT and PPS offset
+operational temperature of a 50 km fibre link is set in a point from 20\degree C to 
+50\degree C. The measurement of the rest of dependent values such as CRTT and PPS offset
 was accomplished right after reaching the target temperature.
 All the WR equipment was 
 calibrated to compensate the characteristic delays of each device 
@@ -340,12 +333,12 @@ value of CRTT and PPS offset samples, and (ii) their sample standard deviation.
 A total of 7200 samples (2 hours) per temperature step have been used to 
 compute the presented statistics. The amplitude of the CRTT sampled data is 
 96496 ps. Dividing it by the temperature range we obtained a CRTT variation of 
-3213 ps/ºC. It is important to remark the huge variation in the propagation delay. 
+3213 ps/C. It is important to remark the huge variation in the propagation delay. 
 Considering a synchronization system that is not capable of dynamically 
 calibrate that change, the final performance would suffer from an enormous 
 degradation, which is unacceptable for the SKA equipment. The peak-to-peak 
-difference for the PPS offset is 211 ps which leaves us a 7 ps/ºC and if we 
-divide by the total link length: $0.14 ps/ºC \cdot km$.
+difference for the PPS offset is 211 ps which leaves us a 7 ps/C and if we 
+divide by the total link length: $0.14 ps/C \cdot km$.
 
 %\begin{figure}
 %	\centering
@@ -395,7 +388,7 @@ relation. It must be considered that $\alpha$ is computed experimentally using
 fixed-point arithmetic (the LM32 has no floating-point unit). While it seemed 
 to work properly for distances shorter than few km, it may be insufficient 
 for such long distances as the ones used in our experiments. Nevertheless, the 
-observed offset variation for a long distance link and a 30ºC temperature 
+observed offset variation for a long distance link and a 30C temperature 
 gradient is only 200 ps. This together with the results from the previous 
 experiments make the new PPS distribution system suitable for the SKA 
 timing system.

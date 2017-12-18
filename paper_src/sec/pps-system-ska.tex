@@ -1,22 +1,11 @@
-The WR protocol requires a network topology similar to the ITU-T
-G.8275.1/-\allowbreak Y.1369.1 standard, a PTPv2 telecommunication profile that
+The WR protocol requires a network topology similar to the ITU-T 
+G.8275.1-\allowbreak /Y.1369.1 standard, a PTPv2 telecommunication profile that
 describes a time-aware network capable to provide full timing support
-\cite{itu:TG8275_1_Y_1369_1} as explained in the previous section. It uses a master
-time reference (SKA1 clock) that is distributed following a tree topology in a
-master-slave configuration. The SKA PPS distribution system is composed of two
-different kinds of devices:
+\cite{itu:TG8275_1_Y_1369_1} as explained in the previous section. It uses a master time reference (SKA1 clock) that is distributed following a tree topology in a master-slave configuration as is shown in the Figure \ref{fig:ska_pps_dist_network}. The SKA PPS distribution system is composed of two different kinds of devices:
 
-\begin{itemize} \item {The WR Switches \cite{sevensols:wr_switch}. They are
-			standard 1U height rack-mounted equipment with 18 SFP
-			ports and are placed in the CSPs at each of the clock
-			ensembles. For SKA1-MID, one is placed halfway along
-			each of the 3 spiral arms to regenerate the signal for
-		the longest links.} \item{The end-nodes. They consist of a
-			WR-ZEN node \cite{sevensols:wr_zen} powered by a Zynq
-			FPGA-SoC and placed on inside a 1U rack enclosure. They
-			will be located at the cores of SKA1-LOW and
-SKA1-SURVEY, along their spiral arms, one for each SKA1-MID dish and one for
-each CSP.} \end{itemize}
+\begin{itemize} 
+	\item {The WR Switches \cite{sevensols:wr_switch}. They are standard 1U height rack-mounted equipment with 18 SFP ports and are placed in the CSPs at each of the clock ensembles. For SKA1-MID, one is placed halfway along each of the 3 spiral arms to regenerate the signal for the longest links.} \item{The end-nodes. They consist of a WR-ZEN node \cite{sevensols:wr_zen} powered by a Zynq FPGA-SoC and placed on inside a 1U rack enclosure. They will be located at the cores of SKA1-LOW and SKA1-SURVEY, along their spiral arms, one for each SKA1-MID dish and one for each CSP.} 
+\end{itemize}
 
 The WR switches are responsible for generating the WR timing signal from the
 SAT clock ensembles. They lock to an external 10MHz reference and to a PPS
@@ -34,18 +23,8 @@ SKA, the same single fibre strand can be used for the SAT network.
 \caption{Network topology for PPS signal distribution based on WR switches and
 nodes. }
 \label{fig:ska_pps_dist_network} \end{figure}
-\gutinote{la figura no está referenciada en el texto}
 
-An important feature of the system that must be taken into account is that the PPS pulse
-at each station is derived from the reference frequency distributed from
-the SKA clock and not from the WR system. In normal operation, the WR system
-only monitors the absolute time of each PPS and reports it back activating an
-alert if the PPS signal is not aligned to the start of the UTC second. This
-condition indicates a malfunctioning in the timing chain so that the station must
-discard data to avoid system data corruption. Other functionality associated
-with the WR part is to temporarily alter the division ratio to bring the PPS
-edge back in alignment with UTC time. In this case, fringe finding must then be
-performed to restore the full calibration again.
+An important feature of the system that must be taken into account is that the PPS pulse at each station is derived from the reference frequency distributed from the SKA clock and not from the WR system. In normal operation, the WR system only monitors the absolute time of each PPS and reports it back activating an alert if the PPS signal is not aligned to the start of the UTC second. This condition indicates a malfunctioning in the timing chain so that the station must discard data to avoid system data corruption. Other functionality associated with the WR part is to temporarily alter the division ratio to bring the PPS edge back in alignment with UTC time. In this case, fringe finding must then be performed to restore the full calibration again.
 
 The centrally located WR switches and the WR end-nodes are connected to a
 single strand of single-mode fibre with LC/PC connectors and industry standard
@@ -54,8 +33,7 @@ produce optical signals to be transmitted. Finally the end nodes generate a vali
 signal. 
 
 As previously described, this solution requires WR switches and nodes. The
-former are well-defined equipment with known interfaces and software support. 
-\gutinote{cuando se dice "the former" obligatoriamente hay que hablar de "the latter". En caso contrario habría que reescribirlo quitando "the former"}
+WRS are well-defined equipment with known interfaces and software support. 
 
 For the implementation of the SKA nodes, we have proposed the utilisation of
 the WR-ZEN board. Thanks to this new platform, the utilisation of a host
@@ -67,9 +45,7 @@ operation modes can be allowed under some circumstances).  Finally, it is worth 
 all these features maintain the full flexibility of a complete
 CPU+FPGA system on a single board. 
 
-In the following section we describe the proposed node by means of hardware, gateware and
-firmware that have been developed as a candidate solution for the SKA Telescope
-PPS distribution system. 
+In the following section we describe the proposed node by means of hardware, gateware and firmware that have been developed as a candidate solution for the SKA Telescope PPS distribution system. 
 
 \subsection{A PPS distribution node architecture}
 \label{subsec:ska-pps-system-arch}
@@ -83,8 +59,7 @@ optical fibre ports as conventional Linux network interfaces. An introduction
 to this platform is presented in \cite{migueljl-paper-wr-zen-intro} and a
 contribution that improves the NIC bandwidth of the design in
 \cite{jorgesg-paper-wr-zen-dma}. In addition, the WR-ZEN is also under study
-for other FMC cards such as the FMC ADC one to build a distributed oscilloscope
-\cite{joselj-paper-wr-zen-adc}.
+using other FMC cards such as the FMC ADC card to build a distributed oscilloscope \cite{joselj-paper-wr-zen-adc}.
 
 Nowadays, the utilisation of the Fine Delay FMC card is still under discussion
 and there is a possible design which final architecture could be addressed
@@ -92,8 +67,8 @@ without this module.
 
 \subsubsection{Hardware} \label{subsec:hardware}
 
-The WR-ZEN board is a proprietary design developed in 2015 by Seven Solutions S.L.. 
-The major design changes regarding previous WR-nodes designs
+The WR-ZEN board, shown in Figure \ref{fig:wrzen}, is a proprietary design developed in 2015 by Seven Solutions S.L.
+The major design changes regarding previous WR nodes designs
 are the inclusion of a Xilinx Zynq FPGA-SoC platform and a
 flexible and enhanced clocking scheme. The former, enables a more structured
 design in which software can be organised in abstraction layers. This is
@@ -107,12 +82,10 @@ requirements.
 
 \begin{figure}[H] \centering
 	\includegraphics[width=0.7\linewidth]{img/wrzenv3_scaled}
-	\caption[WR-ZEN board picture]{WR-ZEN board with
-	a FMC Fine Delay carrier \textcolor{red}{esta zen no tiene pinchada ninguna FMC...}. Other connectors: Ethernet
+	\caption[WR-ZEN board picture]{WR-ZEN board. Other connectors: Ethernet
 	ports, SFP ports and the SMA connectors for the RF input/output
-signals.} \label{fig:wrzen} \end{figure}
-\gutinote{figura no referenciada en texto}
-
+signals.} \label{fig:wrzen} 
+\end{figure}
 
 The FPGA-SoC platform design is composed of two different elements: (i) a
 Programmable Logic (PL) including modules described in HDL; and (ii) a
@@ -144,7 +117,7 @@ Besides including new components, the WR-ZEN design, upgrades some of them
 in order to provide an increment of the clock stability. All the clock path: Digital to
 Analogue Converter (DAC), Voltage-controlled crystal oscillator (VCXO),
 Phase-Locked loop (PLL) have been upgraded. A new DAC with a better
-response time and stability, a low-noise VCXO and a \textcolor{red}{new???} PLL have been included. 
+response time and stability, a low-noise VCXO and PLL have been included. 
 The original PLL used in previous designs has been maintained because it offers key aspects
 such as programmable output delays. In order to avoid the development of cascades formed of several PLLs, the signal
 from the crystal oscillator (XO) is driven to the low-noise PLL first since
@@ -152,12 +125,12 @@ it allows bypassing its reference to other components without adding noise to
 the reference. This schema enables using both PLLs at the same time. One of
 them is used to generate all the WR-clocks and the other can be used to
 generate custom frequencies. The WR general performance is limited by noise
-when locking to an external reference, in the so called Granmaster mode,
-described in \cite{Rizzi2016}. This contribution states that, in
+when locking to an external reference, in the so called GM mode,
+described in \cite{Rizzi2016}. It states that, in
 order to decrease the noise when locking to an external reference, internal
 PLLs in the FPGA should be avoid. Instead of it, it is recommended to use
 an analogue external PLL to locks to the external reference generating the necessary
-clock signals by the internal elements of the WR-logic in the FPGA. That
+clock signals by the internal elements of the WR-logic in the FPGA. Those
 enhanced features are included in the version 3.0 of the WR-ZEN as shown in
 Figure \ref{fig:zenclkschema} in order to achieve the expected PPS distribution
 stability requirements of the SKA project.
@@ -165,8 +138,7 @@ stability requirements of the SKA project.
 
 \subsubsection{Gateware} \label{subsec:gateware}
 
-The gateware (FPGA firmware) is responsible for configuring the embedded ARM
-microprocessor and the FPGA inside the Zynq SoC. \gutinote{el gateware es el que configura el ARM?????????}
+The gateware (FPGA firmware) is responsible for configuring the communication between the embedded ARM microprocessor and the FPGA inside the Zynq SoC. 
 The main block diagram is shown in Figure \ref{fig:gateware_first_level}. 
 It includes the WRPC Dual port (WRPC-2p) core that implements the high accuracy timing protocol based on
 WR and provides basic capabilities, such as Gigabit networking, time-stamp
@@ -196,31 +168,15 @@ control the Fine Delay FMC card.} \label{fig:gateware_first_level} \end{figure}
 \subsubsection{Firmware} \label{subsec:firmware}
 
 The firmware code performs all the WR functionalities. 
-In the node architecture, the embedded software part of the WR
-protocol together with some device drivers runs in the soft-microprocessor described in
-the previous section. The main tasks of the WR routines are the servo loop
-algorithm, which maintains the local oscillator locked to the recovered master's frequency,
-and the implementation of the WR-PTP stack. In addition, a simple
-Command Language Interface (CLI) has been integrated in the platform to allow user interaction
-in standalone configurations.
+In the node architecture, the embedded software part of the WR protocol together with some device drivers runs in the soft-microprocessor described in the previous section. The main tasks of the WR routines are the servo loop algorithm, which maintains the local oscillator locked to the recovered master's frequency, and the implementation of the WR-PTP stack. In addition, a simple Command Language Interface (CLI) has been integrated in the platform to allow user interaction in standalone configurations.
 
 \subsubsection{Software} \label{subsec:software}
 
-The WR-ZEN is the first WR node taking advantage of a Linux based OS in a standalone configuration. 
-Due to the inclusion of a dual-core ARM microprocessor, the system design is not longer tied to
-low-level software implementations. New functionalities, such as communication
-protocols, management tools, etc., are quickly added thanks to the support
-provided by the OS. The hardware abstraction layer and drivers help to abstract
-the management of the underlaying logic. This middleware adds also more
-security access to the hardware.
+The WR-ZEN is the first WR node taking advantage of a Linux based OS in a standalone configuration.  
+Due to the inclusion of a dual-core ARM microprocessor, the system design is not longer tied to low-level software implementations. New functionalities, such as communication protocols, management tools, etc., are quickly added thanks to the support provided by the OS. The hardware abstraction layer and drivers help to abstract the management of the underlaying logic. This middleware adds also more security access to the hardware.
 
 The software components are presented in Figure
-\ref{fig:software_architecture}.  Software is divided into the userspace utilities
-and the kernel support.  The former includes the Zen library that implements the
-basic functionalities for the Zen tools through the C standard library. The Zen
-tools provide some mechanisms to program the FPGA design and connect to the
-internal UART for debugging/configuration tasks among others.  Moreover, other
-utilities are included to control the Fine Delay FMC card if plugged.
+\ref{fig:software_architecture}. Software is divided into the userspace utilities and the kernel support. The userspace utilities includes the \textit{Zen library} that implements the basic functionalities for the \textit{Zen tools} through the C standard library. The \textit{Zen tools} provide some mechanisms to program the FPGA design and connect to the internal UART for debugging/configuration tasks among others.  Moreover, other utilities are included to control the Fine Delay FMC card if plugged.
 
 In the kernel side, some drivers have been implemented. The main one is the
 \textit{zen} driver that is responsible for setting up all the IP cores in the
@@ -229,7 +185,7 @@ FPGA and creates the standard Linux network interfaces. The \textit{fmc} and
 generic support for FMC and ZIO buses respectively.  The \textit{zio} driver
 has been modified in order to work properly in the WR-ZEN platform.  The
 \textit{zen-nic} kernel module is in charge of enabling/desabling network
-capabilities of the \textif{zen} driver. The \textit{fmc-fine-del} driver
+capabilities of the \textit{zen} driver. The \textit{fmc-fine-del} driver
 provides basic functionalities for the Fine Delay FMC card.
 
 As previously mentioned, there are dependencies between the different kernel
@@ -239,7 +195,7 @@ on \textit{fmc}. The \textit{fmc-fine-del} needs \textit{zen}, \textit{zio} and
 
 \begin{figure}[H] \centering
 	\includegraphics[scale=0.4]{img/software_architecture}
-	\caption{Software architecture. WR-ZEN software
+	\caption{WR-ZEN software
 	architecture. It is based on Linux kernel, in which
 	several tools and drivers have been developed to manage the WR functionality. The
 	tools can be used to program the FPGA, update the soft-microprocessor

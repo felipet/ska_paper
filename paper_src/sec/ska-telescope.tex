@@ -1,13 +1,10 @@
-SKA will be the world's largest radio-telescope. It will be located in two different
-geographical areas: South Africa and Australia/New Zealand. It will be
+SKA will be the world's largest radio-telescope. It will be located in two different geographical areas: South Africa and Australia/New Zealand. It will be
 constructed in different phases: SKA1 (phase 1 2018-2023) and SKA2 (phase 2
 2023-2033). The development will be deployed using two different pathfinders
-existing on each place (MeerKAT in South Africa [REF] and ASKAP in Australia [REF]).  
-SKA1 starts in 2018 and it is intended to provide \textcolor{red}{provide o cover?} the ~10\% of
+existing on each place (MeerKAT in South Africa \cite{ska:meerkat} and ASKAP in Australia \cite{ska:askap}).  
+SKA1 starts in 2018 and it is intended to cover the ~10\% of
 the total area at low and mid frequencies by 2023. SKA2 has
 the goal to get the full array working at low and mid frequencies by 2030.
-However, this timing schedule is not the final decision and some changes could
-be applied for future versions \textcolor{red}{yo quitaría esta frase}.
 
 There will be two different SKA facility locations depending on the frequency
 range for the sky observations. A common factor in both of them, is the high l
@@ -60,12 +57,10 @@ SKA responsible to provide a PPS signal to the critical elements.
 \label{subsec:ska-distribution}
 
 As determined by SaDT, the SKA Telescope should be able to distribute a common
-frequency reference to all the telescopes in order to provide a unique time reference
+frequency reference to all the antennas in order to provide a unique time reference
 to register all the events with ultra-high accuracy using time-stamps. This
 task is performed by the SAT element that belongs to
-SaDT. The SKA timescale is maintained by the central clock ensemble for each
-telescope and \textcolor{red}{will be steered to within designed limits of UTC [no se entiende]} and monitored
-with respect to UTC via GNSS time transfer techniques. These clock ensembles
+SaDT. The SKA timescale is maintained by the central clock ensemble and it is disseminated to the rest of the antennas. These clock ensembles
 form the fundamental timescale for SKA and will be the basis to perform precise
 measurements of pulsars and other time-dependent phenomenons. As consequence,
 during this distribution, UTC refers to UTC (SKA), as realised by the central
@@ -75,7 +70,7 @@ scientific data are time-tagged using a common reference. This time reference ha
 high requirements coming from science that are not mandatory by other elements
 of the SKA systems, such as the monitor and control network. For these other
 elements, standard time transfer protocols as NTP or PTP are a feasible
-solutions. For the Telescope core, we illustrate that the high performance
+solutions. For the SKA Telescope core, we illustrate that the high performance
 requirements imposed by the challenging scientific goals force to provide much
 more sophisticated approaches.  The PPS distribution system will be in charge
 of delivering its output at the following locations: SKA1-MID with 133 dishes
@@ -92,26 +87,15 @@ Our contribution  focuses on describing a  suitable candidate solution for the P
 distribution system, whilst the related work only considers the second requirement. Note that
 a complete description of the SKA network elements and topology is out of the
 scope of this contribution and only the requirements needed are presented to
-properly understand the need of the solution here developed.
-\textcolor{red}{Due to the fact that the main clock also consumes part of this, it translates
-into PPS-distribution time requirement of 5 ns. The error here includes PPS
-distribution, delay centre precision, Dish timing transport and time-stamping
-errors and should be distributed on the different elements of the system that
-rely on the network topology that determine the number of hops. [no se entiende]} Based on
-current SAT network topology, the target specification for the elements of the
-PPS distribution system provides them an average time better than 2 ns. This is
-a quite challenging goal not only because it imposes a high accuracy
-synchronisation requirement but also for the environmental conditions of the 
-installation that must be taken into account.
+properly understand the need of the solution here developed. The \cite{paultests} summarises the accuracy requirements for the SKA PPS distribution system. The system requirement is 10 ns over decades. However, the UTC realization error must be bounded below 5 ns and the synchronization technology only has a 2 ns budget.
+Based on current SAT network topology, the target specification for the elements of the PPS distribution system provides them an average time better than 2 ns.
+
 SKA1 uses aerial optical fibre networks that are
 significantly affected by the large temperature excursion during operation,
-presenting variations of more than 20Âº in desert locations, such as South Africa and
-Australia. Furthermore, outdoor wind velocities during normal operation
-could achieve up to 40 km/h, making fibres oscillate and changing their
-length, forcing to develop a compensation mechanism on real-time during execution or \textcolor{red}{averaged
-them out. ???}
+presenting variations of more than 20\degree C in desert locations, such as South Africa and Australia. Furthermore, outdoor wind velocities during normal operation could achieve up to 40 km/h, making fibres oscillate and changing their length, forcing to develop a compensation mechanism on real-time during execution.
 
-Next section provides the description of the authors' proposed solution for the SKA
-Telescope PPS distribution system. 
+The SKA Telescope has a quite challenging goal because it imposes a high accuracy synchronisation requirement and also for the environmental conditions of the installation.
+
+Next section provides the description of the authors' proposed solution for the SKA Telescope PPS distribution system. 
 
 
