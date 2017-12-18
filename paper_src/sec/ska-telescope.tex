@@ -56,21 +56,11 @@ SKA responsible to provide a PPS signal to the critical elements.
 \subsection{High-accuracy timing signals distribution for SKA1}
 \label{subsec:ska-distribution}
 
-As determined by SaDT, the SKA Telescope should be able to distribute a common
-frequency reference to all the antennas in order to provide a unique time reference
-to register all the events with ultra-high accuracy using time-stamps. This
-task is performed by the SAT element that belongs to
-SaDT. The SKA timescale is maintained by the central clock ensemble and it is disseminated to the rest of the antennas. These clock ensembles
-form the fundamental timescale for SKA and will be the basis to perform precise
-measurements of pulsars and other time-dependent phenomenons. As consequence,
+As determined by SaDT, the SKA Telescope should be able to distribute a common frequency reference to all the antennas in order to provide a unique time reference to register all the events with ultra-high accuracy using time-stamps. This task is performed by the SAT element that belongs to SaDT. The SKA timescale is maintained by the central clock ensemble and it is disseminated to the rest of the antennas. These clock ensembles form the fundamental timescale for SKA and will be the basis to perform precise measurements of pulsars and other time-dependent phenomenons. As consequence,
 during this distribution, UTC refers to UTC (SKA), as realised by the central
 SKA clock ensemble.  This article focuses on the solutions to distribute
 the UTC time by means of PPS. This PPS signal guarantees that all the
-scientific data are time-tagged using a common reference. This time reference has
-high requirements coming from science that are not mandatory by other elements
-of the SKA systems, such as the monitor and control network. For these other
-elements, standard time transfer protocols as NTP or PTP are a feasible
-solutions. For the SKA Telescope core, we illustrate that the high performance
+scientific data are time-tagged using a common reference. This time reference has high requirements coming from science that are not mandatory by other elements of the SKA systems, such as the monitor and control network. For these other elements, standard time transfer protocols as NTP or PTP are a feasible solutions. For the SKA Telescope core, we illustrate that the high performance
 requirements imposed by the challenging scientific goals force to provide much
 more sophisticated approaches.  The PPS distribution system will be in charge
 of delivering its output at the following locations: SKA1-MID with 133 dishes
@@ -83,11 +73,7 @@ network might be increased from 182 to 246 endpoints.
 As previously said, the SAT array general requirements for the frequency distribution is 1 ps 
 while the time synchronisation and time-stamp requirements reaches 10 ns, being mandatory for the whole network.
 SaDT uses different mechanisms to achieve frequency dissemination and PPS distribution goals. 
-Our contribution  focuses on describing a  suitable candidate solution for the PPS
-distribution system, whilst the related work only considers the second requirement. Note that
-a complete description of the SKA network elements and topology is out of the
-scope of this contribution and only the requirements needed are presented to
-properly understand the need of the solution here developed. The \cite{paultests} summarises the accuracy requirements for the SKA PPS distribution system. The system requirement is 10 ns over decades. However, the UTC realization error must be bounded below 5 ns and the synchronization technology only has a 2 ns budget.
+Our contribution  focuses on describing a  suitable candidate solution for the PPS distribution system, whilst the related work only considers the second requirement. Note that a complete description of the SKA network elements and topology is out of the scope of this contribution and only the requirements needed are presented to properly understand the need of the solution here developed. The \cite{paultests} summarises the accuracy requirements for the SKA PPS distribution system. The system requirement is 10 ns over decades. However, the UTC realization error must be bounded below 5 ns and the synchronization technology only has a 2 ns budget.
 Based on current SAT network topology, the target specification for the elements of the PPS distribution system provides them an average time better than 2 ns.
 
 SKA1 uses aerial optical fibre networks that are
@@ -97,5 +83,3 @@ presenting variations of more than 20\degree C in desert locations, such as Sout
 The SKA Telescope has a quite challenging goal because it imposes a high accuracy synchronisation requirement and also for the environmental conditions of the installation.
 
 Next section provides the description of the authors' proposed solution for the SKA Telescope PPS distribution system. 
-
-

@@ -41,8 +41,7 @@ computer/crate to host the FPGA card can be avoided, thus reducing significantly
 the equipment price. It is also a remarkable improvement in terms of
 dependability which is a key factor taking into account that SKA Telescope
 should have an annual availability of about 95\% of the time (although degraded
-operation modes can be allowed under some circumstances).  Finally, it is worth to mention that
-all these features maintain the full flexibility of a complete
+operation modes can be allowed under some circumstances).  Finally, it is worth to mention that all these features maintain the full flexibility of a complete
 CPU+FPGA system on a single board. 
 
 In the following section we describe the proposed node by means of hardware, gateware and firmware that have been developed as a candidate solution for the SKA Telescope PPS distribution system. 
@@ -67,12 +66,7 @@ without this module.
 
 \subsubsection{Hardware} \label{subsec:hardware}
 
-The WR-ZEN board, shown in Figure \ref{fig:wrzen}, is a proprietary design developed in 2015 by Seven Solutions S.L.
-The major design changes regarding previous WR nodes designs
-are the inclusion of a Xilinx Zynq FPGA-SoC platform and a
-flexible and enhanced clocking scheme. The former, enables a more structured
-design in which software can be organised in abstraction layers. This is
-achieved by the inclusion of an Linux-like OS, low-level drivers and a
+The WR-ZEN board, shown in Figure \ref{fig:wrzen}, is a proprietary design developed in 2015 by Seven Solutions S.L. The major design changes regarding previous WR nodes designs are the inclusion of a Xilinx Zynq FPGA-SoC platform and a flexible and enhanced clocking scheme. The former, enables a more structured design in which software can be organised in abstraction layers. This is achieved by the inclusion of an Linux-like OS, low-level drivers and a
 Hardware Abstraction Layer (HAL). These components allow an easy and quick
 development of new functionalities on top of all the software that interfaces
 with the underlying hardware. Deeper details of the software structure is
@@ -114,36 +108,16 @@ delays.} \label{fig:zenclkschema} \end{figure}
 
 The extended WR clock schema is depicted in Figure \ref{fig:zenclkschema}.
 Besides including new components, the WR-ZEN design, upgrades some of them
-in order to provide an increment of the clock stability. All the clock path: Digital to
-Analogue Converter (DAC), Voltage-controlled crystal oscillator (VCXO),
-Phase-Locked loop (PLL) have been upgraded. A new DAC with a better
+in order to provide an increment of the clock stability. All the clock path: Digital to Analogue Converter (DAC), Voltage-controlled crystal oscillator (VCXO), Phase-Locked loop (PLL) have been upgraded. A new DAC with a better
 response time and stability, a low-noise VCXO and PLL have been included. 
-The original PLL used in previous designs has been maintained because it offers key aspects
-such as programmable output delays. In order to avoid the development of cascades formed of several PLLs, the signal
-from the crystal oscillator (XO) is driven to the low-noise PLL first since
-it allows bypassing its reference to other components without adding noise to
-the reference. This schema enables using both PLLs at the same time. One of
-them is used to generate all the WR-clocks and the other can be used to
-generate custom frequencies. The WR general performance is limited by noise
-when locking to an external reference, in the so called GM mode,
-described in \cite{Rizzi2016}. It states that, in
-order to decrease the noise when locking to an external reference, internal
-PLLs in the FPGA should be avoid. Instead of it, it is recommended to use
-an analogue external PLL to locks to the external reference generating the necessary
-clock signals by the internal elements of the WR-logic in the FPGA. Those
-enhanced features are included in the version 3.0 of the WR-ZEN as shown in
-Figure \ref{fig:zenclkschema} in order to achieve the expected PPS distribution
-stability requirements of the SKA project.
+The original PLL used in previous designs has been maintained because it offers key aspects such as programmable output delays. In order to avoid the development of cascades formed of several PLLs, the signal from the crystal oscillator (XO) is driven to the low-noise PLL first since it allows bypassing its reference to other components without adding noise to the reference. This schema enables using both PLLs at the same time. One of them is used to generate all the WR-clocks and the other can be used to generate custom frequencies. The WR general performance is limited by noise when locking to an external reference, in the so called GM mode, described in \cite{Rizzi2016}. It states that, in order to decrease the noise when locking to an external reference, internal PLLs in the FPGA should be avoid. Instead of it, it is recommended to use an analogue external PLL to locks to the external reference generating the necessary clock signals by the internal elements of the WR-logic in the FPGA. Those enhanced features are included in the version 3.0 of the WR-ZEN as shown in Figure \ref{fig:zenclkschema} in order to achieve the expected PPS distribution stability requirements of the SKA project.
 
 
 \subsubsection{Gateware} \label{subsec:gateware}
 
 The gateware (FPGA firmware) is responsible for configuring the communication between the embedded ARM microprocessor and the FPGA inside the Zynq SoC. 
 The main block diagram is shown in Figure \ref{fig:gateware_first_level}. 
-It includes the WRPC Dual port (WRPC-2p) core that implements the high accuracy timing protocol based on
-WR and provides basic capabilities, such as Gigabit networking, time-stamp
-mechanisms, debug interfaces, etc. The Gigabit transceiver (GT) ports include the
-necessary modules to send/receive packets to/from the network. The NIC are in charge of processing the incoming/outcoming
+It includes the WRPC Dual port (WRPC-2p) core that implements the high accuracy timing protocol based on WR and provides basic capabilities, such as Gigabit networking, time-stamp mechanisms, debug interfaces, etc. The Gigabit transceiver (GT) ports include the necessary modules to send/receive packets to/from the network. The NIC are in charge of processing the incoming/outcoming
 packets and notify these events to the ARM. The Transmission Time-Stamp Unit
 (TxTSU) is an additional module that allows recovering the outcoming packet
 time-stamps. The Fine Delay core controls the operation of the Fine Delay FMC
@@ -155,15 +129,8 @@ uses the AMBA specification while others components are based on WB.
 
 \begin{figure}[H] \centering
 	\includegraphics[scale=0.4]{img/gateware_first_level} \caption{Gateware
-	project design. WR-ZEN FPGA gateware design. The the WRPC-2p core that is responsible for
-	implementing the WR protocol. The GT ports allows to transmit/receive
-	packets to/from the network through the optical SFP modules. The NIC
-	cores manage Ethernet packets and behave as standard network interface
-	cards for the ARM microprocessor. The AXI-WB Bridge translates AXI
-	transactions into WB ones. It is important because the ARM is connected
-	using AMBA specification meanwhile the WR FPGA cores use Wishbone bus
-	standard. Finally, the Fine Delay core contains the necessary resources to
-control the Fine Delay FMC card.} \label{fig:gateware_first_level} \end{figure}
+	project design. WR-ZEN FPGA gateware design. The the WRPC-2p core that is responsible for implementing the WR protocol. The GT ports allows to transmit/receive packets to/from the network through the optical SFP modules. The NIC cores manage Ethernet packets and behave as standard network interface cards for the ARM microprocessor. The AXI-WB Bridge translates AXI transactions into WB ones. It is important because the ARM is connected using AMBA specification meanwhile the WR FPGA cores use Wishbone bus standard. Finally, the Fine Delay core contains the necessary resources to control the Fine Delay FMC card.} \label{fig:gateware_first_level} 
+\end{figure}
 
 \subsubsection{Firmware} \label{subsec:firmware}
 
@@ -202,8 +169,9 @@ on \textit{fmc}. The \textit{fmc-fine-del} needs \textit{zen}, \textit{zio} and
 	code or connect to the virtual UART interface of the WRPC-2p. They call
 	the Zen Library procedures that use C Library functions and
 	switch to kernel mode through system calls. In the kernel space, the
-drivers are responsible for implementing all the requested functionalities. }
-\label{fig:software_architecture} \end{figure}
+	drivers are responsible for implementing all the requested functionalities. }
+	\label{fig:software_architecture} 
+\end{figure}
 
 The next section describes the main performed experiments and the obtained
 results using the WR-ZEN.

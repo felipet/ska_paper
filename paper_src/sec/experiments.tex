@@ -33,11 +33,7 @@ below:
     
     \item Multiple components for the setup of the equipment:
     \begin{itemize}
-        \item SFPs to establish the 
-        link between WR devices. For the shorter links we have used the most 
-        common bidirectional SFPs for WR: AXCEN 1310/1490 nm. For larger links, 
-        we used 
-        SFPs from FiberStore: GE-BX-80 1490/1550 nm.
+        \item SFPs to establish the link between WR devices. For the shorter links we have used the most common bidirectional SFPs for WR: AXCEN 1310/1490 nm. For larger links, we used SFPs from FiberStore: GE-BX-80 1490/1550 nm.
         \item Simplex optical fibre links (G652D). For the device 
         characterization short distance fibres have been used, meanwhile for 
         the scalability and temperature tests we have used long distance links: 
@@ -96,7 +92,8 @@ Modified Allan Deviation (MDEV) results are included in Figure
     \caption[MDEV for the WR devices comparison.]{The Modified Allan Deviation 
         plot shows that there is not undesired noise effects on any of the three 
         devices. 
-        In the three plots the dominant noise is phase modulated white noise.}
+        In the three plots the dominant noise is phase modulated white noise. 
+        \textcolor{teal}{usa las siglas}}
     \label{fig:mdev_exp1}
 \end{figure}
 \gutinote{los caption de las figuras tienen que decir lo que es, lo que representa, no nocesariamente evaluar su contenido, para eso ya esta en texto}
@@ -151,15 +148,9 @@ goodness.
 \label{subsec: net_exp}
 
 The next experiment covers a scalability analysis of the WR solution for the 
-SKA timing system. In section \ref{sec:ska} we presented an estimation of the final 
-nodes that would be needed to be synchronized for the SKA: around 250 endpoints that 
-must be synchronized with an accuracy below 2 ns. A WR network with only two 
-hops is suitable to synchronize up to 306 end-nodes by using BC WRSs.
+SKA timing system. In section \ref{sec:ska} we presented an estimation of the final nodes that would be needed to be synchronized for the SKA: around 250 endpoints \textcolor{teal}{se decanta por usar -} that must be synchronized with an accuracy below 2 ns. A WR network with only two hops is suitable to synchronize up to 306 end-nodes by using BC WRSs.
 
-We set up a test network composed of a WRS at the top of the hierarchy, which is locked to an 
-external time reference, another WRS as intermediate BC and a WR-ZEN as an
-endpoint. This configuration allows synchronizing up to 306 WR nodes with an 
-expected performance similar to the results obtained in our test for the WR-ZEN.
+We set up a test network composed of a WRS at the top of the hierarchy, which is locked to an external time reference, another WRS as intermediate BC and a WR-ZEN as an endpoint \textcolor{teal}{se decanta por usar -}. This configuration allows synchronizing up to 306 WR nodes with an expected performance similar to the results obtained in our test for the WR-ZEN.
 
 \begin{figure}
 	\centering
@@ -238,7 +229,7 @@ WR solution for the SKA's timing distribution system.
 	\includegraphics[width=0.7\linewidth]{img/MTIE_exp3}
 	\caption[MTIE of the end-nodes in the scalability test.]{Maximum Time 
 	Interval Errorplot comparing the PPS signal from the end-nodes (WR-ZEN) to 
-	the Grand Master of the network.}
+	the Grand Master of the network. \textcolor{teal}{cambia esto felipe}}
 	\label{fig:mtienet}
 \end{figure}
 \gutinote{la fuente de esta figura sigue chica. Ponedla como las demas.}
@@ -376,7 +367,8 @@ divide by the total link length: $0.14 ps/C \cdot km$.
 	sightly influenced by changes in the cable round-trip time.}
 	\label{fig:ppsvscrtt}
 	\caption{Evaluation of the cable \textit{round-trip} time and the PPS 
-	offset with variable temperature conditions for the fibre link.}
+	offset with variable temperature conditions for the fibre 
+	link.\textcolor{teal}{que ha pasado con esta imagen?}}
 \end{figure}
 
 Figure \ref{fig:crttvstemp} shows a clear linear dependency between the 
