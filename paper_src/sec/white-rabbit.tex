@@ -1,5 +1,5 @@
 The WR technology \cite{Wlostowski2011} is an international collaborative
-project started at CERN in 2009, later joined by other worldwide laboratories and companies. It was born as a replacement technology for CERN's accelerator timing system, but due to its versatility and improved performance compared to other alternatives, together with its open nature, it was quickly adopted by other scientific institutions. In addition to the scientific applications, some private companies such as Seven Solutions or Creotech are interested in extendind WR for industrial solutions. Some examples of that effort are the projects WR-SYNTEF \cite{web:creotech_projects} and IFMIF/EVEDA \cite{web:seven_projects}. 
+project started at CERN in 2009, later joined by other worldwide laboratories and companies. It was born as a replacement technology for CERN's accelerator timing system, but due to its versatility and improved performance compared to other alternatives, together with its open nature, it was quickly adopted by other scientific institutions. In addition to the scientific applications, some private companies such as Seven Solutions or Creotech are interested in extending WR for industrial solutions. Some examples of that effort are the projects WR-SYNTEF \cite{web:creotech_projects} and IFMIF/EVEDA \cite{web:seven_projects}. 
 Furthermore, from its very early stages, WR was launched as an open SW/HW initiative with available online sources at CERN's Open Hardware Repository (OHWR) \cite{ohwr:repo}. This encouraged different companies and research institutions to openly collaborate in its development.
 
 The WR protocol extends PTPv2 with extra messages and has been proposed to be
@@ -12,7 +12,7 @@ clock; and the assumption of symmetry between transmission and reception
 paths. It inherently performs self-calibration over optical fibre links and it
 is capable of distributing time to a very large number of devices with very
 small degradation. Nevertheless, this technology was not designed originally
-to address synchronization over long distance links, neither the inclusion of monitoring and dependable mechanisms on the nodes. Although SKA is working on improving both issues, this contribution particularly presents a new platform capable of disseminating the PPS signal incorporating flexibility and dependability features. 
+to address synchronisation over long distance links, neither the inclusion of monitoring and dependable mechanisms on the nodes. Although SKA is working on improving both issues, this contribution particularly presents a new platform capable of disseminating the PPS signal incorporating flexibility and dependability features. 
 
 The WR synchronisation mechanisms include the following elements:
 
@@ -21,7 +21,7 @@ The WR synchronisation mechanisms include the following elements:
 	\item Frequency synchronisation (syntonization): The recovered clock from the physical layer (L1) of the Open Systems Interconnection model (OSI) is used by 
 	the WR logic to syntonize the local oscillator. That means that all the WR network run syntonized with the main clock reference.
 	
-	\item Phase synchronisation: Thanks to the syntonization, the one-cicle time resolution limitation is resolved via the use of the Dual Mixed Time Difference method (DMTD). A digital implementation of that \cite{Moreira2011} is used to achieve sub-picosecond resolution when measuring phase difference between the local oscillator and the recovered one from the upwards node.
+	\item Phase synchronisation: Thanks to the syntonization, the one-cycle time resolution limitation is resolved via the use of the Dual Mixed Time Difference method (DMTD). A digital implementation of that \cite{Moreira2011} is used to achieve sub-picosecond resolution when measuring phase difference between the local oscillator and the recovered one from the upwards node.
 	
 	\item Time synchronisation: It is implemented by an enhanced version of the PTPv2 protocol and provides a global notion of time to the entire network. WR 
 	also takes into account the asymmetries in the propagation time due to the utilisation of different wavelengths in the same fibre link improving the 
@@ -74,7 +74,7 @@ devices:
 \begin{itemize} 
 	\item The SPEC \cite{ohwr:spec} is a WR-compliant FMC carrier that supports low pin count (LPC) boards. It includes a Xilinx's Spartan-6 FPGA, a SFP connector and a PCIe interface. It could be used in standalone mode \cite{migueljl-paper-wr-spec}, but due to its limited computational resources, the SPEC is usually used connected to a host PC using the PCIe interface.  No coaxial RF connectors are included in this board, being this fact a major penalty since a FMC board is required to retrieve the PPS signal.
 	
-	\item The WR Light Embedded Node (LEN) \cite{sevensols:wr_len} is a 	standalone WR node whose main design principles are: an easiness of use and a good timing performance. It was the first WR node	that included the extended version of the WR PTP core (WRPC)architecture, the WR PTP Core Dual Port (WRC2P) \cite{torres2016scalability}. Besides the second WR-compliant Ethernet interface, the WR-LEN includes three coaxial RF
+	\item The WR Light Embedded Node (LEN) \cite{sevensols:wr_len} is a 	standalone WR node whose main design principles are: an easiness of use and a good timing performance. It was the first WR node	that included the extended version of the WR PTP core (WRPC) architecture, the WR PTP Core Dual Port (WRC2P) \cite{torres2016scalability}. Besides the second WR-compliant Ethernet interface, the WR-LEN includes three coaxial RF
 	connectors and a Ethernet RJ45 management port. Its design is quite similar to the SPEC board with some component upgrades, such as the FPGA (Xilinx's Artix-7). This device can act as BC and OC.
 	
 	\item The WR Zynq Embedded Node (ZEN) \cite{sevensols:wr_zen} is another

@@ -14,7 +14,7 @@ In order to evaluate properly the project's timing requirements, we have perform
 	link simulating temperature changes.
 \end{itemize}
 
-The principal equipment and tools utilized during the experiments are listed 
+The principal equipment and tools utilised during the experiments are listed 
 below:
 
 \begin{itemize}
@@ -35,7 +35,7 @@ below:
     \begin{itemize}
         \item SFPs to establish the link between WR devices. For the shorter links we have used the most common bidirectional SFPs for WR: AXCEN 1310/1490 nm. For larger links, we used SFPs from FiberStore: GE-BX-80 1490/1550 nm.
         \item Simplex optical fibre links (G652D). For the device 
-        characterization short distance fibres have been used, meanwhile for 
+        characterisation short distance fibres have been used, meanwhile for 
         the scalability and temperature tests we have used long distance links: 
         20 and 50 km respectively.
         \item An OCXO Morion MV89 as frequency reference for the GM mode.
@@ -50,7 +50,7 @@ below:
 
 The PPS performance is evaluated for the three WR nodes previously described. 
 Each node is connected to the same WRS with a short fibre link (Figure 
-\ref{fig:prueba1pps}). Once the node is fully synchronized, we start to 
+\ref{fig:prueba1pps}). Once the node is fully synchronised, we start to 
 measure the time interval between the PPS from the WRS and the PPS from the 
 slave node. All measurements have been carried out for 24 hours under laboratory conditions.
 
@@ -148,9 +148,9 @@ goodness.
 \label{subsec: net_exp}
 
 The next experiment covers a scalability analysis of the WR solution for the 
-SKA timing system. In section \ref{sec:ska} we presented an estimation of the final nodes that would be needed to be synchronized for the SKA: around 250 endpoints \textcolor{teal}{se decanta por usar -} that must be synchronized with an accuracy below 2 ns. A WR network with only two hops is suitable to synchronize up to 306 end-nodes by using BC WRSs.
+SKA timing system. In section \ref{sec:ska} we presented an estimation of the final nodes that would be needed to be synchronised for the SKA: around 250 endpoints \textcolor{teal}{se decanta por usar -} that must be synchronised with an accuracy below 2 ns. A WR network with only two hops is suitable to synchronise up to 306 end-nodes by using BC WRSs.
 
-We set up a test network composed of a WRS at the top of the hierarchy, which is locked to an external time reference, another WRS as intermediate BC and a WR-ZEN as an endpoint \textcolor{teal}{se decanta por usar -}. This configuration allows synchronizing up to 306 WR nodes with an expected performance similar to the results obtained in our test for the WR-ZEN.
+We set up a test network composed of a WRS at the top of the hierarchy, which is locked to an external time reference, another WRS as intermediate BC and a WR-ZEN as an endpoint \textcolor{teal}{se decanta por usar -}. This configuration allows synchronising up to 306 WR nodes with an expected performance similar to the results obtained in our test for the WR-ZEN.
 
 \begin{figure}
 	\centering
@@ -158,7 +158,7 @@ We set up a test network composed of a WRS at the top of the hierarchy, which is
 	\caption[WR Scalability test's setup for SKA]{To evaluate the scalability 
 	of the WR solution for the expected SKA timing network, a sample WR 
 	network has been evaluated. At the top there is a WRS as GM, a second layer 
-	of WRS to finally provide synchronization to the end-nodes (WR-ZEN).}
+	of WRS to finally provide synchronisation to the end-nodes (WR-ZEN).}
 	\label{fig:pruebared}
 \end{figure}
 
@@ -212,7 +212,7 @@ PPS error, during this test, is bounded below 2e-10 s (see Figure
 \end{table*}
 
 With those findings, it has been proved that a WR network with two levels can 
-provide synchronization to all the equipment expected for the SKA facilities. 
+provide synchronisation to all the equipment expected for the SKA facilities. 
 It is also important to mention that some links could be divided into two WR links 
 due to the distance between some antennas (e.g. adding a WR device 
 between the master WRS and the end-node). Introducing an extra WR level for some 
@@ -228,7 +228,7 @@ WR solution for the SKA's timing distribution system.
 	\centering
 	\includegraphics[width=0.7\linewidth]{img/MTIE_exp3}
 	\caption[MTIE of the end-nodes in the scalability test.]{Maximum Time 
-	Interval Errorplot comparing the PPS signal from the end-nodes (WR-ZEN) to 
+	Interval Error plot comparing the PPS signal from the end-nodes (WR-ZEN) to 
 	the Grand Master of the network. \textcolor{teal}{cambia esto felipe}}
 	\label{fig:mtienet}
 \end{figure}
@@ -240,11 +240,11 @@ WR solution for the SKA's timing distribution system.
 
 One of the key aspects of the timing solution for the SKA facilities is the 
 evaluation of the influence of the external elements in the timing performance. 
-Synchronization signals are spread over hundred of nodes which are connected by 
+Synchronisation signals are spread over hundred of nodes which are connected by 
 long distance fibre links. Meteorological elements, such as wind or large 
 temperature changes, can alter propagation delays over the fibre 
 links. The timing solution must compensate appropriately those effects in order 
-to maintain the synchronization performance inside the limits required by the 
+to maintain the synchronisation performance inside the limits required by the 
 SKA's infrastructure. 
 
 The proposed system has been tested by JIVE \cite{jive:website} in the SKA specific dessert zones of 
@@ -254,7 +254,7 @@ need of compensation techniques to control the timing drift because of
 temperature changes.
 
 In this contribution, we have focused on the temperature change effect over the 
-cable \textit{round-trip} time (CRTT) and the PPS performance. To evaluate this, we have used a climate chamber in the laboratory and some fibre spools of tens of kilometers. Wind impact has not been evaluated due to the lack of the specific equipment in our laboratory. Then, the experiments will only determine temperature effect on synchronization.
+cable \textit{round-trip} time (CRTT) and the PPS performance. To evaluate this, we have used a climate chamber in the laboratory and some fibre spools of tens of kilometres. Wind impact has not been evaluated due to the lack of the specific equipment in our laboratory. Then, the experiments will only determine temperature effect on synchronisation.
 
 Theoretically, WR is able to dynamically calibrate the master-slave 
 propagation delay from the total \textit{round-trip} time, and therefore PPS 
@@ -281,7 +281,7 @@ links that can exposed to external elements.
 	\includegraphics[width=0.7\linewidth]{img/tempsetup}
 	\caption[Configuration of the climate chamber experiments]{Experimental 
 		setup to analyse the influence of the temperature gradient over the 
-		fibre link and the synchronization accuracy.}
+		fibre link and the synchronisation accuracy.}
 	\label{fig:tempsetup}
 \end{figure}
 
@@ -303,14 +303,14 @@ been measured for a temperature range from 20\degree C to 50\degree C with 10\de
 		\small{50} & 478567050 & 399 & & 110 & 14 \\
 		\bottomrule
 	\end{tabular}
-	\caption{Results of the thermal characterization for an operational fibre 
+	\caption{Results of the thermal characterisation for an operational fibre 
 		temperature in range 20\degree C to 50\degree C with 10\degree C steps.}
 	\label{tab:temp}
 \end{table*}
 
 Our test is intended to prove the hypothesis that PPS offset is not related to 
 the cable \textit{round-trip} time, i.e. changes in CRTT will not affect the 
-synchronization accuracy. We have performed a series of experiments where the 
+synchronisation accuracy. We have performed a series of experiments where the 
 operational temperature of a 50 km fibre link is set in a point from 20\degree C to 
 50\degree C. The measurement of the rest of dependent values such as CRTT and PPS offset
 was accomplished right after reaching the target temperature.
@@ -325,7 +325,7 @@ A total of 7200 samples (2 hours) per temperature step have been used to
 compute the presented statistics. The amplitude of the CRTT sampled data is 
 96496 ps. Dividing it by the temperature range we obtained a CRTT variation of 
 3213 ps/C. It is important to remark the huge variation in the propagation delay. 
-Considering a synchronization system that is not capable of dynamically 
+Considering a synchronisation system that is not capable of dynamically 
 calibrate that change, the final performance would suffer from an enormous 
 degradation, which is unacceptable for the SKA equipment. The peak-to-peak 
 difference for the PPS offset is 211 ps which leaves us a 7 ps/C and if we 
@@ -355,7 +355,7 @@ divide by the total link length: $0.14 ps/C \cdot km$.
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.7\linewidth]{img/crttvstemp}
-	\caption[CRTT vs. Fiber temperature]{The figure shows the relation 
+	\caption[CRTT vs. Fibre temperature]{The figure shows the relation 
 	between the fibre temperature and the cable round-trip time.}
 	\label{fig:crttvstemp}
 \end{figure}

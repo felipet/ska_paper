@@ -117,13 +117,13 @@ The original PLL used in previous designs has been maintained because it offers 
 
 The gateware (FPGA firmware) is responsible for configuring the communication between the embedded ARM microprocessor and the FPGA inside the Zynq SoC. 
 The main block diagram is shown in Figure \ref{fig:gateware_first_level}. 
-It includes the WRPC Dual port (WRPC-2p) core that implements the high accuracy timing protocol based on WR and provides basic capabilities, such as Gigabit networking, time-stamp mechanisms, debug interfaces, etc. The Gigabit transceiver (GT) ports include the necessary modules to send/receive packets to/from the network. The NIC are in charge of processing the incoming/outcoming
+It includes the WRPC Dual port (WRPC-2p) core that implements the high accuracy timing protocol based on WR and provides basic capabilities, such as Gigabit networking, time-stamp mechanisms, debug interfaces, etc. The Gigabit transceiver (GT) ports include the necessary modules to send/receive packets to/from the network. The NIC are in charge of processing the incoming/outgoing
 packets and notify these events to the ARM. The Transmission Time-Stamp Unit
-(TxTSU) is an additional module that allows recovering the outcoming packet
+(TxTSU) is an additional module that allows recovering the outgoing packet
 time-stamps. The Fine Delay core controls the operation of the Fine Delay FMC
 card if any is plugged into the FMC socket. The Wishbone (WB) Crossbar
 interconnects all the elements of the architecture and eases the configuration
-process performed by the ARM. The AXI-WB Bridge is a bus converter between AMBA (Advanced Microcontroller Bus Architecture)
+process performed by the ARM. The AXI-WB Bridge is a bus converter between AMBA (Advanced Micro-controller Bus Architecture)
 AXI (Advanced eXtensible Interface) and WB. This conversion is necessary because the ARM microprocessor
 uses the AMBA specification while others components are based on WB.
 
@@ -151,7 +151,7 @@ FPGA and creates the standard Linux network interfaces. The \textit{fmc} and
 \textit{zio} drivers are retrieved from the OHWR repository and implements a
 generic support for FMC and ZIO buses respectively.  The \textit{zio} driver
 has been modified in order to work properly in the WR-ZEN platform.  The
-\textit{zen-nic} kernel module is in charge of enabling/desabling network
+\textit{zen-nic} kernel module is in charge of enabling/disabling network
 capabilities of the \textit{zen} driver. The \textit{fmc-fine-del} driver
 provides basic functionalities for the Fine Delay FMC card.
 
