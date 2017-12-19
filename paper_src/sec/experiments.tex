@@ -324,12 +324,12 @@ value of CRTT and PPS offset samples, and (ii) their sample standard deviation.
 A total of 7200 samples (2 hours) per temperature step have been used to 
 compute the presented statistics. The amplitude of the CRTT sampled data is 
 96496 ps. Dividing it by the temperature range we obtained a CRTT variation of 
-3213 ps/C. It is important to remark the huge variation in the propagation delay. 
+3213 ps/ \degree C. It is important to remark the huge variation in the propagation delay. 
 Considering a synchronisation system that is not capable of dynamically 
 calibrate that change, the final performance would suffer from an enormous 
 degradation, which is unacceptable for the SKA equipment. The peak-to-peak 
-difference for the PPS offset is 211 ps which leaves us a 7 ps/C and if we 
-divide by the total link length: $0.14 ps/C \cdot km$.
+difference for the PPS offset is 211 ps which leaves us a 7 ps/\degree C and if we 
+divide by the total link length: $0.14 ps/\degree C \cdot km$.
 
 %\begin{figure}
 %	\centering
@@ -363,12 +363,10 @@ divide by the total link length: $0.14 ps/C \cdot km$.
 \begin{figure}[t]
 	\centering
 	\includegraphics[width=0.7\linewidth]{img/ppsvscrtt}
-	\caption[PPS offset vs. CRTT]{This figure shows how PPS offset is 
-	sightly influenced by changes in the cable round-trip time.}
-	\label{fig:ppsvscrtt}
 	\caption{Evaluation of the cable \textit{round-trip} time and the PPS 
 	offset with variable temperature conditions for the fibre 
-	link.\textcolor{teal}{que ha pasado con esta imagen?}}
+	link.}
+	\label{fig:ppsvscrtt}
 \end{figure}
 
 Figure \ref{fig:crttvstemp} shows a clear linear dependency between the 
@@ -380,7 +378,7 @@ relation. It must be considered that $\alpha$ is computed experimentally using
 fixed-point arithmetic (the LM32 has no floating-point unit). While it seemed 
 to work properly for distances shorter than few km, it may be insufficient 
 for such long distances as the ones used in our experiments. Nevertheless, the 
-observed offset variation for a long distance link and a 30C temperature 
+observed offset variation for a long distance link and a 30 \degree C temperature 
 gradient is only 200 ps. This together with the results from the previous 
 experiments make the new PPS distribution system suitable for the SKA 
 timing system.
