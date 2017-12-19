@@ -38,12 +38,10 @@ below:
         characterisation short distance fibres have been used, meanwhile for 
         the scalability and temperature tests we have used long distance links: 
         20 and 50 km respectively.
-        \item An OCXO Morion MV89 as frequency reference for the GM mode.
+        \item An OCXO Morion MV89 \cite{web:mv89_datasheet} as frequency reference for the GM mode.
     \end{itemize}
     
 \end{itemize}
-
-\gutinote{en esta seccion y en la anterior (se me ha olvidado ponerlo), creo que deberiais poner como [REF] el datasheet de cada componente.}
 
 \subsection{PPS performance}
 \label{subsec:pps_performance}
@@ -63,7 +61,6 @@ slave node. All measurements have been carried out for 24 hours under laboratory
 	the PPS from the DUT.}
 	\label{fig:prueba1pps}
 \end{figure}
-\gutinote{los caption de las figuras tienen que decir lo que es, lo que representa, no necesariamente evaluar su contenido, para eso ya esta en texto}
 
 
 Figure \ref{fig:tdev_exp1} corresponds to the Time Deviation (TDEV) statistic. 
@@ -74,14 +71,9 @@ TDEV value of 1.47e-11 for the WR-ZEN. This is 3.6e-12 s and 1.18e-11 s less tha
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{img/tdev_exp1}
-    \caption[TDEV for the WR devices comparison.]{The Time Deviation plot shows 
-        that all devices maintain a good PPS performance, nevertheless, the 
-        WR-ZEN 
-        achieves the best results.}
+    \caption[TDEV for the WR devices comparison.]{Time Deviation plot for the three analysed WR nodes as slaves of a WRS}
     \label{fig:tdev_exp1}
 \end{figure}
-\gutinote{los caption de las figuras tienen que decir lo que es, lo que representa, no nocesariamente evaluar su contenido, para eso ya esta en texto}
-
 
 Modified Allan Deviation (MDEV) results are included in Figure 
 \ref{fig:mdev_exp1}. From the TDEV (\ref{fig:tdev_exp1}) and MDEV (\ref{fig:mdev_exp1}) results we observe that white PM noise dominates from $\tau=1$ to a few hundred  seconds averaging time (depending of the observed device). After that, the rest remains as flicker FM noise.
@@ -89,15 +81,9 @@ Modified Allan Deviation (MDEV) results are included in Figure
 \begin{figure}
     \centering
     \includegraphics[width=0.7\linewidth]{img/mdev_exp1}
-    \caption[MDEV for the WR devices comparison.]{The Modified Allan Deviation 
-        plot shows that there is not undesired noise effects on any of the three 
-        devices. 
-        In the three plots the dominant noise is phase modulated white noise. 
-        \textcolor{teal}{usa las siglas}}
+    \caption[MDEV for the WR devices comparison.]{Modified Allan Deviation plot for the three analysed WR nodes as slaves of a WRS}
     \label{fig:mdev_exp1}
 \end{figure}
-\gutinote{los caption de las figuras tienen que decir lo que es, lo que representa, no nocesariamente evaluar su contenido, para eso ya esta en texto}
-
 
 %\begin{table*}\centering
 %	\ra{0.8}
@@ -122,22 +108,15 @@ Modified Allan Deviation (MDEV) results are included in Figure
 %	\label{tab:exp1res}
 %\end{table*}
 
-Finally, the worst case analysis has been performed with the Maximum Time Interval Error (MTIE) 
-statistic (Figure \ref{fig:mtie_exp1}). With the TDEV results, we observed that 
-all the WR devices fulfil the 2 ns time budget requirement even for the worst case scenario. 
-For the WR-ZEN the difference between the WRS PPS and its PPS is bounded on 1.5e-10 s. Again, the 
-WR-ZEN achieves the best results: 3.90e-11 less than the WR-LEN and 1.02e-10 less than the SPEC.
+Finally, the worst case analysis has been performed with the Maximum Time Interval Error (MTIE) statistic (Figure \ref{fig:mtie_exp1}). With the TDEV results, we observed that all the WR devices fulfil the 2 ns time budget requirement even for the worst case scenario. 
+For the WR-ZEN the difference between the WRS PPS and its PPS is bounded on 1.5e-10 s. Again, the WR-ZEN achieves the best results: 3.90e-11 less than the WR-LEN and 1.02e-10 less than the SPEC.
 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{img/mtie_exp1}
-	\caption[MTIE for the WR devices comparison.]{The worst case scenario 
-	verifies that the three devices fulfil the time budget requirement. The 
-	WR-ZEN with the registered PPS output performs the best of the three.}
+	\caption[MTIE for the WR devices comparison.]{The Maximum Time Interval Error plot analyses the worst case scenario for the three WR nodes.}
 	\label{fig:mtie_exp1}
 \end{figure}
-\gutinote{los caption de las figuras tienen que decir lo que es, lo que representa, no necesariamente evaluar su contenido, para eso ya esta en texto}
-
 
 The obtained values reveal that the proposed solution fulfils the requirements 
 to be used in the SKA telescope's PPS distribution system. Although, it is 
@@ -148,9 +127,9 @@ goodness.
 \label{subsec: net_exp}
 
 The next experiment covers a scalability analysis of the WR solution for the 
-SKA timing system. In section \ref{sec:ska} we presented an estimation of the final nodes that would be needed to be synchronised for the SKA: around 250 endpoints \textcolor{teal}{se decanta por usar -} that must be synchronised with an accuracy below 2 ns. A WR network with only two hops is suitable to synchronise up to 306 end-nodes by using BC WRSs.
+SKA timing system. In section \ref{sec:ska} we presented an estimation of the final nodes that would be needed to be synchronised for the SKA: around 250 endpoints that must be synchronised with an accuracy below 2 ns. A WR network with only two hops is suitable to synchronise up to 306 end-nodes by using BC WRSs.
 
-We set up a test network composed of a WRS at the top of the hierarchy, which is locked to an external time reference, another WRS as intermediate BC and a WR-ZEN as an endpoint \textcolor{teal}{se decanta por usar -}. This configuration allows synchronising up to 306 WR nodes with an expected performance similar to the results obtained in our test for the WR-ZEN.
+We set up a test network composed of a WRS at the top of the hierarchy, which is locked to an external time reference, another WRS as intermediate BC and a WR-ZEN as an endpoint. This configuration allows synchronising up to 306 WR nodes with an expected performance similar to the results obtained in our test for the WR-ZEN.
 
 \begin{figure}
 	\centering
@@ -162,8 +141,7 @@ We set up a test network composed of a WRS at the top of the hierarchy, which is
 	\label{fig:pruebared}
 \end{figure}
 
-This experiment has been tested under laboratory conditions. A 20 km fibre spool has 
-been used to connect each WR device using FiberStore SFPs (SFP-GE-BX80 with 1490/1550 nm wavelengths). 
+This experiment has been tested under laboratory conditions. A 20 km fibre spool has been used to connect each WR device using FiberStore SFPs (SFP-GE-BX80 with 1490/1550 nm wavelengths). 
 The PPS phase difference between the WR-ZEN and the WRS in GM mode has been measured  using a Keysight 52320A 
 counter for 4 hours.
 
@@ -171,8 +149,7 @@ counter for 4 hours.
 	\centering
 	\includegraphics[width=0.7\linewidth]{img/tdev_exp3}
 	\caption[TDEV of the end-nodes in the scalability test.]{Time Deviation 
-	plot comparing the PPS signal from the end-nodes (WR-ZEN) to the Grand 
-	Master of the network.}
+	plot comparing the PPS signal from the end-nodes (WR-ZEN) to the GM of the network.}
 	\label{fig:tdevnet}
 \end{figure}
 
@@ -226,13 +203,11 @@ WR solution for the SKA's timing distribution system.
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\linewidth]{img/MTIE_exp3}
+	\includegraphics[width=0.7\linewidth]{img/mtie_exp3}
 	\caption[MTIE of the end-nodes in the scalability test.]{Maximum Time 
-	Interval Error plot comparing the PPS signal from the end-nodes (WR-ZEN) to 
-	the Grand Master of the network. \textcolor{teal}{cambia esto felipe}}
+	Interval Error plot for the scalability test. The end-node (WR-ZEN) is compared to the GM of the network.}
 	\label{fig:mtienet}
 \end{figure}
-\gutinote{la fuente de esta figura sigue chica. Ponedla como las demas.}
 
 \subsection{Temperature influence on time accuracy}
 %\subsection{Fibre operational temperature influence on time accuracy}
