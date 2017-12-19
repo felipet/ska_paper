@@ -78,7 +78,7 @@ requirements.
 	\includegraphics[width=0.7\linewidth]{img/wrzenv3_scaled}
 	\caption[WR-ZEN board picture]{WR-ZEN board. Other connectors: Ethernet
 	ports, SFP ports and the SMA connectors for the RF input/output
-signals.} \label{fig:wrzen} 
+    signals.} \label{fig:wrzen} 
 \end{figure}
 
 The FPGA-SoC platform design is composed of two different elements: (i) a
@@ -89,13 +89,9 @@ architectures is a novel approach.  This leads to the utilisation of a powerful
 hard-processor unit for software, thereby freeing FPGA resources. In addition
 to that, Zynq platforms include the required WR physical components: 
 internal programmable PLLs, Gigabit Transceiver Ports (GTPs).
-Furthermore, they include not strictly fundamental elements for a WR node design but helpful for
-future designs such as Ethernet interfaces with hardware time-stamping support
-(allowing PTPv2 support). I/O ports interface with external components used to obtain the time reference from the
+Furthermore, they include not strictly fundamental elements for a WR node design but helpful for future designs such as Ethernet interfaces with hardware time-stamping support (allowing PTPv2 support). I/O ports interface with external components used to obtain the time reference from the
 main board. The most relevant WR-ZEN I/O interfaces are the FMC HPC
-socket (OHWR FMC cards support
-\cite{ohwr:fmc-fine-delay}), two SFPs sockets, and
-several external RF connectors for input/output RF and PPS signals.
+socket (OHWR FMC cards support \cite{ohwr:fmc-fine-delay}), two SFPs sockets, and several external RF connectors for input/output RF and PPS signals.
 
 \begin{figure} \centering
 	\includegraphics[width=0.7\linewidth]{img/zenclkschema} \caption[WR-ZEN
@@ -108,9 +104,8 @@ delays.} \label{fig:zenclkschema} \end{figure}
 
 The extended WR clock schema is depicted in Figure \ref{fig:zenclkschema}.
 Besides including new components, the WR-ZEN design, upgrades some of them
-in order to provide an increment of the clock stability. All the clock path: Digital to Analogue Converter (DAC), Voltage-controlled crystal oscillator (VCXO), Phase-Locked loop (PLL) have been upgraded. A new DAC with a better
-response time and stability, a low-noise VCXO and PLL have been included. 
-The original PLL used in previous designs has been maintained because it offers key aspects such as programmable output delays. In order to avoid the development of cascades formed of several PLLs, the signal from the crystal oscillator (XO) is driven to the low-noise PLL first since it allows bypassing its reference to other components without adding noise to the reference. This schema enables using both PLLs at the same time. One of them is used to generate all the WR-clocks and the other can be used to generate custom frequencies. The WR general performance is limited by noise when locking to an external reference, in the so called GM mode, described in \cite{Rizzi2016}. It states that, in order to decrease the noise when locking to an external reference, internal PLLs in the FPGA should be avoid. Instead of it, it is recommended to use an analogue external PLL to locks to the external reference generating the necessary clock signals by the internal elements of the WR-logic in the FPGA. Those enhanced features are included in the version 3.0 of the WR-ZEN as shown in Figure \ref{fig:zenclkschema} in order to achieve the expected PPS distribution stability requirements of the SKA project.
+in order to provide an increment of the clock stability. All the clock path: Digital to Analogue Converter (DAC), Voltage-controlled crystal oscillator (VCXO), Phase-Locked loop (PLL) have been upgraded. A new DAC \cite{web:ad5541a_datasheet} with a better response time and stability, a low-noise VCXO \cite{web:cvhd950_datasheet} and PLL \cite{web:lmk03806_datasheet}  have been included.
+The original PLL \cite{web:ad9516_datasheet} used in previous designs has been maintained because it offers key aspects such as programmable output delays. In order to avoid the development of cascades formed of several PLLs, the signal from the crystal oscillator (XO) is driven to the low-noise PLL first since it allows bypassing its reference to other components without adding noise to the reference. This schema enables using both PLLs at the same time. One of them is used to generate all the WR-clocks and the other can be used to generate custom frequencies. The WR general performance is limited by noise when locking to an external reference, in the so called GM mode, described in \cite{Rizzi2016}. It states that, in order to decrease the noise when locking to an external reference, internal PLLs in the FPGA should be avoid. Instead of it, it is recommended to use an analogue external PLL to locks to the external reference generating the necessary clock signals by the internal elements of the WR-logic in the FPGA. Those enhanced features are included in the version 3.0 of the WR-ZEN as shown in Figure \ref{fig:zenclkschema} in order to achieve the expected PPS distribution stability requirements of the SKA project.
 
 
 \subsubsection{Gateware} \label{subsec:gateware}
