@@ -4,12 +4,9 @@ describes a time-aware network capable to provide full timing support
 \cite{itu:TG8275_1_Y_1369_1} as explained in the previous section. It uses a master time reference (SKA1 clock) that is distributed following a tree topology in a master-slave configuration as is shown in the Figure \ref{fig:ska_pps_dist_network}. The SKA PPS distribution system is composed of two different kinds of devices:
 
 \begin{itemize} 
-	\item {The WR Switches \cite{sevensols:wr_switch}. They are standard 1U height rack-mounted equipment with 18 SFP ports and are placed in the CSPs at each of the clock ensembles. For SKA1-MID, one is placed halfway along each of the 3 spiral arms to regenerate the signal for the longest links.} \item{The end-nodes. They consist of a WR-ZEN node \cite{sevensols:wr_zen} powered by a Zynq FPGA-SoC and placed on inside a 1U rack enclosure. They will be located at the cores of SKA1-LOW and SKA1-SURVEY, along their spiral arms, one for each SKA1-MID dish and one for each CSP.} 
+	\item {The WR Switches \cite{sevensols:wr_switch} are placed in the CSPs at each of the clock ensembles. For SKA1-MID, one is placed halfway along each of the 3 spiral arms to regenerate the signal for the longest links.} \item{The end-nodes (WR-ZEN \cite{sevensols:wr_zen}) will be located at the cores of SKA1-LOW and SKA1-SURVEY, along their spiral arms, one for each SKA1-MID dish and one for each CSP.} 
 \end{itemize}
 
-The WR switches are responsible for generating the WR timing signal from the
-SAT clock ensembles. They lock to an external 10MHz reference and to a PPS
-signal, and use NTP or IRIG-B to determine the UTC time of each PPS edge.
 Synchronisation between WR devices is performed over a a single fibre link up
 to 120 km using commercial SFPs.  However, the distances for SKA1-MID are
 longer and it is necessary to use intermediate WR switches as repeaters with a
@@ -112,7 +109,7 @@ The original PLL \cite{web:ad9516_datasheet} used in previous designs has been m
 
 The gateware (FPGA firmware) is responsible for configuring the communication between the embedded ARM microprocessor and the FPGA inside the Zynq SoC. 
 The main block diagram is shown in Figure \ref{fig:gateware_first_level}. 
-It includes the WRPC Dual port (WRPC-2p) core that implements the high accuracy timing protocol based on WR and provides basic capabilities, such as Gigabit networking, time-stamp mechanisms, debug interfaces, etc. The Gigabit transceiver (GT) ports include the necessary modules to send/receive packets to/from the network. The NIC are in charge of processing the incoming/outgoing
+It includes the WRPC Dual port (WRPC-2p) \cite{torres2016scalability} core that implements the high accuracy timing protocol based on WR and provides basic capabilities, such as Gigabit networking, time-stamp mechanisms, debug interfaces, etc. The Gigabit transceiver (GT) ports include the necessary modules to send/receive packets to/from the network. The NIC are in charge of processing the incoming/outgoing
 packets and notify these events to the ARM. The Transmission Time-Stamp Unit
 (TxTSU) is an additional module that allows recovering the outgoing packet
 time-stamps. The Fine Delay core controls the operation of the Fine Delay FMC

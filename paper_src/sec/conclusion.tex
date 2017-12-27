@@ -1,6 +1,6 @@
 The contribution presented by the authors is based on a PPS distribution system using the WR technology as a candidate for the SKA Telescope timing system. The strict timing requirements of this project requires the utilisation of novel timing technologies able to provide an accuracy below 2 ns. This accuracy is not achievable using current standard timing protocols such as NTP and PTP.
 For this reason, authors proposed a solution is based on the WR-ZEN which improves previous existing WR node designs 
-due to the inclusion of high-level software capabilities, a new gateware design compliant with HA protocols and an enhanced clock circuitry, being able to provide accuracies below 2 ns.
+due to the inclusion of high-level software capabilities, a new gateware design compliant with high accuracy protocols and an enhanced clock circuitry, being able to provide accuracies below 2 ns.
 
 Regarding high-level capabilities, we have developed a Linux-based environment with some userspace tools and drivers. The gateware design includes all the elements to implement the WR protocol and some additional FMC functionalities. The enhanced clocking circuitry can be configured using different schemes in order to offer the best synchronisation performance and quality results targeting the SKA needs. 
 
@@ -10,6 +10,7 @@ Furthermore, several experiments have been designed to simulate the SKA climatic
 in order to evaluate the thermal change influence in the propagation delay 
 and its repercussion in the PPS distribution system. The obtained results evidences that the propagation delay increases ten of ns (96 ns) for each 20 C temperature difference, but alongside that, the PPS offset maintains its accuracy with an offset not exceeding hundred of picoseconds (211 ps). 
 
-Finally, the experimental results evidence that the proposed PPS distribution system based on WR not only fits perfectly the SKA requirements but also improve them.
+The experimental results evidence that the proposed PPS distribution system we have developed based on WR outperforms the exigent SKA requirements. Furthermore, we have demonstrated that the proposed system is able to cope with the scalability needs of the SKA facility and the harsh environment conditions of the telescope locations. 
+Finally, it is important to remark that all these features are fulfilled using a stand-alone node that combines high-level applications integrated into a Linux OS including operational functionalities such as monitoring and control services mandatory to  ensure a flexible and professional solution for SKA Telescope.
 
 
