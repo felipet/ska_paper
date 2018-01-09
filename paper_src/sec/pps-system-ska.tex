@@ -132,7 +132,7 @@ In the node architecture, the embedded software part of the WR protocol together
 \subsubsection{Software} \label{subsec:software}
 
 The WR-ZEN is the first WR node taking advantage of a Linux based OS in a standalone configuration.  
-Due to the inclusion of a dual-core ARM microprocessor, the system design is not longer tied to low-level software implementations. New functionalities, such as communication protocols, management tools, etc., are quickly added thanks to the support provided by the OS. The hardware abstraction layer and drivers help to abstract the management of the underlaying logic. This middleware adds also more security access to the hardware.
+Due to the inclusion of a dual-core ARM microprocessor, the system design is not longer tied to low-level software implementations. New functionalities, such as communication protocols, management tools, etc., are quickly added thanks to the support provided by the OS. The hardware abstraction layer and drivers help to abstract the management of the associated logic. This middleware adds also more security access to the hardware.
 
 The software components are presented in Figure
 \ref{fig:software_architecture}. Software is divided into the userspace utilities and the kernel support. The userspace utilities includes the \textit{Zen library} that implements the basic functionalities for the \textit{Zen tools} through the C standard library. The \textit{Zen tools} provide some mechanisms to program the FPGA design and connect to the internal UART for debugging/configuration tasks among others.  Moreover, other utilities are included to control the Fine Delay FMC card if plugged.
