@@ -4,7 +4,7 @@ describes a time-aware network capable to provide full timing support
 \cite{itu:TG8275_1_Y_1369_1} as explained in the previous section. It uses a master time reference (SKA1 clock) that is distributed following a tree topology in a master-slave configuration as is shown in the Figure \ref{fig:ska_pps_dist_network}. The SKA PPS distribution system is composed of two different kinds of devices:
 
 \begin{itemize} 
-	\item {The WR Switches \cite{sevensols:wr_switch} are placed in the CSPs at each of the clock ensembles. For SKA1-MID, one is placed halfway along each of the 3 spiral arms to regenerate the signal for the longest links.} \item{The end-nodes (WR-ZEN \cite{sevensols:wr_zen}) will be located at the cores of SKA1-LOW and SKA1-SURVEY, along their spiral arms, one for each SKA1-MID dish and one for each CSP.} 
+	\item {The WRSs \cite{sevensols:wr_switch} are placed in the CSPs at each of the clock ensembles. For SKA1-MID, one is placed halfway along each of the 3 spiral arms to regenerate the signal for the longest links.} \item{The end-nodes (WR-ZEN \cite{sevensols:wr_zen}) will be located at the cores of SKA1-LOW and SKA1-SURVEY, along their spiral arms, one for each SKA1-MID dish and one for each CSP.} 
 \end{itemize}
 
 The synchronisation between WR devices is performed over a a single fibre link up
@@ -41,7 +41,7 @@ should have an annual availability of about 95\% of the time (although degraded
 operation modes can be allowed under some circumstances).  Finally, it is worth to mention that all these features maintain the full flexibility of a complete
 CPU+FPGA system on a single board. 
 
-In the following section we describe the proposed node by means of hardware, gateware and firmware that have been developed as a candidate solution for the SKA Telescope PPS distribution system. 
+In the following section we describe the proposed node by means of hardware, gateware (FPGA firmware) and firmware that have been developed as a candidate solution for the SKA Telescope PPS distribution system. 
 
 \subsection{A PPS distribution node architecture}
 \label{subsec:ska-pps-system-arch}
@@ -86,7 +86,7 @@ architectures is a novel approach.  This leads to the utilisation of a powerful
 hard-processor unit for software, thereby freeing FPGA resources. In addition
 to that, Zynq platforms include the required WR physical components: 
 internal programmable PLLs, Gigabit Transceiver Ports (GTPs).
-Furthermore, they include not strictly fundamental elements for a WR node design but helpful for future designs such as Ethernet interfaces with hardware time-stamping support (allowing PTPv2 support). I/O ports interface with external components used to obtain the time reference from the
+Furthermore, they include not strictly fundamental elements for a WR node design but helpful for future designs such as Ethernet interfaces with hardware timestamp support (allowing PTPv2 support). I/O ports interface with external components used to obtain the time reference from the
 main board. The most relevant WR-ZEN I/O interfaces are the FMC HPC
 socket (OHWR FMC cards support \cite{ohwr:fmc-fine-delay}), two SFPs sockets, and several external RF connectors for input/output RF and PPS signals.
 
@@ -107,12 +107,12 @@ The original PLL \cite{web:ad9516_datasheet} used in previous designs has been m
 
 \subsubsection{Gateware} \label{subsec:gateware}
 
-The gateware (FPGA firmware) is responsible for configuring the communication between the embedded ARM microprocessor and the FPGA inside the Zynq SoC. 
+The gateware is responsible for configuring the communication between the embedded ARM microprocessor and the FPGA inside the Zynq SoC. 
 The main block diagram is shown in Figure \ref{fig:gateware_first_level}. 
-It includes the WRPC Dual port (WRPC-2p) \cite{torres2016scalability} core that implements the high accuracy timing protocol based on WR and provides basic capabilities, such as Gigabit networking, time-stamp mechanisms, debug interfaces, etc. The GTPs include the necessary modules to send/receive packets to/from the network. The NIC are in charge of processing the incoming/outgoing
+It includes the WRPC-2p \cite{torres2016scalability} core that implements the high accuracy timing protocol based on WR and provides basic capabilities, such as Gigabit networking, timestamp mechanisms, debug interfaces, etc. The GTPs include the necessary modules to send/receive packets to/from the network. The NIC are in charge of processing the incoming/outgoing
 packets and notify these events to the ARM. The Transmission Time-Stamp Unit
 (TxTSU) is an additional module that allows recovering the outgoing packet
-time-stamps. The Fine Delay core controls the operation of the Fine Delay FMC
+timestamps. The Fine Delay core controls the operation of the Fine Delay FMC
 card if any is plugged into the FMC socket. The Wishbone (WB) Crossbar
 interconnects all the elements of the architecture and eases the configuration
 process performed by the ARM. The AXI-WB Bridge is a bus converter between AMBA (Advanced Micro-controller Bus Architecture)
